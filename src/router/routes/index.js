@@ -34,6 +34,7 @@ const Error = lazy(() => import("../../pages/Error"));
 const Sample = lazy(() => import("../../pages/Sample"));
 
 const Users = lazy(() => import("../../pages/Users"));
+const UserDetails = lazy(() => import("../../pages/UserDetails"));
 
 // ** Merge Routes
 const Routes = [
@@ -49,6 +50,11 @@ const Routes = [
   {
     path: "/users",
     element: <Users />,
+    access: ["Administrator"],
+  },
+  {
+    path: "/users/:id",
+    element: <UserDetails />,
     access: ["Administrator"],
   },
   {
