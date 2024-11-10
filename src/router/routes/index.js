@@ -33,6 +33,8 @@ const ForgotPassword = lazy(() => import("../../pages/ForgotPassword"));
 const Error = lazy(() => import("../../pages/Error"));
 const Sample = lazy(() => import("../../pages/Sample"));
 
+const Users = lazy(() => import("../../pages/Users"));
+
 // ** Merge Routes
 const Routes = [
   {
@@ -43,6 +45,11 @@ const Routes = [
   {
     path: "/home",
     element: <Home />,
+  },
+  {
+    path: "/users",
+    element: <Users />,
+    access: ["Administrator"],
   },
   {
     path: "/sample",
