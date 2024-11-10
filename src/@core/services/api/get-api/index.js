@@ -1,4 +1,4 @@
 import UserDetails from "./UserDetails";
-import UserManage from "./UserMannage";
+import GetUserList from "./GetUserList";
 
-export { UserManage, UserDetails };
+export { GetUserList, UserDetails };
