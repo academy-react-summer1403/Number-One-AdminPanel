@@ -19,7 +19,6 @@ import { useQueryWithDependencies } from "../../../utility/hooks/useCustomQuery"
 import { useSelector } from "react-redux";
 import { useMutation } from "@tanstack/react-query";
 
-import CreateTitle from "./CreateTitle";
 import CourseCom from "../../DetailCourse/courseGroups/comment/Comment";
 
 const UserTabs = ({ active, toggleTab }) => {
@@ -115,15 +114,21 @@ const UserTabs = ({ active, toggleTab }) => {
       </Nav>
       <TabContent activeTab={active}>
         <TabPane tabId="1">
-          <CreateTitle className="d-flex mb-2">دوره های تایید شده</CreateTitle>
+          <div className="divider divider-start">
+            <div className="divider-text">دوره های تایید شده</div>
+          </div>
           <UserCourseList />
         </TabPane>
         <TabPane tabId="2">
-          <CreateTitle className="d-flex mb-2">دوره های رزرو شده</CreateTitle>
+          <div className="divider divider-start">
+            <div className="divider-text">دوره های رزرو شده</div>
+          </div>
           <UserReserveCourse />
         </TabPane>
         <TabPane tabId="3">
-          <CreateTitle className="d-flex mb-2">کامنت های تایید شده</CreateTitle>
+          <div className="divider divider-start">
+            <div className="divider-text">کامنت های تایید شده</div>
+          </div>
           <CourseCom
             comments={acceptComment}
             title="نام دوره"
@@ -131,7 +136,9 @@ const UserTabs = ({ active, toggleTab }) => {
             rejectFunction={handleRejectComment}
             deleteFunction={handleDeleteComment}
           />
-          <CreateTitle>کامنت های تایید نشده</CreateTitle>
+          <div className="divider divider-start">
+            <div className="divider-text">کامنت های تایید نشده</div>
+          </div>
           <CourseCom
             comments={notAcceptComment}
             title="نام دوره"
@@ -141,9 +148,13 @@ const UserTabs = ({ active, toggleTab }) => {
           />
         </TabPane>
         <TabPane tabId="4" className="mb-4">
-          <CreateTitle className="d-flex mb-2">سایر اطاعات کاربر</CreateTitle>
+          <div className="divider divider-start">
+            <div className="divider-text">سایر اطاعات کاربر</div>
+          </div>
           <MoreInfo />
-          <CreateTitle>شبکه های اجتماعی</CreateTitle>
+          <div className="divider divider-start">
+            <div className="divider-text">شبکه های اجتماعی</div>
+          </div>
           <Connections />
         </TabPane>
       </TabContent>

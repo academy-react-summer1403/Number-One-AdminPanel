@@ -10,7 +10,7 @@ import { Card } from "reactstrap";
 // Custom Component
 import CustomPagination from "../../../@core/components/pagination";
 import HeaderTable from "./HeaderTable";
-import CreateUser from "../create-user";
+import CreateNewUser from "../create";
 import { useQueryWithDependencies } from "../../../utility/hooks/useCustomQuery";
 
 // Api
@@ -108,7 +108,7 @@ const UsersList = () => {
           handleClickFunc={handleWithDispatch}
         />
       </Card>
-      <CreateUser
+      <CreateNewUser
         open={sidebarOpen}
         toggleSidebar={toggleSidebar}
         setSidebarOpen={setSidebarOpen}
