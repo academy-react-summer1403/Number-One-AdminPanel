@@ -1,12 +1,12 @@
 // Redux
 import { useSelector } from "react-redux";
 
-// ** Social Icon Imports
-import slackIcon from "../../../assets/images/icons/social/slack.png";
-import asanaIcon from "../../../assets/images/icons/social/asana.png";
-import googleIcon from "../../../assets/images/icons/social/google.png";
-import githubIcon from "../../../assets/images/icons/social/github.png";
-import mailchimpIcon from "../../../assets/images/icons/social/mailchimp.png";
+// ** Icons
+import slackIcon from "../../../assets/images/icons/slack.png";
+import asanaIcon from "../../../assets/images/icons/asana.png";
+import googleIcon from "../../../assets/images/icons/google.png";
+import githubIcon from "../../../assets/images/icons/github.png";
+import mailchimpIcon from "../../../assets/images/icons/mailchimp.png";
 
 // Custom Component
 import MoreInfoItems from "./MoreInfoItems";

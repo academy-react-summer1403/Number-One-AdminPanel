@@ -1,9 +1,9 @@
 // Redux
 import { useSelector } from "react-redux";
 
-// ** Reactstrap Imports
-import twitterIcon from "../../../assets/images/icons/social/twitter.png";
-import linkedinIcon from "../../../assets/images/icons/social/linkedin.png";
+// ** Icons
+import twitterIcon from "../../../assets/images/icons/twitter.png";
+import linkedinIcon from "../../../assets/images/icons/linkedin.png";
 
 // Custom Component
 import MoreInfoItems from "./MoreInfoItems";

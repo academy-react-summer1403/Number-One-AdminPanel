@@ -5,8 +5,9 @@ import { MoreVertical, Trash, FileText } from "react-feather";
 
 import Avatar from "@components/avatar";
 
-import avatarImg from "@src/assets/images/portrait/small/ee.jpg";
-import avatarMenImg from "@src/assets/images/portrait/small/jpmen.jpg";
+// Image
+import WomanIcon from "../../../assets/images/portrait/small/woman.jpg";
+import ManIcon from "../../../assets/images/portrait/small/man.jpg";
 
 import RoleGenerator from "./RoleGenerator";
 
@@ -42,9 +43,9 @@ const TableItems = ({ item }) => {
         {item.pictureAddress != null && item.pictureAddress != "Not-set" ? (
           <Avatar img={item.pictureAddress} />
         ) : item.gender ? (
-          <Avatar img={avatarMenImg} />
+          <Avatar img={ManIcon} />
         ) : (
-          <Avatar img={avatarImg} />
+          <Avatar img={WomanIcon} />
         )}
       </td>
       <td

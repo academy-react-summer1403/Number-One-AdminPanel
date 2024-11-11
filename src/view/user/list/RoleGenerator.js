@@ -1,7 +1,9 @@
-import avatar1 from "@src/assets/images/portrait/small/admin.jfif";
 import avatar2 from "@src/assets/images/portrait/small/avatar-s-5.jpg";
 import avatar3 from "@src/assets/images/portrait/small/avatar-s-21.jpg";
 import avatar4 from "@src/assets/images/portrait/small/user.png";
+
+// Icons
+import AdminIcon from "../../../assets/images/portrait/small/admin.jfif";
 
 import RoleCards from "../../roles-permissions/roles/RoleCards";
 
@@ -48,7 +50,7 @@ const RoleGenerator = ({ Roles }) => {
       data[0].users.push({
         size: "md",
         title: "ادمین",
-        img: avatar1,
+        img: AdminIcon,
       });
   }
 

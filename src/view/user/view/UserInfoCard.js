@@ -9,9 +9,9 @@ import Swal from "sweetalert2";
 import { Check, Briefcase, X, Edit } from "react-feather";
 import withReactContent from "sweetalert2-react-content";
 
-// ** Images
-import avatarImg from "@src/assets/images/portrait/small/ee.jpg";
-import avatarMenImg from "@src/assets/images/portrait/small/jpmen.jpg";
+// ** Icons
+import WomanIcon from "../../../assets/images/portrait/small/woman.jpg";
+import ManIcon from "../../../assets/images/portrait/small/man.jpg";
 
 // ** Custom Components
 import EditUserInfo from "./EditUserInfo";
@@ -168,8 +168,8 @@ const UserInfoCard = ({ submitUserUpdate, setShow, show, refetch }) => {
                   userDetails.currentPictureAddress != "Not-set"
                     ? userDetails.currentPictureAddress
                     : userDetails.gender
-                    ? avatarMenImg
-                    : avatarImg
+                    ? ManIcon
+                    : WomanIcon
                 }
                 className="img-fluid rounded-4 mb-2"
               />
