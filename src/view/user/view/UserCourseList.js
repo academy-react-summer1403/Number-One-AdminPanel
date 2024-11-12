@@ -4,16 +4,25 @@ import { ChevronDown } from "react-feather";
 import DataTable from "react-data-table-component";
 import Avatar from "@components/avatar";
 
-import AvatarPic from "../../../../assets/images/new/44.jpg";
+import AvatarPic from "../../../assets/images/portrait/small/noFoundImage.jpg";
 
 // Styles
 import "@styles/react/libs/tables/react-dataTable-component.scss";
+import CustomPagination from "../../../@core/components/pagination";
+import { useState } from "react";
 
 const UserCourseList = () => {
   const usersCourse = useSelector(
     (state) => state.UserInfoSlice.details.courses
   );
   const navigate = useNavigate();
+
+  const [itemOffset, setItemOffset] = useState(0);
+  const endOffset = itemOffset + 8;
+  const handleWithOutDispatch = (page) => {
+    const newOffset = (page.selected * 8) % usersCourse?.length;
+    setItemOffset(newOffset);
+  };
 
   const columns = [
     {
@@ -73,14 +82,24 @@ const UserCourseList = () => {
   ];
 
   return (
-    <DataTable
-      noHeader
-      responsive
-      columns={columns}
-      data={usersCourse}
-      className="react-dataTable"
-      sortIcon={<ChevronDown size={10} />}
-    />
+    <>
+      <DataTable
+        noHeader
+        responsive
+        columns={columns}
+        data={usersCourse?.slice(itemOffset, endOffset)}
+        className="react-dataTable"
+        sortIcon={<ChevronDown size={10} />}
+      />
+      <div className="w-100 d-flex justify-content-end">
+        <CustomPagination
+          total={usersCourse?.length}
+          current={1}
+          rowsPerPage={8}
+          handleClickFunc={handleWithOutDispatch}
+        />
+      </div>
+    </>
   );
 };
 

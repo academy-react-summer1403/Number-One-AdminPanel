@@ -6,10 +6,11 @@ import { useState, useEffect } from "react";
 import DataTable from "react-data-table-component";
 import Avatar from "@components/avatar";
 
-import AvatarPic from "../../../../assets/images/new/44.jpg";
+import AvatarPic from "../../../assets/images/portrait/small/noFoundImage.jpg";
 
 // Styles
 import "@styles/react/libs/tables/react-dataTable-component.scss";
+import CustomPagination from "../../../@core/components/pagination";
 
 const UserReserveCourse = () => {
   const navigate = useNavigate();
@@ -22,6 +23,13 @@ const UserReserveCourse = () => {
     if (!usersCourse) return;
     setCourseReserve(usersCourse.filter((item) => item.accept === false));
   }, [usersCourse]);
+
+  const [itemOffset, setItemOffset] = useState(0);
+  const endOffset = itemOffset + 8;
+  const handleWithOutDispatch = (page) => {
+    const newOffset = (page.selected * 8) % courseReserve?.length;
+    setItemOffset(newOffset);
+  };
 
   const columns = [
     {
@@ -107,14 +115,24 @@ const UserReserveCourse = () => {
   ];
 
   return (
-    <DataTable
-      noHeader
-      responsive
-      columns={columns}
-      data={courseReserve}
-      className="react-dataTable"
-      sortIcon={<ChevronDown size={10} />}
-    />
+    <>
+      <DataTable
+        noHeader
+        responsive
+        columns={columns}
+        data={courseReserve?.slice(itemOffset, endOffset)}
+        className="react-dataTable"
+        sortIcon={<ChevronDown size={10} />}
+      />
+      <div className="w-100 d-flex justify-content-end">
+        <CustomPagination
+          total={courseReserve?.length}
+          current={1}
+          rowsPerPage={8}
+          handleClickFunc={handleWithOutDispatch}
+        />
+      </div>
+    </>
   );
 };
 
