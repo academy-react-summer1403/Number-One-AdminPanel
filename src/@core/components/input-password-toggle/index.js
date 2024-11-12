@@ -57,6 +57,11 @@ const InputPasswordToggle = forwardRef((props, ref) => {
           invalid={invalid}
           type={inputVisibility === false ? "password" : "text"}
           placeholder={placeholder ? placeholder : "············"}
+          style={{
+            borderRadius: "0.357rem",
+            border: "1px solid #d8d6de",
+            padding: "0.571rem 1rem"
+          }}
           className={classnames({
             [inputClassName]: inputClassName,
           })}
@@ -72,6 +77,14 @@ const InputPasswordToggle = forwardRef((props, ref) => {
         <InputGroupText
           className="cursor-pointer"
           onClick={() => setInputVisibility(!inputVisibility)}
+          style={{
+            rotate: "180deg",
+            height: "100%",
+            position: "absolute",
+            top: "0",
+            left: "0",
+            zIndex: "10",
+          }}
         >
           {renderIcon()}
         </InputGroupText>
