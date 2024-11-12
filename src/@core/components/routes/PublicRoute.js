@@ -1,22 +1,44 @@
-// ** React Imports
+//  React Imports
 import { Suspense } from "react";
 import { Navigate } from "react-router-dom";
-
-// ** Utils
-import { getUserData, getHomeRouteForLoggedInUser } from "@utils";
+import { jwtDecode } from "jwt-Decode";
+import { useGetItem } from "../../../utility/hooks/useLocalStorage";
 
 const PublicRoute = ({ children, route }) => {
+  let flag = false;
+  const userToken = useGetItem("token");
+
   if (route) {
-    const user = getUserData();
+    if (!route.access) {
+      return <Suspense fallback={null}>{children}</Suspense>;
+    } else {
+      const userData = userToken && jwtDecode(userToken);
+      const userRoles =
+        userData[
+          "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
+        ];
+      const accessRoles = route.access;
 
-    const restrictedRoute = route.meta && route.meta.restricted;
-
-    if (user && restrictedRoute) {
-      return <Navigate to={getHomeRouteForLoggedInUser(user.role)} />;
+      accessRoles.map((role) => {
+        if (userRoles.includes(role)) {
+          flag = true;
+        }
+      });
+      if (!flag) {
+        // alert
+      }
     }
   }
 
-  return <Suspense fallback={null}>{children}</Suspense>;
+  return (
+    <>
+      {flag ? (
+        <Suspense fallback={null}>{children}</Suspense>
+      ) : (
+        <Navigate to={"/home"} />
+      )}
+    </>
+  );
 };
 
 export default PublicRoute;
