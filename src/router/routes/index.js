@@ -53,7 +53,7 @@ const Routes = [
     access: ["Administrator"],
   },
   {
-    path: "/users/:id",
+    path: "/users/view/:id",
     element: <UserDetails />,
     access: ["Administrator"],
   },

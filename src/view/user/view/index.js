@@ -11,7 +11,7 @@ import UserInfoCard from "./UserInfoCard";
 
 // Redux
 import { useDispatch, useSelector } from "react-redux";
-import { handleUsersDetails } from "../../../../redux/slices/UsersList";
+import { handleDetails } from "../store/UserInfoSlice";
 
 // Api
 import { UserDetails } from "../../../@core/services/api/get-api";
@@ -42,7 +42,7 @@ const UserView = () => {
     id
   );
   if (isSuccess) {
-    dispatch(handleUsersDetails(data));
+    dispatch(handleDetails(data));
   }
 
   const { mutate } = useMutation({

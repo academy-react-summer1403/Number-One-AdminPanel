@@ -5,7 +5,7 @@ import avatar4 from "@src/assets/images/portrait/small/user.png";
 // Icons
 import AdminIcon from "../../../assets/images/portrait/small/admin.jfif";
 
-import RoleCards from "../../roles-permissions/roles/RoleCards";
+import RoleCards from "../../../@core/components/roles-permissions/roles/RoleCards";
 
 const RoleGenerator = ({ Roles }) => {
   var data = [

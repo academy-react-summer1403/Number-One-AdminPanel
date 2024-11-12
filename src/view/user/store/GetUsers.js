@@ -7,7 +7,8 @@ const getUsers = (action, role) => {
   const dispatch = useDispatch();
 
   const getUsersList = async () => {
-    const list = await GetUserList(role);
+    const list = await GetUserList({ roleId: role });
+    console.log(list);
     dispatch(action(list));
   };
 

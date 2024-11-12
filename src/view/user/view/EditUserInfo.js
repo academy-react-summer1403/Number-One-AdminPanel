@@ -12,7 +12,7 @@ import "@styles/react/libs/react-select/_react-select.scss";
 import { useSelector } from "react-redux";
 
 const EditUserInfo = ({ show, setShow, refetch, submitUserUpdate }) => {
-  const userDetails = useSelector((state) => state.UserList.usersDetails);
+  const userDetails = useSelector((state) => state.UserInfoSlice.details);
 
   const handleSubmit = (event) => {
     submitUserUpdate(event);

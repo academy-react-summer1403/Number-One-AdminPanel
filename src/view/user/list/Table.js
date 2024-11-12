@@ -59,8 +59,9 @@ const UsersList = () => {
   if (isSuccess) {
     dispatch(handleAllUser(users));
   }
-  const userList = useSelector((state) => state.UserList.allUsers.listUser);
-  const totalCount = useSelector((state) => state.UserList.allUsers.totalCount);
+  const userList = useSelector((state) => state.UserInfoSlice.allUsers.listUser);
+  const totalCount = useSelector((state) => state.UserInfoSlice.allUsers.totalCount);
+  console.log(totalCount)
 
   // Handle RowOfPage for list
   const handleRows = (e) => {

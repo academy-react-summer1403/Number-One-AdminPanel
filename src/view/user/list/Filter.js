@@ -36,31 +36,24 @@ import "@styles/react/libs/tables/react-dataTable-component.scss";
 const Filter = () => {
   const dispatch = useDispatch();
 
-  // User Params
-  const userParams = useSelector((state) => state.FilterSlice);
-
   const filterSections = [
     {
       label: "انتخاب بر اساس نقش",
-      value: userParams.roleId,
       options: roleOptions,
       action: handleRoleId,
     },
     {
       label: "انتخاب بر اساس وضعیت",
-      value: userParams.IsActiveUser,
       options: isActiveOptions,
       action: handleIsActiveUser,
     },
     {
       label: "فعال/غیر فعال",
-      value: userParams.SortType,
       options: statusOptions,
       action: handleSortType,
     },
     {
       label: "صعودی/نزولی",
-      value: userParams.SortingCol,
       options: AscDescOptions,
       action: handleSortingCol,
     },
@@ -79,13 +72,12 @@ const Filter = () => {
                 <Label for="role-select">{item.label}</Label>
                 <Select
                   isClearable={false}
-                  value={item.value}
                   options={item.options}
                   className="react-select"
                   classNamePrefix="select"
                   theme={selectThemeColors}
                   onChange={(data) => {
-                    dispatch(item.action(data));
+                    dispatch(item.action(data.value));
                   }}
                   placeholder="انتخاب کنید..."
                 />

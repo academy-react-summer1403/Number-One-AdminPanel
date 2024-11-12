@@ -17,6 +17,7 @@ import {
   handleTeachers,
   handleTotalCount,
 } from "../store/UserInfoSlice";
+import { Col } from "reactstrap";
 
 const UsersReport = () => {
   const total = getUsers(handleTotalCount);
@@ -24,7 +25,9 @@ const UsersReport = () => {
   const teachers = getUsers(handleTeachers, 2);
   const students = getUsers(handleStudents, 5);
 
-  const userReports = useSelector((state) => state.UserList);
+  const userReports = useSelector((state) => state.UserInfoSlice);
+
+  // console.log(userReports)
 
   const userReport = [
     {

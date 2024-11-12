@@ -19,10 +19,10 @@ import { useQueryWithDependencies } from "../../../utility/hooks/useCustomQuery"
 import { useSelector } from "react-redux";
 import { useMutation } from "@tanstack/react-query";
 
-import CourseCom from "../../DetailCourse/courseGroups/comment/Comment";
+// import CourseCom from "../../DetailCourse/courseGroups/comment/Comment";
 
 const UserTabs = ({ active, toggleTab }) => {
-  const id = useSelector((state) => state.UserList.usersDetails.id);
+  const id = useSelector((state) => state.UserInfoSlice.details.id);
   const [acceptComment, setAcceptComment] = useState([]);
   const [notAcceptComment, setNotAcceptComment] = useState([]);
 
@@ -129,23 +129,23 @@ const UserTabs = ({ active, toggleTab }) => {
           <div className="divider divider-start">
             <div className="divider-text">کامنت های تایید شده</div>
           </div>
-          <CourseCom
+          {/* <CourseCom
             comments={acceptComment}
             title="نام دوره"
             acceptFunction={handleAcceptComment}
             rejectFunction={handleRejectComment}
             deleteFunction={handleDeleteComment}
-          />
+          /> */}
           <div className="divider divider-start">
             <div className="divider-text">کامنت های تایید نشده</div>
           </div>
-          <CourseCom
+          {/* <CourseCom
             comments={notAcceptComment}
             title="نام دوره"
             acceptFunction={handleAcceptComment}
             rejectFunction={handleRejectComment}
             deleteFunction={handleDeleteComment}
-          />
+          /> */}
         </TabPane>
         <TabPane tabId="4" className="mb-4">
           <div className="divider divider-start">
