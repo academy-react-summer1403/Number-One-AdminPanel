@@ -8,6 +8,7 @@ import { Eye, EyeOff } from "react-feather";
 
 // ** Reactstrap Imports
 import { InputGroup, Input, InputGroupText, Label } from "reactstrap";
+import { Field } from "formik";
 
 const InputPasswordToggle = forwardRef((props, ref) => {
   // ** Props
@@ -22,6 +23,7 @@ const InputPasswordToggle = forwardRef((props, ref) => {
     iconSize,
     inputClassName,
     invalid,
+    certificate,
     ...rest
   } = props;
 
@@ -52,26 +54,35 @@ const InputPasswordToggle = forwardRef((props, ref) => {
           "is-invalid": invalid,
         })}
       >
-        <Input
+        <Field
           ref={ref}
           invalid={invalid}
           type={inputVisibility === false ? "password" : "text"}
           placeholder={placeholder ? placeholder : "············"}
+          style={{
+            borderRadius: "0.357rem",
+            border: "1px solid #d8d6de",
+            padding: "0.571rem 1rem",
+            width: "100%",
+          }}
           className={classnames({
             [inputClassName]: inputClassName,
           })}
-          /*eslint-disable */
-          {...(label && htmlFor
-            ? {
-                id: htmlFor,
-              }
-            : {})}
-          {...rest}
-          /*eslint-enable */
+          id={certificate}
+          name={certificate}
         />
         <InputGroupText
           className="cursor-pointer"
           onClick={() => setInputVisibility(!inputVisibility)}
+          style={{
+            rotate: "180deg",
+            height: "100%",
+            position: "absolute",
+            top: "0",
+            left: "0",
+            zIndex: "10",
+            borderTop: "0px",
+          }}
         >
           {renderIcon()}
         </InputGroupText>

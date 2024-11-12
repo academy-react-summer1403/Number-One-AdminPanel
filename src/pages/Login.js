@@ -1,6 +1,7 @@
 // ** React Imports
 import { useSkin } from "@hooks/useSkin";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { Formik, Form, Field } from "formik";
 
 // ** Icons Imports
 import { Facebook, Twitter, Mail, GitHub } from "react-feather";
@@ -8,13 +9,16 @@ import { Facebook, Twitter, Mail, GitHub } from "react-feather";
 // ** Custom Components
 import InputPasswordToggle from "@components/input-password-toggle";
 
+// Api
+import { useMutation } from "@tanstack/react-query";
+import { LoginUser } from "../@core/services/api/post-api";
+
 // ** Reactstrap Imports
 import {
   Row,
   Col,
   CardTitle,
   CardText,
-  Form,
   Label,
   Input,
   Button,
@@ -31,6 +35,15 @@ const Login = () => {
   const { skin } = useSkin();
 
   const source = skin === "dark" ? illustrationsDark : illustrationsLight;
+
+  const navigate = useNavigate();
+
+  const { mutate } = useMutation({
+    mutationKey: "LOGIN",
+    mutationFn: (values) => {
+      LoginUser(values, navigate);
+    },
+  });
 
   return (
     <div className="auth-wrapper auth-cover">
@@ -114,60 +127,81 @@ const Login = () => {
           lg="4"
           sm="12"
         >
-          <Col className="px-xl-2 mx-auto" sm="8" md="6" lg="12">
+          <Col
+            className="px-xl-2 mx-auto"
+            sm="8"
+            md="6"
+            lg="12"
+            style={{ direction: "rtl" }}
+          >
             <CardTitle tag="h2" className="fw-bold mb-1">
-              Welcome to Vuexy! 👋
+              خوش آمدید 👋
             </CardTitle>
             <CardText className="mb-2">
-              Please sign-in to your account and start the adventure
+              برای ورود به حساب کاربری اطلاعات خود را وارد کنید
             </CardText>
-            <Form
-              className="auth-login-form mt-2"
-              onSubmit={(e) => e.preventDefault()}
+            <Formik
+              initialValues={{
+                phoneOrGmail: "",
+                password: "",
+                rememberMe: false,
+              }}
+              onSubmit={(values) => {
+                mutate(values);
+              }}
             >
-              <div className="mb-1">
-                <Label className="form-label" for="login-email">
-                  Email
-                </Label>
-                <Input
-                  type="email"
-                  id="login-email"
-                  placeholder="john@example.com"
-                  autoFocus
-                />
-              </div>
-              <div className="mb-1">
-                <div className="d-flex justify-content-between">
-                  <Label className="form-label" for="login-password">
-                    Password
+              <Form className="auth-login-form mt-2">
+                <div className="d-flex flex-wrap mb-1">
+                  <Label className="form-label" for="phoneOrGmail">
+                    ایمیل یا شماره مبایل
                   </Label>
-                  <Link to="/forgot-password">
-                    <small>Forgot Password?</small>
-                  </Link>
+                  <Field
+                    id="phoneOrGmail"
+                    name="phoneOrGmail"
+                    placeholder="john@example.com"
+                    autoFocus
+                    style={{
+                      width: "100%",
+                      padding: "8px 14px",
+                      borderRadius: "0.357rem",
+                      border: "1px solid rgb(216, 214, 222)",
+                    }}
+                  />
                 </div>
-                <InputPasswordToggle
-                  className="input-group-merge"
-                  id="login-password"
-                />
-              </div>
-              <div className="form-check mb-1">
-                <Input type="checkbox" id="remember-me" />
-                <Label className="form-check-label" for="remember-me">
-                  Remember Me
-                </Label>
-              </div>
-              <Button tag={Link} to="/" color="primary" block>
-                Sign in
-              </Button>
-            </Form>
-            <p className="text-center mt-2">
-              <span className="me-25">New on our platform?</span>
+                <div className="mb-1">
+                  <div className="d-flex justify-content-between">
+                    <Label className="form-label" for="password">
+                      پسورد
+                    </Label>
+                    <Link to="/forgot-password">
+                      <small>فراموشی رمز؟</small>
+                    </Link>
+                  </div>
+                  <InputPasswordToggle
+                    className="input-group-merge"
+                    id="login-password"
+                    certificate={"password"}
+                  />
+                </div>
+                <div className="d-flex gap-75 mb-1">
+                  <Field type="checkbox" id="rememberMe" name="rememberMe" />
+                  <Label className="form-check-label" for="rememberMe">
+                    مرا به خاطر بسپار
+                  </Label>
+                </div>
+                <Button type="submit" color="primary" block>
+                  ورود
+                </Button>
+              </Form>
+            </Formik>
+            <p className="text-center mt-2 d-flex justify-content-center gap-75">
+              <span className="me-25">حساب کاربری ندارید؟</span>
               <Link to="/register">
-                <span>Create an account</span>
+                <span>ثبت نام</span>
               </Link>
             </p>
             <div className="divider my-2">
-              <div className="divider-text">or</div>
+              <div className="divider-text">یا</div>
             </div>
             <div className="auth-footer-btn d-flex justify-content-center">
               <Button color="facebook">
@@ -179,7 +213,7 @@ const Login = () => {
               <Button color="google">
                 <Mail size={14} />
               </Button>
-              <Button className="me-0" color="github">
+              <Button color="github" style={{ marginRight: "14px" }}>
                 <GitHub size={14} />
               </Button>
             </div>

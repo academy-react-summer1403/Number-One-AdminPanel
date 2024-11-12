@@ -1,4 +1,4 @@
-const setItem = (key, value) => {
+const useSetItem = (key, value) => {
   try {
     localStorage.setItem(key, JSON.stringify(value));
   } catch (error) {
@@ -6,7 +6,7 @@ const setItem = (key, value) => {
   }
 };
 
-const getItem = (key) => {
+const useGetItem = (key) => {
   try {
     const item = localStorage.getItem(key);
     return item ? JSON.parse(item) : false;
@@ -16,7 +16,7 @@ const getItem = (key) => {
   }
 };
 
-const getItemGeneric = (key) => {
+const useGetItemGeneric = (key) => {
   try {
     return localStorage.getItem(key) || false;
   } catch (error) {
@@ -25,7 +25,7 @@ const getItemGeneric = (key) => {
   }
 };
 
-const setItemGeneric = (key, value) => {
+const useSetItemGeneric = (key, value) => {
   try {
     localStorage.setItem(key, value);
   } catch (error) {
@@ -33,7 +33,7 @@ const setItemGeneric = (key, value) => {
   }
 };
 
-const removeItem = (key) => {
+const useRemoveItem = (key) => {
   try {
     const item = getItem(key);
     if (item === false) return false;
@@ -43,7 +43,7 @@ const removeItem = (key) => {
   }
 };
 
-const clearStorage = () => {
+const useClearStorage = () => {
   try {
     localStorage.clear();
   } catch (error) {
@@ -52,10 +52,10 @@ const clearStorage = () => {
 };
 
 export {
-  setItem,
-  getItem,
-  removeItem,
-  clearStorage,
-  setItemGeneric,
-  getItemGeneric,
+  useSetItem,
+  useGetItem,
+  useRemoveItem,
+  useClearStorage,
+  useSetItemGeneric,
+  useGetItemGeneric,
 };

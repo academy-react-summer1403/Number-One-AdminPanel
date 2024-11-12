@@ -1,5 +1,5 @@
 import axios from "axios";
-import { getItem, removeItem } from "../../../utility/hooks/useLocalStorage";
+import { useGetItem, useRemoveItem } from "../../../utility/hooks/useLocalStorage";
 
 const baseURL = import.meta.env.VITE_BASE_URL;
 
@@ -13,7 +13,7 @@ const onSuccess = (response) => {
 
 const onError = (err) => {
   if (err.response.status === 401) {
-    removeItem("token");
+    useRemoveItem("token");
     window.location.pathname = "/";
   }
 
@@ -23,7 +23,7 @@ const onError = (err) => {
 instance.interceptors.response.use(onSuccess, onError);
 
 instance.interceptors.request.use((opt) => {
-  const token = getItem("token");
+  const token = useGetItem("token");
 
   if (token) opt.headers.Authorization = "Bearer " + token;
   return opt;
