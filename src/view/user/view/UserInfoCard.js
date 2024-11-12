@@ -25,7 +25,7 @@ import { ReverseToActiveUser } from "../../../@core/services/api/put-api";
 import { useSelector } from "react-redux";
 import { useMutation } from "@tanstack/react-query";
 
-import UserAddRole from "../../DetailCourse/addRoll/UserAddRole";
+// import UserAddRole from "../../DetailCourse/addRoll/UserAddRole";
 
 const MySwal = withReactContent(Swal);
 
@@ -273,14 +273,14 @@ const UserInfoCard = ({ submitUserUpdate, setShow, show, refetch }) => {
         submitUserUpdate={submitUserUpdate}
         refetch={refetch}
       />
-      <UserAddRole
+      {/* <UserAddRole
         modal={modal}
         id={userDetails.id}
         userName={userDetails.fname + " " + userDetails.lname}
         toggleModal={toggleModal}
         userRoles={userDetails.roles}
         refetch={refetch}
-      />
+      /> */}
     </Fragment>
   );
 };
