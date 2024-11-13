@@ -55,10 +55,12 @@ const TableItems = ({ item }) => {
         }}
         className="px-0 "
       >
-        {item.fname} {item.lname}
+        {item.fname != null && item.lname != null
+          ? item.fname + " " + item.lname
+          : "نامشخص"}
       </td>
       <td style={{ width: "130px" }} className="">
-        {/* <RoleGenerator Roles={item.userRoles} /> */}
+        <RoleGenerator Roles={item.userRoles} />
       </td>
       <td className="px-0 " style={{ width: "150px" }}>
         {item.gmail}

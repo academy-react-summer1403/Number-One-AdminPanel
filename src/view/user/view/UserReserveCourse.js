@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { Badge, Button } from "reactstrap";
-import { ChevronDown } from "react-feather";
+import { Badge } from "reactstrap";
+import { ChevronDown, Eye } from "react-feather";
 import { useState, useEffect } from "react";
 import DataTable from "react-data-table-component";
 import Avatar from "@components/avatar";
@@ -11,6 +11,7 @@ import AvatarPic from "../../../assets/images/portrait/small/noFoundImage.jpg";
 // Styles
 import "@styles/react/libs/tables/react-dataTable-component.scss";
 import CustomPagination from "../../../@core/components/pagination";
+import ChangeMoment from "../../../utility/moment";
 
 const UserReserveCourse = () => {
   const navigate = useNavigate();
@@ -34,7 +35,7 @@ const UserReserveCourse = () => {
   const columns = [
     {
       sortable: true,
-      maxWidth: "300px",
+      maxWidth: "350px",
       name: "نام دوره",
       selector: (row) => row.courseName,
       cell: (row) => {
@@ -73,18 +74,13 @@ const UserReserveCourse = () => {
       name: "تاریخ رزرو دوره",
       maxWidth: "200px",
       selector: (row) => {
-        row.reserverDate;
-        let sYear = row.reserverDate && row.reserverDate.substring(0, 4);
-        let sMonth = row.reserverDate && row.reserverDate.substring(5, 7);
-        let sDay = row.reserverDate && row.reserverDate.substring(8, 10);
-        let stTime = sYear + "/" + sMonth + "/" + sDay;
-        return stTime;
+        return ChangeMoment(row.reserverDate, "YYYY/MM/DD", "persian");
       },
     },
     {
       sortable: true,
-      maxWidth: "200px",
-      name: "وضعیت دوره ",
+      maxWidth: "150px",
+      name: "وضعیت",
       selector: (row) =>
         row.accept ? (
           <Badge color={row.accept ? "light-primary" : "light-danger"}>
@@ -98,7 +94,7 @@ const UserReserveCourse = () => {
     },
     {
       name: "عملیات",
-      maxWidth: "200px",
+      maxWidth: "80px",
       cell: (row) => {
         return (
           <a
@@ -107,7 +103,7 @@ const UserReserveCourse = () => {
               navigate("/courses/view/" + row.courseId);
             }}
           >
-            <Button>جزئیات</Button>
+            <Eye size={20} />
           </a>
         );
       },
@@ -116,6 +112,9 @@ const UserReserveCourse = () => {
 
   return (
     <>
+      <div className="divider divider-start">
+        <div className="divider-text fs-2">دوره های رزرو شده</div>
+      </div>
       <DataTable
         noHeader
         responsive

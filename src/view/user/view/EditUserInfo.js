@@ -15,7 +15,10 @@ const EditUserInfo = ({ show, setShow, refetch, submitUserUpdate }) => {
   const userDetails = useSelector((state) => state.UserInfoSlice.details);
 
   const handleSubmit = (event) => {
-    submitUserUpdate(event);
+    submitUserUpdate({
+      ...event,
+      gender: event.gender === "true" ? true : false,
+    });
     refetch();
   };
 
@@ -34,7 +37,7 @@ const EditUserInfo = ({ show, setShow, refetch, submitUserUpdate }) => {
     username: userDetails.userName,
     birthDay: userDetails.birthDay,
     email: userDetails.gmail,
-    status: userDetails.active,
+    gender: userDetails.gender,
     nationalCode: userDetails.nationalCode,
     contact: userDetails.phoneNumber,
   };
@@ -70,16 +73,16 @@ const EditUserInfo = ({ show, setShow, refetch, submitUserUpdate }) => {
                 </Col>
               ))}
               <Col md={4} xs={12}>
-                <Label className="form-label" for="status">
-                  وضعیت:
+                <Label className="form-label" for="gender">
+                  جنسیت:
                 </Label>
                 <Field
                   className="form-control react-select"
-                  name="status"
+                  name="gender"
                   as="select"
                 >
-                  <option value={true}>فعال</option>
-                  <option value={false}>غیرفعال</option>
+                  <option value={true}>مرد</option>
+                  <option value={false}>زن</option>
                 </Field>
               </Col>
               <Col xs={12} className="text-center mt-2 pt-50">

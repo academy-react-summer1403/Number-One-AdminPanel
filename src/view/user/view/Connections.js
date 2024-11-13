@@ -29,14 +29,21 @@ const connections = () => {
     },
   ];
 
-  return informationList.map((item, index) => (
-    <MoreInfoItems
-      action={item.info}
-      icon={item.icon}
-      label={item.label}
-      key={index}
-    />
-  ));
+  return (
+    <>
+      <div className="divider divider-start">
+        <div className="divider-text fs-2">شبکه های اجتماعی</div>
+      </div>
+      {informationList.map((item, index) => (
+        <MoreInfoItems
+          action={item.info}
+          icon={item.icon}
+          label={item.label}
+          key={index}
+        />
+      ))}
+    </>
+  );
 };
 
 export default connections;

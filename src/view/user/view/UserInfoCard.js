@@ -15,6 +15,7 @@ import ManIcon from "../../../assets/images/portrait/small/man.jpg";
 
 // ** Custom Components
 import EditUserInfo from "./EditUserInfo";
+import UserAddRole from "./UserAddRole";
 
 // ** Styles
 import "@styles/react/libs/react-select/_react-select.scss";
@@ -24,8 +25,6 @@ import { DeleteUser } from "../../../@core/services/api/delete-api";
 import { ReverseToActiveUser } from "../../../@core/services/api/put-api";
 import { useSelector } from "react-redux";
 import { useMutation } from "@tanstack/react-query";
-
-// import UserAddRole from "../../DetailCourse/addRoll/UserAddRole";
 
 const MySwal = withReactContent(Swal);
 
@@ -178,7 +177,7 @@ const UserInfoCard = ({ submitUserUpdate, setShow, show, refetch }) => {
                   <h4>
                     {userDetails.fName} {userDetails.lName}
                   </h4>
-                  <div className="gap-1 d-flex flex-wrap mt-1">
+                  <div className="gap-1 d-flex flex-wrap justify-content-center mt-1">
                     {userDetails.roles &&
                       userDetails.roles.map((item, index) => {
                         return (
@@ -226,7 +225,9 @@ const UserInfoCard = ({ submitUserUpdate, setShow, show, refetch }) => {
               </div>
             ))}
           </div>
-          <h4 className="fw-bolder border-bottom pb-50 mb-1">جزئیات</h4>
+          <div className="divider divider-start">
+            <div className="divider-text fs-2">جزئیات</div>
+          </div>
           <div className="info-container">
             {userDetails !== null ? (
               <ul className="list-unstyled">
@@ -273,14 +274,14 @@ const UserInfoCard = ({ submitUserUpdate, setShow, show, refetch }) => {
         submitUserUpdate={submitUserUpdate}
         refetch={refetch}
       />
-      {/* <UserAddRole
+      <UserAddRole
         modal={modal}
         id={userDetails.id}
         userName={userDetails.fname + " " + userDetails.lname}
         toggleModal={toggleModal}
         userRoles={userDetails.roles}
         refetch={refetch}
-      /> */}
+      />
     </Fragment>
   );
 };

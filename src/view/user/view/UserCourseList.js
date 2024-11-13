@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { ChevronDown } from "react-feather";
+import { ChevronDown, Eye } from "react-feather";
 import DataTable from "react-data-table-component";
 import Avatar from "@components/avatar";
 
@@ -10,6 +10,9 @@ import AvatarPic from "../../../assets/images/portrait/small/noFoundImage.jpg";
 import "@styles/react/libs/tables/react-dataTable-component.scss";
 import CustomPagination from "../../../@core/components/pagination";
 import { useState } from "react";
+import { name } from "react-date-object/calendars/julian";
+import { max } from "moment/moment";
+import ChangeMoment from "../../../utility/moment";
 
 const UserCourseList = () => {
   const usersCourse = useSelector(
@@ -50,14 +53,7 @@ const UserCourseList = () => {
                 />
               )}
             </div>
-            <span
-              className="text-truncate fw-bolder"
-              onClick={() => {
-                navigate("/courses/view/" + row.courseId);
-              }}
-            >
-              {row.title}
-            </span>
+            <span className="text-truncate fw-bolder">{row.title}</span>
           </div>
         );
       },
@@ -71,18 +67,29 @@ const UserCourseList = () => {
       name: "تاریخ آخرین بروزرسانی",
       maxWidth: "180px",
       selector: (row) => {
-        row.lastUpdate;
-        let sYear = row.lastUpdate && row.lastUpdate.substring(0, 4);
-        let sMonth = row.lastUpdate && row.lastUpdate.substring(5, 7);
-        let sDay = row.lastUpdate && row.lastUpdate.substring(8, 10);
-        let stTime = sYear + "/" + sMonth + "/" + sDay;
-        return stTime;
+        return ChangeMoment(row.lastUpdate, "YYYY/MM/DD", "persian");
       },
+    },
+    {
+      name: "اقدام",
+      maxWidth: "80px",
+      selector: (row) => (
+        <Eye
+          className="cursor-pointer"
+          size={20}
+          onClick={() => {
+            navigate("/courses/view/" + row.courseId);
+          }}
+        />
+      ),
     },
   ];
 
   return (
     <>
+      <div className="divider divider-start">
+        <div className="divider-text fs-2">دوره های تایید شده</div>
+      </div>
       <DataTable
         noHeader
         responsive

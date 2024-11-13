@@ -72,14 +72,21 @@ const MoreInfo = () => {
     },
   ];
 
-  return informationList.map((item, index) => (
-    <MoreInfoItems
-      key={index}
-      action={item.info}
-      icon={item.icon}
-      label={item.label}
-    />
-  ));
+  return (
+    <>
+      <div className="divider divider-start">
+        <div className="divider-text fs-2">سایر اطاعات کاربر</div>
+      </div>
+      {informationList.map((item, index) => (
+        <MoreInfoItems
+          key={index}
+          action={item.info}
+          icon={item.icon}
+          label={item.label}
+        />
+      ))}
+    </>
+  );
 };
 
 export default MoreInfo;
