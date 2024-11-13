@@ -42,19 +42,15 @@ const HeaderTable = ({
           className="d-flex align-items-sm-center justify-content-xl-end justify-content-start flex-xl-nowrap flex-wrap flex-sm-row flex-column pe-xl-1 p-0 mt-xl-0 mt-1"
         >
           <div className="d-flex align-items-center mb-sm-0 mb-1 me-1">
-            <Form
-              onSubmit={(e) => {
+            <Input
+              style={{ width: "300px" }}
+              id="searchBox"
+              placeholder="جستجو ..."
+              onChange={(e) => {
                 e.preventDefault();
                 dispatch(handleSearch(searchBox.value));
               }}
-            >
-              <InputGroup>
-                <Input id="searchBox" placeholder="جستجو ..." />
-                <Button className="z-0" color="primary">
-                  جستجو
-                </Button>
-              </InputGroup>
-            </Form>
+            />
           </div>
 
           <div className="d-flex align-items-center table-header-actions">
