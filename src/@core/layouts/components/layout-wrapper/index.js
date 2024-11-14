@@ -77,11 +77,14 @@ const LayoutWrapper = (props) => {
 
   return (
     <div
-      className={classnames("app-content content overflow-hidden", {
-        [routeMeta ? routeMeta.className : ""]:
-          routeMeta && routeMeta.className,
-        "show-overlay": navbarStore.query.length,
-      })}
+      className={classnames(
+        "app-content content overflow-hidden ecommerce-application",
+        {
+          [routeMeta ? routeMeta.className : ""]:
+            routeMeta && routeMeta.className,
+          "show-overlay": navbarStore.query.length,
+        }
+      )}
     >
       <div className="content-overlay"></div>
       <div className="header-navbar-shadow" />
@@ -89,7 +92,7 @@ const LayoutWrapper = (props) => {
         className={classnames({
           "content-wrapper": routeMeta && !routeMeta.appLayout,
           "content-area-wrapper": routeMeta && routeMeta.appLayout,
-          "container-xxl p-0": contentWidth === "boxed",
+          "content-wrapper container-xxl p-0": contentWidth === "boxed",
         })}
       >
         <Tag {...(appLayoutCondition ? { className: "content-body" } : {})}>
