@@ -278,6 +278,9 @@ $search-bar-height: 48px;
 
       .item-name {
         margin-top: 0.75rem;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
       }
 
       // Item Description

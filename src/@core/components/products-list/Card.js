@@ -72,7 +72,7 @@ const ProductCards = (props) => {
                 {insertDate}
               </h6>
             </div>
-            {currentView ? (
+            {currentView || currentView == 0 ? (
               <div>
                 <span style={{ marginLeft: "6px", color: "#716c83" }}>
                   {currentView}
