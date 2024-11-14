@@ -78,10 +78,9 @@ const UserView = () => {
         coursesReseves: userDetails.coursesReseves ?? [],
         userProfileId: userDetails.userProfileId ?? undefined,
       };
-      UpdateUser(userInfo);
+      UpdateUser(userInfo, refetch);
     },
     onSuccess: () => {
-      refetch();
       setShow(false);
     },
   });

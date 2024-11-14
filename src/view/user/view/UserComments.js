@@ -11,13 +11,10 @@ import { useQueryWithDependencies } from "../../../utility/hooks/useCustomQuery"
 import { CheckCircle, Slash, Trash } from "react-feather";
 import UserActiveComments from "./UserActiveComments";
 import UserNotActiveComments from "./UserNotActiveComments";
-import { useEffect } from "react";
 
 const UserComments = ({ section }) => {
   const id = useSelector((state) => state.UserInfoSlice.details.id);
   const headerItems = ["عنوان کامنت", "متن کامنت", "وضعیت", "اقدام"];
-  let acceptComment = [];
-  let notAcceptComment = [];
 
   const { data, refetch } = useQueryWithDependencies(
     "GET_USER_COMMENTS",
@@ -26,37 +23,24 @@ const UserComments = ({ section }) => {
     id
   );
 
-  acceptComment = data?.comments?.filter((item) => item.accept == true);
-  notAcceptComment = data?.comments?.filter((item) => item.accept == false);
-
   const { mutate: handleAcceptComment } = useMutation({
     mutationKey: ["ACCEPT_COMMENT"],
     mutationFn: (id) => {
-      AcceptUserComment(id);
-    },
-    onSuccess: () => {
-      alert();
-      refetch();
+      AcceptUserComment(id, refetch);
     },
   });
 
   const { mutate: handleRejectComment } = useMutation({
     mutationKey: ["REJECT_COMMENT"],
     mutationFn: (id) => {
-      RejectUserComment(id);
-    },
-    onSuccess: () => {
-      refetch();
+      RejectUserComment(id, refetch);
     },
   });
 
   const { mutate: handleDeleteComment } = useMutation({
     mutationKey: ["DELETE_COMMENT"],
     mutationFn: (id) => {
-      DeleteUserComment(id);
-    },
-    onSuccess: () => {
-      refetch();
+      DeleteUserComment(id, refetch);
     },
   });
 
@@ -65,10 +49,10 @@ const UserComments = ({ section }) => {
       sortable: true,
       maxWidth: "250px",
       name: "عنوان کامنت",
-      selector: (row) => row.courseTitle,
+      selector: (row) => row.commentTitle,
       cell: (row) => {
         return (
-          <span className="text-truncate fw-bolder">{row.courseTitle}</span>
+          <span className="text-truncate fw-bolder">{row.commentTitle}</span>
         );
       },
     },
@@ -128,18 +112,13 @@ const UserComments = ({ section }) => {
     },
   ];
 
-  useEffect(() => {
-    acceptComment = data?.comments?.filter((item) => item.accept == true);
-    notAcceptComment = data?.comments?.filter((item) => item.accept == false);
-  }, [acceptComment, notAcceptComment]);
-
   // Render Component
   if (section === "Active")
     return (
       <UserActiveComments
         columns={columns}
         headerItems={headerItems}
-        data={acceptComment}
+        data={data?.comments?.filter((item) => item.accept == true)}
       />
     );
   else
@@ -147,7 +126,7 @@ const UserComments = ({ section }) => {
       <UserNotActiveComments
         columns={columns}
         headerItems={headerItems}
-        data={notAcceptComment}
+        data={data?.comments?.filter((item) => item.accept == false)}
       />
     );
 };
