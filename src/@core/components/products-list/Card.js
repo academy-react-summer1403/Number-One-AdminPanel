@@ -9,6 +9,7 @@ import fallback from "../../../assets/images/portrait/small/image-not-found.png"
 import { Card, CardBody } from "reactstrap";
 import { UnitPrice } from "../../../utility/separation-price";
 import { useEffect, useState } from "react";
+import ImageFallBack from "../image-fallback";
 
 const ProductCards = (props) => {
   // Params
@@ -24,16 +25,6 @@ const ProductCards = (props) => {
     price,
   } = props;
 
-  const [pic, setPic] = useState(image);
-
-  useEffect(() => {
-    if (image == null || image == "undefined") {
-      setPic(fallback);
-    } else {
-      setPic(image);
-    }
-  }, [pic]);
-
   // ** Renders products
   return (
     <Card className="ecommerce-card">
@@ -42,12 +33,10 @@ const ProductCards = (props) => {
           className="item-img text-center p-0"
           style={{ height: "200px", width: "100%" }}
         >
-          <img
+          <ImageFallBack
             className="img-fluid card-img-top w-100 h-100"
-            src={pic}
-            onError={() => {
-              setPic(fallback);
-            }}
+            src={image}
+            fallback={fallback}
           />
         </div>
       </Link>
