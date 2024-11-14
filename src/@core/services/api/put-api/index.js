@@ -1,4 +1,5 @@
 import UpdateUser from "./UpdateUser";
 import ReverseToActiveUser from "./ReverseToActiveUser";
+import UpdateNews from "./UpdateNews";
 
-export { UpdateUser, ReverseToActiveUser };
+export { UpdateUser, ReverseToActiveUser, UpdateNews };
