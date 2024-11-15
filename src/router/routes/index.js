@@ -32,11 +32,12 @@ const Register = lazy(() => import("../../pages/Register"));
 const ForgotPassword = lazy(() => import("../../pages/ForgotPassword"));
 const Error = lazy(() => import("../../pages/Error"));
 const Sample = lazy(() => import("../../pages/Sample"));
-
+// User
 const Users = lazy(() => import("../../pages/Users"));
 const UserDetails = lazy(() => import("../../pages/UserDetails"));
-
+// News
 const News = lazy(() => import("../../pages/News"));
+const CreateNews = lazy(() => import("../../pages/CreateNews"));
 
 // ** Merge Routes
 const Routes = [
@@ -62,6 +63,11 @@ const Routes = [
   {
     path: "/blogs",
     element: <News />,
+    // access: ["Administrator"],
+  },
+  {
+    path: "/createBlog",
+    element: <CreateNews />,
     access: ["Administrator"],
   },
   {
