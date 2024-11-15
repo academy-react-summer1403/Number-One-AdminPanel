@@ -5,6 +5,7 @@ import GetAdminInfo from "./GetAdminInfo";
 import GetNewsDetail from "./GetNewsDetail";
 import GetNewsList from "./GetNewsList";
 import GetNewsCategory from "./GetNewsCategory";
+import GetNewsCategoryWithId from "./GetNewsCategoryWithId";
 
 export {
   GetUserList,
@@ -14,4 +15,5 @@ export {
   GetNewsDetail,
   GetNewsList,
   GetNewsCategory,
+  GetNewsCategoryWithId,
 };
