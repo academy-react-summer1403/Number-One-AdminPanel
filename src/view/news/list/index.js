@@ -105,7 +105,7 @@ const NewsTable = () => {
                   data.news?.map((item, index) => (
                     <ProductCards
                       key={index}
-                      href={"/papers/view/"}
+                      href={"/blogs/view/"}
                       id={item.id}
                       image={item.currentImageAddressTumb}
                       currentRate={item.currentRate}
