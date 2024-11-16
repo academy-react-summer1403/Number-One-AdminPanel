@@ -6,6 +6,7 @@ import GetNewsDetail from "./GetNewsDetail";
 import GetNewsList from "./GetNewsList";
 import GetNewsCategory from "./GetNewsCategory";
 import GetNewsCategoryWithId from "./GetNewsCategoryWithId";
+import GetRepliesComments from "./GetRepliesComments";
 
 export {
   GetUserList,
@@ -16,4 +17,5 @@ export {
   GetNewsList,
   GetNewsCategory,
   GetNewsCategoryWithId,
+  GetRepliesComments,
 };
