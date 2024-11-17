@@ -19,6 +19,7 @@ import {
 // Custom Components
 import GoalOverview from "../../../@core/components/goal-overview";
 import StatsHorizontal from "@components/widgets/stats/StatsHorizontal";
+import CommentTab from "./CommentTab";
 
 // ** Icons Imports
 import { Heart, User, Users, Eye, MessageCircle } from "react-feather";
@@ -117,11 +118,11 @@ const NewsTabs = ({ active, toggleTab }) => {
           <div className="divider divider-start">
             <div className="divider-text fs-2">کامنت ها</div>
           </div>
-          {/* <CourseComs
+          <CommentTab
             newsCom={detail.newsComments}
             NewsRepById={mutate}
             repCom={isSuccess && data}
-          /> */}
+          />
         </TabPane>
       </TabContent>
     </Fragment>

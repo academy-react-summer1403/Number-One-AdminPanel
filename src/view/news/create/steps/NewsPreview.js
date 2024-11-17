@@ -1,9 +1,12 @@
-import { Badge, Col, Row } from "reactstrap";
+import { Badge, Button, Col, Row } from "reactstrap";
 
 import { useSelector } from "react-redux";
 
 // Custom Component
 import ButtonsForMove from "./ButtonsForMove";
+
+// Api
+import { CreateNews } from "../../../../@core/services/api/post-api";
 
 // Image
 import fallback from "../../../../assets/images/portrait/small/image-not-found.png";
@@ -11,9 +14,11 @@ import ImageFallBack from "../../../../@core/components/image-fallback";
 import { useQueryWithDependencies } from "../../../../utility/hooks/useCustomQuery";
 import { GetNewsCategoryWithId } from "../../../../@core/services/api/get-api";
 import CreateEditorJsBlocks from "../../../../utility/create-editorjs-blocks";
+import { useMutation } from "@tanstack/react-query";
 
 const NewsPreview = ({ stepper }) => {
   const previewNews = useSelector((state) => state.CreateNewsSlice);
+  const createObj = useSelector((state) => state.CreateNewsSlice);
 
   const { data } = useQueryWithDependencies(
     "GET_NEWS_CATEGORY",
@@ -21,6 +26,13 @@ const NewsPreview = ({ stepper }) => {
     previewNews?.NewsCatregoryId,
     parseInt(previewNews?.NewsCatregoryId)
   );
+
+  const { mutate } = useMutation({
+    mutationKey: ["CREATE_NEWS"],
+    mutationFn: (values) => {
+      CreateNews(values);
+    },
+  });
 
   return (
     <Row>
@@ -44,6 +56,13 @@ const NewsPreview = ({ stepper }) => {
       </Col>
       <Col xs={12}>
         <CreateEditorJsBlocks editorData={previewNews?.Describe} />
+        <Button
+          onClick={() => {
+            mutate(createObj);
+          }}
+        >
+          Create
+        </Button>
       </Col>
       <Col xs={12}>
         <ButtonsForMove stepper={stepper} />
