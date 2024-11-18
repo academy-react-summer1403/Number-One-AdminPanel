@@ -6,6 +6,7 @@ import GoalOverview from "./GoalOverview";
 import { useContext } from "react";
 import { ThemeColors } from "../../utility/context/ThemeColors";
 import Sales from "./Sales";
+import RevenueReport from "./RevenueReport";
 
 const Dashboard = () => {
   // ** ThemeColors
@@ -32,6 +33,14 @@ const Dashboard = () => {
         ))}
         <Col lg="4" md="6" xs="12">
           <Sales primary={colors.primary.main} info={colors.info.main} />
+        </Col>
+      </Row>
+      <Row className="match-height">
+        <Col lg="6" xs="12">
+          <RevenueReport
+            primary={colors.primary.main}
+            warning={colors.warning.main}
+          />
         </Col>
       </Row>
     </div>
