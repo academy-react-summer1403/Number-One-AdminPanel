@@ -3,8 +3,13 @@ import CardCongratulations from "./CardCongratulations";
 import StatsCard from "./StatsCard";
 import { GoalOverViewData } from "../../@core/constants/dashboard";
 import GoalOverview from "./GoalOverview";
+import { useContext } from "react";
+import { ThemeColors } from "../../utility/context/ThemeColors";
+import Sales from "./Sales";
 
 const Dashboard = () => {
+  // ** ThemeColors
+  const { colors } = useContext(ThemeColors);
   return (
     <div id="dashboard-ecommerce">
       <Row className="match-height">
@@ -21,10 +26,13 @@ const Dashboard = () => {
             <GoalOverview
               variant={box.variant}
               texts={box.textsArray}
-              // success={colors.success.main}
+              success={colors.success.main}
             />
           </Col>
         ))}
+        <Col lg="4" md="6" xs="12">
+          <Sales primary={colors.primary.main} info={colors.info.main} />
+        </Col>
       </Row>
     </div>
   );

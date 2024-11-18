@@ -96,7 +96,7 @@ const GoalOverview = (props) => {
           shade: "dark",
           type: "horizontal",
           shadeIntensity: 0.5,
-          gradientToColors: ["#5751E1"],
+          gradientToColors: [props.success],
           inverseColors: true,
           opacityFrom: 1,
           opacityTo: 1,
