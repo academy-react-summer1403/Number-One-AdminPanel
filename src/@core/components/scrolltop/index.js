@@ -1,50 +1,55 @@
-// ** React Imports
-import { useEffect, useState } from "react";
+// ** React Imports  
+import { useEffect, useState } from "react";  
 
-// ** Third Party Components
-import Proptypes from "prop-types";
+// ** Third Party Components  
+import PropTypes from "prop-types";  
 
-const ScrollTop = (props) => {
-  // ** Props
-  const { showOffset, scrollBehaviour, children, ...rest } = props;
+const ScrollTop = ({   
+  showOffset,   
+  scrollBehaviour = "smooth", // مقدار پیش‌فرض به اینجا اضافه شده است  
+  children,   
+  ...rest   
+}) => {  
+  // ** State  
+  const [visible, setVisible] = useState(false);  
 
-  // ** State
-  const [visible, setVisible] = useState(false);
+  useEffect(() => {  
+    const handleScroll = () => {  
+      if (window.pageYOffset >= showOffset) {  
+        setVisible(true);  
+      } else {  
+        setVisible(false);  
+      }  
+    };  
+    
+    if (window) {  
+      window.addEventListener("scroll", handleScroll);  
+    }  
 
-  useEffect(() => {
-    if (window) {
-      window.addEventListener("scroll", () => {
-        if (window.pageYOffset >= showOffset) {
-          setVisible(true);
-        } else {
-          setVisible(false);
-        }
-      });
-    }
-  }, []);
+    // Cleanup event listener on component unmount  
+    return () => {  
+      window.removeEventListener("scroll", handleScroll);  
+    };  
+  }, [showOffset]); // اضافه کردن showOffset به dependency array  
 
-  const handleScrollToTop = () => {
-    window.scroll({ top: 0, behavior: scrollBehaviour });
-  };
+  const handleScrollToTop = () => {  
+    window.scroll({ top: 0, behavior: scrollBehaviour });  
+  };  
 
-  return (
-    visible && (
-      <div className="scroll-to-top" onClick={handleScrollToTop} {...rest}>
-        {children}
-      </div>
-    )
-  );
-};
+  return (  
+    visible && (  
+      <div className="scroll-to-top" onClick={handleScrollToTop} {...rest}>  
+        {children}  
+      </div>  
+    )  
+  );  
+};  
 
-export default ScrollTop;
+export default ScrollTop;  
 
-// ** PropTypes
-ScrollTop.propTypes = {
-  showOffset: Proptypes.number,
-  children: Proptypes.any.isRequired,
-  scrollBehaviour: Proptypes.oneOf(["smooth", "instant", "auto"]),
-};
-
-ScrollTop.defaultProps = {
-  scrollBehaviour: "smooth",
-};
+// ** PropTypes  
+ScrollTop.propTypes = {  
+  showOffset: PropTypes.number.isRequired, // اگر showOffset اجباری است، it should be required  
+  children: PropTypes.any.isRequired,  
+  scrollBehaviour: PropTypes.oneOf(["smooth", "instant", "auto"]),  
+};  

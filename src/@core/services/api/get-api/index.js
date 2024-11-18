@@ -7,6 +7,9 @@ import GetNewsList from "./GetNewsList";
 import GetNewsCategory from "./GetNewsCategory";
 import GetNewsCategoryWithId from "./GetNewsCategoryWithId";
 import GetRepliesComments from "./GetRepliesComments";
+import GetDashboardReport from "./GetDashboardReport";
+import GetCourses from "./GetAllCourses";
+import GetCommentsManage from "./GetCommentsManage";
 
 export {
   GetUserList,
@@ -18,4 +21,7 @@ export {
   GetNewsCategory,
   GetNewsCategoryWithId,
   GetRepliesComments,
+  GetDashboardReport,
+  GetCourses,
+  GetCommentsManage,
 };

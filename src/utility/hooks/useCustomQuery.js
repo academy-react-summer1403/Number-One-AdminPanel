@@ -6,14 +6,16 @@ export const useQueryWithDependencies = (
   key,
   action,
   dependencies,
-  apiParams
+  apiParams,
+  condition
 ) => {
   return useQuery({
     queryKey: [key, dependencies],
     queryFn: () => {
       return action(apiParams);
     },
-    // enabled: !!(apiParams?.courseId && apiParams?.commentId),
+    enabled: !!(condition !== undefined ? condition : key),
+
   });
 };
 
