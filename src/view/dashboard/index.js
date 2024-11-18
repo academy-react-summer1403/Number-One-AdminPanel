@@ -7,6 +7,7 @@ import { useContext } from "react";
 import { ThemeColors } from "../../utility/context/ThemeColors";
 import Sales from "./Sales";
 import RevenueReport from "./RevenueReport";
+import ChartjsPolarAreaChart from "./ChartjsPolarAreaChart";
 
 const Dashboard = () => {
   // ** ThemeColors
@@ -40,6 +41,16 @@ const Dashboard = () => {
           <RevenueReport
             primary={colors.primary.main}
             warning={colors.warning.main}
+          />
+        </Col>
+        <Col lg="6" sm="12">
+          <ChartjsPolarAreaChart
+            greyColor={"#4F5D70"}
+            labelColor={"#b4b7bd"}
+            primary={colors.primary.main}
+            infoColorShade={"#299AFF"}
+            warningColorShade={"#ffbd1f"}
+            successColorShade={"#28dac6"}
           />
         </Col>
       </Row>

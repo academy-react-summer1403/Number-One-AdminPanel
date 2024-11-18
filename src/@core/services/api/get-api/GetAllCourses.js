@@ -1,7 +1,7 @@
 import http from "../../interceptor";
 
 const GetCourses = async (apiParams) => {
-  console.log(apiParams)
+  // console.log(apiParams)
   try {
     const result = await http.get(`/Course/CourseList`, { params: apiParams });
     return result;

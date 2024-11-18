@@ -13,9 +13,9 @@ const Sales = (props) => {
     "GET_COMMENT_DATA",
     GetCommentsManage,
     null,
-    {PageNumber: 1, RowsOfPage: 1000}
+    { PageNumber: 1, RowsOfPage: 1000 }
   );
-  console.log(commentData)
+  // console.log(commentData)
   // Obtaining the number of comments of course categories and adding to the presentation
   let coursesCategoryArray = [];
   for (let element of PopularCoursesTitle) {
@@ -108,7 +108,9 @@ const Sales = (props) => {
         </div>
       </CardHeader>
       <CardBody>
-        <Chart options={options} series={series} type="radar" height={300} />
+        {options && series && (
+          <Chart options={options} series={series} type="radar" height={300} />
+        )}
       </CardBody>
     </Card>
   );

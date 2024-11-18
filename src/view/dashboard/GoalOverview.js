@@ -28,7 +28,7 @@ const GoalOverview = (props) => {
     null,
     { PageNumber: 1, RowsOfPage: 1000 }
   );
-  console.log(AllUsers);
+  // console.log(AllUsers);
 
   // VARIANTS
   const dataVariant = {
@@ -120,12 +120,14 @@ const GoalOverview = (props) => {
         <CardTitle tag="h4">{props.texts.title}</CardTitle>
       </CardHeader>
       <CardBody className="p-0">
+        {options && series &&(
         <Chart
           options={options}
           series={series}
           type="radialBar"
           height={245}
         />
+      ) }
       </CardBody>
       <Row className="border-top text-center mx-0">
         <Col xs="6" className="py-1 border-end">

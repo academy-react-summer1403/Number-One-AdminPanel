@@ -106,13 +106,15 @@ const RevenueReport = (props) => {
               </div>
             </div>
           </div>
-          <Chart
-            id="revenue-report-chart"
-            type="bar"
-            height="280"
-            options={revenueOptions}
-            series={revenueSeries}
-          />
+          {revenueOptions && revenueSeries && (
+            <Chart
+              id="revenue-report-chart"
+              type="bar"
+              height="280"
+              options={revenueOptions}
+              series={revenueSeries}
+            />
+          )}
         </Col>
       </Row>
     </Card>

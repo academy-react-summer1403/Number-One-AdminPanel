@@ -7,6 +7,7 @@ import {
 import tableChartOptions from "./TableChartOptions";
 import headerTable from "./HeaderTable";
 import CreateUserModalFields from "./CreateUserModalFields";
+import userRolesInfo from "./RolesInfo";
 
 export {
   AscDescOptions,
@@ -16,4 +17,5 @@ export {
   tableChartOptions,
   headerTable,
   CreateUserModalFields,
+  userRolesInfo
 };
