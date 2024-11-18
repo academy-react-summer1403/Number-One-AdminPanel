@@ -11,6 +11,7 @@ import { Modal, ModalBody, ModalHeader, Table, Tooltip } from "reactstrap";
 // Toast
 import toast from "react-hot-toast";
 import { useMutation } from "@tanstack/react-query";
+import ReplyNewsComments from "./ReplyNewsComments";
 
 const CommentNewsModal = ({ comModal, setComModal, repCom }) => {
   // ** States
@@ -29,23 +30,23 @@ const CommentNewsModal = ({ comModal, setComModal, repCom }) => {
     },
   });
 
-  const addReplyCommentt = async (e) => {
-    try {
-      const dataa = { ...e, CourseId: coursid, CommentId: comntid };
-      const data = new FormData();
-      const keys = Object.keys(dataa);
-      keys.forEach((key) => {
-        const item = dataa[key];
-        data.append(key, item);
-      });
-      const res = await addReply(data);
-      res.success ? toast.success(res.message) : toast.error(res.message);
+  // const addReplyCommentt = async (e) => {
+  //   try {
+  //     const dataa = { ...e, CourseId: coursid, CommentId: comntid };
+  //     const data = new FormData();
+  //     const keys = Object.keys(dataa);
+  //     keys.forEach((key) => {
+  //       const item = dataa[key];
+  //       data.append(key, item);
+  //     });
+  //     const res = await addReply(data);
+  //     res.success ? toast.success(res.message) : toast.error(res.message);
 
-      // console.log("object", res);
-    } catch (error) {
-      console.error("ERROR: ", error);
-    }
-  };
+  //     // console.log("object", res);
+  //   } catch (error) {
+  //     console.error("ERROR: ", error);
+  //   }
+  // };
 
   return (
     <div className="demo-inline-spacing">
@@ -117,8 +118,7 @@ const CommentNewsModal = ({ comModal, setComModal, repCom }) => {
             </Table>
           </ModalBody>
         </Modal>
-
-        {/* <ReplyComment
+        {/* <ReplyNewsComments
           repShow={repComm}
           setRepShow={setRepComm}
           addReplyComment={addReplyCommentt}

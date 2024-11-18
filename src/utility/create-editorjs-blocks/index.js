@@ -8,14 +8,18 @@ const CreateEditorJsBlocks = ({ editorData }) => {
     if (editorData.length == 0) return;
 
     setEditor(JSON.parse(editorData));
-    console.log(JSON.parse(editorData));
+    console.log(JSON.parse(editorData))
   }, [editorData]);
 
   const loadBlocks = (data) => {
     return data?.blocks?.map((block, index) => {
       switch (block.type) {
         case "paragraph":
-          return <p className="fs-5" key={index}>{block?.data?.text}</p>;
+          return (
+            <p className="fs-5" key={index}>
+              {block?.data?.text}
+            </p>
+          );
         case "header":
           switch (block?.data?.level) {
             case 1:

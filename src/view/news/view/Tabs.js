@@ -1,5 +1,5 @@
 // ** React Imports
-import { Fragment, useContext } from "react";
+import { Fragment, useContext, useEffect, useState } from "react";
 
 // ** Reactstrap Imports
 import {
@@ -29,6 +29,7 @@ import { ThemeColors } from "@src/utility/context/ThemeColors";
 import { GetRepliesComments } from "../../../@core/services/api/get-api";
 import { useSelector } from "react-redux";
 import { useMutation } from "@tanstack/react-query";
+import HandleIdentityEditorJs from "../../../utility/create-editorjs-blocks/IdentityEditorJs";
 
 const NewsTabs = ({ active, toggleTab }) => {
   const { colors } = useContext(ThemeColors);
@@ -108,7 +109,11 @@ const NewsTabs = ({ active, toggleTab }) => {
                   </div>
                 </CardHeader>
                 <CardBody>
-                  <CardText tag="p">{detail.newsDetails.describe}</CardText>
+                  <CardText tag="p">
+                    <HandleIdentityEditorJs
+                      desc={detail.newsDetails.describe}
+                    />
+                  </CardText>
                 </CardBody>
               </Card>
             </Col>
