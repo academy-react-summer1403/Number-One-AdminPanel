@@ -1,4 +1,4 @@
-import { Book, Circle, Home, Users } from "react-feather";
+import { Book, BookOpen, Circle, Home, Users } from "react-feather";
 
 export default [
   {
@@ -29,6 +29,25 @@ export default [
         title: "افزودن اخبار و مقالات",
         icon: <Circle size={20} />,
         navLink: "/createBlog",
+      },
+    ],
+  },
+  {
+    id: "courseManagement",
+    title: "مدیریت دوره ها",
+    icon: <BookOpen size={20} />,
+    children: [
+      {
+        id: "courseList",
+        title: "لیست دوره ها",
+        icon: <Circle size={20} />,
+        navLink: "/courses",
+      },
+      {
+        id: "createCourse",
+        title: "افزودن دوره جدید",
+        icon: <Circle size={20} />,
+        navLink: "/createCourse",
       },
     ],
   },
