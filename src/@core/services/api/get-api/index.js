@@ -18,6 +18,9 @@ import GetCourseGroups from "./GetCourseGroups";
 import GetCourseReserve from "./GetCourseReserve";
 import GetGroupDetails from "./GetGroupDetails";
 import GetCoursePayment from "./GetCoursePayments";
+import GetReservedCourses from "./GetCoursesReserve";
+import GetAllPayment from "./GetAllCoursePayments";
+import GetUserPayment from "./GetUserPayment";
 
 export {
   GetUserList,
@@ -40,4 +43,7 @@ export {
   GetCourseReserve,
   GetGroupDetails,
   GetCoursePayment,
+  GetReservedCourses,
+  GetAllPayment,
+  GetUserPayment,
 };

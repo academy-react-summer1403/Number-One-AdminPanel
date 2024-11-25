@@ -2,36 +2,14 @@
 import {
   Table,
   Badge,
-  UncontrolledDropdown,
-  DropdownMenu,
-  DropdownItem,
-  DropdownToggle,
-  Tooltip,
 } from "reactstrap";
 
 // ** React Imports
-import { Fragment, useEffect, useState } from "react";
-
-// // ** Invoice List Sidebar
-// import Sidebar from './Sidebar'
-
-// // ** Third Party Components
-// import Select from 'react-select'
-
-// // ** Utils
-// import { selectThemeColors } from '@utils'
+import { Fragment, useState } from "react";
 
 // // ** Reactstrap Imports
 import {
-  Row,
-  Col,
   Card,
-  Input,
-  Label,
-  Button,
-  CardBody,
-  CardTitle,
-  CardHeader,
 } from "reactstrap";
 
 // ** Styles
@@ -66,10 +44,6 @@ const Payments = () => {
     { PageNumber: 1, RowsOfPage: 1000 }
   );
   // console.log(users)
-
-  const handlePaymentUpdate = (userName) => {
-    // const userId = users?.listUser.find(item => item.)
-  };
 
   // Pagination
   const [PageNumber, setPageNumber] = useState(1);

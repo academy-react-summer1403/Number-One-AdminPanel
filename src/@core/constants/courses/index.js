@@ -6,6 +6,8 @@ import EditCourseField from "./EditCourseField";
 import DetailsOfCourses from "./DetailsOfCourses";
 import navItems from "./NavItems";
 import { CourseGroups } from "./DetailsTabs";
+import { CourseTableTitles } from "./DetailsTabs";
+import { PaymentCoursesTableTitles } from "./DetailsTabs";
 
 export {
   PopularCoursesTitle,
@@ -16,4 +18,6 @@ export {
   DetailsOfCourses,
   navItems,
   CourseGroups,
+  CourseTableTitles,
+  PaymentCoursesTableTitles,
 };

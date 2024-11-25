@@ -19,6 +19,8 @@ import { handlePageNumber, handleQueryCourse, handleRowsOfPage } from "../store/
 import ListSearchbar from "../../../@core/components/products-list/ListSearchbar";
 import CourseCard from "./CourseCard";
 import CustomPagination from "../../../@core/components/pagination";
+import CourseReserve from "./tabs/CourseReserve";
+import PaymentOfCourses from "./tabs/PaymentOfCourses";
 
 const Courses = () => {
   const [activeView, setActiveView] = useState("grid");
@@ -85,12 +87,12 @@ const Courses = () => {
                     handleClickFunc={handlePagination}
                   />
                 </TabPane>
-                {/* <TabPane tabId="2">
+                <TabPane tabId="2">
                   <CourseReserve />
                 </TabPane>
                 <TabPane tabId="3">
                   <PaymentOfCourses courseId={DataWithoutDependencies?.courseDtos[0]?.courseId}/>
-                </TabPane> */}
+                </TabPane>
               </TabContent>
             </div>
           </div>
