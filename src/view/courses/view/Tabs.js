@@ -31,6 +31,7 @@ import HandleIdentityEditorJs from "../../../utility/create-editorjs-blocks/Iden
 import CourseCom from "./tabs/Comment";
 import CourseUsers from "./tabs/UsersCourses";
 import CoursesGroups from "./tabs/GroupsCourses";
+import Payments from "./tabs/payments";
 
 const UserTabs = ({
   active,
@@ -122,9 +123,9 @@ const UserTabs = ({
             refetchGroup={refetchGroup}
           />
         </TabPane>
-        {/* <TabPane tabId="5">
+        <TabPane tabId="5">
           <Payments />
-        </TabPane> */}
+        </TabPane>
       </TabContent>
     </Fragment>
   );

@@ -17,6 +17,7 @@ import GetCourseComment from "./GetCourseComments";
 import GetCourseGroups from "./GetCourseGroups";
 import GetCourseReserve from "./GetCourseReserve";
 import GetGroupDetails from "./GetGroupDetails";
+import GetCoursePayment from "./GetCoursePayments";
 
 export {
   GetUserList,
@@ -38,4 +39,5 @@ export {
   GetCourseGroups,
   GetCourseReserve,
   GetGroupDetails,
+  GetCoursePayment,
 };
