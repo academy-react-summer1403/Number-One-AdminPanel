@@ -20,16 +20,16 @@ import {
 import { CreditCard, FileText, Lock, User, Users } from "react-feather";
 
 // ** User Components
-import CoursesGroups from "../courseGroups/TableGr";
-import CourseCom from "../courseGroups/comment/Comment";
-import UsersCourses from "../userCorses/Table";
-import Payments from "../payment/payments";
-import { DetailsOfCourses, navItems } from "../../../../core/constans/courses";
-import StatsHorizontal from "../../widgets/stats/StatsHorizontal";
+// import CoursesGroups from "../courseGroups/TableGr";
+// import CourseCom from "../courseGroups/comment/Comment";
+// import UsersCourses from "../userCorses/Table";
+// import Payments from "../payment/payments";
+import StatsHorizontal from "../../../@core/components/widgets/stats//StatsHorizontal";
+import { ThemeColors } from "../../../utility/context/ThemeColors";
+// import CourseUsers from "../userCorses/Table";
+import { DetailsOfCourses, navItems } from "../../../@core/constants/courses";
 import GoalOverview from "./GoalOverview";
-import { ThemeColors } from "@src/utility/context/ThemeColors";
-import CreateTitle from "../../user/view/CreateTitle";
-import CourseUsers from "../userCorses/Table";
+import HandleIdentityEditorJs from "../../../utility/create-editorjs-blocks/IdentityEditorJs";
 
 const UserTabs = ({
   active,
@@ -93,18 +93,18 @@ const UserTabs = ({
             <Col sm={12}>
               <Card>
                 <CardHeader>
-                  <CreateTitle className={"w-100 mt-1 d-flex mb-2"}>
-                    توضیحات
-                  </CreateTitle>
+                <div className="divider-text fs-2">جزئیات</div>
                 </CardHeader>
                 <CardBody>
-                  <CardText tag="p">{data?.describe}</CardText>
+                  <HandleIdentityEditorJs
+                      desc={data?.describe}
+                    />
                 </CardBody>
               </Card>
             </Col>
           </Row>
         </TabPane>
-        <TabPane tabId="2">
+        {/* <TabPane tabId="2">
           <CourseCom />
         </TabPane>
         <TabPane tabId="3">
@@ -123,7 +123,7 @@ const UserTabs = ({
         </TabPane>
         <TabPane tabId="5">
           <Payments />
-        </TabPane>
+        </TabPane> */}
       </TabContent>
     </Fragment>
   );

@@ -28,6 +28,8 @@ import { GetCourseById } from "../../../@core/services/api/get-api";
 import { useQueryWithDependencies } from "../../../utility/hooks/useCustomQuery";
 import { ActiveOrDeActive } from "../../../@core/services/api/put-api";
 import EditCourse from "./EditCourse";
+import UserTabs from "./Tabs";
+import { useQuery } from "@tanstack/react-query";
 
 const CourseDetail = () => {
 
@@ -118,19 +120,19 @@ const CourseDetail = () => {
           />
         </Col>
         <EditCourse isOpen={editModal} toggle={toggle} refetchData={refetch}/>
-        {/* <Col xl="8" lg="7" xs={{ order: 1 }} md={{ order: 1, size: 7 }}>
+        <Col xl="8" lg="7" xs={{ order: 1 }} md={{ order: 1, size: 7 }}>
           <UserTabs
             active={active}
             toggleTab={toggleTab}
             data={detailsData}
             centeredModal={centeredModal}
             setCenteredModal={setCenteredModal}
-            refetchChange={refetchChange}
-            refetchGroup={refetchGroup}
-            groupData={groupData}
-            setUserSel={setUserSel}
+            // refetchChange={refetchChange}
+            // refetchGroup={refetchGroup}
+            // groupData={groupData}
+            // setUserSel={setUserSel}
           />
-        </Col> */}
+        </Col>
       </Row>
       {/* <ModalBasic
         centeredModal={centeredModal}

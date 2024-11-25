@@ -3,6 +3,7 @@ import Avatar from "../../../assets/images/cards/44.jpg";
 import { Badge, Card, CardBody } from "reactstrap";
 import { Link } from "react-router-dom";
 import { Calendar, ShoppingCart, Star, User } from "react-feather";
+import HandleIdentityEditorJs from "../../../utility/create-editorjs-blocks/IdentityEditorJs";
 
 const CourseCard = (props) => {
   const { activeView, item } = props;
@@ -30,8 +31,11 @@ const CourseCard = (props) => {
           </Link>
           <CardBody>
             <Link to={`/courses/view/${item.courseId}`}>
-              <h4 className="mt-75">{item.title}</h4>
-              <p className="item-description ">{item.describe}</p>
+              <h4 className="mt-75 line-clamp">{item.title}</h4>
+              <p className="item-description ">
+                {" "}
+                <HandleIdentityEditorJs desc={item?.describe} />
+              </p>
               <div className="d-flex justify-content-between">
                 <div>
                   <User size={18} color="#716c83" />
