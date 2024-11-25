@@ -17,6 +17,7 @@ const MySwal = withReactContent(Swal);
 
 const InfoCard = ({
   setEditModal,
+  editModal,
   activeOrDeactive,
   fields,
   detailParams,

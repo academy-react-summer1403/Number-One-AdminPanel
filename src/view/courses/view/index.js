@@ -27,6 +27,7 @@ import { CoursesInfo } from "../../../@core/constants/courses";
 import { GetCourseById } from "../../../@core/services/api/get-api";
 import { useQueryWithDependencies } from "../../../utility/hooks/useCustomQuery";
 import { ActiveOrDeActive } from "../../../@core/services/api/put-api";
+import EditCourse from "./EditCourse";
 
 const CourseDetail = () => {
 
@@ -108,6 +109,7 @@ const CourseDetail = () => {
         <Col xl="4" lg="5" xs={{ order: 0 }} md={{ order: 0, size: 5 }}>
           <InfoCard
             setEditModal={setEditModal}
+            editModal={editModal}
             activeOrDeactive={activeOrDeActive}
             fields={CoursesInfo(isSuccess && detailsData)}
             detailParams={detailsData}
@@ -115,7 +117,7 @@ const CourseDetail = () => {
             refetch={refetch}
           />
         </Col>
-        {/* <EditCourse isOpen={editModal} toggle={toggle} refetchData={refetch}/> */}
+        <EditCourse isOpen={editModal} toggle={toggle} refetchData={refetch}/>
         {/* <Col xl="8" lg="7" xs={{ order: 1 }} md={{ order: 1, size: 7 }}>
           <UserTabs
             active={active}
