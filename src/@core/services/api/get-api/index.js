@@ -10,6 +10,9 @@ import GetRepliesComments from "./GetRepliesComments";
 import GetDashboardReport from "./GetDashboardReport";
 import GetCourses from "./GetAllCourses";
 import GetCommentsManage from "./GetCommentsManage";
+import GetAllProducts from "./GetAllProducts";
+import GetProductsDetails from "./GetProductsDetails";
+import GetProductsWithParams from "./GetProductsWithParams";
 
 export {
   GetUserList,
@@ -24,4 +27,7 @@ export {
   GetDashboardReport,
   GetCourses,
   GetCommentsManage,
+  GetAllProducts,
+  GetProductsDetails,
+  GetProductsWithParams,
 };

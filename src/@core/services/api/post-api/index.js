@@ -4,6 +4,7 @@ import RejectUserComment from "./RejectUserComment";
 import AcceptUserComment from "./AcceptUserComment";
 import LoginUser from "./Login";
 import CreateNews from "./CreateNews";
+import CreateProducts from "./CreateProducts";
 
 export {
   AddUserAccess,
@@ -12,4 +13,5 @@ export {
   AcceptUserComment,
   LoginUser,
   CreateNews,
+  CreateProducts,
 };
