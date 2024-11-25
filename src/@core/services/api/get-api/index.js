@@ -13,6 +13,7 @@ import GetCommentsManage from "./GetCommentsManage";
 import GetTechnologies from "./GetTechnologies";
 import GetCourseById from "./GetCourseById";
 import GetCreateCourse from "./GetCreateCourse";
+import GetCourseComment from "./GetCourseComments";
 
 export {
   GetUserList,
@@ -30,4 +31,5 @@ export {
   GetTechnologies,
   GetCourseById,
   GetCreateCourse,
+  GetCourseComment,
 };

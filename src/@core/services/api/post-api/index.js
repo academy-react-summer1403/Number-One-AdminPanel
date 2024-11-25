@@ -5,6 +5,8 @@ import AcceptUserComment from "./AcceptUserComment";
 import LoginUser from "./Login";
 import CreateNews from "./CreateNews";
 import AddTechnologies from "./AddTechnologies";
+import AcceptCommentCourse from "./AcceptCommentCourse";
+import RejectCourseComment from "./RejectCourseComment";
 
 export {
   AddUserAccess,
@@ -13,5 +15,7 @@ export {
   AcceptUserComment,
   LoginUser,
   CreateNews,
-  AddTechnologies
+  AddTechnologies,
+  AcceptCommentCourse,
+  RejectCourseComment,
 };
