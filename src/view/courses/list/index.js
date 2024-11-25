@@ -13,12 +13,14 @@ import { useSelector } from "react-redux";
 //   handleQueryCourse,
 //   handleRowsOfPage,
 // } from "../../../../redux/slices/CourseList";
-// import Tabs from "../tabs/Tabs";
 // import CourseReserve from "../allCourseRes/CourseReserve";
 // import PaymentOfCourses from "../payment-courses/PaymentOfCourses";
 import { GetCourses } from "../../../@core/services/api/get-api";
 import GeneralStatistics from "../../../@core/components/generalStatistics";
-import { StatisticsOfCourses } from "../../../@core/constants/courses";
+import { coursesSortOption, StatisticsOfCourses } from "../../../@core/constants/courses";
+import Tabs from "./Tabs";
+import ProductsHeader from "../../../@core/components/items-list/ProductsHeader";
+import { handleRowsOfPage } from "../store/CourseList";
 
 
 const Courses = () => {
@@ -217,23 +219,23 @@ const Courses = () => {
             resize="12"
           />
         </Col>
-        {/* <Col md={9} xs={12}>
+        <Col md={9} xs={12}>
           <div className="content-detached content-right">
             <div className="content-body" style={{ marginRight: "0" }}>
               <Tabs
-                className="mb-2 "
+                className="mb-2"
                 activeTab={activeTab}
                 toggleTab={toggleTab}
               />
               <TabContent activeTab={activeTab}>
                 <TabPane tabId="1">
                   <ProductsHeader
-                    activeView={activeView}
-                    setActiveView={setActiveView}
+                    // activeView={activeView}
+                    // setActiveView={setActiveView}
                     rowsFunc={handleRowsOfPage}
                     sortOptions={coursesSortOption}
                   />
-                  <ProductsSearchbar QueryFunction={handleQueryCourse} />
+                  {/* <ProductsSearchbar QueryFunction={handleQueryCourse} />
                   <CourseCard
                     activeView={activeView}
                     item={coursesData?.courseDtos}
@@ -244,18 +246,18 @@ const Courses = () => {
                     isSuccess={isSuccess}
                     variant={"course"}
                     handlePage={handlePageNumber}
-                  />
+                  /> */}
                 </TabPane>
-                <TabPane tabId="2">
+                {/* <TabPane tabId="2">
                   <CourseReserve />
                 </TabPane>
                 <TabPane tabId="3">
                   <PaymentOfCourses courseId={DataWithoutDependencies?.courseDtos[0]?.courseId}/>
-                </TabPane>
+                </TabPane> */}
               </TabContent>
             </div>
           </div>
-        </Col> */}
+        </Col>
       </Row>
     </Fragment>
   );

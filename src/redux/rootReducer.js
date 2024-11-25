@@ -6,6 +6,7 @@ import FilterSlice from "../view/user/store/FilterSlice";
 import NewsList from "../view/news/store/NewsList";
 import NewsDetail from "../view/news/store/NewsDetail";
 import CreateNewsSlice from "../view/news/store/CreateNews";
+import CoursesList from "../view/courses/store/CourseList"
 
 const rootReducer = {
   navbar,
@@ -15,6 +16,7 @@ const rootReducer = {
   NewsList,
   NewsDetail,
   CreateNewsSlice,
+  CoursesList
 };
 
 export default rootReducer;
