@@ -1,7 +1,8 @@
+import CourseDetail from "../view/courses/view"
 
 const CourseDetails = () => {
   return (
-    <div>CourseDetails</div>
+    <CourseDetail/>
   )
 }
 
