@@ -5,5 +5,15 @@ import CoursesInfo from "./CourseInfo";
 import EditCourseField from "./EditCourseField";
 import DetailsOfCourses from "./DetailsOfCourses";
 import navItems from "./NavItems";
+import { CourseGroups } from "./DetailsTabs";
 
-export { PopularCoursesTitle, StatisticsOfCourses, coursesSortOption,CoursesInfo,EditCourseField ,DetailsOfCourses,navItems};
+export {
+  PopularCoursesTitle,
+  StatisticsOfCourses,
+  coursesSortOption,
+  CoursesInfo,
+  EditCourseField,
+  DetailsOfCourses,
+  navItems,
+  CourseGroups,
+};

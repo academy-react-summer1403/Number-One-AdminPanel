@@ -30,6 +30,7 @@ import GoalOverview from "./GoalOverview";
 import HandleIdentityEditorJs from "../../../utility/create-editorjs-blocks/IdentityEditorJs";
 import CourseCom from "./tabs/Comment";
 import CourseUsers from "./tabs/UsersCourses";
+import CoursesGroups from "./tabs/GroupsCourses";
 
 const UserTabs = ({
   active,
@@ -115,13 +116,13 @@ const UserTabs = ({
             refetchChange={refetchChange}
           />
         </TabPane>
-        {/* <TabPane tabId="4">
+        <TabPane tabId="4">
           <CoursesGroups
             groupData={groupData}
             refetchGroup={refetchGroup}
           />
         </TabPane>
-        <TabPane tabId="5">
+        {/* <TabPane tabId="5">
           <Payments />
         </TabPane> */}
       </TabContent>

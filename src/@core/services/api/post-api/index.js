@@ -8,6 +8,7 @@ import AddTechnologies from "./AddTechnologies";
 import AcceptCommentCourse from "./AcceptCommentCourse";
 import RejectCourseComment from "./RejectCourseComment";
 import ChangeReserve from "./ChangeUserChange";
+import AddCourseGroupe from "./AddCourseGroup";
 
 export {
   AddUserAccess,
@@ -19,5 +20,6 @@ export {
   AddTechnologies,
   AcceptCommentCourse,
   RejectCourseComment,
-  ChangeReserve
+  ChangeReserve,
+  AddCourseGroupe
 };

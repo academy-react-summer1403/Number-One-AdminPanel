@@ -16,6 +16,7 @@ import GetCreateCourse from "./GetCreateCourse";
 import GetCourseComment from "./GetCourseComments";
 import GetCourseGroups from "./GetCourseGroups";
 import GetCourseReserve from "./GetCourseReserve";
+import GetGroupDetails from "./GetGroupDetails";
 
 export {
   GetUserList,
@@ -35,5 +36,6 @@ export {
   GetCreateCourse,
   GetCourseComment,
   GetCourseGroups,
-  GetCourseReserve
+  GetCourseReserve,
+  GetGroupDetails,
 };
