@@ -21,7 +21,6 @@ import { CreditCard, FileText, Lock, User, Users } from "react-feather";
 
 // ** User Components
 // import CoursesGroups from "../courseGroups/TableGr";
-// import UsersCourses from "../userCorses/Table";
 // import Payments from "../payment/payments";
 import StatsHorizontal from "../../../@core/components/widgets/stats//StatsHorizontal";
 import { ThemeColors } from "../../../utility/context/ThemeColors";
@@ -30,6 +29,7 @@ import { DetailsOfCourses, navItems } from "../../../@core/constants/courses";
 import GoalOverview from "./GoalOverview";
 import HandleIdentityEditorJs from "../../../utility/create-editorjs-blocks/IdentityEditorJs";
 import CourseCom from "./tabs/Comment";
+import CourseUsers from "./tabs/UsersCourses";
 
 const UserTabs = ({
   active,
@@ -107,7 +107,7 @@ const UserTabs = ({
         <TabPane tabId="2">
           <CourseCom />
         </TabPane>
-        {/* <TabPane tabId="3">
+        <TabPane tabId="3">
           <CourseUsers
             centeredModal={centeredModal}
             setCenteredModal={setCenteredModal}
@@ -115,7 +115,7 @@ const UserTabs = ({
             refetchChange={refetchChange}
           />
         </TabPane>
-        <TabPane tabId="4">
+        {/* <TabPane tabId="4">
           <CoursesGroups
             groupData={groupData}
             refetchGroup={refetchGroup}

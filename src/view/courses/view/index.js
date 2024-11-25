@@ -24,12 +24,14 @@ import { useDispatch, useSelector } from "react-redux";
 // import { useQuery } from "@tanstack/react-query";
 import InfoCard from "./InfoCard";
 import { CoursesInfo } from "../../../@core/constants/courses";
-import { GetCourseById } from "../../../@core/services/api/get-api";
+import { GetCourseById, GetCourseGroups } from "../../../@core/services/api/get-api";
 import { useQueryWithDependencies } from "../../../utility/hooks/useCustomQuery";
 import { ActiveOrDeActive } from "../../../@core/services/api/put-api";
 import EditCourse from "./EditCourse";
 import UserTabs from "./Tabs";
 import { useQuery } from "@tanstack/react-query";
+import { ChangeReserve } from "../../../@core/services/api/post-api";
+import ModalBasic from "./ModalBasic";
 
 const CourseDetail = () => {
 
@@ -48,16 +50,16 @@ const CourseDetail = () => {
     refetch,
     isSuccess,
   } = useQueryWithDependencies("GET_COURSE_DETAILS", GetCourseById, id, id);
-  // const { data: groupData, refetch: refetchGroup } = useQuery({
-  //   queryKey: ["GET_COURSE_GROUPS", isSuccess],
-  //   queryFn: () => {
-  //     return GetCourseGroups({
-  //       teacherId: detailsData?.teacherId,
-  //       courseId: id,
-  //     });
-  //   },
-  //   enabled: !!(detailsData?.teacherId !== undefined),
-  // });
+  const { data: groupData, refetch: refetchGroup } = useQuery({
+    queryKey: ["GET_COURSE_GROUPS", isSuccess],
+    queryFn: () => {
+      return GetCourseGroups({
+        teacherId: detailsData?.teacherId,
+        courseId: id,
+      });
+    },
+    enabled: !!(detailsData?.teacherId !== undefined),
+  });
 
   const location = useLocation();
   const [active, setActive] = useState("1");
@@ -80,21 +82,21 @@ const CourseDetail = () => {
     }
   };
 
-  // const handleChangeReserve = async (groupId) => {
-  //   try {
-  //     const data = {
-  //       courseId: userSel.courseId,
-  //       courseGroupId: groupId,
-  //       studentId: userSel.studentId,
-  //     };
-  //     const result = await ChangeReserve(data);
-  //     if (result.success) {
-  //       setRefetchChange(!refetchChange);
-  //     }
-  //   } catch (error) {
-  //     throw new Error("ERROR: ", error);
-  //   }
-  // };
+  const handleChangeReserve = async (groupId) => {
+    try {
+      const data = {
+        courseId: userSel.courseId,
+        courseGroupId: groupId,
+        studentId: userSel.studentId,
+      };
+      const result = await ChangeReserve(data);
+      if (result.success) {
+        setRefetchChange(!refetchChange);
+      }
+    } catch (error) {
+      throw new Error("ERROR: ", error);
+    }
+  };
 
   // **API
   const toggleTab = (tab) => {
@@ -127,14 +129,14 @@ const CourseDetail = () => {
             data={detailsData}
             centeredModal={centeredModal}
             setCenteredModal={setCenteredModal}
-            // refetchChange={refetchChange}
-            // refetchGroup={refetchGroup}
-            // groupData={groupData}
-            // setUserSel={setUserSel}
+            refetchChange={refetchChange}
+            refetchGroup={refetchGroup}
+            groupData={groupData}
+            setUserSel={setUserSel}
           />
         </Col>
       </Row>
-      {/* <ModalBasic
+      <ModalBasic
         centeredModal={centeredModal}
         setCenteredModal={setCenteredModal}
         groupData={groupData}
@@ -142,7 +144,7 @@ const CourseDetail = () => {
         changeReserve={handleChangeReserve}
         // setModalGr={setModalGr}
         toggleTab={toggleTab}
-      /> */}
+      />
     </div>
   );
 };
