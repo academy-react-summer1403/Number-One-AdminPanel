@@ -20,7 +20,9 @@ import GeneralStatistics from "../../../@core/components/generalStatistics";
 import { coursesSortOption, StatisticsOfCourses } from "../../../@core/constants/courses";
 import Tabs from "./Tabs";
 import ProductsHeader from "../../../@core/components/items-list/ProductsHeader";
-import { handleRowsOfPage } from "../store/CourseList";
+import { handleQueryCourse, handleRowsOfPage } from "../store/CourseList";
+import ListSearchbar from "../../../@core/components/products-list/ListSearchbar";
+import CourseCard from "./CourseCard";
 
 
 const Courses = () => {
@@ -235,12 +237,12 @@ const Courses = () => {
                     rowsFunc={handleRowsOfPage}
                     sortOptions={coursesSortOption}
                   />
-                  {/* <ProductsSearchbar QueryFunction={handleQueryCourse} />
+                  <ListSearchbar QueryFunction={handleQueryCourse} />
                   <CourseCard
                     activeView={activeView}
                     item={coursesData?.courseDtos}
                   />
-                  <PaginationBar
+                  {/* <PaginationBar
                     data={coursesData}
                     params={CoursesParams}
                     isSuccess={isSuccess}
