@@ -6,7 +6,6 @@ import Wizard from "../../../@core/components/wizard";
 
 // ** Steps
 // import { Address } from "./steps/Address";
-// import PersonalInfo from "./steps/PersonalInfo";
 // import PersonalInfo2 from "./steps/PersonalInfo2";
 // import EditorDescribe from "./steps/EditorDescribe";
 // import PictureCourse from "./steps/PictureCourse";
@@ -14,6 +13,7 @@ import AddCourseStep1 from "./steps/AddCourseStep1";
 import { useQueryWithDependencies } from "../../../utility/hooks/useCustomQuery";
 import { GetCreateCourse, GetTechnologies } from "../../../@core/services/api/get-api";
 import { CreateCourse } from "../../../@core/services/api/post-api";
+import AddCourseStep2 from "./steps/AddCourseStep2";
 
 const AddCourseSteps = () => {
   // ** Ref
@@ -83,19 +83,19 @@ const AddCourseSteps = () => {
         />
       ),
     },
-    // {
-    //   id: "personal-info",
-    //   title: "مشخصات دوره مرحله دوم",
-    //   subtitle: "لطفا فیلد های این مرحله را پر کنید",
-    //   content: (
-    //     <PersonalInfo
-    //       stepper={stepper}
-    //       type="wizard-vertical"
-    //       courseOptions={courseOptions && courseOptions}
-    //       setSecondLv={setSecondLevel}
-    //     />
-    //   ),
-    // },
+    {
+      id: "personal-info",
+      title: "مشخصات دوره مرحله دوم",
+      subtitle: "لطفا فیلد های این مرحله را پر کنید",
+      content: (
+        <AddCourseStep2
+          stepper={stepper}
+          type="wizard-vertical"
+          courseOptions={courseOptions && courseOptions}
+          setSecondLv={setSecondLevel}
+        />
+      ),
+    },
     // {
     //   id: "personal-info2",
     //   title: "مشخصات دوره مرحله سوم",

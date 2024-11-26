@@ -9,6 +9,7 @@ import { CourseGroups } from "./DetailsTabs";
 import { CourseTableTitles } from "./DetailsTabs";
 import { PaymentCoursesTableTitles } from "./DetailsTabs";
 import { FirstLevelFields } from "./CreateCourse";
+import { secondLevelFields } from "./CreateCourse";
 
 export {
   PopularCoursesTitle,
@@ -22,4 +23,5 @@ export {
   CourseTableTitles,
   PaymentCoursesTableTitles,
   FirstLevelFields,
+  secondLevelFields,
 };
