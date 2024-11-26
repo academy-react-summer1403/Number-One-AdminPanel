@@ -12,6 +12,7 @@ import withReactContent from "sweetalert2-react-content";
 // ** Styles
 import "@styles/react/libs/react-select/_react-select.scss";
 import AddCategoryModal from "./AddCategoryModal";
+import ChangeStatusModal from "./ChangeStatusModal";
 
 const MySwal = withReactContent(Swal);
 
@@ -26,7 +27,11 @@ const InfoCard = ({
   renderImageSection,
 }) => {
   const [addTechModal, setAddTechModal] = useState(false);
+  const [changeStatusModal, setChangeStatusModal] = useState(false);
+
   const toggle = () => setAddTechModal(!addTechModal);
+  const toggleStatus = () => setChangeStatusModal(!changeStatusModal);
+
 
   const handleSuspendedClick = (bolian) => {
     return MySwal.fire({
@@ -159,6 +164,15 @@ const InfoCard = ({
             >
               افزودن کتگوری
             </Button>
+            <Button
+              style={{ lineHeight: "20px" }}
+              className="ms-1"
+              color="success"
+              outline
+              onClick={() => toggleStatus()}
+            >
+               تغییر وضعیت
+            </Button>
           </div>
         </CardBody>
       </Card>
@@ -167,6 +181,12 @@ const InfoCard = ({
         setAddTechModal={setAddTechModal}
         id={detailParams?.courseId}
         toggle={toggle}
+        refetch={refetch}
+      />
+      <ChangeStatusModal
+        changeStatusModal={changeStatusModal}
+        id={detailParams?.courseId}
+        toggle={toggleStatus}
         refetch={refetch}
       />
     </Fragment>

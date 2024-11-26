@@ -35,7 +35,6 @@ const Payments = () => {
     ...(paymentData?.notDonePays || []),
   ];
 
-  console.log(AllPayment);
   // Get All Users
   const { data: users } = useQueryWithDependencies(
     "GET_USER_LIST",

@@ -6,6 +6,7 @@ import ActiveOrDeActive from "./Active_DiActiveCourse";
 import UpdateCourse from "./UpdateCourse";
 import UpdateCourseGroup from "./UpdateCourseGroup";
 import AcceptCoursePayment from "./AcceptCoursePayment";
+import ChangeCourseStatus from "./ChangeCourseStatus";
 
 export {
   UpdateUser,
@@ -15,5 +16,6 @@ export {
   ActiveOrDeActive,
   UpdateCourse,
   UpdateCourseGroup,
-  AcceptCoursePayment
+  AcceptCoursePayment,
+  ChangeCourseStatus
 };

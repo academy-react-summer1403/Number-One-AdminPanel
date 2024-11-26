@@ -33,7 +33,7 @@ const SelectOptions = ({ tech, setSelectedTech, useTech }) => {
       <Select
         className="border-b"
         onChange={handleSelectChange}
-        isClearable={false}
+        // isClearable={false}
         theme={selectThemeColors}
         isMulti
         name="colors"

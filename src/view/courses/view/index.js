@@ -9,19 +9,7 @@ import { Row, Col } from "reactstrap";
 // ** Styles
 import "@styles/react/apps/app-users.scss";
 import { useLocation, useParams } from "react-router-dom";
-// import {
-//   GetCourseGroups,
-// } from "../../../../core/services/api/get-api";
 import { useDispatch, useSelector } from "react-redux";
-// import {
-//   getCourseComments,
-//   getCourseDetails,
-// } from "../../../../redux/slices/CourseDetail";
-// import EditCourse from "../modal/EditCourse";
-// import ModalBasic from "../modal/ModalBasic";
-// import ChangeReserve from "../../../../core/services/api/post-api/ChangeUserChange";
-// import ModalGroup from "../modal/ModalGroupe";
-// import { useQuery } from "@tanstack/react-query";
 import InfoCard from "./InfoCard";
 import { CoursesInfo } from "../../../@core/constants/courses";
 import { GetCourseById, GetCourseGroups } from "../../../@core/services/api/get-api";
@@ -50,7 +38,6 @@ const CourseDetail = () => {
     refetch,
     isSuccess,
   } = useQueryWithDependencies("GET_COURSE_DETAILS", GetCourseById, id, id);
-  console.log(detailsData)
   const { data: groupData, refetch: refetchGroup } = useQuery({
     queryKey: ["GET_COURSE_GROUPS", isSuccess],
     queryFn: () => {
