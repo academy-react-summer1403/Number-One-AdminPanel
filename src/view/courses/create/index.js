@@ -15,6 +15,7 @@ import { GetCreateCourse, GetTechnologies } from "../../../@core/services/api/ge
 import { CreateCourse } from "../../../@core/services/api/post-api";
 import AddCourseStep2 from "./steps/AddCourseStep2";
 import AddCourseStep3 from "./steps/AddCourseStep3";
+import EditorDescribe from "./steps/EditorDescribe";
 
 const AddCourseSteps = () => {
   // ** Ref
@@ -110,18 +111,18 @@ const AddCourseSteps = () => {
         />
       ),
     },
-    // {
-    //   id: "personal-info3",
-    //   title: "متن دوره",
-    //   subtitle: "لطفا متن دوره را وارد کنید",
-    //   content: (
-    //     <EditorDescribe
-    //       stepper={stepper}
-    //       type="wizard-vertical"
-    //       setDesc={setDescEditor}
-    //     />
-    //   ),
-    // },
+    {
+      id: "personal-info3",
+      title: "متن دوره",
+      subtitle: "لطفا متن دوره را وارد کنید",
+      content: (
+        <EditorDescribe
+          stepper={stepper}
+          type="wizard-vertical"
+          setDesc={setDescEditor}
+        />
+      ),
+    },
     // {
     //   id: "step-address",
     //   title: "افزودن تکنولوژی",
