@@ -1,22 +1,19 @@
-import { Form, Formik } from "formik";
 import { useEffect, useState } from "react";
-import { ArrowLeft, ArrowRight, Camera } from "react-feather";
+import { Camera } from "react-feather";
 import { Button, Col, Row } from "reactstrap";
-import { handleImage, handlePreviewImage } from "../../store/CreateNews";
 import { useDispatch, useSelector } from "react-redux";
 import ButtonsForMove from "../../../../@core/components/button-for-move/ButtonsForMove";
 
-const NewsImage = ({ stepper }) => {
-  const preview = useSelector((state) => state.CreateNewsSlice.PreviewImage);
-  console.log(preview)
+const ItemImageStep = ({ stepper, handleFunc, section }) => {
+  const preview = useSelector(
+    (state) => state.CreateProductsSlice.previewImage
+  );
   const [file, setFile] = useState();
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (!file) return;
-
-    dispatch(handleImage(file));
-    dispatch(handlePreviewImage(URL.createObjectURL(file)));
+    dispatch(handleFunc(file));
   }, [file]);
 
   return (
@@ -26,7 +23,7 @@ const NewsImage = ({ stepper }) => {
         className="d-flex justify-content-center flex-wrap my-auto"
         style={{ height: "fit-content" }}
       >
-        <h1 className="w-100 text-center">عکس خبر را وارد کنید</h1>
+        <h1 className="w-100 text-center">عکس {section} را وارد کنید</h1>
         <input
           id="image1"
           type="file"
@@ -67,4 +64,4 @@ const NewsImage = ({ stepper }) => {
   );
 };
 
-export default NewsImage;
+export default ItemImageStep;

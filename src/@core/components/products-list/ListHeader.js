@@ -5,31 +5,20 @@ import Select from "react-select";
 // ** Reactstrap Imports
 import { Row, Col } from "reactstrap";
 
-const ListHeader = ({ isActiveFunc, rowsFunc, sortingColFunc }) => {
+const ListHeader = ({ rowsFunc, sortOptions }) => {
   const dispatch = useDispatch();
 
-  // ** User filter options
-  const isActiveOptions = [
-    { value: true, label: "فعال" },
-    { value: false, label: "غیرفعال" },
-  ];
-
-  const SortingColOptions = [
-    { value: "InsertDate", label: "جدیدترین" },
-    { value: "currentView", label: "پربازدیدترین" },
-    { value: "currentLikeCount", label: "محبوب ترین" },
-  ];
-
+  // ** User Current options
   const ShowCurrentOption = [
-    { label: "12", value: 12 },
-    { label: "18", value: 18 },
+    { label: "15", value: 15 },
     { label: "24", value: 24 },
+    { label: "48", value: 48 },
   ];
 
   return (
     <div className="align-items-center">
       <Row>
-        <Col xs="4" className="d-flex align-items-center">
+        <Col sm="4" className="d-flex align-items-center">
           <div className="d-flex align-items-center w-100 gap-75">
             <label htmlFor="rows-per-page">نمایش</label>
             <Select
@@ -43,27 +32,22 @@ const ListHeader = ({ isActiveFunc, rowsFunc, sortingColFunc }) => {
           </div>
         </Col>
         <Col
-          xs="8"
+          sm="8"
           className="d-flex align-items-center justify-content-end gap-75"
         >
           <div className="d-flex align-items-center gap-75">
             <label style={{ minWidth: "70px" }}>مرتب سازی:</label>
-            <Select
-              className="react-select rounded-3"
-              classNamePrefix="select"
-              defaultValue={SortingColOptions[0]}
-              name="sortingCol"
-              options={SortingColOptions}
-              onChange={(option) => dispatch(sortingColFunc(option.value))}
-            />
-            <Select
-              className="react-select rounded-3"
-              classNamePrefix="select"
-              defaultValue={isActiveOptions[0]}
-              name="isActive"
-              options={isActiveOptions}
-              onChange={(option) => dispatch(isActiveFunc(option.value))}
-            />
+            {sortOptions?.map((item, index) => (
+              <Select
+                key={index}
+                className="react-select rounded-3"
+                classNamePrefix="select"
+                defaultValue={item.Options[0]}
+                name="clear"
+                options={item.Options}
+                onChange={(option) => dispatch(item.setState(option.value))}
+              />
+            ))}
           </div>
         </Col>
       </Row>

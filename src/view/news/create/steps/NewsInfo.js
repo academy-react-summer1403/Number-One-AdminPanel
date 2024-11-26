@@ -32,7 +32,7 @@ const NewsInfo = ({ stepper }) => {
     onSubmit: async (values, { setSubmitting }) => {
       dispatch(handleSetInfo(values));
       console.log(values);
-      stepper.next()
+      stepper.next();
       setSubmitting(false);
     },
   });

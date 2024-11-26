@@ -10,6 +10,7 @@ import RejectCourseComment from "./RejectCourseComment";
 import ChangeReserve from "./ChangeUserChange";
 import AddCourseGroupe from "./AddCourseGroup";
 import CreateCourse from "./CreateCourse";
+import CreateProducts from "./CreateProducts";
 
 export {
   AddUserAccess,
@@ -24,4 +25,5 @@ export {
   ChangeReserve,
   AddCourseGroupe,
   CreateCourse,
+  CreateProducts,
 };

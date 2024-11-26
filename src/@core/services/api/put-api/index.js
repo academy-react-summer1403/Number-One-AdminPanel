@@ -7,6 +7,7 @@ import UpdateCourse from "./UpdateCourse";
 import UpdateCourseGroup from "./UpdateCourseGroup";
 import AcceptCoursePayment from "./AcceptCoursePayment";
 import ChangeCourseStatus from "./ChangeCourseStatus";
+import UpdateProducts from "./UpdateProducts";
 
 export {
   UpdateUser,
@@ -17,5 +18,6 @@ export {
   UpdateCourse,
   UpdateCourseGroup,
   AcceptCoursePayment,
-  ChangeCourseStatus
+  ChangeCourseStatus,
+  UpdateProducts,
 };

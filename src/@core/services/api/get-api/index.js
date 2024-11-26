@@ -22,6 +22,11 @@ import GetReservedCourses from "./GetCoursesReserve";
 import GetAllPayment from "./GetAllCoursePayments";
 import GetUserPayment from "./GetUserPayment";
 import GetCourseStatus from "./GetCourseStatus";
+import GetAllProducts from "./GetAllProducts";
+import GetProductsDetails from "./GetProductsDetails";
+import GetProductsWithParams from "./GetProductsWithParams";
+import GetShopList from "./GetShopList";
+import GetShopDetails from "./GetShopDetails";
 
 export {
   GetUserList,
@@ -48,4 +53,9 @@ export {
   GetAllPayment,
   GetUserPayment,
   GetCourseStatus,
+  GetAllProducts,
+  GetProductsDetails,
+  GetProductsWithParams,
+  GetShopList,
+  GetShopDetails,
 };

@@ -5,7 +5,7 @@ import { useRef, useState } from "react";
 import Wizard from "@components/wizard";
 
 // ** Steps
-import { NewsInfo, NewsPreview } from "./steps";
+import { ProductInfo, ProductPreview } from "./steps";
 import {
   ItemDescribeStep,
   ItemImageStep,
@@ -14,10 +14,10 @@ import {
 // ** Icons Imports
 import { FileText, Image, Info, Check } from "react-feather";
 
-// Redux
-import { handleDescribe, handleImage } from "../store/CreateNews";
+// Store
+import { handleDescribe, handleImage } from "../store/CreateProducts";
 
-const CreateNewsPage = () => {
+const CreateProductPage = () => {
   // ** Ref
   const ref = useRef(null);
 
@@ -28,11 +28,11 @@ const CreateNewsPage = () => {
     {
       id: "image",
       title: "عکس",
-      subtitle: "عکس خبر",
+      subtitle: "عکس محصول",
       icon: <Image size={18} />,
       content: (
         <ItemImageStep
-          section={"خبر"}
+          section={"محصول"}
           handleFunc={handleImage}
           stepper={stepper}
         />
@@ -41,19 +41,19 @@ const CreateNewsPage = () => {
     {
       id: "information",
       title: "اطلاعات",
-      subtitle: "اطلاعات خبر",
+      subtitle: "اطلاعات محصول",
       icon: <FileText size={18} />,
-      content: <NewsInfo stepper={stepper} />,
+      content: <ProductInfo stepper={stepper} />,
     },
     {
       id: "describe",
       title: "توضیحات",
-      subtitle: "توضیحات خبر",
+      subtitle: "توضیحات محصول",
       icon: <Info size={18} />,
       content: (
         <ItemDescribeStep
+          section={"محصول"}
           handleFunc={handleDescribe}
-          section={"خبر"}
           stepper={stepper}
         />
       ),
@@ -61,9 +61,9 @@ const CreateNewsPage = () => {
     {
       id: "preview",
       title: "پیش نمایش",
-      subtitle: "پیش نمایش خبر",
+      subtitle: "پیش نمایش محصول",
       icon: <Check size={18} />,
-      content: <NewsPreview stepper={stepper} />,
+      content: <ProductPreview stepper={stepper} />,
     },
   ];
 
@@ -82,4 +82,4 @@ const CreateNewsPage = () => {
   );
 };
 
-export default CreateNewsPage;
+export default CreateProductPage;
