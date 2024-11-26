@@ -6,7 +6,7 @@ import { GetNewsCategory } from "../../../../@core/services/api/get-api";
 
 // Query
 import { useQueryWithoutDependencies } from "../../../../utility/hooks/useCustomQuery";
-import { ButtonsForMove } from "../../../../@core/components/create-item-steps";
+import ButtonsForMove from "../../../../@core/components/button-for-move/ButtonsForMove";
 import CreateNewsValidations from "../../../../@core/validations/CreateNews.Validation";
 import { handleSetInfo } from "../../store/CreateNews";
 import { useDispatch } from "react-redux";

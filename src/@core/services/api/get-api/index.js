@@ -10,6 +10,18 @@ import GetRepliesComments from "./GetRepliesComments";
 import GetDashboardReport from "./GetDashboardReport";
 import GetCourses from "./GetAllCourses";
 import GetCommentsManage from "./GetCommentsManage";
+import GetTechnologies from "./GetTechnologies";
+import GetCourseById from "./GetCourseById";
+import GetCreateCourse from "./GetCreateCourse";
+import GetCourseComment from "./GetCourseComments";
+import GetCourseGroups from "./GetCourseGroups";
+import GetCourseReserve from "./GetCourseReserve";
+import GetGroupDetails from "./GetGroupDetails";
+import GetCoursePayment from "./GetCoursePayments";
+import GetReservedCourses from "./GetCoursesReserve";
+import GetAllPayment from "./GetAllCoursePayments";
+import GetUserPayment from "./GetUserPayment";
+import GetCourseStatus from "./GetCourseStatus";
 import GetAllProducts from "./GetAllProducts";
 import GetProductsDetails from "./GetProductsDetails";
 import GetProductsWithParams from "./GetProductsWithParams";
@@ -29,6 +41,18 @@ export {
   GetDashboardReport,
   GetCourses,
   GetCommentsManage,
+  GetTechnologies,
+  GetCourseById,
+  GetCreateCourse,
+  GetCourseComment,
+  GetCourseGroups,
+  GetCourseReserve,
+  GetGroupDetails,
+  GetCoursePayment,
+  GetReservedCourses,
+  GetAllPayment,
+  GetUserPayment,
+  GetCourseStatus,
   GetAllProducts,
   GetProductsDetails,
   GetProductsWithParams,

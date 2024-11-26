@@ -105,6 +105,7 @@ const Wizard = forwardRef((props, ref) => {
       })}
     >
       <div
+      style={{width:"37%"}}
         className={classnames("bs-stepper-header", {
           [headerClassName]: headerClassName,
         })}

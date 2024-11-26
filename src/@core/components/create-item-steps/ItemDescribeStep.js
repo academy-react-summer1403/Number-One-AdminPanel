@@ -1,5 +1,5 @@
 import { Button, Col, Row } from "reactstrap";
-import ButtonsForMove from "./ButtonsForMove";
+import ButtonsForMove from "../../../../@core/components/button-for-move/ButtonsForMove";
 import EditorJS from "@editorjs/editorjs";
 import Header from "@editorjs/header";
 import List from "@editorjs/list";

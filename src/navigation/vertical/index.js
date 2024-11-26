@@ -1,4 +1,4 @@
-import { Book, Circle, Home, ShoppingCart, Users } from "react-feather";
+import { Book, BookOpen, Circle, Home,ShoppingCart, Users } from "react-feather";
 
 export default [
   {
@@ -25,7 +25,7 @@ export default [
         navLink: "/blogs",
       },
       {
-        id: "blogList",
+        id: "createBlog",
         title: "افزودن اخبار و مقالات",
         icon: <Circle size={20} />,
         navLink: "/createBlog",
@@ -33,6 +33,25 @@ export default [
     ],
   },
   {
+    id: "courseManagement",
+    title: "مدیریت دوره ها",
+    icon: <BookOpen size={20} />,
+    children: [
+      {
+        id: "courseList",
+        title: "لیست دوره ها",
+        icon: <Circle size={20} />,
+        navLink: "/courses",
+      },
+      {
+        id: "createCourse",
+        title: "افزودن دوره جدید",
+        icon: <Circle size={20} />,
+        navLink: "/createCourse",
+      }
+    ]
+  },
+    {
     id: "productsPage",
     title: "مدیریت محصولات",
     icon: <ShoppingCart size={20} />,

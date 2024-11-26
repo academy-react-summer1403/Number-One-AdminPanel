@@ -39,6 +39,10 @@ const UserDetails = lazy(() => import("../../pages/UserDetails"));
 const News = lazy(() => import("../../pages/News"));
 const CreateNews = lazy(() => import("../../pages/CreateNews"));
 const NewsDetails = lazy(() => import("../../pages/NewsDetails"));
+// Courses
+const Courses = lazy(() => import("../../pages/Courses"));
+const CreateCourses = lazy(() => import("../../pages/CreateCourse"));
+const CourseDetails = lazy(() => import("../../pages/CourseDetails"));
 // Products
 const Products = lazy(() => import("../../pages/Products"));
 const CreateProduct = lazy(() => import("../../pages/CreateProduct"));
@@ -81,6 +85,19 @@ const Routes = [
     // access: ["Administrator"],
   },
   {
+    path: "/courses",
+    element: <Courses />,
+    // access: ["Administrator"],
+  },
+  {
+    path: "/createCourse",
+    element: <CreateCourses />,
+    // access: ["Administrator"],
+  },
+  {
+    path: "/courses/view/:id",
+    element: <CourseDetails />,
+    // access: ["Administrator"],
     path: "/products",
     element: <Products />,
     // access: ["Teacher", "Administrator"],

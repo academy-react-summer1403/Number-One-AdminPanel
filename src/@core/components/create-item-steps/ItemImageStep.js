@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Camera } from "react-feather";
 import { Button, Col, Row } from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
-import ButtonsForMove from "./ButtonsForMove";
+import ButtonsForMove from "../../../../@core/components/button-for-move/ButtonsForMove";
 
 const ItemImageStep = ({ stepper, handleFunc, section }) => {
   const preview = useSelector(

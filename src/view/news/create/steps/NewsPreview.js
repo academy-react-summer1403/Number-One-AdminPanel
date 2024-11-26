@@ -3,7 +3,7 @@ import { Badge, Button, Col, Row } from "reactstrap";
 import { useSelector } from "react-redux";
 
 // Custom Component
-import { ButtonsForMove } from "../../../../@core/components/create-item-steps";
+import ButtonsForMove from "../../../../@core/components/button-for-move/ButtonsForMove";
 
 // Api
 import { CreateNews } from "../../../../@core/services/api/post-api";
