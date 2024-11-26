@@ -5,10 +5,17 @@ import { useRef, useState } from "react";
 import Wizard from "@components/wizard";
 
 // ** Steps
+import { NewsInfo, NewsPreview } from "./steps";
+import {
+  ItemDescribeStep,
+  ItemImageStep,
+} from "../../../@core/components/create-item-steps";
 
 // ** Icons Imports
 import { FileText, Image, Info, Check } from "react-feather";
-import { NewsDescribe, NewsImage, NewsInfo, NewsPreview } from "./steps";
+
+// Redux
+import { handleDescribe, handleImage } from "../store/CreateNews";
 
 const CreateNewsPage = () => {
   // ** Ref
@@ -23,7 +30,13 @@ const CreateNewsPage = () => {
       title: "عکس",
       subtitle: "عکس خبر",
       icon: <Image size={18} />,
-      content: <NewsImage stepper={stepper} />,
+      content: (
+        <ItemImageStep
+          section={"خبر"}
+          handleFunc={handleImage}
+          stepper={stepper}
+        />
+      ),
     },
     {
       id: "information",
@@ -37,7 +50,13 @@ const CreateNewsPage = () => {
       title: "توضیحات",
       subtitle: "توضیحات خبر",
       icon: <Info size={18} />,
-      content: <NewsDescribe stepper={stepper} />,
+      content: (
+        <ItemDescribeStep
+          handleFunc={handleDescribe}
+          section={"خبر"}
+          stepper={stepper}
+        />
+      ),
     },
     {
       id: "preview",

@@ -1,4 +1,4 @@
-import CreateProductPage from "../@core/components/CreateProducts";
+import CreateProductPage from "../view/products/create";
 
 const CreateProduct = () => {
   return <CreateProductPage />;

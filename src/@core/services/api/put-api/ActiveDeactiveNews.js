@@ -1,9 +1,16 @@
+import toast from "react-hot-toast";
 import http from "../../interceptor";
 
-const ActiveDeactiveNews = async (data) => {
+const ActiveDeactiveNews = async (data, refetch) => {
   try {
     const response = await http.put("/News/ActiveDeactiveNews", data);
-    return response;
+    if(response) {
+      toast.success("خبر ویرایش شد")
+      refetch()
+      return response
+    } else {
+      toast.error("خبر ویرایش نشد")
+    }
   } catch (error) {
     return [];
   }

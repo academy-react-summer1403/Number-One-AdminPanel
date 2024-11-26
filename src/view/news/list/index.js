@@ -15,7 +15,10 @@ import {
 import { GetNewsList } from "../../../@core/services/api/get-api";
 
 // React Query
-import { useQueryWithDependencies } from "../../../utility/hooks/useCustomQuery";
+import {
+  useQueryWithDependencies,
+  useQueryWithoutDependencies,
+} from "../../../utility/hooks/useCustomQuery";
 
 // Redux
 import { useDispatch, useSelector } from "react-redux";
@@ -33,6 +36,7 @@ import ChangeMoment from "../../../utility/moment";
 // Style
 import "@styles/react/libs/react-select/_react-select.scss";
 import "@styles/react/libs/tables/react-dataTable-component.scss";
+import { NewsSortOption, StatisticsOfNews } from "../../../@core/constants/news-manage/Options";
 
 const NewsTable = () => {
   const [activeView, setActiveView] = useState("grid");
@@ -58,27 +62,6 @@ const NewsTable = () => {
       IsActive: false,
     });
 
-  const states = [
-    {
-      label: "اخبار و مقالات فعال",
-      value: activeSuccess && activeData.totalCount,
-      icon: Eye,
-    },
-    {
-      label: "اخبار و مقالات غیر فعال",
-      value: unActiveSuccess && unActiveData.totalCount,
-      icon: EyeOff,
-    },
-    {
-      label: "مجموع اخبار و مقالات",
-      value:
-        unActiveSuccess && activeSuccess
-          ? unActiveData.totalCount + activeData.totalCount
-          : 0,
-      icon: Book,
-    },
-  ];
-
   const handlePagination = (page) => {
     dispatch(handlePageNumber(page.selected + 1));
   };
@@ -87,17 +70,21 @@ const NewsTable = () => {
     <Fragment>
       <Row>
         <Col xs={12} lg={3}>
-          <Sidebar states={states} />
+          <Sidebar
+            data={{
+              active: activeData?.totalCount,
+              unActive: unActiveData?.totalCount,
+            }}
+            statisticsData={StatisticsOfNews}
+            resize="12"
+          />
         </Col>
         <Col xs={12} lg={9}>
           <div className="content-detached content-right">
             <div className="content-body" style={{ marginRight: "0" }}>
               <ListHeader
-                activeView={activeView}
-                setActiveView={setActiveView}
-                isActiveFunc={handleIsActive}
                 rowsFunc={handleRowsOfPage}
-                sortingColFunc={handleSortingCol}
+                sortOptions={NewsSortOption}
               />
               <ListSearchbar QueryFunction={handleQuery} />
               <div className="grid-view">

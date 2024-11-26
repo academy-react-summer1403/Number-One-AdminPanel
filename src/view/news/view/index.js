@@ -19,6 +19,8 @@ import { useQueryWithDependencies } from "../../../utility/hooks/useCustomQuery"
 import { useDispatch } from "react-redux";
 import { useMutation } from "@tanstack/react-query";
 import useFormData from "../../../utility/hooks/useFormData";
+import InfoCard from "../../../@core/components/item-detail-components/InfoCard";
+import { NewsInformation } from "../../../@core/constants/news-manage/Details";
 
 const NewsView = () => {
   const dispatch = useDispatch();
@@ -51,7 +53,7 @@ const NewsView = () => {
   const { mutate } = useMutation({
     mutationKey: ["َACTIVE_DEACTIVE"],
     mutationFn: (data) => {
-      return ActiveDeactiveNews(data);
+      return ActiveDeactiveNews(data, refetch);
     },
   });
 
@@ -70,9 +72,12 @@ const NewsView = () => {
     <div className="app-user-view">
       <Row>
         <Col xl="4" lg="5" xs={{ order: 1 }} md={{ order: 0, size: 5 }}>
-          <NewsInfoCard
+          <InfoCard
             setEditModal={setEditModal}
             activeOrDeactive={handleActiveOrDeactive}
+            fields={NewsInformation(data?.detailsNewsDto)}
+            detailParams={data?.detailsNewsDto}
+            variant={"blog"}
           />
         </Col>
         <Col xl="8" lg="7" xs={{ order: 0 }} md={{ order: 1, size: 7 }}>

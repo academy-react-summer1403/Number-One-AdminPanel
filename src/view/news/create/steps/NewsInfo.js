@@ -6,7 +6,7 @@ import { GetNewsCategory } from "../../../../@core/services/api/get-api";
 
 // Query
 import { useQueryWithoutDependencies } from "../../../../utility/hooks/useCustomQuery";
-import ButtonsForMove from "./ButtonsForMove";
+import { ButtonsForMove } from "../../../../@core/components/create-item-steps";
 import CreateNewsValidations from "../../../../@core/validations/CreateNews.Validation";
 import { handleSetInfo } from "../../store/CreateNews";
 import { useDispatch } from "react-redux";
@@ -32,7 +32,7 @@ const NewsInfo = ({ stepper }) => {
     onSubmit: async (values, { setSubmitting }) => {
       dispatch(handleSetInfo(values));
       console.log(values);
-      stepper.next()
+      stepper.next();
       setSubmitting(false);
     },
   });
