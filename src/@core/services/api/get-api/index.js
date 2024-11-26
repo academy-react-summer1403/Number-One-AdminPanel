@@ -13,6 +13,8 @@ import GetCommentsManage from "./GetCommentsManage";
 import GetAllProducts from "./GetAllProducts";
 import GetProductsDetails from "./GetProductsDetails";
 import GetProductsWithParams from "./GetProductsWithParams";
+import GetShopList from "./GetShopList";
+import GetShopDetails from "./GetShopDetails";
 
 export {
   GetUserList,
@@ -30,4 +32,6 @@ export {
   GetAllProducts,
   GetProductsDetails,
   GetProductsWithParams,
+  GetShopList,
+  GetShopDetails,
 };
