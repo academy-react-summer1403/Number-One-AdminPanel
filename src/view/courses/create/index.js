@@ -16,6 +16,7 @@ import { CreateCourse } from "../../../@core/services/api/post-api";
 import AddCourseStep2 from "./steps/AddCourseStep2";
 import AddCourseStep3 from "./steps/AddCourseStep3";
 import EditorDescribe from "./steps/EditorDescribe";
+import AddTechnologiesStep from "./steps/AddTechStep";
 
 const AddCourseSteps = () => {
   // ** Ref
@@ -123,18 +124,18 @@ const AddCourseSteps = () => {
         />
       ),
     },
-    // {
-    //   id: "step-address",
-    //   title: "افزودن تکنولوژی",
-    //   subtitle: "لطفا تکنولوژی های مربوط به دوره را انتخاب کنید",
-    //   content: (
-    //     <Address
-    //       courseTechnologies={courseTechnologies}
-    //       courseId={courseId}
-    //       type="wizard-vertical"
-    //     />
-    //   ),
-    // },
+    {
+      id: "step-address",
+      title: "افزودن تکنولوژی",
+      subtitle: "لطفا تکنولوژی های مربوط به دوره را انتخاب کنید",
+      content: (
+        <AddTechnologiesStep
+          courseTechnologies={courseTechnologies}
+          courseId={courseId}
+          type="wizard-vertical"
+        />
+      ),
+    },
     // {
     //   id: "step-image",
     //   title: "افزودن تصویر",
