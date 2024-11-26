@@ -25,7 +25,7 @@ export default [
         navLink: "/blogs",
       },
       {
-        id: "blogList",
+        id: "createBlog",
         title: "افزودن اخبار و مقالات",
         icon: <Circle size={20} />,
         navLink: "/createBlog",

@@ -8,6 +8,7 @@ import navItems from "./NavItems";
 import { CourseGroups } from "./DetailsTabs";
 import { CourseTableTitles } from "./DetailsTabs";
 import { PaymentCoursesTableTitles } from "./DetailsTabs";
+import { FirstLevelFields } from "./CreateCourse";
 
 export {
   PopularCoursesTitle,
@@ -20,4 +21,5 @@ export {
   CourseGroups,
   CourseTableTitles,
   PaymentCoursesTableTitles,
+  FirstLevelFields,
 };

@@ -1,7 +1,8 @@
+import AddCourseSteps from "../view/courses/create"
 
 const CreateCourse = () => {
   return (
-    <div>CreateCourse</div>
+    <AddCourseSteps/>
   )
 }
 
