@@ -14,7 +14,7 @@ const ChangeStatusModal = ({ changeStatusModal, id, toggle, refetch }) => {
   const [statusId, setStatusId] = useState(undefined);
 
   const handleSelectChange = (statusId) => {
-    console.log(statusId);
+    // console.log(statusId);
     setStatusId(statusId.value);
   };
 
@@ -30,7 +30,7 @@ const ChangeStatusModal = ({ changeStatusModal, id, toggle, refetch }) => {
     try {
       if (statusId) {
         const result = await ChangeCourseStatus(id, statusId);
-        console.log(result);
+        // console.log(result);
         if (result.success) {
           toggle();
           refetch();
@@ -55,8 +55,6 @@ const ChangeStatusModal = ({ changeStatusModal, id, toggle, refetch }) => {
             لطفا وضعیت دوره را انتخاب نمایید{" "}
           </ModalHeader>
           <ModalBody>
-            {/* <div className="w-75 mx-auto" style={{ height: "300px" }}> */}
-            {console.log(newStatus) }
             <div className="d-flex flex-column gap-1 shadow p-3 mb-5 rounded">
               <Select
                 className="react-select rounded-3"

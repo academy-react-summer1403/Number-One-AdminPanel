@@ -32,7 +32,6 @@ const InfoCard = ({
   const toggle = () => setAddTechModal(!addTechModal);
   const toggleStatus = () => setChangeStatusModal(!changeStatusModal);
 
-
   const handleSuspendedClick = (bolian) => {
     return MySwal.fire({
       title: "آیا مطمعن هستید؟",
@@ -137,12 +136,12 @@ const InfoCard = ({
               ))}
             </ul>
           </div>
-          <div className="d-flex justify-content-center pt-2">
-            <Button color="primary" onClick={() => setEditModal((old) => !old)}>
+          <div className="d-flex justify-content-between pt-2">
+            <Button color="primary" onClick={() => setEditModal((old) => !old)} className="w-50">
               ویرایش
             </Button>
             <Button
-              className="ms-1"
+              className="ms-1 w-50"
               color="danger"
               outline
               onClick={() =>
@@ -155,9 +154,10 @@ const InfoCard = ({
                 ? "غیر فعال کردن"
                 : "فعال کردن"}
             </Button>
+          </div>
+          <div className="d-flex justify-content-between pt-2">
             <Button
-              style={{ lineHeight: "20px" }}
-              className="ms-1"
+              className="w-50"
               color="success"
               outline
               onClick={() => setAddTechModal(!addTechModal)}
@@ -165,13 +165,12 @@ const InfoCard = ({
               افزودن کتگوری
             </Button>
             <Button
-              style={{ lineHeight: "20px" }}
-              className="ms-1"
-              color="success"
+              className="ms-1 w-50"
+              color="warning"
               outline
               onClick={() => toggleStatus()}
             >
-               تغییر وضعیت
+              تغییر وضعیت
             </Button>
           </div>
         </CardBody>
