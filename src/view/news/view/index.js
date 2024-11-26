@@ -1,7 +1,6 @@
 import { Col, Row } from "reactstrap";
 
 // Custom Components
-import NewsInfoCard from "./NewsInfoCard";
 import NewsTabs from "./Tabs";
 import EditBlog from "./EditBlog";
 
