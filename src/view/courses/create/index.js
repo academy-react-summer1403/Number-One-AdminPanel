@@ -14,6 +14,7 @@ import { useQueryWithDependencies } from "../../../utility/hooks/useCustomQuery"
 import { GetCreateCourse, GetTechnologies } from "../../../@core/services/api/get-api";
 import { CreateCourse } from "../../../@core/services/api/post-api";
 import AddCourseStep2 from "./steps/AddCourseStep2";
+import AddCourseStep3 from "./steps/AddCourseStep3";
 
 const AddCourseSteps = () => {
   // ** Ref
@@ -96,19 +97,19 @@ const AddCourseSteps = () => {
         />
       ),
     },
-    // {
-    //   id: "personal-info2",
-    //   title: "مشخصات دوره مرحله سوم",
-    //   subtitle: "لطفا فیلد های این مرحله را پر کنید",
-    //   content: (
-    //     <PersonalInfo2
-    //       stepper={stepper}
-    //       addCourse={addCourse}
-    //       type="wizard-vertical"
-    //       setThirdLv={setThirdLevel}
-    //     />
-    //   ),
-    // },
+    {
+      id: "personal-info2",
+      title: "مشخصات دوره مرحله سوم",
+      subtitle: "لطفا فیلد های این مرحله را پر کنید",
+      content: (
+        <AddCourseStep3
+          stepper={stepper}
+          addCourse={addCourse}
+          type="wizard-vertical"
+          setThirdLv={setThirdLevel}
+        />
+      ),
+    },
     // {
     //   id: "personal-info3",
     //   title: "متن دوره",
