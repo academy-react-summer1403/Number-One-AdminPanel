@@ -17,6 +17,7 @@ import AddCourseStep2 from "./steps/AddCourseStep2";
 import AddCourseStep3 from "./steps/AddCourseStep3";
 import EditorDescribe from "./steps/EditorDescribe";
 import AddTechnologiesStep from "./steps/AddTechStep";
+import PictureCourse from "./steps/PictureCourse";
 
 const AddCourseSteps = () => {
   // ** Ref
@@ -29,6 +30,8 @@ const AddCourseSteps = () => {
   const [secondLevel, setSecondLevel] = useState([]);
   const [thirdLevel, setThirdLevel] = useState([]);
   const [descEditor, setDescEditor] = useState(undefined);
+  // console.log(descEditor)
+  const [Image, setImage] = useState(undefined);
   const [courseId, setCourseId] = useState("");
 
   // API  Getting data from Api with use Query
@@ -47,7 +50,7 @@ const AddCourseSteps = () => {
 
   // API  Adding data to Api
   const addCourse = async () => {
-    if (firstLevel && secondLevel && thirdLevel && descEditor) {
+    if (firstLevel && secondLevel && thirdLevel && descEditor && Image) {
 
       try {
         const Form = {
@@ -55,8 +58,10 @@ const AddCourseSteps = () => {
           ...secondLevel,
           ...thirdLevel,
           ...descEditor,
+          ...Image,
         };
         console.log("finalForm", Form);
+
         const AddCourse = await CreateCourse(Form);
         console.log("newCourse", AddCourse);
         setCourseId(AddCourse.id);
@@ -71,7 +76,7 @@ const AddCourseSteps = () => {
     if (descEditor) {
       addCourse();
     }
-  }, [descEditor]);
+  }, [Image]);
 
   const steps = [
     {
@@ -125,6 +130,20 @@ const AddCourseSteps = () => {
       ),
     },
     {
+      id: "step-image",
+      title: "افزودن تصویر",
+      subtitle: "لطفا برای دوره عکس انتخاب کنید",
+      content: (
+        <PictureCourse
+          // courseTechnologies={courseTechnologies}
+          courseId={courseId}
+          stepper={stepper}
+          setImage={setImage}
+          type="wizard-vertical"
+        />
+      ),
+    },
+    {
       id: "step-address",
       title: "افزودن تکنولوژی",
       subtitle: "لطفا تکنولوژی های مربوط به دوره را انتخاب کنید",
@@ -136,18 +155,6 @@ const AddCourseSteps = () => {
         />
       ),
     },
-    // {
-    //   id: "step-image",
-    //   title: "افزودن تصویر",
-    //   subtitle: "لطفا برای دوره عکس انتخاب کنید",
-    //   content: (
-    //     <PictureCourse
-    //       // courseTechnologies={courseTechnologies}
-    //       // courseId={courseId}
-    //       type="wizard-vertical"
-    //     />
-    //   ),
-    // },
   ];
 
   return (

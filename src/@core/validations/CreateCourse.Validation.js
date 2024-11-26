@@ -39,3 +39,10 @@ export const validCreateCourseLv3 = Yup.object().shape({
     .max(30, "شناسه دوره حداکثر باید 30 کاراکتر باشد")
     .required("شناسه دوره الزامی می باشد"),
 });
+
+export const validCreateImageCourse = Yup.object().shape({
+  Text: Yup.string()
+    .typeError("لطفا نوشته وارد کنید")
+    .required("متن جستجو را وارد کنید!"),
+});
+

@@ -14,6 +14,7 @@ import persian_fa from "react-date-object/locales/persian_fa";
 import { Input, Label } from "reactstrap";
 import DatePicker from "react-multi-date-picker";
 import { validCreateCourseLv3 } from "../../../../@core/validations/CreateCourse.Validation";
+import ButtonsForMove from "../../../../@core/components/button-for-move/ButtonsForMove";
 
 const AddCourseStep3 = ({ stepper, setThirdLv, addCourse }) => {
   const formik = useFormik({
@@ -149,6 +150,9 @@ const AddCourseStep3 = ({ stepper, setThirdLv, addCourse }) => {
           ثبت
         </button>
       </form>
+      <div>
+        <ButtonsForMove stepper={stepper} />
+      </div>
     </Fragment>
   );
 };

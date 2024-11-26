@@ -32,7 +32,7 @@ const CourseCard = (props) => {
           <CardBody>
             <Link to={`/courses/view/${item.courseId}`}>
               <h4 className="mt-75 line-clamp">{item.title}</h4>
-              <p className="item-description ">
+              <p className="item-description line-clamp ">
                 {" "}
                 <HandleIdentityEditorJs desc={item?.describe} />
               </p>

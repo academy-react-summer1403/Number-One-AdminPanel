@@ -32,7 +32,7 @@ const EditorComponent = ({ onSave }) => {
     editorInstance.current  
       .save()  
       .then((outputData) => {  
-        // console.log('Data saved: ', outputData);  
+        console.log('Data saved: ', outputData);  
         if (onSave) {  
           onSave(outputData);
         }  

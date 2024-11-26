@@ -2,6 +2,7 @@ import { Fragment } from "react";
 import { Field, Form, Formik, ErrorMessage } from "formik";
 import { FirstLevelFields } from "../../../../@core/constants/courses";
 import { validCreateCourseLv1 } from "../../../../@core/validations/CreateCourse.Validation";
+import ButtonsForMove from "../../../../@core/components/button-for-move/ButtonsForMove";
 
 const AddCourseStep1 = ({ stepper, setFirstLv }) => {
   // validation
@@ -55,6 +56,9 @@ const AddCourseStep1 = ({ stepper, setFirstLv }) => {
             </Form>
           )}
         </Formik>
+      </div>
+      <div sm={12}>
+        <ButtonsForMove stepper={stepper} />
       </div>
     </Fragment>
   );

@@ -5,12 +5,13 @@ import { Fragment, useState } from "react";
 import SelectOptions from "../../../../@core/components/select/SelectOptions";
 import { AddTechnologies } from "../../../../@core/services/api/post-api";
 
-const AddTechnologiesStep = ({ courseTechnologies,courseId }) => {
+const AddTechnologiesStep = ({ courseTechnologies,courseId,stepper }) => {
   const [selectedTech, setSelectedTech] = useState([]);
 
   const AddTech = async () => {
     try {
       const addTech = await AddTechnologies(courseId, selectedTech);
+      if(addTech.success) stepper.next();
       // console.log("create", addTech);
     } catch (error) {
       console.log(error);

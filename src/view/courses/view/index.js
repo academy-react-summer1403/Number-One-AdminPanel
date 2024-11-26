@@ -50,6 +50,7 @@ const CourseDetail = () => {
     refetch,
     isSuccess,
   } = useQueryWithDependencies("GET_COURSE_DETAILS", GetCourseById, id, id);
+  console.log(detailsData)
   const { data: groupData, refetch: refetchGroup } = useQuery({
     queryKey: ["GET_COURSE_GROUPS", isSuccess],
     queryFn: () => {

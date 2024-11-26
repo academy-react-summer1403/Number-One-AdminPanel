@@ -4,6 +4,7 @@ import "@styles/react/libs/react-select/_react-select.scss";
 import { Col, Row } from "reactstrap";
 import { secondLevelFields } from "../../../../@core/constants/courses";
 import { validCreateCourseLv2 } from "../../../../@core/validations/CreateCourse.Validation";
+import ButtonsForMove from "../../../../@core/components/button-for-move/ButtonsForMove";
 
 const AddCourseStep2 = ({ stepper, setSecondLv, courseOptions }) => {
   return (
@@ -110,6 +111,9 @@ const AddCourseStep2 = ({ stepper, setSecondLv, courseOptions }) => {
             </Form>
           )}
         </Formik>
+      </div>
+      <div>
+        <ButtonsForMove stepper={stepper} />
       </div>
     </Fragment>
   );
