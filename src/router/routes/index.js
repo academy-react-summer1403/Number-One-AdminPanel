@@ -43,6 +43,7 @@ const NewsDetails = lazy(() => import("../../pages/NewsDetails"));
 const Courses = lazy(() => import("../../pages/Courses"));
 const CreateCourses = lazy(() => import("../../pages/CreateCourse"));
 const CourseDetails = lazy(() => import("../../pages/CourseDetails"));
+
 // Products
 const Products = lazy(() => import("../../pages/Products"));
 const CreateProduct = lazy(() => import("../../pages/CreateProduct"));
@@ -98,6 +99,8 @@ const Routes = [
     path: "/courses/view/:id",
     element: <CourseDetails />,
     // access: ["Administrator"],
+  },
+  {
     path: "/products",
     element: <Products />,
     // access: ["Teacher", "Administrator"],

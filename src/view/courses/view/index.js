@@ -22,9 +22,9 @@ import { ChangeReserve } from "../../../@core/services/api/post-api";
 import ModalBasic from "./ModalBasic";
 
 const CourseDetail = () => {
-
   //   // **useParams
   const { id } = useParams();
+  // console.log(id)
   const dispatch = useDispatch();
   const [editModal, setEditModal] = useState(false);
   const [centeredModal, setCenteredModal] = useState(false);

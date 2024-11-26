@@ -1,6 +1,6 @@
 import CourseDetail from "../view/courses/view"
 
-const CourseDetails = () => {
+const CourseDetails  = () => {
   return (
     <CourseDetail/>
   )
