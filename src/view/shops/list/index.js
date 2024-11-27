@@ -7,12 +7,13 @@ import GetShopList from "../../../@core/services/api/get-api/GetShopList";
 import { useGetItem } from "../../../utility/hooks/useLocalStorage";
 import { useQueryWithDependencies } from "../../../utility/hooks/useCustomQuery";
 import GeneralStatistics from "../../../@core/components/generalStatistics";
-import { handleAllList, handleRowsOfPage } from "../store/ShopList";
+import { handleAllList, handleQuery, handleRowsOfPage } from "../store/ShopList";
 import StatisticsOfShop from "../../../@core/constants/shops/StatisticsOfShop";
 import ShopCard from "./ShopCard";
 import CustomPagination from "../../../@core/components/pagination";
 import ListHeader from "../../../@core/components/products-list/ListHeader";
 import { ShopSortOption } from "../../../@core/constants/shops";
+import ListSearchbar from "../../../@core/components/products-list/ListSearchbar";
 
 const ShopPage = () => {
   const { PageNumber, RowsOfPage, FilteredList, AllList } = useSelector(
@@ -71,7 +72,7 @@ const ShopPage = () => {
                 rowsFunc={handleRowsOfPage}
                 sortOptions={ShopSortOption}
               />
-              {/* <ProductsSearchbar QueryFunction={handleQuery} /> */}
+              <ListSearchbar QueryFunction={handleQuery} />
               {FilteredList?.length > 0 ? (
                 <div className="grid-view">
                   {FilteredList?.slice(itemOffset, endOffset)?.map(
