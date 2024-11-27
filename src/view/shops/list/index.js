@@ -87,7 +87,7 @@ const ShopPage = () => {
                         category={item.category}
                         startTime={item.startTime}
                         endTime={item.endTime}
-                        href={"/shop/view/"}
+                        href={"/shops/view/"}
                       />
                     )
                   )}

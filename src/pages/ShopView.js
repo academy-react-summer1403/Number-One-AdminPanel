@@ -1,7 +1,7 @@
+import ShopDetails from "../view/shops/view";
 
 const ShopView = () => {
-  return <div>ShopView</div>;
+  return  <ShopDetails />;
 };
 
 export default ShopView;
-
