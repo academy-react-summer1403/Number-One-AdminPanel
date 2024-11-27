@@ -7,12 +7,13 @@ import Wizard from "@components/wizard";
 // ** Steps
 // import { ProductInfo, ProductPreview } from "./steps";
 import {
+    ItemDescribeStep,
   ItemImageStep,
 } from "../../../@core/components/create-item-steps";
 
 // ** Icons Imports
 import { FileText, Image, Info, Check } from "react-feather";
-import { handleImage } from "../store/CreateShop";
+import { handleDescribe, handleImage } from "../store/CreateShop";
 import { ProductInfo } from "../../products/create/steps";
 import { AddShop } from "./steps";
 
@@ -46,19 +47,19 @@ const CreateShopPage = () => {
       icon: <FileText size={18} />,
       content: <AddShop stepper={stepper} />,
     },
-    // {
-    //   id: "describe",
-    //   title: "توضیحات",
-    //   subtitle: "توضیحات محصول",
-    //   icon: <Info size={18} />,
-    //   content: (
-    //     <ItemDescribeStep
-    //       section={"محصول"}
-    //       handleFunc={handleDescribe}
-    //       stepper={stepper}
-    //     />
-    //   ),
-    // },
+    {
+      id: "describe",
+      title: "توضیحات",
+      subtitle: "توضیحات محصول",
+      icon: <Info size={18} />,
+      content: (
+        <ItemDescribeStep
+          section={"محصول"}
+          handleFunc={handleDescribe}
+          stepper={stepper}
+        />
+      ),
+    },
     // {
     //   id: "preview",
     //   title: "پیش نمایش",
