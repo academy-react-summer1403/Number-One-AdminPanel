@@ -4,10 +4,19 @@ import { Button, Col, Row } from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
 import ButtonsForMove from "./ButtonsForMove";
 
-const ItemImageStep = ({ stepper, handleFunc, section }) => {
-  const preview = useSelector(
+const ItemImageStep = ({ stepper, handleFunc, section , variant }) => {
+  const previewProduct = useSelector(
     (state) => state.CreateProductsSlice.previewImage
   );
+  const previewShop = useSelector(
+    (state) => state.CreateShopsSlice.img
+  );
+
+  const previewVariant = {
+    "product": previewProduct,
+    "shop": previewShop
+  }
+  
   const [file, setFile] = useState();
   const dispatch = useDispatch();
 
@@ -45,7 +54,7 @@ const ItemImageStep = ({ stepper, handleFunc, section }) => {
           </label>
         </Button>
       </Col>
-      <Col sm={6} style={{ height: "250px" }}>
+      <Col sm={6} style={{ height: "200px" }}>
         <div
           className="w-100 h-100 d-flex justify-content-center align-items-center border rounded"
           style={{ overflow: "hidden" }}
@@ -53,7 +62,7 @@ const ItemImageStep = ({ stepper, handleFunc, section }) => {
           <img
             className="w-100 h-100 d-flex justify-content-center align-items-center"
             alt="عکسی آپلود نشده"
-            src={preview}
+            src={previewVariant?.[variant]}
           />
         </div>
       </Col>

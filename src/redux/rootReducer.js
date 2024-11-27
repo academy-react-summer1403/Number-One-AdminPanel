@@ -9,7 +9,7 @@ import { CreateNewsSlice, NewsDetail, NewsList } from "../view/news/store";
 // Products
 import { CreateProductsSlice, ProductsList } from "../view/products/store";
 
-import { ShopList } from "../view/shops/store";
+import { ShopList , CreateShopsSlice } from "../view/shops/store";
 
 const rootReducer = {
   navbar,
@@ -23,6 +23,7 @@ const rootReducer = {
   CreateProductsSlice,
   ProductsList,
   ShopList,
+  CreateShopsSlice,
 };
 
 export default rootReducer;

@@ -16,6 +16,7 @@ import { FileText, Image, Info, Check } from "react-feather";
 import { handleDescribe, handleImage } from "../store/CreateShop";
 import { ProductInfo } from "../../products/create/steps";
 import { AddShop } from "./steps";
+import ShopPreview from "./steps/ShopPreview";
 
 // Store
 
@@ -37,6 +38,7 @@ const CreateShopPage = () => {
           section={"فروشگاه"}
           handleFunc={handleImage}
           stepper={stepper}
+          variant={"shop"}
         />
       ),
     },
@@ -50,23 +52,23 @@ const CreateShopPage = () => {
     {
       id: "describe",
       title: "توضیحات",
-      subtitle: "توضیحات محصول",
+      subtitle: "توضیحات فروشگاه",
       icon: <Info size={18} />,
       content: (
         <ItemDescribeStep
-          section={"محصول"}
+          section={"فروشگاه"}
           handleFunc={handleDescribe}
           stepper={stepper}
         />
       ),
     },
-    // {
-    //   id: "preview",
-    //   title: "پیش نمایش",
-    //   subtitle: "پیش نمایش محصول",
-    //   icon: <Check size={18} />,
-    //   content: <ProductPreview stepper={stepper} />,
-    // },
+    {
+      id: "preview",
+      title: "پیش نمایش",
+      subtitle: "پیش نمایش فروشگاه",
+      icon: <Check size={18} />,
+      content: <ShopPreview stepper={stepper} />,
+    },
   ];
 
   return (

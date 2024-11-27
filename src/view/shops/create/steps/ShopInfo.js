@@ -15,9 +15,11 @@ import { handleShopsInfo } from "../../store/CreateShop";
 import EditShopValidation from "../../../../@core/validations/EditShop_Validation";
 import { ButtonsForMove } from "../../../../@core/components/create-item-steps";
 import { useDispatch } from "react-redux";
+import { useGetItem } from "../../../../utility/hooks/useLocalStorage";
 
 const AddShop = ({ stepper }) => {
   const dispatch = useDispatch();
+  const adminId = useGetItem("id")
 
   const initialValues = {
     name: "",
@@ -26,13 +28,15 @@ const AddShop = ({ stepper }) => {
     address: "",
     startTime: "",
     endTime: "",
+    isActive: true,
+    permissionIds: [String(adminId)],
   };
 
   const formik = useFormik({
     initialValues,
     validationSchema: EditShopValidation,
     onSubmit: async (values, { setSubmitting }) => {
-      //   dispatch(handleShopsInfo(values));
+      dispatch(handleShopsInfo(values));
       console.log(values);
       stepper.next();
       setSubmitting(false);

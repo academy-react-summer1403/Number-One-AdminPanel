@@ -35,6 +35,7 @@ const CreateProductPage = () => {
           section={"محصول"}
           handleFunc={handleImage}
           stepper={stepper}
+          variant={"product"}
         />
       ),
     },

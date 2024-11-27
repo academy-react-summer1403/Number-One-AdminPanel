@@ -29,6 +29,7 @@ const ShopPage = () => {
     null,
     null
   );
+  // console.log(shopData)
 
   // Getting stores that have admin access
   const GetAccessibleShops = () => {

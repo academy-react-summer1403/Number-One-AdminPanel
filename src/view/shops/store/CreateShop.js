@@ -32,6 +32,7 @@ const CreateShopsSlice = createSlice({
       state.startTime = action.payload.startTime;
       state.endTime = action.payload.endTime;
       state.isActive = action.payload.isActive;
+      state.permissionIds = action.payload.permissionIds
     },
   },
 });
