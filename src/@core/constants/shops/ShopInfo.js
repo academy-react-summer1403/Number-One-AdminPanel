@@ -1,8 +1,17 @@
 import HandleIdentityEditorJs from "../../../utility/create-editorjs-blocks/IdentityEditorJs";
+import { useQueryWithDependencies } from "../../../utility/hooks/useCustomQuery";
+import GetShopCategory from "../../services/api/get-api/GetShopCategory";
 
 const ShopInfo = (data) => {
+  // Get Category For Shop
+  const { data: category,} = useQueryWithDependencies(
+    "GET_SHOP_CATEGORY",
+    GetShopCategory,
+    data?.categoryId,
+    data?.categoryId
+  );
   const detailCourse = [
-    { label: "دسته بندی", value: data?.category },
+    { label: "دسته بندی", value: category?.categoryName },
     {
       label: "زمان ارسال محموله ها",
       value:

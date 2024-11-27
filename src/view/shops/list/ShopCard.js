@@ -7,6 +7,8 @@ import Avatarrr from "../../../assets/images/cards/22.png";
 // ** Reactstrap Imports
 import { Badge, Card, CardBody } from "reactstrap";
 import HandleIdentityEditorJs from "../../../utility/create-editorjs-blocks/IdentityEditorJs";
+import { useQueryWithDependencies } from "../../../utility/hooks/useCustomQuery";
+import GetShopCategory from "../../../@core/services/api/get-api/GetShopCategory";
 
 const ShopCard = (props) => {
   const {
@@ -15,11 +17,19 @@ const ShopCard = (props) => {
     currentRate,
     title,
     aboutUs,
-    category,
+    categoryId,
     startTime,
     endTime,
     href,
   } = props;
+
+   // Get Category For Shop
+   const { data: categoryName,} = useQueryWithDependencies(
+    "GET_SHOP_CATEGORY",
+    GetShopCategory,
+    categoryId,
+    categoryId
+  );
 
   return (
     <Card className="ecommerce-card">
@@ -71,7 +81,7 @@ const ShopCard = (props) => {
               </h6>
             </div>
             <div>
-              <Badge color="secondary">{category}</Badge>
+              <Badge color="secondary">{categoryName?.categoryName}</Badge>
             </div>
           </div>
         </Link>

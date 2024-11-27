@@ -85,7 +85,7 @@ const ShopPage = () => {
                         currentRate={item.rate}
                         title={item.name}
                         aboutUs={item.aboutUs}
-                        category={item.category}
+                        categoryId={item.categoryId}
                         startTime={item.startTime}
                         endTime={item.endTime}
                         href={"/shops/view/"}

@@ -16,6 +16,8 @@ import EditShopValidation from "../../../../@core/validations/EditShop_Validatio
 import { ButtonsForMove } from "../../../../@core/components/create-item-steps";
 import { useDispatch } from "react-redux";
 import { useGetItem } from "../../../../utility/hooks/useLocalStorage";
+import { useQueryWithoutDependencies } from "../../../../utility/hooks/useCustomQuery";
+import { GetShopCategories } from "../../../../@core/services/api/get-api";
 
 const AddShop = ({ stepper }) => {
   const dispatch = useDispatch();
@@ -42,6 +44,11 @@ const AddShop = ({ stepper }) => {
       setSubmitting(false);
     },
   });
+
+  const { data: shopsCategory, isSuccess: shopSuccess } = useQueryWithoutDependencies(
+    "GET_SHOPS_CATEGORY",
+    GetShopCategories
+  );
 
   return (
     <Form onSubmit={formik.handleSubmit}>
@@ -83,19 +90,26 @@ const AddShop = ({ stepper }) => {
           ) : null}
         </Col>
         <Col sm="6" className="mb-1">
-          <Label className="form-label" for="categoryId">
+        <Label className="form-label" for="categoryId">
             دسته بندی
           </Label>
           <Input
-            type="string"
+            type="select"
             name="categoryId"
-            id="category"
-            placeholder="دسته بندی"
+            id="categoryId"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.categoryId}
             invalid={formik.touched.categoryId && !!formik.errors.categoryId}
-          />
+          >
+            <option value="">انتخاب کنید</option>
+            {shopSuccess &&
+              shopsCategory.map((category) => (
+                <option key={category.id} value={category.id}>
+                  {category.categoryName}
+                </option>
+              ))}
+          </Input>
           {formik.touched.categoryId && formik.errors.categoryId ? (
             <div className="text-danger">{formik.errors.categoryId}</div>
           ) : null}

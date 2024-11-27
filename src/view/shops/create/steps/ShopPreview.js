@@ -6,10 +6,12 @@ import { useSelector } from "react-redux";
 import { ButtonsForMove } from "../../../../@core/components/create-item-steps";
 
 // Api
-import {CreateShop } from "../../../../@core/services/api/post-api";
+import { CreateShop } from "../../../../@core/services/api/post-api";
 
 import CreateEditorJsBlocks from "../../../../utility/create-editorjs-blocks";
 import { useMutation } from "@tanstack/react-query";
+import { useQueryWithDependencies } from "../../../../utility/hooks/useCustomQuery";
+import GetShopCategory from "../../../../@core/services/api/get-api/GetShopCategory";
 
 const ShopPreview = ({ stepper }) => {
   const previewShop = useSelector((state) => state.CreateShopsSlice);
@@ -18,10 +20,19 @@ const ShopPreview = ({ stepper }) => {
   const { mutate } = useMutation({
     mutationKey: ["CREATE_SHOPS"],
     mutationFn: (values) => {
-      console.log(values)
+      console.log(values);
       CreateShop(values);
     },
   });
+  // Get Category For Shop
+  const { data, isSuccess } = useQueryWithDependencies(
+    "GET_SHOP_CATEGORY",
+    GetShopCategory,
+    previewShop?.categoryId,
+    Number(previewShop?.categoryId)
+  );
+  // console.log(previewShop?.categoryId);
+  // console.log(data?.categoryName);
 
   return (
     <Row>
@@ -33,25 +44,23 @@ const ShopPreview = ({ stepper }) => {
           src={previewShop?.img}
         />
       </Col>
-      <Col xs={12} className="my-2 d-flex flex-wrap gap-1">
-        <h3 className="w-100">{previewShop?.title}</h3>
+      <Col xs={12} className=" d-flex flex-wrap  gap-1">
+        <span> نام فروشگاه:</span>
+        <h3 className="w-100">{previewShop?.name}</h3>
 
-        <Badge color="light-primary" pill>
-          {previewShop?.categoryId}
-        </Badge>
-        <Badge color="light-primary" pill>
+        <span>دسته بندی:</span>
+          {data?.categoryName}
+        <span> امتیاز:</span>
           {previewShop?.rate}
-        </Badge>
-        <Badge color="light-primary" pill>
+        <span> زمان شروع ارسال:</span>
           {previewShop?.startTime}
-        </Badge>
-        <Badge color="light-primary" pill>
+        <span> زمان پایان ارسال:</span>
           {previewShop?.endTime}
-        </Badge>
-
+        <span> آدرس:</span>
         <p className="mb-2">{previewShop?.address}</p>
       </Col>
       <Col xs={12}>
+        <span> درباره فروشگاه:</span>
         <CreateEditorJsBlocks editorData={previewShop?.aboutUs} />
         <Button
           onClick={() => {
