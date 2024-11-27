@@ -29,6 +29,7 @@ import GetShopList from "./GetShopList";
 import GetShopDetails from "./GetShopDetails";
 import GetEventsList from "./GetEventsList";
 import GetEventDetail from "./GetEventDetail";
+import GetAllEvents from "./GetAllEvents";
 
 export {
   GetUserList,
@@ -62,4 +63,5 @@ export {
   GetShopDetails,
   GetEventsList,
   GetEventDetail,
+  GetAllEvents,
 };

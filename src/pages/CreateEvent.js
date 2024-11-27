@@ -1,5 +1,7 @@
+import CreateEventWrapper from "../view/event/create";
+
 const CreateEvent = () => {
-  return <div></div>;
+  return <CreateEventWrapper />;
 };
 
 export default CreateEvent;

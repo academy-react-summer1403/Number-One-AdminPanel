@@ -1,5 +1,7 @@
+import EventsPage from "../view/event/list";
+
 const Events = () => {
-  return;
+  return <EventsPage />;
 };
 
 export default Events;

@@ -1,5 +1,7 @@
+import EventDetailWrapper from "../view/event/view";
+
 const EventDetails = () => {
-  return;
+  return <EventDetailWrapper />;
 };
 
 export default EventDetails;

@@ -50,7 +50,7 @@ const ProductsView = lazy(() => import("../../pages/ProductsView"));
 // Events
 const Events = lazy(() => import("../../pages/Events"));
 const CreateEvent = lazy(() => import("../../pages/CreateEvent"));
-const EventView = lazy(() => import("../../pages/EventView"));
+const EventView = lazy(() => import("../../pages/EventDetails"));
 
 // ** Merge Routes
 const Routes = [
