@@ -13,7 +13,7 @@ import { useMutation } from "@tanstack/react-query";
 
 const ProductPreview = ({ stepper }) => {
   const previewProduct = useSelector((state) => state.CreateProductsSlice);
-
+console.log(previewProduct)
   const { mutate } = useMutation({
     mutationKey: ["CREATE_PRODUCTS"],
     mutationFn: (values) => {

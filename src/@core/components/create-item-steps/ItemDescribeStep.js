@@ -49,6 +49,7 @@ const ItemDescribeStep = ({ stepper, handleFunc, section }) => {
             editor
               .save()
               .then((outputData) => {
+                console.log(outputData)
                 dispatch(handleFunc(JSON.stringify(outputData)));
               })
               .catch((error) => {

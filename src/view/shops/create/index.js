@@ -5,19 +5,22 @@ import { useRef, useState } from "react";
 import Wizard from "@components/wizard";
 
 // ** Steps
-import { ProductInfo, ProductPreview } from "./steps";
+// import { ProductInfo, ProductPreview } from "./steps";
 import {
-  ItemDescribeStep,
+    ItemDescribeStep,
   ItemImageStep,
 } from "../../../@core/components/create-item-steps";
 
 // ** Icons Imports
 import { FileText, Image, Info, Check } from "react-feather";
+import { handleDescribe, handleImage } from "../store/CreateShop";
+import { ProductInfo } from "../../products/create/steps";
+import { AddShop } from "./steps";
+import ShopPreview from "./steps/ShopPreview";
 
 // Store
-import { handleDescribe, handleImage } from "../store/CreateProducts";
 
-const CreateProductPage = () => {
+const CreateShopPage = () => {
   // ** Ref
   const ref = useRef(null);
 
@@ -28,32 +31,32 @@ const CreateProductPage = () => {
     {
       id: "image",
       title: "عکس",
-      subtitle: "عکس محصول",
+      subtitle: "عکس فروشگاه",
       icon: <Image size={18} />,
       content: (
         <ItemImageStep
-          section={"محصول"}
+          section={"فروشگاه"}
           handleFunc={handleImage}
           stepper={stepper}
-          variant={"product"}
+          variant={"shop"}
         />
       ),
     },
     {
       id: "information",
       title: "اطلاعات",
-      subtitle: "اطلاعات محصول",
+      subtitle: "اطلاعات فروشگاه",
       icon: <FileText size={18} />,
-      content: <ProductInfo stepper={stepper} />,
+      content: <AddShop stepper={stepper} />,
     },
     {
       id: "describe",
       title: "توضیحات",
-      subtitle: "توضیحات محصول",
+      subtitle: "توضیحات فروشگاه",
       icon: <Info size={18} />,
       content: (
         <ItemDescribeStep
-          section={"محصول"}
+          section={"فروشگاه"}
           handleFunc={handleDescribe}
           stepper={stepper}
         />
@@ -62,9 +65,9 @@ const CreateProductPage = () => {
     {
       id: "preview",
       title: "پیش نمایش",
-      subtitle: "پیش نمایش محصول",
+      subtitle: "پیش نمایش فروشگاه",
       icon: <Check size={18} />,
-      content: <ProductPreview stepper={stepper} />,
+      content: <ShopPreview stepper={stepper} />,
     },
   ];
 
@@ -83,4 +86,4 @@ const CreateProductPage = () => {
   );
 };
 
-export default CreateProductPage;
+export default CreateShopPage;

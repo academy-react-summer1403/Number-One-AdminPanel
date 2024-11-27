@@ -146,25 +146,9 @@ const InfoCard = ({
                 ? "غیر فعال کردن"
                 : "فعال کردن"}
             </Button>
-            {/* <Button
-              style={{ lineHeight: "20px" }}
-              className="ms-1"
-              color="success"
-              outline
-              onClick={() => setAddTechModal(!addTechModal)}
-            >
-              افزودن کتگوری
-            </Button> */}
           </div>
         </CardBody>
       </Card>
-      {/* <AddCategoryModal
-        addTechModal={addTechModal}
-        setAddTechModal={setAddTechModal}
-        id={detailParams?.courseId}
-        toggle={toggle}
-        refetch={refetch}
-      /> */}
     </Fragment>
   );
 };
