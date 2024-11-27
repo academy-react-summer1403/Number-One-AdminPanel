@@ -1,7 +1,8 @@
+import CreateShopPage from "../view/shops/create";
 
 const CreateShop = () => {
   return (
-    <div>CreateShop</div>
+    <CreateShopPage/>
   );
 };
 

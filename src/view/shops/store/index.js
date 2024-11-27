@@ -1,2 +1,3 @@
 import ShopList from "./ShopList";
-export { ShopList };
+import CreateShopsSlice from "./CreateShop";
+export { ShopList, CreateShopsSlice };
