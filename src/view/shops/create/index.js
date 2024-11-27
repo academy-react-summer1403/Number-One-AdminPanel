@@ -13,6 +13,8 @@ import {
 // ** Icons Imports
 import { FileText, Image, Info, Check } from "react-feather";
 import { handleImage } from "../store/CreateShop";
+import { ProductInfo } from "../../products/create/steps";
+import { AddShop } from "./steps";
 
 // Store
 
@@ -37,13 +39,13 @@ const CreateShopPage = () => {
         />
       ),
     },
-    // {
-    //   id: "information",
-    //   title: "اطلاعات",
-    //   subtitle: "اطلاعات محصول",
-    //   icon: <FileText size={18} />,
-    //   content: <ProductInfo stepper={stepper} />,
-    // },
+    {
+      id: "information",
+      title: "اطلاعات",
+      subtitle: "اطلاعات فروشگاه",
+      icon: <FileText size={18} />,
+      content: <AddShop stepper={stepper} />,
+    },
     // {
     //   id: "describe",
     //   title: "توضیحات",
