@@ -11,6 +11,7 @@ import ChangeReserve from "./ChangeUserChange";
 import AddCourseGroupe from "./AddCourseGroup";
 import CreateCourse from "./CreateCourse";
 import CreateProducts from "./CreateProducts";
+import CreateEvents from "./CreateEvent";
 
 export {
   AddUserAccess,
@@ -26,4 +27,5 @@ export {
   AddCourseGroupe,
   CreateCourse,
   CreateProducts,
+  CreateEvents,
 };
