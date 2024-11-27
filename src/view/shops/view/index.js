@@ -7,9 +7,9 @@ import { UpdateShop } from "../../../@core/services/api/put-api";
 import { useQueryWithDependencies } from "../../../utility/hooks/useCustomQuery";
 import InfoCard from "../../../@core/components/item-detail-components/InfoCard";
 import { ShopInfo } from "../../../@core/constants/shops";
+import EditShop from "./EditShop";
+import EditShopValidation from "../../../@core/validations/EditShop_Validation";
 // import ShopTabs from "./DetailsTabs";
-// import EditShop from "../EditShop";
-// import EditShopValidation from "../../../../core/validations/EditShop_Validation";
 
 const ShopDetails = () => {
   const { id } = useParams();
@@ -29,7 +29,7 @@ const ShopDetails = () => {
   const { mutate:activeMutate } = useMutation({
     mutationKey: ["ACTIVE_AND_DETECTIVE_SHOP"],
     mutationFn: (boolean) => {
-      UpdateShop(id , { isActive: boolean });
+      UpdateShop(id , { isActive: boolean },refetch);
     },
     onSuccess: async () => {
       await refetch();
@@ -47,13 +47,13 @@ const ShopDetails = () => {
             variant={"shop"}
           />
         </Col>
-        {/* <EditShop
+        <EditShop
           data={isSuccess && data}
           refetch={refetch}
           isOpen={editModal}
           toggle={toggle}
           validation={EditShopValidation}
-        /> */}
+        />
         {/* <Col xl="8" lg="7" xs={{ order: 1 }} md={{ order: 1, size: 7 }}>
         <ShopTabs data={data} refetch={refetch}/>
         </Col> */}
