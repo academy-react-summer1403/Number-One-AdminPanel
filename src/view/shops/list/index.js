@@ -1,30 +1,25 @@
 import { Fragment, useEffect, useState } from "react";
 import { Col, Row } from "reactstrap";
 // import Sidebar from "../paper/Sidebar";
-import {
-  GeneralStatistics,
-  // ProductsHeader,
-  // ProductsSearchbar,
-} from "../../../common";
+
 import { useDispatch, useSelector } from "react-redux";
-import { StatisticsOfShop } from "../../../core/constans/shop";
-import { useQueryWithDependencies } from "../../../utility/hooks/react-query";
-import { GetShopList } from "../../../core/services/api/get-api";
-import {
-  handleAllList,
-  // handleQuery,
-  // handleRowsOfPage,
-} from "../../../redux/slices/ShopList";
-// import ShopCard from "./ShopCard";
-// import { CustomPagination } from "../pagination";
-import { getItem } from "../../../core/services/common/storage.services";
+import GetShopList from "../../../@core/services/api/get-api/GetShopList";
+import { useGetItem } from "../../../utility/hooks/useLocalStorage";
+import { useQueryWithDependencies } from "../../../utility/hooks/useCustomQuery";
+import GeneralStatistics from "../../../@core/components/generalStatistics";
+import { handleAllList, handleRowsOfPage } from "../store/ShopList";
+import StatisticsOfShop from "../../../@core/constants/shops/StatisticsOfShop";
+import ShopCard from "./ShopCard";
+import CustomPagination from "../../../@core/components/pagination";
+import ListHeader from "../../../@core/components/products-list/ListHeader";
+import { ShopSortOption } from "../../../@core/constants/shops";
 
 const ShopPage = () => {
   const { PageNumber, RowsOfPage, FilteredList, AllList } = useSelector(
     (state) => state.ShopList
   );
   const dispatch = useDispatch();
-  const userInfo = getItem("userInfo");
+  const userId = useGetItem("id");
   // console.log(userInfo);
   // Getting shop data from Api With use Query
   const { data: shopData, isSuccess } = useQueryWithDependencies(
@@ -39,7 +34,7 @@ const ShopPage = () => {
     const shopsArray = [];
     if (shopData) {
       for (const shop of shopData) {
-        const accessIds = shop.permissionIds?.find((id) => id == userInfo.id);
+        const accessIds = shop.permissionIds?.find((id) => id == userId);
         if (accessIds) shopsArray.push(shop);
       }
     }
@@ -51,13 +46,13 @@ const ShopPage = () => {
     GetAccessibleShops();
   }, [isSuccess]);
 
-  // // Pagination
-  // const [itemOffset, setItemOffset] = useState(0);
-  // const endOffset = itemOffset + RowsOfPage;
-  // const handleWithOutDispatch = (page) => {
-  //   const newOffset = (page.selected * RowsOfPage) % FilteredList.length;
-  //   setItemOffset(newOffset);
-  // };
+  // Pagination
+  const [itemOffset, setItemOffset] = useState(0);
+  const endOffset = itemOffset + RowsOfPage;
+  const handleWithOutDispatch = (page) => {
+    const newOffset = (page.selected * RowsOfPage) % FilteredList.length;
+    setItemOffset(newOffset);
+  };
 
   return (
     <Fragment>
@@ -69,14 +64,14 @@ const ShopPage = () => {
             resize="12"
           />
         </Col>
-        {/* <Col md={9} xs={12}>
+        <Col md={9} xs={12}>
           <div className="content-detached content-right">
             <div className="content-body" style={{ marginRight: "0" }}>
-              <ProductsHeader
+              <ListHeader
                 rowsFunc={handleRowsOfPage}
                 sortOptions={ShopSortOption}
               />
-              <ProductsSearchbar QueryFunction={handleQuery} />
+              {/* <ProductsSearchbar QueryFunction={handleQuery} /> */}
               {FilteredList?.length > 0 ? (
                 <div className="grid-view">
                   {FilteredList?.slice(itemOffset, endOffset)?.map(
@@ -116,7 +111,7 @@ const ShopPage = () => {
               />
             </div>
           </div>
-        </Col> */}
+        </Col>
       </Row>
     </Fragment>
   );
