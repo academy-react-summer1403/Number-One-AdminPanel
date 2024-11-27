@@ -9,7 +9,7 @@ import InfoCard from "../../../@core/components/item-detail-components/InfoCard"
 import { ShopInfo } from "../../../@core/constants/shops";
 import EditShop from "./EditShop";
 import EditShopValidation from "../../../@core/validations/EditShop_Validation";
-// import ShopTabs from "./DetailsTabs";
+import ShopTabs from "./tabs/DetailsTabs";
 
 const ShopDetails = () => {
   const { id } = useParams();
@@ -54,9 +54,9 @@ const ShopDetails = () => {
           toggle={toggle}
           validation={EditShopValidation}
         />
-        {/* <Col xl="8" lg="7" xs={{ order: 1 }} md={{ order: 1, size: 7 }}>
+        <Col xl="8" lg="7" xs={{ order: 1 }} md={{ order: 1, size: 7 }}>
         <ShopTabs data={data} refetch={refetch}/>
-        </Col> */}
+        </Col>
       </Row>
     </div>
   );

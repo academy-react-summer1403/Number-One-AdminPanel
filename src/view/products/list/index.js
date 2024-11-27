@@ -56,13 +56,14 @@ const ProductsPage = () => {
     params,
     params
   );
-
+  
   // Getting Product Data From Api With Out Params
   const { data } = useQueryWithoutDependencies(
     "GET_ALL_PRODUCTS",
     GetAllProducts
   );
-
+  
+  console.log(data)
   // Getting Shop Data From Api
   const { data: shop } = useQueryWithoutDependencies("GET_SHOPS", GetShopList);
 

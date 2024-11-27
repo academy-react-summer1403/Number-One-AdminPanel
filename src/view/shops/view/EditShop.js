@@ -43,7 +43,7 @@ const EditShop = ({ data, isOpen, toggle, refetch, validation }) => {
     enableReinitialize: true,
     // validationSchema: validation,
     onSubmit: (values) => {
-      console.log(values)
+      // console.log(values)
       mutate(values);
     },
   });
