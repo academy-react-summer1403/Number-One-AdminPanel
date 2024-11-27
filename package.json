@@ -78,6 +78,7 @@
     "react-perfect-scrollbar": "^1.5.8",
     "react-rating": "2.0.5",
     "react-redux": "^8.0.1",
+    "react-responsive": "^10.0.0",
     "react-router-dom": "^6.3.0",
     "react-select": "^5.6.1",
     "react-shepherd": "^4.1.0",

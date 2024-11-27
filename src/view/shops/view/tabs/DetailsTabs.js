@@ -19,6 +19,7 @@ import { CreditCard, FileText, Lock, User, Users } from "react-feather";
 import { ThemeColors } from "../../../../utility/context/ThemeColors";
 import { navShopTabs } from "../../../../@core/constants/shops/NavShopTabs";
 import ProductsTab from "./ProductsTab";
+import AdminUsersTab from "./AdminUsersTab";
 // import AdminUsersTab from "../Tabs/AdminUsersTab";
 
 const ShopTabs = ({ data, refetch }) => {
@@ -57,9 +58,9 @@ const ShopTabs = ({ data, refetch }) => {
         <TabPane tabId="1">
           <ProductsTab courseId={data?.id}/>
         </TabPane>
-        {/* <TabPane tabId="2">
+        <TabPane tabId="2">
           <AdminUsersTab shopsData={data} refetch={refetch} />
-        </TabPane> */}
+        </TabPane>
       </TabContent>
     </Fragment>
   );
