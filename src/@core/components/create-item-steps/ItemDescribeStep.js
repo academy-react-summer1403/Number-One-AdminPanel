@@ -1,11 +1,11 @@
 import { Button, Col, Row } from "reactstrap";
-import ButtonsForMove from "../button-for-move/ButtonsForMove";
 import EditorJS from "@editorjs/editorjs";
 import Header from "@editorjs/header";
 import List from "@editorjs/list";
 import Quote from "@editorjs/quote";
 import { useDispatch } from "react-redux";
 import { useRef } from "react";
+import ButtonsForMove from "./ButtonsForMove";
 
 const ItemDescribeStep = ({ stepper, handleFunc, section }) => {
   const editorHolderRef = useRef();
