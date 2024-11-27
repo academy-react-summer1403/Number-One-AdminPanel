@@ -1,3 +1,5 @@
+import HandleIdentityEditorJs from "../../../utility/create-editorjs-blocks/IdentityEditorJs";
+
 const ShopInfo = (data) => {
   const detailCourse = [
     { label: "دسته بندی", value: data?.category },
@@ -7,7 +9,10 @@ const ShopInfo = (data) => {
         "از ساعت " + data?.startTime + ":00" + " الی " + data?.endTime + ":00",
     },
     { label: "آدرس", value: data?.address },
-    { label: "درباره فروشگاه", value: data?.aboutUs },
+    {
+      label: "درباره فروشگاه",
+      value: <HandleIdentityEditorJs desc={data?.aboutUs} />,
+    },
   ];
   return detailCourse;
 };

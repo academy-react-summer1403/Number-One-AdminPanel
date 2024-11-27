@@ -6,6 +6,7 @@ import Avatarrr from "../../../assets/images/cards/22.png";
 
 // ** Reactstrap Imports
 import { Badge, Card, CardBody } from "reactstrap";
+import HandleIdentityEditorJs from "../../../utility/create-editorjs-blocks/IdentityEditorJs";
 
 const ShopCard = (props) => {
   const {
@@ -56,7 +57,10 @@ const ShopCard = (props) => {
             </div>
           )}
           <h4 className="item-name mt-75">{title}</h4>
-          <p className="item-description fs-5">{aboutUs}</p>
+          <p className="item-description line-clamp ">
+                {" "}
+                <HandleIdentityEditorJs desc={aboutUs} />
+              </p>
           <hr />
           <div className="d-flex justify-content-between">
             <div className="d-flex align-items-center">
