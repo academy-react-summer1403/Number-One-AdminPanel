@@ -1,4 +1,4 @@
-import { Book, BookOpen, Circle, Home,ShoppingCart, Users } from "react-feather";
+import { Book, BookOpen, Circle, Home,ShoppingBag,ShoppingCart, Users } from "react-feather";
 
 export default [
   {
@@ -67,6 +67,25 @@ export default [
         title: "افزودن محصول ",
         icon: <Circle size={12} />,
         navLink: "/createProducts",
+      },
+    ],
+  },
+  {
+    id: "shopPage",
+    title: "مدیریت فروشگاه ها",
+    icon: <ShoppingBag size={20} />,
+    children: [
+      {
+        id: "shop1Page",
+        title: "لیست فروشگاه ها",
+        icon: <Circle size={12} />,
+        navLink: "/shops",
+      },
+      {
+        id: "shop2Page",
+        title: "افزودن فروشگاه ",
+        icon: <Circle size={12} />,
+        navLink: "/createShop",
       },
     ],
   },
