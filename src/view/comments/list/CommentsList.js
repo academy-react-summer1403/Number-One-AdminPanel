@@ -25,96 +25,93 @@ import { Card } from "reactstrap";
 //   getComment,
 //   getRepComnt,
 // } from "../../../core/services/api/panelAdmin";
-// import CustomHeader from "./CustomHeader/CustomHeader";
-// import { useDispatch, useSelector } from "react-redux";
 // import { CustomPagination } from "../pagination";
 // import CommntModal from "./commentModall/comModal";
 // import "@styles/react/libs/react-select/_react-select.scss";
 // import "@styles/react/libs/tables/react-dataTable-component.scss";
 // import ReplyComment from "./reply/ReplyCom";
-// import {
-//   useMutationWithRefetch,
-//   useQueryWithDependencies,
-// } from "../../../utility/hooks/react-query";
 // import { setPageNumber } from "../../../redux/slices/filter-box/commentSlice";
-// import HeaderTable from "../../../common/header-table/HeaderTable";
-// import { CommentTableTitles } from "../../../core/constans/comments";
 
 import CustomHeader from "./CustomHeader";
+import HeaderTable from "../../../@core/components/header-table/HeaderTable";
+import { CommentTableTitles } from "../../../@core/constants/comments";
+import GetAllComments from "../../../@core/services/api/get-api/GetAllComments";
+import { useQueryWithDependencies } from "../../../utility/hooks/useCustomQuery";
+import { useDispatch, useSelector } from "react-redux";
 
 const CommentsList = () => {
-  // const commentFilterObj = useSelector((state) => state.CommentSlice);
-  // const dispatch = useDispatch();
+  const commentFilterObj = useSelector((state) => state.CommentList);
+  const dispatch = useDispatch();
 
-  // const [commentModal, setCommentModal] = useState(false);
-  // const [courseId, setCourseId] = useState(null);
-  // const [commentId, setCommentId] = useState(null);
-  // const idsObj = { courseId: courseId, commentId: commentId };
-  // const [describe, setDescribe] = useState("");
-  // const [repShow, setRepShow] = useState(false);
+  const [commentModal, setCommentModal] = useState(false);
+  const [courseId, setCourseId] = useState(null);
+  const [commentId, setCommentId] = useState(null);
+  const idsObj = { courseId: courseId, commentId: commentId };
+  const [describe, setDescribe] = useState("");
+  const [repShow, setRepShow] = useState(false);
 
-  // // getting The data from Api with use Query
-  // const { data: commentsData, refetch: refetchComment } =
-  //   useQueryWithDependencies(
-  //     "GET_COMMENTS_DATA",
-  //     getComment,
-  //     commentFilterObj,
-  //     commentFilterObj
-  //   );
+  // getting The data from Api with use Query
+  const { data: commentsData, refetch: refetchComment } =
+    useQueryWithDependencies(
+      "GET_COMMENTS_DATA",
+      GetAllComments,
+      commentFilterObj,
+      commentFilterObj
+    );
 
-  // const { data: ReplayData, refetch: refetchReplay } = useQueryWithDependencies(
-  //   "GET_REPLAY_COMMENT_DATA",
-  //   getRepComnt,
-  //   idsObj,
-  //   idsObj,
-  //   {
-  //     // enabled: !!(idsObj.courseId && idsObj.commentId),
-  //   }
-  // );
+  const { data: ReplayData, refetch: refetchReplay } = useQueryWithDependencies(
+    "GET_REPLAY_COMMENT_DATA",
+    getRepComnt,
+    idsObj,
+    idsObj,
+    {
+      // enabled: !!(idsObj.courseId && idsObj.commentId),
+    }
+  );
 
-  // // Adding data from api with use mutation
-  // const { mutate: acceptComment } = useMutationWithRefetch(
-  //   "ACCEPT_COMMENT",
-  //   AccComment,
-  //   refetchComment,
-  //   refetchReplay
-  // );
-  // const { mutate: declineComment } = useMutationWithRefetch(
-  //   "DECLINE_COMMENT",
-  //   DecComment,
-  //   refetchComment,
-  //   refetchReplay
-  // );
+  // Adding data from api with use mutation
+  const { mutate: acceptComment } = useMutationWithRefetch(
+    "ACCEPT_COMMENT",
+    AccComment,
+    refetchComment,
+    refetchReplay
+  );
+  const { mutate: declineComment } = useMutationWithRefetch(
+    "DECLINE_COMMENT",
+    DecComment,
+    refetchComment,
+    refetchReplay
+  );
 
-  // // remove data from api with use mutation
-  // const { mutate: deleteComment } = useMutationWithRefetch(
-  //   "DELETE_COMMENT",
-  //   delComment,
-  //   refetchComment,
-  //   refetchReplay
-  // );
+  // remove data from api with use mutation
+  const { mutate: deleteComment } = useMutationWithRefetch(
+    "DELETE_COMMENT",
+    delComment,
+    refetchComment,
+    refetchReplay
+  );
 
-  // const DropdownItemArray = [
-  //   { text: "تایید", icon: CheckSquare, apiFunction: acceptComment },
-  //   { text: "حذف", icon: Trash, apiFunction: deleteComment },
-  //   { text: "رد کردن", icon: XSquare, apiFunction: declineComment },
-  //   {
-  //     text: "پاسخ",
-  //     icon: Send,
-  //     apiFunction: setCommentId,
-  //     other: () => {
-  //       setRepShow(!repShow);
-  //     },
-  //     SetCourseId: setCourseId,
-  //   },
-  // ];
+  const DropdownItemArray = [
+    { text: "تایید", icon: CheckSquare, apiFunction: acceptComment },
+    { text: "حذف", icon: Trash, apiFunction: deleteComment },
+    { text: "رد کردن", icon: XSquare, apiFunction: declineComment },
+    {
+      text: "پاسخ",
+      icon: Send,
+      apiFunction: setCommentId,
+      other: () => {
+        setRepShow(!repShow);
+      },
+      SetCourseId: setCourseId,
+    },
+  ];
 
   return (
     <div>
       <Card>
         <div className="react-dataTable ">
           <CustomHeader />
-          {/* <div style={{ overflowX: "auto" }}>
+          <div style={{ overflowX: "auto" }}>
             <Table hover>
               <HeaderTable titles={CommentTableTitles} />
               {commentsData?.comments?.length !== 0 ? (
@@ -228,7 +225,7 @@ const CommentsList = () => {
                 </div>
               )}
             </Table>
-          </div> */}
+          </div>
         </div>
       </Card>
       {/* <CustomPagination
