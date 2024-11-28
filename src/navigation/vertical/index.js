@@ -7,6 +7,7 @@ import {
   ShoppingCart,
   Users,
   Package,
+  Globe,
 } from "react-feather";
 
 export default [
@@ -114,6 +115,19 @@ export default [
         title: "افزودن ایونت ",
         icon: <Circle size={12} />,
         navLink: "/createEvents",
+      },
+    ],
+  },
+  {
+    id: "building",
+    title: "ساختمان ها",
+    icon: <Globe size={20} />,
+    children: [
+      {
+        id: "buildingList",
+        title: "لیست ساختمان ها",
+        icon: <Circle size={12} />,
+        navLink: "/buildings",
       },
     ],
   },
