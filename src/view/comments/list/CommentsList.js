@@ -18,14 +18,8 @@ import {
 } from "reactstrap";
 import { Card } from "reactstrap";
 // import {
-//   AccComment,
 //   addReply,
-//   DecComment,
-//   delComment,
-//   getComment,
-//   getRepComnt,
 // } from "../../../core/services/api/panelAdmin";
-// import { CustomPagination } from "../pagination";
 // import CommntModal from "./commentModall/comModal";
 // import "@styles/react/libs/react-select/_react-select.scss";
 // import "@styles/react/libs/tables/react-dataTable-component.scss";
@@ -42,6 +36,8 @@ import AcceptCommentCourse from "../../../@core/services/api/post-api/AcceptComm
 import DeleteCourseComment from "../../../@core/services/api/delete-api/DeleteCourseComment";
 import RejectCourseComment from "../../../@core/services/api/post-api/RejectCourseComment";
 import GetReplayComments from "../../../@core/services/api/get-api/GetReplayComments";
+import CustomPagination from "../../../@core/components/pagination";
+import { setPageNumber } from "../store/CommentsList";
 
 const CommentsList = () => {
   const commentFilterObj = useSelector((state) => state.CommentList);
@@ -109,7 +105,9 @@ const CommentsList = () => {
       SetCourseId: setCourseId,
     },
   ];
-
+  const handlePagination = (page) => {
+    dispatch(setPageNumber(page.selected + 1));
+  };
   return (
     <div>
       <Card>
@@ -232,13 +230,13 @@ const CommentsList = () => {
           </div>
         </div>
       </Card>
-      {/* <CustomPagination
+      <CustomPagination 
         total={commentsData?.totalCount}
         current={commentFilterObj?.PageNumber}
-        setCurrent={setPageNumber}
         rowsPerPage={commentFilterObj?.RowsOfPage}
+        handleClickFunc={handlePagination}
       />
-      <CommntModal
+      {/* <CommntModal
         setCommentModal={setCommentModal}
         commentModal={commentModal}
         replayData={ReplayData}
