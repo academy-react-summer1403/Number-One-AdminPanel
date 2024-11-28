@@ -17,6 +17,7 @@ const CreateProducts = async (values) => {
       miniDiscribe: values.miniDiscribe,
       googleDiscribe: values.googleDiscribe,
       googleTitle: values.googleTitle,
+      special: values.special,
     };
     const response = await toast.promise(
       axios.post(

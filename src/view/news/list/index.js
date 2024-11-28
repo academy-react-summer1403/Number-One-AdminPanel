@@ -36,14 +36,20 @@ import ChangeMoment from "../../../utility/moment";
 // Style
 import "@styles/react/libs/react-select/_react-select.scss";
 import "@styles/react/libs/tables/react-dataTable-component.scss";
-import { NewsSortOption, StatisticsOfNews } from "../../../@core/constants/news-manage/Options";
+import {
+  NewsSortOption,
+  StatisticsOfNews,
+} from "../../../@core/constants/news-manage/Options";
+import { useMutation } from "@tanstack/react-query";
+import { ActiveDeactiveNews } from "../../../@core/services/api/put-api";
+import useFormData from "../../../utility/hooks/useFormData";
 
 const NewsTable = () => {
   const [activeView, setActiveView] = useState("grid");
   const newsParams = useSelector((state) => state.NewsList);
   const dispatch = useDispatch();
 
-  const { data, isSuccess } = useQueryWithDependencies(
+  const { data, isSuccess, refetch } = useQueryWithDependencies(
     "GET_NEWS_LIST",
     GetNewsList,
     newsParams,
@@ -64,6 +70,23 @@ const NewsTable = () => {
 
   const handlePagination = (page) => {
     dispatch(handlePageNumber(page.selected + 1));
+  };
+
+  // Handle Active Or Detective
+  const { mutate } = useMutation({
+    mutationKey: ["َACTIVE_DEACTIVE"],
+    mutationFn: (data) => {
+      ActiveDeactiveNews(data, refetch);
+    },
+  });
+
+  const handleActiveOrDetective = (boolean, id) => {
+    try {
+      const dataObj = useFormData({ Active: boolean, Id: id });
+      mutate(dataObj);
+    } catch (error) {
+      throw new Error("ERROR: ", error);
+    }
   };
 
   return (
@@ -104,6 +127,8 @@ const NewsTable = () => {
                         "persian"
                       )}
                       currentView={item.currentView}
+                      handleActiveOrDetective={handleActiveOrDetective}
+                      status={item.isActive}
                     />
                   ))}
               </div>

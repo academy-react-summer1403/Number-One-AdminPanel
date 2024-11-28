@@ -37,11 +37,13 @@ import {
   GetProductsWithParams,
   GetShopList,
 } from "../../../@core/services/api/get-api";
+import { UpdateProducts } from "../../../@core/services/api/put-api";
 
 // ** Styles
 import "@styles/react/apps/app-ecommerce.scss";
 import ChangeMoment from "../../../utility/moment";
 import { useGetItem } from "../../../utility/hooks/useLocalStorage";
+import { useMutation } from "@tanstack/react-query";
 
 const ProductsPage = () => {
   const params = useSelector((state) => state.ProductsList);
@@ -50,7 +52,11 @@ const ProductsPage = () => {
   const [accessibleProducts, setAccessibleProducts] = useState([]);
 
   // Getting Product Data From Api With Use Params
-  const { data: dataWithParams, isSuccess } = useQueryWithDependencies(
+  const {
+    data: dataWithParams,
+    isSuccess,
+    refetch,
+  } = useQueryWithDependencies(
     "GET_PRODUCTS_WITH_PARAMS",
     GetProductsWithParams,
     params,
@@ -93,6 +99,23 @@ const ProductsPage = () => {
     dispatch(handlePageNumber(page.selected + 1));
   };
 
+  // Handle Active Or Deactivate
+  const { mutate: activeOrDeactive } = useMutation({
+    mutationKey: ["ACTIVE_OR_DEACTIVE"],
+    mutationFn: (data) => {
+      UpdateProducts(data.Id, { isActive: data.IsActive }, refetch);
+    },
+  });
+
+  const handleActiveOrDeactive = (boolean, id) => {
+    try {
+      const dataObj = { Id: id, IsActive: boolean };
+      activeOrDeactive(dataObj);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <Fragment>
       <Row>
@@ -128,6 +151,8 @@ const ProductsPage = () => {
                       price={item.price}
                       href={"/product/view/"}
                       currentRate={null}
+                      handleActiveOrDetective={handleActiveOrDeactive}
+                      status={item.isActive}
                     />
                   ))}
                 </div>

@@ -12,6 +12,7 @@ import AddCourseGroupe from "./AddCourseGroup";
 import CreateCourse from "./CreateCourse";
 import CreateProducts from "./CreateProducts";
 import CreateShop from "./CreateShop";
+import CreateEvents from "./CreateEvent";
 
 export {
   AddUserAccess,
@@ -28,4 +29,5 @@ export {
   CreateCourse,
   CreateProducts,
   CreateShop,
+  CreateEvents,
 };

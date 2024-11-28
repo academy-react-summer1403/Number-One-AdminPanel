@@ -52,7 +52,10 @@ const EditBlog = ({ isOpen, toggle, refetch }) => {
   const {
     data: newsDetail,
     isSuccess,
+    isError,
   } = useQueryWithDependencies("GET_NEWS_DETAILS", GetNewsDetail, id, id);
+
+  console.log(newsDetail)
 
   const { mutate } = useMutation({
     mutationKey: ["UPDATE_NEWS"],
@@ -66,7 +69,7 @@ const EditBlog = ({ isOpen, toggle, refetch }) => {
 
   useEffect(() => {
     if (isSuccess === true) {
-      setInitialValues(EditNewsFields(newsDetail.detailsNewsDto));
+      setInitialValues(EditNewsFields(newsDetail?.detailsNewsDto));
     }
   }, [isSuccess]);
 
@@ -143,7 +146,7 @@ const EditBlog = ({ isOpen, toggle, refetch }) => {
                 onChange={formik.handleChange}
                 placeholder=" دسته بندی"
                 defaultValue={
-                  isSuccess && newsDetail.detailsNewsDto.newsCatregoryId
+                  isSuccess && newsDetail?.detailsNewsDto?.newsCatregoryId
                 }
               >
                 {successGetNewsCat &&

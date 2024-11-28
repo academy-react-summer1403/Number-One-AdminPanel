@@ -1,6 +1,6 @@
 // ** Third Party Components
 import classnames from "classnames";
-import { Star, Calendar, Eye } from "react-feather";
+import { Star, Calendar, Eye, Activity } from "react-feather";
 import { Link } from "react-router-dom";
 
 import fallback from "../../../assets/images/portrait/small/image-not-found.png";
@@ -8,8 +8,8 @@ import fallback from "../../../assets/images/portrait/small/image-not-found.png"
 // ** Reactstrap Imports
 import { Card, CardBody } from "reactstrap";
 import { UnitPrice } from "../../../utility/separation-price";
-import { useEffect, useState } from "react";
 import ImageFallBack from "../image-fallback";
+import ChangeStatusButton from "./ChangeStatusButton";
 
 const ProductCards = (props) => {
   // Params
@@ -23,11 +23,18 @@ const ProductCards = (props) => {
     insertDate,
     currentView,
     price,
+    handleActiveOrDetective,
+    status,
   } = props;
 
   // ** Renders products
   return (
-    <Card className="ecommerce-card">
+    <Card className="ecommerce-card relative">
+      <ChangeStatusButton
+        handleActiveOrDetective={handleActiveOrDetective}
+        id={id}
+        status={status}
+      />
       <Link to={href + id}>
         <div
           className="item-img text-center p-0"

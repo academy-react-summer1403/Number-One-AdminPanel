@@ -30,6 +30,7 @@ import { useMutation } from "@tanstack/react-query";
 
 // Api
 import {
+  GetProductCategoryList,
   GetProductsDetails,
   GetShopList,
 } from "../../../@core/services/api/get-api";
@@ -55,6 +56,9 @@ const EditProducts = ({ isOpen, toggle, refetch }) => {
     "GET_SHOPS",
     GetShopList
   );
+
+  const { data: categories, isSuccess: categorySuccess } =
+    useQueryWithoutDependencies("GET_CATEGORIES", GetProductCategoryList);
 
   // Handle Update Products
   const { mutate } = useMutation({
@@ -143,21 +147,21 @@ const EditProducts = ({ isOpen, toggle, refetch }) => {
               </Input>
             </Col>
             <Col md="6" className="mb-1">
-              <Label className="form-label" for="newsCatregoryId">
+              <Label className="form-label" for="categoryId">
                 انتخاب دسته بندی
               </Label>
               <Input
-                id="shopId"
-                name="shopId"
+                id="categoryId"
+                name="categoryId"
                 type="select"
                 onChange={formik.handleChange}
                 placeholder="دسته بندی"
-                defaultValue={formik.values.shopId}
+                defaultValue={formik.values.categoryId}
               >
-                {shopSuccess &&
-                  shops?.map((classItem) => (
+                {categorySuccess &&
+                  categories?.map((classItem) => (
                     <option key={classItem.id} value={classItem.id}>
-                      {classItem.name}
+                      {classItem.categoryName}
                     </option>
                   ))}
               </Input>
@@ -188,7 +192,7 @@ const EditProducts = ({ isOpen, toggle, refetch }) => {
                 placeholder="توضیحات گوگل"
               />
             </Col>
-            <Col md="3">
+            <Col md="2">
               <Label className="form-label" for="describe">
                 تخفیف
               </Label>
@@ -201,7 +205,24 @@ const EditProducts = ({ isOpen, toggle, refetch }) => {
                 placeholder="تخفیف"
               />
             </Col>
-            <Col md="3" className="mb-1">
+            <Col md="2" sm="12" className="mb-1">
+              <Label className="form-label" for="special">
+                فروش ویژه
+              </Label>
+              <Input
+                type="select"
+                name="special"
+                id="special"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.special}
+                invalid={formik.touched.special && !!formik.errors.special}
+              >
+                <option value="بله">بله</option>
+                <option value="خیر">خیر</option>
+              </Input>
+            </Col>
+            <Col md="2" className="mb-1">
               <Label className="form-label" for="keyword">
                 موجودی در انبار
               </Label>

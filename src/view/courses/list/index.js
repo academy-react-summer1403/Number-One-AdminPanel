@@ -15,12 +15,17 @@ import {
 } from "../../../@core/constants/courses";
 import Tabs from "./Tabs";
 import ProductsHeader from "../../../@core/components/items-list/ProductsHeader";
-import { handlePageNumber, handleQueryCourse, handleRowsOfPage } from "../store/CourseList";
+import {
+  handlePageNumber,
+  handleQueryCourse,
+  handleRowsOfPage,
+} from "../store/CourseList";
 import ListSearchbar from "../../../@core/components/products-list/ListSearchbar";
 import CourseCard from "./CourseCard";
 import CustomPagination from "../../../@core/components/pagination";
 import CourseReserve from "./tabs/CourseReserve";
 import PaymentOfCourses from "./tabs/PaymentOfCourses";
+import { ActiveOrDeActive } from "../../../@core/services/api/put-api";
 
 const Courses = () => {
   const [activeView, setActiveView] = useState("grid");
@@ -28,7 +33,7 @@ const Courses = () => {
   const dispatch = useDispatch();
   const CoursesParams = useSelector((state) => state.CoursesList);
   // getting Data for api with use Query
-  const { data: coursesData, isSuccess } = useQueryWithDependencies(
+  const { data: coursesData, isSuccess, refetch } = useQueryWithDependencies(
     "GET_COURSES_DATA",
     GetCourses,
     CoursesParams,
@@ -47,6 +52,18 @@ const Courses = () => {
 
   const toggleTab = (tab) => {
     setActiveTab(tab);
+  };
+
+  const activeOrDeActive = async (boolean, id) => {
+    try {
+      const data = {
+        active: boolean,
+        id: id,
+      };
+      const responses = await ActiveOrDeActive(data, refetch);
+    } catch (error) {
+      throw new Error("ERROR: ", error);
+    }
   };
 
   return (
@@ -79,6 +96,7 @@ const Courses = () => {
                   <CourseCard
                     activeView={activeView}
                     item={coursesData?.courseDtos}
+                    handleActiveOrDetective={activeOrDeActive}
                   />
                   <CustomPagination
                     total={coursesData?.totalCount}
@@ -91,7 +109,9 @@ const Courses = () => {
                   <CourseReserve />
                 </TabPane>
                 <TabPane tabId="3">
-                  <PaymentOfCourses courseId={DataWithoutDependencies?.courseDtos[0]?.courseId}/>
+                  <PaymentOfCourses
+                    courseId={DataWithoutDependencies?.courseDtos[0]?.courseId}
+                  />
                 </TabPane>
               </TabContent>
             </div>

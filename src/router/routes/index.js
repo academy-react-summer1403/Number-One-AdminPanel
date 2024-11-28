@@ -43,11 +43,14 @@ const NewsDetails = lazy(() => import("../../pages/NewsDetails"));
 const Courses = lazy(() => import("../../pages/Courses"));
 const CreateCourses = lazy(() => import("../../pages/CreateCourse"));
 const CourseDetails = lazy(() => import("../../pages/CourseDetails"));
-
 // Products
 const Products = lazy(() => import("../../pages/Products"));
 const CreateProduct = lazy(() => import("../../pages/CreateProduct"));
 const ProductsView = lazy(() => import("../../pages/ProductsView"));
+// Events
+const Events = lazy(() => import("../../pages/Events"));
+const CreateEvent = lazy(() => import("../../pages/CreateEvent"));
+const EventView = lazy(() => import("../../pages/EventDetails"));
 
 // Shops
 const Shops = lazy(() => import("../../pages/Shops"));
@@ -133,6 +136,17 @@ const Routes = [
   {
     path: "/createShop",
     element: <CreateShop />,
+    path: "/events",
+    element: <Events />,
+  },
+  {
+    path: "/createEvents",
+    element: <CreateEvent />,
+    // access: ["Teacher", "Administrator"],
+  },
+  {
+    path: "/events/view/:id",
+    element: <EventView />,
     // access: ["Teacher", "Administrator"],
   },
   {

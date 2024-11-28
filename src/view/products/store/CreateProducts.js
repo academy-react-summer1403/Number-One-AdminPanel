@@ -14,6 +14,7 @@ const initialState = {
   miniDiscribe: "",
   googleDiscribe: "",
   googleTitle: "",
+  special: "بله",
   previewImage: "",
 };
 
@@ -38,6 +39,7 @@ const CreateProductsSlice = createSlice({
       state.price = action.payload.price;
       state.shopId = action.payload.shopId;
       state.title = action.payload.title;
+      state.special = action.payload.special;
     },
   },
 });

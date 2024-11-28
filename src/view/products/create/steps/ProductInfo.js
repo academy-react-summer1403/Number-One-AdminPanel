@@ -6,7 +6,10 @@ import { useDispatch } from "react-redux";
 import { handleProductsInfo } from "../../store/CreateProducts";
 
 // Api
-import { GetShopList } from "../../../../@core/services/api/get-api";
+import {
+  GetProductCategoryList,
+  GetShopList,
+} from "../../../../@core/services/api/get-api";
 
 // Query
 import { useQueryWithoutDependencies } from "../../../../utility/hooks/useCustomQuery";
@@ -22,11 +25,15 @@ const ProductInfo = ({ stepper }) => {
     GetShopList
   );
 
+  const { data: categories, isSuccess: categorySuccess } =
+    useQueryWithoutDependencies("GET_CATEGORIES", GetProductCategoryList);
+
   const initialValues = {
     title: "",
     categoryId: "",
     exist: 0,
     price: 0,
+    special: "بله",
     isActive: true,
     shopId: "",
     discount: 0,
@@ -40,7 +47,6 @@ const ProductInfo = ({ stepper }) => {
     validationSchema: CreateProductsValidations,
     onSubmit: async (values, { setSubmitting }) => {
       dispatch(handleProductsInfo(values));
-      console.log(values);
       stepper.next();
       setSubmitting(false);
     },
@@ -124,10 +130,10 @@ const ProductInfo = ({ stepper }) => {
             invalid={formik.touched.categoryId && !!formik.errors.categoryId}
           >
             <option value="">انتخاب کنید</option>
-            {shopSuccess &&
-              shops.map((category) => (
+            {categorySuccess &&
+              categories.map((category) => (
                 <option key={category.id} value={category.id}>
-                  {category.name}
+                  {category.categoryName}
                 </option>
               ))}
           </Input>
@@ -135,7 +141,24 @@ const ProductInfo = ({ stepper }) => {
             <div className="text-danger">{formik.errors.categoryId}</div>
           ) : null}
         </Col>
-        <Col md="3" sm="12" className="mb-1">
+        <Col md="2" sm="12" className="mb-1">
+          <Label className="form-label" for="special">
+            فروش ویژه
+          </Label>
+          <Input
+            type="select"
+            name="special"
+            id="special"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.special}
+            invalid={formik.touched.special && !!formik.errors.special}
+          >
+            <option value="بله">بله</option>
+            <option value="خیر">خیر</option>
+          </Input>
+        </Col>
+        <Col md="2" sm="12" className="mb-1">
           <Label className="form-label" for="exist">
             مجودی انبار
           </Label>
@@ -153,7 +176,7 @@ const ProductInfo = ({ stepper }) => {
             <div className="text-danger">{formik.errors.exist}</div>
           ) : null}
         </Col>
-        <Col md="3" sm="12" className="mb-1">
+        <Col md="2" sm="12" className="mb-1">
           <Label className="form-label" for="discount">
             تخفیف
           </Label>
