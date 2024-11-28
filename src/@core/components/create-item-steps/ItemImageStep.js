@@ -50,7 +50,7 @@ const ItemImageStep = ({ stepper, handleFunc, section, preview }) => {
           <img
             className="w-100 h-100 d-flex justify-content-center align-items-center"
             alt="عکسی آپلود نشده"
-            src={previewVariant?.[variant]}
+            src={preview}
           />
         </div>
       </Col>
