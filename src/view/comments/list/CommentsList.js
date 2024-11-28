@@ -17,9 +17,6 @@ import {
   DropdownToggle,
 } from "reactstrap";
 import { Card } from "reactstrap";
-// import {
-//   addReply,
-// } from "../../../core/services/api/panelAdmin";
 // import CommntModal from "./commentModall/comModal";
 // import "@styles/react/libs/react-select/_react-select.scss";
 // import "@styles/react/libs/tables/react-dataTable-component.scss";
@@ -38,6 +35,8 @@ import RejectCourseComment from "../../../@core/services/api/post-api/RejectCour
 import GetReplayComments from "../../../@core/services/api/get-api/GetReplayComments";
 import CustomPagination from "../../../@core/components/pagination";
 import { setPageNumber } from "../store/CommentsList";
+import ReplyCommentModal from "../ReplyCommentModal";
+import AddReplayComment from "../../../@core/services/api/post-api/AddReplayComment";
 
 const CommentsList = () => {
   const commentFilterObj = useSelector((state) => state.CommentList);
@@ -249,17 +248,17 @@ const CommentsList = () => {
           refetchComment();
           refetchReplay();
         }}
-      />
-      <ReplyComment
+      /> */}
+      <ReplyCommentModal
         repShow={repShow}
         setRepShow={setRepShow}
-        addReplyComment={addReply}
+        addReplyComment={AddReplayComment}
         ids={idsObj}
         refetch={() => {
           refetchComment();
           refetchReplay();
         }}
-      /> */}
+      />
     </div>
   );
 };
