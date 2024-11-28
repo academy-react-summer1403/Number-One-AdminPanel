@@ -12,6 +12,8 @@ import AddCourseGroupe from "./AddCourseGroup";
 import CreateCourse from "./CreateCourse";
 import CreateProducts from "./CreateProducts";
 import CreateShop from "./CreateShop";
+import GetReplayComments from "../get-api/GetReplayComments";
+import AddReplayComment from "./AddReplayComment";
 import CreateEvents from "./CreateEvent";
 
 export {
@@ -29,5 +31,7 @@ export {
   CreateCourse,
   CreateProducts,
   CreateShop,
+  GetReplayComments,
+  AddReplayComment,
   CreateEvents,
 };

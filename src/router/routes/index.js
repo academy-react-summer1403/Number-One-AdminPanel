@@ -56,6 +56,8 @@ const EventView = lazy(() => import("../../pages/EventDetails"));
 const Shops = lazy(() => import("../../pages/Shops"));
 const CreateShop = lazy(() => import("../../pages/CreateShop"));
 const ShopView = lazy(() => import("../../pages/ShopView"));
+// comments
+const Comments = lazy(() => import("../../pages/Comments"));
 
 // ** Merge Routes
 const Routes = [
@@ -147,6 +149,11 @@ const Routes = [
   {
     path: "/events/view/:id",
     element: <EventView />,
+    // access: ["Teacher", "Administrator"],
+  },
+  {
+    path: "/comments",
+    element: <Comments />,
     // access: ["Teacher", "Administrator"],
   },
   {

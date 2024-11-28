@@ -9,7 +9,7 @@ const DeleteCourseComment = async (id) => {
     {
       pending:"در حال حذف...",
       success:"کامنت مورد نظر حذف شد",
-      error:"دوره تایید شده!!"
+      error:"مشکلی پیش آمده لطفا دوباره تلاش کنید"
     }
   );
     } catch (error) {
