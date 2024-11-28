@@ -36,8 +36,12 @@ import CustomHeader from "./CustomHeader";
 import HeaderTable from "../../../@core/components/header-table/HeaderTable";
 import { CommentTableTitles } from "../../../@core/constants/comments";
 import GetAllComments from "../../../@core/services/api/get-api/GetAllComments";
-import { useQueryWithDependencies } from "../../../utility/hooks/useCustomQuery";
+import { useMutationWithRefetch, useQueryWithDependencies } from "../../../utility/hooks/useCustomQuery";
 import { useDispatch, useSelector } from "react-redux";
+import AcceptCommentCourse from "../../../@core/services/api/post-api/AcceptCommentCourse";
+import DeleteCourseComment from "../../../@core/services/api/delete-api/DeleteCourseComment";
+import RejectCourseComment from "../../../@core/services/api/post-api/RejectCourseComment";
+import GetReplayComments from "../../../@core/services/api/get-api/GetReplayComments";
 
 const CommentsList = () => {
   const commentFilterObj = useSelector((state) => state.CommentList);
@@ -61,7 +65,7 @@ const CommentsList = () => {
 
   const { data: ReplayData, refetch: refetchReplay } = useQueryWithDependencies(
     "GET_REPLAY_COMMENT_DATA",
-    getRepComnt,
+    GetReplayComments,
     idsObj,
     idsObj,
     {
@@ -72,13 +76,13 @@ const CommentsList = () => {
   // Adding data from api with use mutation
   const { mutate: acceptComment } = useMutationWithRefetch(
     "ACCEPT_COMMENT",
-    AccComment,
+    AcceptCommentCourse ,
     refetchComment,
     refetchReplay
   );
   const { mutate: declineComment } = useMutationWithRefetch(
     "DECLINE_COMMENT",
-    DecComment,
+    RejectCourseComment,
     refetchComment,
     refetchReplay
   );
@@ -86,7 +90,7 @@ const CommentsList = () => {
   // remove data from api with use mutation
   const { mutate: deleteComment } = useMutationWithRefetch(
     "DELETE_COMMENT",
-    delComment,
+    DeleteCourseComment,
     refetchComment,
     refetchReplay
   );
