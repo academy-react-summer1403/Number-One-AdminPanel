@@ -2,6 +2,7 @@ import toast from "react-hot-toast";
 import http from "../../interceptor";
 
 const ActiveDeactiveNews = async (data, refetch) => {
+  console.log(data)
   try {
     const response = await http.put("/News/ActiveDeactiveNews", data);
     if(response) {

@@ -17,6 +17,7 @@ import { useQueryWithDependencies } from "../../../utility/hooks/useCustomQuery"
 
 // Api
 import {
+  GetProductCategoryDetails,
   GetProductsDetails,
   GetShopDetails,
 } from "../../../@core/services/api/get-api";
@@ -72,6 +73,13 @@ const DetailProductsPage = () => {
     details?.shopId
   );
 
+  const {data: categoryDetail, isSuccess: categorySuccess} = useQueryWithDependencies(
+    "GET_CATEGORY_DETAILS",
+    GetProductCategoryDetails,
+    details?.categoryId,
+    details?.categoryId
+  );
+
   // Show Modal
   const toggle = () => setEditModal(!editModal);
 
@@ -117,7 +125,8 @@ const DetailProductsPage = () => {
             activeOrDeactive={activeOrDeactive}
             fields={ProductsInformation(
               detailsSuccess && details,
-              isSuccess && shopDetails
+              isSuccess && shopDetails,
+              categorySuccess && categoryDetail
             )}
             detailParams={detailsSuccess && details}
             variant={"products"}

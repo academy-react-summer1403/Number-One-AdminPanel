@@ -7,7 +7,9 @@ const HandleIdentityEditorJs = ({ desc }) => {
     desc.includes("{") &&
     desc.includes("}") &&
     desc.includes("version") &&
-    desc.includes("time")
+    desc.includes("time") &&
+    !desc.includes("<p>") &&
+    !desc.includes("</p>")
   ) {
     return <CreateEditorJsBlocks editorData={desc} />;
   } else {

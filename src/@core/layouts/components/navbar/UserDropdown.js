@@ -16,8 +16,8 @@ import {
 } from "reactstrap";
 
 // ** Default Avatar Image
-import defaultAvatar from "@src/assets/images/portrait/small/avatar-s-11.jpg";
-import { useState } from "react";
+import fallback from "../../../../assets/images/portrait/small/user-circle-icon.png";
+
 import { useGetItem } from "../../../../utility/hooks/useLocalStorage";
 import { useQuery } from "@tanstack/react-query";
 import { jwtDecode } from "jwt-Decode";
@@ -57,7 +57,9 @@ const UserDropdown = () => {
           </span>
         </div>
         <Avatar
-          img={defaultAvatar}
+          img={
+            data?.currentPictureAddress ? data?.currentPictureAddress : fallback
+          }
           imgHeight="40"
           imgWidth="40"
           status="online"

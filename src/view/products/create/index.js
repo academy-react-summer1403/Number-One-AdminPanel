@@ -16,6 +16,7 @@ import { FileText, Image, Info, Check } from "react-feather";
 
 // Store
 import { handleDescribe, handleImage } from "../store/CreateProducts";
+import { useSelector } from "react-redux";
 
 const CreateProductPage = () => {
   // ** Ref
@@ -23,6 +24,10 @@ const CreateProductPage = () => {
 
   // ** State
   const [stepper, setStepper] = useState(null);
+
+  const preview = useSelector(
+    (state) => state.CreateProductsSlice.previewImage
+  );
 
   const steps = [
     {
@@ -35,7 +40,7 @@ const CreateProductPage = () => {
           section={"محصول"}
           handleFunc={handleImage}
           stepper={stepper}
-          variant={"product"}
+          preview={preview}
         />
       ),
     },

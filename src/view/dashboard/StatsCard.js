@@ -68,11 +68,12 @@ const StatsCard = () => {
   ];
 
   return (
-    <div className="app-user-list">
-      <Row>
+    <div className="app-user-list h-100" style={{marginBottom: "28px"}}>
+      <Row className="h-100">
         {data?.map((item, index) => (
-          <Col key={index} md="3" sm="6" style={{ height: "100%" }}>
+          <Col key={index} md="3" sm="6" className="h-100">
             <StatsVertical
+              holderStyle="h-100 mb-0"
               key={index}
               stats={item.title}
               statTitle={item.subtitle}

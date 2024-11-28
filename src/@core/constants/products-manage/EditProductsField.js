@@ -10,6 +10,7 @@ const EditProductsFields = (detail) => {
     shopId: detail.shopId ?? "",
     exist: detail.exist ?? "",
     price: detail.price ?? "",
+    special: detail.special ?? "",
   };
 
   return fields;

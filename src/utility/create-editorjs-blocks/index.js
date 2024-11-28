@@ -6,9 +6,7 @@ const CreateEditorJsBlocks = ({ editorData }) => {
 
   useEffect(() => {
     if (editorData.length == 0) return;
-
     setEditor(JSON.parse(editorData));
-    console.log(JSON.parse(editorData))
   }, [editorData]);
 
   const loadBlocks = (data) => {

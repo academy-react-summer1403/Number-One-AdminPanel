@@ -29,6 +29,11 @@ import GetShopList from "./GetShopList";
 import GetShopDetails from "./GetShopDetails";
 import GetShopCategories from "./GetShopCategories";
 import GetAllComments from "./GetAllComments";
+import GetEventsList from "./GetEventsList";
+import GetEventDetail from "./GetEventDetail";
+import GetAllEvents from "./GetAllEvents";
+import GetProductCategoryDetails from "./GetProductCategoryDetails";
+import GetProductCategoryList from "./GetProductCategoryList";
 
 export {
   GetUserList,
@@ -62,4 +67,9 @@ export {
   GetShopDetails,
   GetShopCategories,
   GetAllComments,
+  GetEventsList,
+  GetEventDetail,
+  GetAllEvents,
+  GetProductCategoryDetails,
+  GetProductCategoryList,
 };

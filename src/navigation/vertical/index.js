@@ -1,4 +1,14 @@
-import { Book, BookOpen, Circle, Command, Home,MessageSquare,ShoppingBag,ShoppingCart, Users } from "react-feather";
+import {
+  Book,
+  BookOpen,
+  Circle,
+  Home,
+  MessageSquare,
+  ShoppingBag,
+  ShoppingCart,
+  Users,
+  Package,
+} from "react-feather";
 
 export default [
   {
@@ -48,22 +58,22 @@ export default [
         title: "افزودن دوره جدید",
         icon: <Circle size={20} />,
         navLink: "/createCourse",
-      }
-    ]
+      },
+    ],
   },
-    {
-    id: "productsPage",
+  {
+    id: "productsManagement",
     title: "مدیریت محصولات",
     icon: <ShoppingCart size={20} />,
     children: [
       {
-        id: "products1Page",
+        id: "productList",
         title: "لیست محصولات",
         icon: <Circle size={12} />,
         navLink: "/products",
       },
       {
-        id: "products2Page",
+        id: "Createproduct",
         title: "افزودن محصول ",
         icon: <Circle size={12} />,
         navLink: "/createProducts",
@@ -94,5 +104,22 @@ export default [
     title: "مدیریت کامنت ها",
     icon: <MessageSquare size={20} />,
     navLink: "/comments",
+    id: "eventManagement",
+    title: "مدیریت ایونت ها",
+    icon: <Package size={20} />,
+    children: [
+      {
+        id: "eventList",
+        title: "لیست ایونت ها",
+        icon: <Circle size={12} />,
+        navLink: "/events",
+      },
+      {
+        id: "createEvent",
+        title: "افزودن ایونت ",
+        icon: <Circle size={12} />,
+        navLink: "/createEvents",
+      },
+    ],
   },
 ];
