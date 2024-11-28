@@ -4,28 +4,31 @@ import { Badge, Card, CardBody } from "reactstrap";
 import { Link } from "react-router-dom";
 import { Calendar, ShoppingCart, Star, User } from "react-feather";
 import HandleIdentityEditorJs from "../../../utility/create-editorjs-blocks/IdentityEditorJs";
+import ImageFallback from "../../../@core/components/image-fallback";
+import ChangeStatusButton from "../../../@core/components/products-list/ChangeStatusButton";
 
 const CourseCard = (props) => {
-  const { activeView, item } = props;
+  const { activeView, item, handleActiveOrDetective } = props;
 
   // ** Renders products
   const renderProducts = () => {
     if (item?.length) {
       return item.map((item, index) => (
         <Card className="ecommerce-card" key={index}>
+          <ChangeStatusButton
+            handleActiveOrDetective={handleActiveOrDetective}
+            id={item.courseId}
+            status={item.isActive}
+          />
           <Link to={`/courses/view/${item.courseId}`}>
             <div
               className="item-img text-center p-0"
               style={{ height: "200px", width: "100%" }}
             >
-              <img
+              <ImageFallback
+                src={item.tumbImageAddress}
                 className="img-fluid card-img-top w-100 h-100"
-                src={
-                  item.tumbImageAddress == null ||
-                  item.tumbImageAddress == "undefined"
-                    ? Avatar
-                    : item.tumbImageAddress
-                }
+                fallback={Avatar}
               />
             </div>
           </Link>

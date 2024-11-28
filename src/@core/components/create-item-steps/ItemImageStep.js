@@ -1,13 +1,10 @@
 import { useEffect, useState } from "react";
 import { Camera } from "react-feather";
 import { Button, Col, Row } from "reactstrap";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import ButtonsForMove from "./ButtonsForMove";
 
 const ItemImageStep = ({ stepper, handleFunc, section, preview }) => {
-  // const preview = useSelector(
-  //   (state) => state.CreateProductsSlice.previewImage
-  // );
   const [file, setFile] = useState();
   const dispatch = useDispatch();
 

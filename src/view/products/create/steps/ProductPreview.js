@@ -34,28 +34,21 @@ const ProductPreview = ({ stepper }) => {
       </Col>
       <Col xs={12} className="my-2 d-flex flex-wrap gap-1">
         <h3 className="w-100">{previewProduct?.title}</h3>
-
-        <Badge color="light-primary" pill>
-          {previewProduct.categoryId}
-        </Badge>
-        <Badge color="light-primary" pill>
-          {previewProduct.shopId}
-        </Badge>
-
         <p className="mb-2">{previewProduct?.miniDiscribe}</p>
       </Col>
       <Col xs={12}>
         <CreateEditorJsBlocks editorData={previewProduct?.discribe} />
+      </Col>
+      <Col xs={12}>
         <Button
+          className="w-100"
+          color="primary"
           onClick={() => {
             mutate(previewProduct);
           }}
         >
-          Create
+          ساختن
         </Button>
-      </Col>
-      <Col xs={12}>
-        <ButtonsForMove stepper={stepper} />
       </Col>
     </Row>
   );

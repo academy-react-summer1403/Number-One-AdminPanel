@@ -28,7 +28,7 @@ import {
   StatisticsOfEvents,
   eventsSortOption,
 } from "../../../@core/constants/event-manage/Options";
-import ChangeMoment from "../../../utility/moment"
+import ChangeMoment from "../../../utility/moment";
 
 // Redux
 import { useDispatch, useSelector } from "react-redux";
@@ -40,6 +40,8 @@ import {
 
 // ** Styles
 import "@styles/react/apps/app-ecommerce.scss";
+import { useMutation } from "@tanstack/react-query";
+import { UpdateEvent } from "../../../@core/services/api/put-api";
 
 const EventsPage = () => {
   const dispatch = useDispatch();
@@ -47,7 +49,7 @@ const EventsPage = () => {
   const params = useSelector((state) => state.EventsList);
 
   // Get Event List From Mock Api
-  const { data: dataWithParams, isSuccess } = useQueryWithDependencies(
+  const { data: dataWithParams, isSuccess, refetch } = useQueryWithDependencies(
     "GET_EVENTS_LIST",
     GetEventsList,
     params,
@@ -60,6 +62,22 @@ const EventsPage = () => {
   // Pagination
   const handleMovePage = (page) => {
     dispatch(handlePageNumber(page.selected + 1));
+  };
+
+  const { mutate } = useMutation({
+    mutationKey: ["ACTIVE_AND_DETECTIVE"],
+    mutationFn: (data) => {
+      UpdateEvent(data.Id, { isActive: data.IsActive }, refetch);
+    },
+  });
+
+  const handleActiveDeactive = (boolean, id) => {
+    try {
+      const dataObj = { Id: id, IsActive: boolean };
+      mutate(dataObj);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -89,10 +107,16 @@ const EventsPage = () => {
                       image={item.currentImageAddressTumb}
                       title={item.title}
                       miniDescribe={item.miniDescribe}
-                      insertDate={ChangeMoment(item.insertDate, "YYYY/MM/DD", "persian")}
+                      insertDate={ChangeMoment(
+                        item.insertDate,
+                        "YYYY/MM/DD",
+                        "persian"
+                      )}
                       price={item.price}
                       href={"/events/view/"}
                       currentRate={null}
+                      handleActiveOrDetective={handleActiveDeactive}
+                      status={item.isActive}
                     />
                   ))}
                 </div>

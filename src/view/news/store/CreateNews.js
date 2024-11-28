@@ -17,10 +17,8 @@ const CreateNewsSlice = createSlice({
   initialState,
   reducers: {
     handleImage: (state, action) => {
+      state.PreviewImage = URL.createObjectURL(action.payload);
       state.Image = action.payload;
-    },
-    handlePreviewImage: (state, action) => {
-      state.PreviewImage = action.payload;
     },
     handleDescribe: (state, action) => {
       state.Describe = action.payload;

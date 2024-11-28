@@ -16,6 +16,7 @@ import { FileText, Image, Info, Check } from "react-feather";
 
 // Redux
 import { handleDescribe, handleImage } from "../store/CreateNews";
+import { useSelector } from "react-redux";
 
 const CreateNewsPage = () => {
   // ** Ref
@@ -23,6 +24,8 @@ const CreateNewsPage = () => {
 
   // ** State
   const [stepper, setStepper] = useState(null);
+
+  const preview = useSelector((state) => state.CreateNewsSlice.PreviewImage);
 
   const steps = [
     {
@@ -35,6 +38,7 @@ const CreateNewsPage = () => {
           section={"خبر"}
           handleFunc={handleImage}
           stepper={stepper}
+          preview={preview}
         />
       ),
     },

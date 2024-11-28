@@ -23,8 +23,6 @@ const EventDetailWrapper = () => {
     id
   );
 
-  console.log(data)
-
   const toggle = () => setEditModal(!editModal);
 
   return (

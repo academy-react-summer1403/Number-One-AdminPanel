@@ -10,32 +10,24 @@ import fallback from "../../../assets/images/portrait/small/image-not-found.png"
 import { UnitPrice } from "../../../utility/separation-price";
 
 // ** Reactstrap Imports
-import {
-  Row,
-  Col,
-  Card,
-  Badge,
-  Button,
-  CardBody,
-  CardTitle,
-} from "reactstrap";
+import { Row, Col, Card, Badge, Button, CardBody, CardTitle } from "reactstrap";
 
 // ** Styles
 import "@styles/base/pages/page-blog.scss";
 
 // ** Images
-import cmtImg from "@src/assets/images/portrait/small/avatar-s-6.jpg";
+import avatarImage from "../../../assets/images/portrait/small//user-circle-icon.png";
 import withReactContent from "sweetalert2-react-content";
 import Swal from "sweetalert2";
 import { useMutation } from "@tanstack/react-query";
 
 // Api
 import { UpdateEvent } from "../../../@core/services/api/put-api";
+import HandleIdentityEditorJs from "../../../utility/create-editorjs-blocks/IdentityEditorJs";
 
 const MySwal = withReactContent(Swal);
 
 const EventMain = ({ data, refetch, setEditModal }) => {
-
   const { mutate } = useMutation({
     mutationKey: ["ACTIVE_AND_DETECTIVE"],
     mutationFn: (boolean) => {
@@ -85,10 +77,6 @@ const EventMain = ({ data, refetch, setEditModal }) => {
 
   return (
     <Fragment>
-      {/* <Breadcrumbs
-        title="جزییات ایونت"
-        data={[{ title: "ایونت" }, { title: "جزییات" }]}
-      /> */}
       <div className="blog-wrapper">
         <div className="content-detached content-left">
           <div className="content-body">
@@ -103,11 +91,11 @@ const EventMain = ({ data, refetch, setEditModal }) => {
                       className="img-fluid"
                     />
                     <CardBody>
-                      <CardTitle tag="h4">{data.title}</CardTitle>
+                      <CardTitle tag="h4" className="fs-2">{data.title}</CardTitle>
                       <div className="d-flex align-items-center">
                         <Avatar
                           className="me-50"
-                          img={cmtImg}
+                          img={avatarImage}
                           imgHeight="24"
                           imgWidth="24"
                         />
@@ -119,7 +107,7 @@ const EventMain = ({ data, refetch, setEditModal }) => {
                               href="/"
                               onClick={(e) => e.preventDefault()}
                             >
-                              {data.addUserFullName}
+                              {data.addUserFullName ? data.addUserFullName : "ناشناس"}
                             </a>
                           </small>
                           <span className="text-muted ms-50 me-25">|</span>
@@ -144,11 +132,9 @@ const EventMain = ({ data, refetch, setEditModal }) => {
                           __html: data.miniDescribe,
                         }}
                       ></div>
-                      <div
-                        dangerouslySetInnerHTML={{
-                          __html: data.describe,
-                        }}
-                      ></div>
+                      <div>
+                        <HandleIdentityEditorJs desc={data.describe} />
+                      </div>
                       <hr className="my-2" />
                       <div className="d-flex align-items-center justify-content-between">
                         <div className="d-flex align-items-center">

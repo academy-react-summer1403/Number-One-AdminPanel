@@ -39,17 +39,17 @@ const NewsTabs = ({ active, toggleTab }) => {
     {
       label: "تعداد بازدید ها",
       icon: Eye,
-      value: detail.newsDetails.currentView,
+      value: detail?.newsDetails?.currentView,
     },
     {
       label: "تعداد کامنت ها",
       icon: MessageCircle,
-      value: detail.newsDetails.commentsCount,
+      value: detail?.newsDetails?.commentsCount,
     },
     {
       label: "تعداد دفعات ذخیره شدن",
       icon: Heart,
-      value: detail.newsDetails.inUsersFavoriteCount,
+      value: detail?.newsDetails?.inUsersFavoriteCount,
     },
   ];
 
@@ -97,8 +97,8 @@ const NewsTabs = ({ active, toggleTab }) => {
             <Col sm={7}>
               <GoalOverview
                 success={colors.success.main}
-                like={detail.newsDetails.currentLikeCount}
-                disLike={detail.newsDetails.currentDissLikeCount}
+                like={detail?.newsDetails?.currentLikeCount}
+                disLike={detail?.newsDetails?.currentDissLikeCount}
               />
             </Col>
             <Col sm={12}>
@@ -111,7 +111,7 @@ const NewsTabs = ({ active, toggleTab }) => {
                 <CardBody>
                   <CardText tag="p">
                     <HandleIdentityEditorJs
-                      desc={detail.newsDetails.describe}
+                      desc={detail?.newsDetails?.describe}
                     />
                   </CardText>
                 </CardBody>
@@ -124,7 +124,7 @@ const NewsTabs = ({ active, toggleTab }) => {
             <div className="divider-text fs-2">کامنت ها</div>
           </div>
           <CommentTab
-            newsCom={detail.newsComments}
+            newsCom={detail?.newsComments}
             NewsRepById={mutate}
             repCom={isSuccess && data}
           />
