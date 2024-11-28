@@ -99,11 +99,8 @@ export default [
       },
     ],
   },
+ 
   {
-    id: "commentsListPage",
-    title: "مدیریت کامنت ها",
-    icon: <MessageSquare size={20} />,
-    navLink: "/comments",
     id: "eventManagement",
     title: "مدیریت ایونت ها",
     icon: <Package size={20} />,
@@ -121,5 +118,11 @@ export default [
         navLink: "/createEvents",
       },
     ],
+  },
+  {
+    id: "commentsListPage",
+    title: "مدیریت کامنت ها",
+    icon: <MessageSquare size={20} />,
+    navLink: "/comments",
   },
 ];

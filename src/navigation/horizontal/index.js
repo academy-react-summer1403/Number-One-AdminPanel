@@ -1,4 +1,4 @@
-import { Mail, Home, Users, Book, Circle, BookOpen, MessageSquare, ShoppingCart, ShoppingBag } from "react-feather";
+import { Mail, Home, Users, Book, Circle, BookOpen, MessageSquare, ShoppingCart, ShoppingBag, Package } from "react-feather";
 
 export default [
   {
@@ -86,6 +86,25 @@ export default [
         title: "افزودن فروشگاه ",
         icon: <Circle size={12} />,
         navLink: "/createShop",
+      },
+    ],
+  },
+  {
+    id: "eventManagement",
+    title: "مدیریت ایونت ها",
+    icon: <Package size={20} />,
+    children: [
+      {
+        id: "eventList",
+        title: "لیست ایونت ها",
+        icon: <Circle size={12} />,
+        navLink: "/events",
+      },
+      {
+        id: "createEvent",
+        title: "افزودن ایونت ",
+        icon: <Circle size={12} />,
+        navLink: "/createEvents",
       },
     ],
   },
