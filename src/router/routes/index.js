@@ -53,6 +53,8 @@ const ProductsView = lazy(() => import("../../pages/ProductsView"));
 const Shops = lazy(() => import("../../pages/Shops"));
 const CreateShop = lazy(() => import("../../pages/CreateShop"));
 const ShopView = lazy(() => import("../../pages/ShopView"));
+// comments
+const Comments = lazy(() => import("../../pages/Comments"));
 
 // ** Merge Routes
 const Routes = [
@@ -133,6 +135,11 @@ const Routes = [
   {
     path: "/createShop",
     element: <CreateShop />,
+    // access: ["Teacher", "Administrator"],
+  },
+  {
+    path: "/comments",
+    element: <Comments />,
     // access: ["Teacher", "Administrator"],
   },
   {

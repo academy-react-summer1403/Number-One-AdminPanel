@@ -1,4 +1,4 @@
-import { Book, BookOpen, Circle, Home,ShoppingBag,ShoppingCart, Users } from "react-feather";
+import { Book, BookOpen, Circle, Command, Home,MessageSquare,ShoppingBag,ShoppingCart, Users } from "react-feather";
 
 export default [
   {
@@ -88,5 +88,11 @@ export default [
         navLink: "/createShop",
       },
     ],
+  },
+  {
+    id: "commentsListPage",
+    title: "مدیریت کامنت ها",
+    icon: <MessageSquare size={20} />,
+    navLink: "/comments",
   },
 ];

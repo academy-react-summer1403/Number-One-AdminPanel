@@ -2,13 +2,14 @@
 import classnames from "classnames";
 import { Star, Calendar, Eye, Clock } from "react-feather";
 import { Link } from "react-router-dom";
-import Avatarrr from "../../../assets/images/cards/22.png";
+import fallback from "../../../assets/images/portrait/small/image-not-found.png";
 
 // ** Reactstrap Imports
 import { Badge, Card, CardBody } from "reactstrap";
 import HandleIdentityEditorJs from "../../../utility/create-editorjs-blocks/IdentityEditorJs";
 import { useQueryWithDependencies } from "../../../utility/hooks/useCustomQuery";
 import GetShopCategory from "../../../@core/services/api/get-api/GetShopCategory";
+import ImageFallBack from "../../../@core/components/image-fallback";
 
 const ShopCard = (props) => {
   const {
@@ -30,6 +31,7 @@ const ShopCard = (props) => {
     categoryId,
     categoryId
   );
+  console.log(image)
 
   return (
     <Card className="ecommerce-card">
@@ -38,9 +40,10 @@ const ShopCard = (props) => {
           className="item-img text-center p-0"
           style={{ height: "200px", width: "100%" }}
         >
-          <img
+           <ImageFallBack
             className="img-fluid card-img-top w-100 h-100"
-            src={image == null || image == "undefined" ? Avatarrr : image}
+            src={image}
+            fallback={fallback}
           />
         </div>
       </Link>

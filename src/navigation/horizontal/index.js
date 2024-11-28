@@ -1,4 +1,4 @@
-import { Mail, Home, Users, Book, Circle, BookOpen } from "react-feather";
+import { Mail, Home, Users, Book, Circle, BookOpen, MessageSquare, ShoppingCart, ShoppingBag } from "react-feather";
 
 export default [
   {
@@ -50,5 +50,49 @@ export default [
         navLink: "/createCourse",
       },
     ],
+  },
+  {
+    id: "productsPage",
+    title: "مدیریت محصولات",
+    icon: <ShoppingCart size={20} />,
+    children: [
+      {
+        id: "products1Page",
+        title: "لیست محصولات",
+        icon: <Circle size={12} />,
+        navLink: "/products",
+      },
+      {
+        id: "products2Page",
+        title: "افزودن محصول ",
+        icon: <Circle size={12} />,
+        navLink: "/createProducts",
+      },
+    ],
+  },
+  {
+    id: "shopPage",
+    title: "مدیریت فروشگاه ها",
+    icon: <ShoppingBag size={20} />,
+    children: [
+      {
+        id: "shop1Page",
+        title: "لیست فروشگاه ها",
+        icon: <Circle size={12} />,
+        navLink: "/shops",
+      },
+      {
+        id: "shop2Page",
+        title: "افزودن فروشگاه ",
+        icon: <Circle size={12} />,
+        navLink: "/createShop",
+      },
+    ],
+  },
+  {
+    id: "commentsListPage",
+    title: "مدیریت کامنت ها",
+    icon: <MessageSquare size={20} />,
+    navLink: "/comments",
   },
 ];
