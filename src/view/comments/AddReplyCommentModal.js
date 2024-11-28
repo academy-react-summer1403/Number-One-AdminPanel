@@ -3,7 +3,7 @@ import { Modal, ModalHeader, ModalBody } from "reactstrap";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import ReplayValidate from "../../@core/validations/ReplayComment.Validation";
 
-const ReplyCommentModal = ({
+const AddReplyCommentModal = ({
   setRepShow,
   repShow,
   addReplyComment,
@@ -76,4 +76,4 @@ const ReplyCommentModal = ({
   );
 };
 
-export default ReplyCommentModal;
+export default AddReplyCommentModal;

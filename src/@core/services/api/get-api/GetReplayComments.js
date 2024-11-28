@@ -1,5 +1,7 @@
+import http from "../../interceptor";
+
 const GetReplayComments = async (Ids) => {
-  // console.log(Ids)
+  console.log(Ids)
   if (Ids.courseId !== null && Ids.commentId !== null) {
     try {
       const result = await http.get(

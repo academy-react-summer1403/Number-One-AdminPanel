@@ -7,16 +7,21 @@ import { useRef } from "react";
 const CustomHeader = () => {
   const commentFilterObj = useSelector((state) => state.CommentList);
   const Dispatch = useDispatch();
+
+  const dispatch = useDispatch();
   const ref = useRef();
 
-  const handlePerPage = (e) => {
+  const handleSetSearch = (e) => {
     clearTimeout(ref.current);
-    const value = parseInt(e.currentTarget.value);
     const timeOut = setTimeout(() => {
-      Dispatch(setRowsOfPage(value));
+      dispatch(setQueryComment(e));
     }, 1000);
-
     ref.current = timeOut;
+  };
+  
+  const handlePerPage = (e) => {
+    const value = parseInt(e.currentTarget.value);
+    Dispatch(setRowsOfPage(value));
   };
 
   return (
@@ -36,7 +41,7 @@ const CustomHeader = () => {
               onChange={handlePerPage}
               style={{ width: "6rem" }}
             >
-              <option value="12">12</option>
+              <option value="6">6</option>
               <option value="20">20</option>
               <option value="50">50</option>
             </Input>
@@ -55,7 +60,7 @@ const CustomHeader = () => {
               className="ms-50 w-100"
               type="text"
               // value={searchTerm}
-              onChange={(e) => Dispatch(setQueryComment(e.target.value))}
+              onChange={(e) => handleSetSearch(e.target.value)}
             />
           </div>
         </Col>

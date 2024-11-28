@@ -35,8 +35,9 @@ import RejectCourseComment from "../../../@core/services/api/post-api/RejectCour
 import GetReplayComments from "../../../@core/services/api/get-api/GetReplayComments";
 import CustomPagination from "../../../@core/components/pagination";
 import { setPageNumber } from "../store/CommentsList";
-import ReplyCommentModal from "../ReplyCommentModal";
 import AddReplayComment from "../../../@core/services/api/post-api/AddReplayComment";
+import AddReplyCommentModal from "../AddReplyCommentModal";
+import ReplaysCommentModal from "../ReplaysCommentModal";
 
 const CommentsList = () => {
   const commentFilterObj = useSelector((state) => state.CommentList);
@@ -67,6 +68,7 @@ const CommentsList = () => {
       // enabled: !!(idsObj.courseId && idsObj.commentId),
     }
   );
+  console.log(ReplayData)
 
   // Adding data from api with use mutation
   const { mutate: acceptComment } = useMutationWithRefetch(
@@ -235,7 +237,7 @@ const CommentsList = () => {
         rowsPerPage={commentFilterObj?.RowsOfPage}
         handleClickFunc={handlePagination}
       />
-      {/* <CommntModal
+      <ReplaysCommentModal
         setCommentModal={setCommentModal}
         commentModal={commentModal}
         replayData={ReplayData}
@@ -248,8 +250,8 @@ const CommentsList = () => {
           refetchComment();
           refetchReplay();
         }}
-      /> */}
-      <ReplyCommentModal
+      />
+      <AddReplyCommentModal
         repShow={repShow}
         setRepShow={setRepShow}
         addReplyComment={AddReplayComment}
