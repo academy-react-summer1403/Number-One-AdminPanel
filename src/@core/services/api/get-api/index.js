@@ -36,6 +36,8 @@ import GetProductCategoryDetails from "./GetProductCategoryDetails";
 import GetProductCategoryList from "./GetProductCategoryList";
 import GetBuildingList from "./GetBuildingList";
 import GetBuildingDetails from "./GetBuildingDetails";
+import GetClassRomeList from "./GetClassRomeList";
+import GetClassRomeDetail from "./GetClassRomeDetail";
 
 export {
   GetUserList,
@@ -76,4 +78,6 @@ export {
   GetProductCategoryList,
   GetBuildingList,
   GetBuildingDetails,
+  GetClassRomeList,
+  GetClassRomeDetail,
 };

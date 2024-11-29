@@ -12,6 +12,7 @@ import UpdateShop from "./UpdateShop";
 import UpdateEvent from "./UpdateEvent";
 import ActiveDeActiveBuilding from "./ActiveDeActiveBuilding";
 import UpdateBuilding from "./UpdateBuilding";
+import UpdateClassRome from "./UpdateClassRome";
 
 export {
   UpdateUser,
@@ -28,4 +29,5 @@ export {
   UpdateEvent,
   ActiveDeActiveBuilding,
   UpdateBuilding,
+  UpdateClassRome,
 };

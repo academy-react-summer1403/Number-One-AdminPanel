@@ -60,6 +60,12 @@ export default [
         icon: <Circle size={20} />,
         navLink: "/createCourse",
       },
+      {
+        id: "classRome",
+        title: "لیست کلاس ها",
+        icon: <Circle size={12} />,
+        navLink: "/classRome",
+      },
     ],
   },
   {

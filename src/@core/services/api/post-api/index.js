@@ -15,6 +15,8 @@ import CreateShop from "./CreateShop";
 import GetReplayComments from "../get-api/GetReplayComments";
 import AddReplayComment from "./AddReplayComment";
 import CreateEvents from "./CreateEvent";
+import CreateClassRome from "./CreateClass";
+import CreateNewBuilding from "./CreateBuilding";
 
 export {
   AddUserAccess,
@@ -34,4 +36,6 @@ export {
   GetReplayComments,
   AddReplayComment,
   CreateEvents,
+  CreateClassRome,
+  CreateNewBuilding,
 };

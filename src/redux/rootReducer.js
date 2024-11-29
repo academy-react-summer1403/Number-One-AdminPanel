@@ -16,6 +16,8 @@ import { ShopList, CreateShopsSlice } from "../view/shops/store";
 import { CommentList } from "../view/comments/store";
 //Building
 import { BuildingList } from "../view/building/store";
+// ClassRome
+import ClassList from "../view/classrome/store";
 
 const rootReducer = {
   navbar,
@@ -34,6 +36,7 @@ const rootReducer = {
   EventsList,
   CreateEvent,
   BuildingList,
+  ClassList,
 };
 
 export default rootReducer;
