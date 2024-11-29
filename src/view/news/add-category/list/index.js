@@ -1,6 +1,7 @@
 import { Fragment, useEffect, useState } from "react";
 import {
   Button,
+  Card,
   Col,
   DropdownItem,
   DropdownMenu,
@@ -10,12 +11,8 @@ import {
   UncontrolledDropdown,
 } from "reactstrap";
 import GeneralStatistics from "../../../../@core/components/generalStatistics";
-import {
-  useQueryWithoutDependencies,
-} from "../../../../utility/hooks/useCustomQuery";
-import {
-  GetNewsCategory,
-} from "../../../../@core/services/api/get-api";
+import { useQueryWithoutDependencies } from "../../../../utility/hooks/useCustomQuery";
+import { GetNewsCategory } from "../../../../@core/services/api/get-api";
 import {
   categoryNewsTableTitles,
   StatisticsOfNewsCategories,
@@ -132,12 +129,11 @@ const BlogCategoriesWrapper = () => {
                 />
               </Col>
             </Row>
-
             <div style={{ overflowX: "auto" }}>
               <Table hover style={{ overflowX: "auto" }}>
                 <HeaderTable titles={categoryNewsTableTitles} />
                 <tbody style={{ overflowX: "auto" }}>
-                  {FilteredList &&
+                  {FilteredList?.length != 0 ? (
                     FilteredList.slice(itemOffset, endOffset)?.map(
                       (item, index) => {
                         return (
@@ -197,7 +193,19 @@ const BlogCategoriesWrapper = () => {
                           </tr>
                         );
                       }
-                    )}
+                    )
+                  ) : (
+                    <h6
+                    className="section-label fs-6"
+                    style={{
+                      textAlign: "center",
+                      marginTop: "200px",
+                      marginBottom: "200px",
+                    }}
+                  >
+                    فروشگاهی وجود ندارد
+                  </h6>
+                  )}
                 </tbody>
               </Table>
             </div>
