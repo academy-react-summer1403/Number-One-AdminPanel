@@ -121,12 +121,6 @@ export default [
     ],
   },
   {
-    id: "commentsListPage",
-    title: "مدیریت کامنت ها",
-    icon: <MessageSquare size={20} />,
-    navLink: "/comments",
-  },
-  {
     id: "building",
     title: "ساختمان ها",
     icon: <Globe size={20} />,
@@ -138,5 +132,11 @@ export default [
         navLink: "/buildings",
       },
     ],
+  },
+  {
+    id: "commentsListPage",
+    title: "مدیریت کامنت ها",
+    icon: <MessageSquare size={20} />,
+    navLink: "/comments",
   },
 ];
