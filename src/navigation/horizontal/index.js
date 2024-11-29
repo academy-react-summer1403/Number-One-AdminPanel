@@ -31,10 +31,10 @@ export default [
         navLink: "/createBlog",
       },
       {
-        id: "addBlogCategory",
-        title: "افزودن دسته بندی اخبار و مقالات",
+        id: "blogCategories",
+        title: "مدیریت دسته بندی اخبار ",
         icon: <Circle size={20} />,
-        navLink: "/addBlogCategory",
+        navLink: "/blogCategories",
       },
     ],
   },

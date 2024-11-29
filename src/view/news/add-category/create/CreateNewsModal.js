@@ -14,8 +14,8 @@ import {
 import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 import { Camera } from "react-feather";
-import BlogCategoryValidation from "../../../@core/validations/BlogCategory.Validation";
-import { CreateNewsCategory } from "../../../@core/services/api/post-api";
+import BlogCategoryValidation from "../../../../@core/validations/BlogCategory.Validation";
+import { CreateNewsCategory } from "../../../../@core/services/api/post-api";
 
 const AddBlogCategoryWrapper = () => {
   const [src, setSrc] = useState();
