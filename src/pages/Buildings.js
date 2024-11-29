@@ -1,5 +1,7 @@
+import BuildingWrapper from "../view/building/list";
+
 const Buildings = () => {
-  return;
+  return <BuildingWrapper />;
 };
 
 export default Buildings;
