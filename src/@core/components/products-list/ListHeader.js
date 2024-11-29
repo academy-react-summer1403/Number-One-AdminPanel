@@ -5,7 +5,7 @@ import Select from "react-select";
 // ** Reactstrap Imports
 import { Row, Col } from "reactstrap";
 
-const ListHeader = ({ rowsFunc, sortOptions }) => {
+const ListHeader = ({ rowsFunc, sortOptions,styleDisplay,colWidth }) => {
   const dispatch = useDispatch();
 
   // ** User Current options
@@ -18,7 +18,7 @@ const ListHeader = ({ rowsFunc, sortOptions }) => {
   return (
     <div className="align-items-center">
       <Row>
-        <Col sm="4" className="d-flex align-items-center">
+        <Col sm={colWidth ? colWidth : "4"} className="d-flex align-items-center">
           <div className="d-flex align-items-center w-100 gap-75">
             <label htmlFor="rows-per-page">نمایش</label>
             <Select
@@ -33,7 +33,7 @@ const ListHeader = ({ rowsFunc, sortOptions }) => {
         </Col>
         <Col
           sm="8"
-          className="d-flex align-items-center justify-content-end gap-75"
+          className={`d-flex align-items-center justify-content-end gap-75 ${styleDisplay}`}
         >
           <div className="d-flex align-items-center gap-75">
             <label style={{ minWidth: "70px" }}>مرتب سازی:</label>

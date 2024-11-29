@@ -20,7 +20,6 @@ const ListSearchbar = ({ QueryFunction ,width}) => {
 
   return (
     <div id="ecommerce-searchbar" className="ecommerce-searchbar">
-      
       <Row className="mt-1">
         <Col sm="12">
           <InputGroup className={`input-group-merge ${width}`} style={{ height: "50px" }}>

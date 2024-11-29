@@ -5,7 +5,7 @@ const initialState = {
   FilteredList: [],
   Query: undefined,
   PageNumber: 1,
-  RowsOfPage: 12,
+  RowsOfPage: 15,
 };
 
 const BlogCategoryList = createSlice({
@@ -26,7 +26,7 @@ const BlogCategoryList = createSlice({
       state.Query = action.payload;
       state.FilteredList = state.AllList?.filter(
         (item) =>
-          item.name.indexOf(action.payload) != -1 
+          item.categoryName.indexOf(action.payload) != -1 
       );
     },
   },
