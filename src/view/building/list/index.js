@@ -1,4 +1,4 @@
-import { Card, Table } from "reactstrap";
+import { Card, Col, Row, Table } from "reactstrap";
 import headerTable from "../../../@core/constants/building/HeaderTable";
 import CustomPagination from "../../../@core/components/pagination";
 import {
@@ -21,6 +21,7 @@ import { Fragment, useEffect, useState } from "react";
 import EditBuilding from "./EditBuilding";
 import CreateBuilding from "./CreateBuilding";
 import HeaderTable from "../../../@core/components/table-list/HeaderTable";
+import Reports from "./Reports";
 
 const BuildingWrapper = () => {
   const params = useSelector((state) => state.BuildingList);
@@ -70,62 +71,67 @@ const BuildingWrapper = () => {
   };
 
   return (
-    <Fragment>
-      <Card className="overflow-hidden">
-        <div className="react-dataTable">
-          <HeaderTable
-            toggleSidebar={toggleCreateModal}
-            rowOfPage={params.RowsOfPage}
-            handleRowOfPage={handleRows}
-            handleSearch={handleQuery}
-            buttonText={"افزودن ساختمان"}
-          />
-          <Table hover>
-            <thead className="text-center">
-              <tr>
-                {headerTable.map((item, index) => (
-                  <th key={index} className="px-0">
-                    {item}
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {params.FilteredData?.slice(itemOffset, endOffset)?.map(
-                (item, index) => (
-                  <TableItems
-                    key={index}
-                    id={item.id}
-                    refetch={refetch}
-                    status={item.active}
-                    item={item}
-                    toggleModal={toggleEditModal}
-                    setId={setId}
-                  />
-                )
-              )}
-            </tbody>
-          </Table>
-        </div>
-        <CustomPagination
-          total={buildings?.length}
-          current={params.PageNumber}
-          rowsPerPage={params.RowsOfPage}
-          handleClickFunc={handleMovePage}
+    <div className="app-user-list">
+      <Row>
+        <Reports data={buildings} />
+        <Col sm="12">
+          <Card className="overflow-hidden">
+            <div className="react-dataTable">
+              <HeaderTable
+                toggleSidebar={toggleCreateModal}
+                rowOfPage={params.RowsOfPage}
+                handleRowOfPage={handleRows}
+                handleSearch={handleQuery}
+                buttonText={"افزودن ساختمان"}
+              />
+              <Table hover>
+                <thead className="text-center">
+                  <tr>
+                    {headerTable.map((item, index) => (
+                      <th key={index} className="px-0">
+                        {item}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {params.FilteredData?.slice(itemOffset, endOffset)?.map(
+                    (item, index) => (
+                      <TableItems
+                        key={index}
+                        id={item.id}
+                        refetch={refetch}
+                        status={item.active}
+                        item={item}
+                        toggleModal={toggleEditModal}
+                        setId={setId}
+                      />
+                    )
+                  )}
+                </tbody>
+              </Table>
+            </div>
+            <CustomPagination
+              total={buildings?.length}
+              current={params.PageNumber}
+              rowsPerPage={params.RowsOfPage}
+              handleClickFunc={handleMovePage}
+            />
+          </Card>
+        </Col>
+        <EditBuilding
+          data={detailSuccess && details}
+          refetch={refetch}
+          isOpen={editModal}
+          toggle={toggleEditModal}
         />
-      </Card>
-      <EditBuilding
-        data={detailSuccess && details}
-        refetch={refetch}
-        isOpen={editModal}
-        toggle={toggleEditModal}
-      />
-      <CreateBuilding
-        refetch={refetch}
-        isOpen={createModal}
-        toggle={toggleCreateModal}
-      />
-    </Fragment>
+        <CreateBuilding
+          refetch={refetch}
+          isOpen={createModal}
+          toggle={toggleCreateModal}
+        />
+      </Row>
+    </div>
   );
 };
 
