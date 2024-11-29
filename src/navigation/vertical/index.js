@@ -8,6 +8,7 @@ import {
   ShoppingCart,
   Users,
   Package,
+  Globe,
 } from "react-feather";
 
 export default [
@@ -99,7 +100,7 @@ export default [
       },
     ],
   },
- 
+
   {
     id: "eventManagement",
     title: "مدیریت ایونت ها",
@@ -124,5 +125,18 @@ export default [
     title: "مدیریت کامنت ها",
     icon: <MessageSquare size={20} />,
     navLink: "/comments",
+  },
+  {
+    id: "building",
+    title: "ساختمان ها",
+    icon: <Globe size={20} />,
+    children: [
+      {
+        id: "buildingList",
+        title: "لیست ساختمان ها",
+        icon: <Circle size={12} />,
+        navLink: "/buildings",
+      },
+    ],
   },
 ];

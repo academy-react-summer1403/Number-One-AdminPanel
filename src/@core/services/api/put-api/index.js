@@ -10,6 +10,8 @@ import ChangeCourseStatus from "./ChangeCourseStatus";
 import UpdateProducts from "./UpdateProducts";
 import UpdateShop from "./UpdateShop";
 import UpdateEvent from "./UpdateEvent";
+import ActiveDeActiveBuilding from "./ActiveDeActiveBuilding";
+import UpdateBuilding from "./UpdateBuilding";
 
 export {
   UpdateUser,
@@ -24,4 +26,6 @@ export {
   UpdateProducts,
   UpdateShop,
   UpdateEvent,
+  ActiveDeActiveBuilding,
+  UpdateBuilding,
 };

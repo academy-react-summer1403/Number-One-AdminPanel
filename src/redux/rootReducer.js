@@ -10,9 +10,12 @@ import { CreateNewsSlice, NewsDetail, NewsList } from "../view/news/store";
 import { CreateProductsSlice, ProductsList } from "../view/products/store";
 // Events
 import { EventsList, CreateEvent } from "../view/event/store";
-
-import { ShopList , CreateShopsSlice } from "../view/shops/store";
+// Shop
+import { ShopList, CreateShopsSlice } from "../view/shops/store";
+// Comments
 import { CommentList } from "../view/comments/store";
+//Building
+import { BuildingList } from "../view/building/store";
 
 const rootReducer = {
   navbar,
@@ -30,6 +33,7 @@ const rootReducer = {
   CommentList,
   EventsList,
   CreateEvent,
+  BuildingList,
 };
 
 export default rootReducer;
