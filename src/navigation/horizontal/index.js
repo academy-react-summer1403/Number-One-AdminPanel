@@ -55,6 +55,12 @@ export default [
         icon: <Circle size={20} />,
         navLink: "/createCourse",
       },
+      {
+        id: "courseTechnologiesList",
+        title: "مدیریت تکنولوژی دوره ها",
+        icon: <Circle size={20} />,
+        navLink: "/courseTechnologies",
+      },
     ],
   },
   {

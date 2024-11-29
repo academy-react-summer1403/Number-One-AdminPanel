@@ -209,7 +209,7 @@ const BlogCategoriesWrapper = () => {
                         marginBottom: "200px",
                       }}
                     >
-                      فروشگاهی وجود ندارد
+                      دسته بندی وجود ندارد
                     </h6>
                   )}
                 </tbody>

@@ -45,6 +45,7 @@ const BlogCategories = lazy(() => import("../../pages/BlogCategories"));
 const Courses = lazy(() => import("../../pages/Courses"));
 const CreateCourses = lazy(() => import("../../pages/CreateCourse"));
 const CourseDetails = lazy(() => import("../../pages/CourseDetails"));
+const CourseTechnologies = lazy(() => import("../../pages/CourseTechnologies"));
 // Products
 const Products = lazy(() => import("../../pages/Products"));
 const CreateProduct = lazy(() => import("../../pages/CreateProduct"));
@@ -115,6 +116,11 @@ const Routes = [
   {
     path: "/courses/view/:id",
     element: <CourseDetails />,
+    // access: ["Administrator"],
+  },
+  {
+    path: "/courseTechnologies",
+    element: <CourseTechnologies />,
     // access: ["Administrator"],
   },
   {
