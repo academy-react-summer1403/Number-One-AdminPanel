@@ -31,12 +31,15 @@ import {
 import ListSearchbar from "../../../../@core/components/products-list/ListSearchbar";
 import ListHeader from "../../../../@core/components/products-list/ListHeader";
 import AddBlogCategoryWrapper from "../create/CreateNewsModal";
+import CategoryNewsDetails from "../view";
 
 const BlogCategoriesWrapper = () => {
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
+  const [showDetailsModal, setShowDetailsModal] = useState(false);
   const [variantState, setVariantState] = useState(undefined);
   const [categoryDetails, setCategoryDetails] = useState(undefined);
+  const [categoryId, setCategoryId] = useState(undefined);
 
   const { PageNumber, RowsOfPage, FilteredList, AllList, Query } = useSelector(
     (state) => state.BlogCategoryList
@@ -172,10 +175,13 @@ const BlogCategoriesWrapper = () => {
                                 <DropdownMenu className="d-flex flex-column p-0">
                                   <DropdownItem
                                     key={index}
-                                    onClick={() => alert("جزئیات")}
+                                    onClick={() => {
+                                      setShowDetailsModal((old) => !old);
+                                      setCategoryId(item.id)
+                                    }}
                                   >
                                     <span className="align-middle">جزئیات</span>
-                                    <FileText className="me-50" size={15} />
+                                    <FileText className="ms-50" size={15} />
                                   </DropdownItem>
                                   <DropdownItem
                                     key={index}
@@ -185,7 +191,7 @@ const BlogCategoriesWrapper = () => {
                                     }}
                                   >
                                     <span className="align-middle">ویرایش</span>
-                                    <Edit className="me-50" size={15} />
+                                    <Edit className="ms-50" size={15} />
                                   </DropdownItem>
                                 </DropdownMenu>
                               </UncontrolledDropdown>
@@ -196,15 +202,15 @@ const BlogCategoriesWrapper = () => {
                     )
                   ) : (
                     <h6
-                    className="section-label fs-6"
-                    style={{
-                      textAlign: "center",
-                      marginTop: "200px",
-                      marginBottom: "200px",
-                    }}
-                  >
-                    فروشگاهی وجود ندارد
-                  </h6>
+                      className="section-label fs-6"
+                      style={{
+                        textAlign: "center",
+                        marginTop: "200px",
+                        marginBottom: "200px",
+                      }}
+                    >
+                      فروشگاهی وجود ندارد
+                    </h6>
                   )}
                 </tbody>
               </Table>
@@ -223,6 +229,11 @@ const BlogCategoriesWrapper = () => {
               current={PageNumber}
               rowsPerPage={RowsOfPage}
               handleClickFunc={handleWithOutDispatch}
+            />
+            <CategoryNewsDetails
+              showModal={showDetailsModal}
+              setShowModal={setShowDetailsModal}
+              id={categoryId}
             />
           </div>
         </Col>
