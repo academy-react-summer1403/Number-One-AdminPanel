@@ -15,6 +15,7 @@ import CreateShop from "./CreateShop";
 import GetReplayComments from "../get-api/GetReplayComments";
 import AddReplayComment from "./AddReplayComment";
 import CreateEvents from "./CreateEvent";
+import CreateNewsCategory from "./CreateNewsCategory";
 
 export {
   AddUserAccess,
@@ -34,4 +35,5 @@ export {
   GetReplayComments,
   AddReplayComment,
   CreateEvents,
+  CreateNewsCategory,
 };

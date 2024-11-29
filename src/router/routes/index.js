@@ -39,6 +39,8 @@ const UserDetails = lazy(() => import("../../pages/UserDetails"));
 const News = lazy(() => import("../../pages/News"));
 const CreateNews = lazy(() => import("../../pages/CreateNews"));
 const NewsDetails = lazy(() => import("../../pages/NewsDetails"));
+const AddCategoryBlog = lazy(() => import("../../pages/AddBlogCategory"));
+
 // Courses
 const Courses = lazy(() => import("../../pages/Courses"));
 const CreateCourses = lazy(() => import("../../pages/CreateCourse"));
@@ -93,6 +95,11 @@ const Routes = [
   {
     path: "/blogs/view/:id",
     element: <NewsDetails />,
+    // access: ["Administrator"],
+  },
+  {
+    path: "/addBlogCategory",
+    element: <AddCategoryBlog />,
     // access: ["Administrator"],
   },
   {

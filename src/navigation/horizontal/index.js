@@ -30,6 +30,12 @@ export default [
         icon: <Circle size={20} />,
         navLink: "/createBlog",
       },
+      {
+        id: "addBlogCategory",
+        title: "افزودن دسته بندی اخبار و مقالات",
+        icon: <Circle size={20} />,
+        navLink: "/addBlogCategory",
+      },
     ],
   },
   {
