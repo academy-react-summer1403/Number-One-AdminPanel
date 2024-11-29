@@ -1,5 +1,6 @@
 import { Fragment, useEffect, useState } from "react";
 import {
+  Button,
   Col,
   DropdownItem,
   DropdownMenu,
@@ -9,8 +10,12 @@ import {
   UncontrolledDropdown,
 } from "reactstrap";
 import GeneralStatistics from "../../../../@core/components/generalStatistics";
-import { useQueryWithoutDependencies } from "../../../../utility/hooks/useCustomQuery";
-import { GetNewsCategory } from "../../../../@core/services/api/get-api";
+import {
+  useQueryWithoutDependencies,
+} from "../../../../utility/hooks/useCustomQuery";
+import {
+  GetNewsCategory,
+} from "../../../../@core/services/api/get-api";
 import {
   categoryNewsTableTitles,
   StatisticsOfNewsCategories,
@@ -28,17 +33,39 @@ import {
 } from "../store/BlogCategoryList";
 import ListSearchbar from "../../../../@core/components/products-list/ListSearchbar";
 import ListHeader from "../../../../@core/components/products-list/ListHeader";
+import AddBlogCategoryWrapper from "../create/CreateNewsModal";
 
 const BlogCategoriesWrapper = () => {
   const dispatch = useDispatch();
+  const [showModal, setShowModal] = useState(false);
+  const [variantState, setVariantState] = useState(undefined);
+  const [categoryDetails, setCategoryDetails] = useState(undefined);
+
   const { PageNumber, RowsOfPage, FilteredList, AllList, Query } = useSelector(
     (state) => state.BlogCategoryList
   );
 
   // console.log(FilteredList);
   // getting data from Api with use Query
-  const { data: newsCategory, isSuccess: successGetNewsCat } =
-    useQueryWithoutDependencies("GET_NEWS_CATEGORY", GetNewsCategory);
+  const {
+    data: newsCategory,
+    isSuccess: successGetNewsCat,
+    refetch,
+  } = useQueryWithoutDependencies("GET_NEWS_CATEGORY", GetNewsCategory);
+
+  // const { mutate: categoryDetails } = useQueryWithDependencies(
+  //   "GET_CATEGORY_DETAILS",
+  //   GetNewsCategoryWithId,
+  //   categoryId,
+  //   categoryId,
+  //   categoryId !== undefined
+  // );
+
+  const handleCategoryDetail = (Id) => {
+    const detail = newsCategory.find((item) => item.id == Id);
+    setCategoryDetails(detail);
+    setShowModal((old) => !old);
+  };
 
   // Pagination
   const [itemOffset, setItemOffset] = useState(0);
@@ -60,6 +87,10 @@ const BlogCategoriesWrapper = () => {
     if (Query) handleWithOutDispatch(page);
   }, [Query]);
 
+  useEffect(() => {
+    if (!showModal) setCategoryDetails(undefined);
+  }, [showModal]);
+
   return (
     <Fragment>
       <Row>
@@ -69,10 +100,24 @@ const BlogCategoriesWrapper = () => {
             statisticsData={StatisticsOfNewsCategories}
             resize="12"
           />
+          <div className="d-flex justify-content-end">
+            <Button
+              className=" p-0 py-1 text-center"
+              style={{ width: "100%" }}
+              color="primary"
+              onClick={() => {
+                setVariantState("create");
+                setCategoryDetails("test");
+                setShowModal((old) => !old);
+              }}
+            >
+              <span className="mx-auto">افزودن دسته بندی</span>
+            </Button>
+          </div>
         </Col>
         <Col md={9} xs={12}>
           <div>
-            <Row >
+            <Row>
               <Col className="pt-2">
                 <ListHeader
                   rowsFunc={handleRowsOfPage}
@@ -138,7 +183,10 @@ const BlogCategoriesWrapper = () => {
                                   </DropdownItem>
                                   <DropdownItem
                                     key={index}
-                                    onClick={() => alert("ویرایش")}
+                                    onClick={() => {
+                                      setVariantState("update");
+                                      handleCategoryDetail(item.id);
+                                    }}
                                   >
                                     <span className="align-middle">ویرایش</span>
                                     <Edit className="me-50" size={15} />
@@ -153,13 +201,15 @@ const BlogCategoriesWrapper = () => {
                 </tbody>
               </Table>
             </div>
-            {/* <AcceptPaymentModal
-            showModal={showModal}
-            setShowModal={setShowModal}
-            paymentId={paymentId}
-            paymentReceipt={paymentReceipt}
-            refetch={getAllPayments}
-          /> */}
+            {categoryDetails && (
+              <AddBlogCategoryWrapper
+                showModal={showModal}
+                setShowModal={setShowModal}
+                refetch={refetch}
+                variantState={variantState}
+                categoryDetails={categoryDetails}
+              />
+            )}
             <CustomPagination
               total={FilteredList?.length}
               current={PageNumber}
