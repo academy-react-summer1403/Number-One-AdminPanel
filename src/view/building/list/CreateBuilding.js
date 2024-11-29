@@ -18,26 +18,34 @@ import {
   Row,
 } from "reactstrap";
 import ChooseMap from "./ChooseMap";
+import { useMutation } from "@tanstack/react-query";
+import { CreateNewBuilding } from "../../../@core/services/api/post-api";
 
 const CreateBuilding = ({ isOpen, toggle, refetch }) => {
   // Location Modal
   const [locationModal, setLocationModal] = useState(false);
   const toggleLocationModal = () => setLocationModal(!locationModal);
 
+  const { mutate } = useMutation({
+    mutationKey: ["CREATE_BUILDING"],
+    mutationFn: (data) => {
+      CreateNewBuilding(data, refetch);
+    },
+  });
+
   const initialValues = {
     buildingName: "",
     workDate: "",
     floor: 0,
-    latitude: "",
-    longitude: "",
+    latitude: "8",
+    longitude: "13",
   };
 
   const formik = useFormik({
     initialValues: initialValues && initialValues,
     enableReinitialize: true,
     onSubmit: (values) => {
-      console.log(values);
-      //   mutate(values);
+      mutate(values);
     },
   });
 
