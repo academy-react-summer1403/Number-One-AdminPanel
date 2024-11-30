@@ -32,8 +32,8 @@ const AddStatusModal = ({
   // console.log(categoryDetails);
 
   const titleVariant = {
-    create: "افزودن تکنولوژی جدید",
-    update: "ویرایش تکنولوژی",
+    create: "افزودن وضعیت جدید",
+    update: "ویرایش وضعیت",
   };
 
   // Creating categories for blogs
@@ -77,7 +77,7 @@ const AddStatusModal = ({
   return (
     <div className="vertically-centered-modal ">
       <Modal
-        className="modal-dialog-centered modal-lg"
+        className="modal-dialog-centered modal-md"
         isOpen={showModal}
         toggle={() => setShowModal(!showModal)}
       >

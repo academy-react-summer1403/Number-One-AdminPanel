@@ -77,6 +77,12 @@ export default [
         icon: <Circle size={20} />,
         navLink: "/courseStatus",
       },
+      {
+        id: "courseLevels",
+        title: "مدیریت سطح دوره ها",
+        icon: <Circle size={20} />,
+        navLink: "/courseLevels",
+      },
     ],
   },
   {
@@ -117,7 +123,7 @@ export default [
       },
     ],
   },
- 
+
   {
     id: "eventManagement",
     title: "مدیریت ایونت ها",
