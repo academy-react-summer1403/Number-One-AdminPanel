@@ -17,6 +17,7 @@ import AddReplayComment from "./AddReplayComment";
 import CreateEvents from "./CreateEvent";
 import CreateNewsCategory from "./CreateNewsCategory";
 import CreateTechnologies from "./CreateTechnologies";
+import CreateCourseStatus from "./CreateCourseStatus";
 
 export {
   AddUserAccess,
@@ -38,4 +39,5 @@ export {
   CreateEvents,
   CreateNewsCategory,
   CreateTechnologies,
+  CreateCourseStatus,
 };

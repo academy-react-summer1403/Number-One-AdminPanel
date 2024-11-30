@@ -12,6 +12,7 @@ import UpdateShop from "./UpdateShop";
 import UpdateEvent from "./UpdateEvent";
 import UpdateNewsCategory from "./UpdateNewsCategory";
 import UpdateTechnologies from "./UpdateTechnologies";
+import UpdateCourseStatus from "./UpdateCourseStatus";
 
 export {
   UpdateUser,
@@ -27,5 +28,6 @@ export {
   UpdateShop,
   UpdateEvent,
   UpdateNewsCategory,
-  UpdateTechnologies
+  UpdateTechnologies,
+  UpdateCourseStatus,
 };

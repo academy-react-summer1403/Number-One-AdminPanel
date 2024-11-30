@@ -60,6 +60,7 @@ const BlogCategoriesWrapper = () => {
   //   categoryId !== undefined
   // );
 
+  // Getting the desired item data
   const handleCategoryDetail = (Id) => {
     const detail = newsCategory.find((item) => item.id == Id);
     setCategoryDetails(detail);
@@ -85,7 +86,8 @@ const BlogCategoriesWrapper = () => {
   useEffect(() => {
     if (Query) handleWithOutDispatch(page);
   }, [Query]);
-
+  
+  // Empty data after closing the modal every time
   useEffect(() => {
     if (!showModal) setCategoryDetails(undefined);
   }, [showModal]);

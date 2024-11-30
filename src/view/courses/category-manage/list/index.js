@@ -2,12 +2,8 @@ import { Fragment, useEffect, useState } from "react";
 import {
   Button,
   Col,
-  DropdownItem,
-  DropdownMenu,
-  DropdownToggle,
   Row,
   Table,
-  UncontrolledDropdown,
 } from "reactstrap";
 import GeneralStatistics from "../../../../@core/components/generalStatistics";
 import { useQueryWithoutDependencies } from "../../../../utility/hooks/useCustomQuery";
@@ -25,15 +21,13 @@ import HeaderTable from "../../../../@core/components/header-table/HeaderTable";
 import { technologiesTableTitles } from "../../../../@core/constants/courses/DetailsTabs";
 import fallback from "../../../../assets/images/cards/Modren-Tech.jpg";
 import ImageFallBack from "../../../../@core/components/image-fallback";
-import { Edit, FileText, MoreVertical } from "react-feather";
+import { Edit} from "react-feather";
 import CustomPagination from "../../../../@core/components/pagination";
 import AddTechnologyModal from "../create";
 
 const CourseTechnologiesWrapper = () => {
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
-  console.log(showModal);
-
   const [variantState, setVariantState] = useState(undefined);
   const [categoryDetails, setCategoryDetails] = useState(undefined);
   // redux Params
@@ -51,6 +45,7 @@ const CourseTechnologiesWrapper = () => {
     GetCourseTechnologies
   );
 
+  // Getting the desired item data
   const handleCategoryDetail = (Id) => {
     const detail = CourseTechData.find((item) => item.id == Id);
     setCategoryDetails(detail);
@@ -78,6 +73,7 @@ const CourseTechnologiesWrapper = () => {
     if (Query) handleWithOutDispatch(page);
   }, [Query]);
 
+  // Empty data after closing the modal every time
   useEffect(() => {
     if (!showModal) setCategoryDetails(undefined);
   }, [showModal]);
