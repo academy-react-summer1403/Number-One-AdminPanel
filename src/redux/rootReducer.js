@@ -18,6 +18,8 @@ import { CommentList } from "../view/comments/store";
 import { BuildingList } from "../view/building/store";
 // ClassRome
 import ClassList from "../view/classrome/store";
+// Department
+import DepartmentList from "../view/department/store";
 
 const rootReducer = {
   navbar,
@@ -37,6 +39,7 @@ const rootReducer = {
   CreateEvent,
   BuildingList,
   ClassList,
+  DepartmentList,
 };
 
 export default rootReducer;

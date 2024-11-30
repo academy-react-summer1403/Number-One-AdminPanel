@@ -17,6 +17,7 @@ import AddReplayComment from "./AddReplayComment";
 import CreateEvents from "./CreateEvent";
 import CreateClassRome from "./CreateClass";
 import CreateNewBuilding from "./CreateBuilding";
+import CreateNewDepartment from "./CreateDepartment";
 
 export {
   AddUserAccess,
@@ -38,4 +39,5 @@ export {
   CreateEvents,
   CreateClassRome,
   CreateNewBuilding,
+  CreateNewDepartment,
 };

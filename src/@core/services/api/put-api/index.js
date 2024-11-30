@@ -13,6 +13,7 @@ import UpdateEvent from "./UpdateEvent";
 import ActiveDeActiveBuilding from "./ActiveDeActiveBuilding";
 import UpdateBuilding from "./UpdateBuilding";
 import UpdateClassRome from "./UpdateClassRome";
+import UpdateDepartment from "./UpdateDepartment";
 
 export {
   UpdateUser,
@@ -30,4 +31,5 @@ export {
   ActiveDeActiveBuilding,
   UpdateBuilding,
   UpdateClassRome,
+  UpdateDepartment,
 };

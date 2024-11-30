@@ -66,6 +66,12 @@ export default [
         icon: <Circle size={12} />,
         navLink: "/classRome",
       },
+      {
+        id: "department",
+        title: "لیست بخش ها",
+        icon: <Circle size={12} />,
+        navLink: "/department",
+      },
     ],
   },
   {

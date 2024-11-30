@@ -38,6 +38,8 @@ import GetBuildingList from "./GetBuildingList";
 import GetBuildingDetails from "./GetBuildingDetails";
 import GetClassRomeList from "./GetClassRomeList";
 import GetClassRomeDetail from "./GetClassRomeDetail";
+import GetDepartmentList from "./GetDepartmentList";
+import GetDepartmentDetails from "./GetDepartmentDetails";
 
 export {
   GetUserList,
@@ -80,4 +82,6 @@ export {
   GetBuildingDetails,
   GetClassRomeList,
   GetClassRomeDetail,
+  GetDepartmentList,
+  GetDepartmentDetails,
 };
