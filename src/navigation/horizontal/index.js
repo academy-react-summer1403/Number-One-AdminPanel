@@ -1,4 +1,15 @@
-import { Mail, Home, Users, Book, Circle, BookOpen, MessageSquare, ShoppingCart, ShoppingBag, Package } from "react-feather";
+import {
+  Mail,
+  Home,
+  Users,
+  Book,
+  Circle,
+  BookOpen,
+  MessageSquare,
+  ShoppingCart,
+  ShoppingBag,
+  Package,
+} from "react-feather";
 
 export default [
   {
@@ -60,6 +71,12 @@ export default [
         title: "مدیریت تکنولوژی دوره ها",
         icon: <Circle size={20} />,
         navLink: "/courseTechnologies",
+      },
+      {
+        id: "courseStatus",
+        title: "مدیریت وضعیت دوره ها",
+        icon: <Circle size={20} />,
+        navLink: "/courseStatus",
       },
     ],
   },

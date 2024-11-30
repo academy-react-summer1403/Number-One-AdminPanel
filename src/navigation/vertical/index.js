@@ -71,6 +71,12 @@ export default [
         icon: <Circle size={20} />,
         navLink: "/courseTechnologies",
       },
+      {
+        id: "courseStatus",
+        title: "مدیریت وضعیت دوره ها",
+        icon: <Circle size={20} />,
+        navLink: "/courseStatus",
+      },
     ],
   },
   {
