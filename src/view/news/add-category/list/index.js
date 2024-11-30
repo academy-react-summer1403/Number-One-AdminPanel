@@ -140,7 +140,7 @@ const BlogCategoriesWrapper = () => {
                     FilteredList.slice(itemOffset, endOffset)?.map(
                       (item, index) => {
                         return (
-                          <tr key={index} className="">
+                          <tr key={item.id} className="">
                             <td>
                               <ImageFallBack
                                 alt="img"
@@ -174,7 +174,7 @@ const BlogCategoriesWrapper = () => {
                                 </DropdownToggle>
                                 <DropdownMenu className="d-flex flex-column p-0">
                                   <DropdownItem
-                                    key={index}
+                                    // key={index}
                                     onClick={() => {
                                       setShowDetailsModal((old) => !old);
                                       setCategoryId(item.id)
@@ -184,7 +184,7 @@ const BlogCategoriesWrapper = () => {
                                     <FileText className="ms-50" size={15} />
                                   </DropdownItem>
                                   <DropdownItem
-                                    key={index}
+                                    // key={index}
                                     onClick={() => {
                                       setVariantState("update");
                                       handleCategoryDetail(item.id);
