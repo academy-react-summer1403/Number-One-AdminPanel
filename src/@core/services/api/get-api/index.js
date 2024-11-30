@@ -36,6 +36,7 @@ import GetProductCategoryDetails from "./GetProductCategoryDetails";
 import GetProductCategoryList from "./GetProductCategoryList";
 import GetCourseTechnologies from "./GetCourseTechnologies";
 import GetCoursesStatus from "./GetCoursesStatus";
+import GetCourseLevels from "./GetCourseLevels";
 export {
   GetUserList,
   UserDetails,
@@ -75,4 +76,5 @@ export {
   GetProductCategoryList,
   GetCourseTechnologies,
   GetCoursesStatus,
+  GetCourseLevels,
 };

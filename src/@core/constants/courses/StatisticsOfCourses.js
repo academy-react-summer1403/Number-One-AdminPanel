@@ -1,4 +1,4 @@
-import { Activity, Book, BookOpen, Clock, Sliders, X } from "react-feather";
+import { Activity, BarChart, Book, BookOpen, Clock, Sliders, X } from "react-feather";
 
 export const StatisticsOfCourses = (data) => {
     const Activists = data?.courseDtos?.filter((item) => item.isActive);
@@ -59,4 +59,16 @@ export const StatisticsOfCourses = (data) => {
     ];
   
     return courseStatusData;
+  };
+  export const StatisticsOfCourseLevel= (data) => {
+    const courseLevelData = [
+      {
+        title: "مجموع سطح های دوره",
+        color: "primary",
+        icon: BarChart  ,
+        renderStats: data?.length,
+      },
+    ];
+  
+    return courseLevelData;
   };
