@@ -16,6 +16,7 @@ import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 import { Camera } from "react-feather";
 import {
+  CreateCourseLevel,
   CreateCourseStatus,
 } from "../../../../@core/services/api/post-api";
 import { UpdateCourseStatus} from "../../../../@core/services/api/put-api";
@@ -40,7 +41,7 @@ const AddStatusModal = ({
   const { mutate: AddStatus } = useMutation({
     mutationKey: ["CREATE_STATUS"],
     mutationFn: (values) => {
-      CreateCourseStatus(values, refetch);
+      CreateCourseLevel(values, refetch);
     },
     onSuccess: () => setShowModal(!showModal),
   });

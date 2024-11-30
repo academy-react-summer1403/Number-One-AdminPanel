@@ -1,10 +1,9 @@
 import http from "../../interceptor";
 import toast from "react-hot-toast";
 
-const CreateCourseStatus = async (data, refetch) => {
-  // console.log(data) 
+const CreateCourseLevel = async (data, refetch) => {
   try {
-    const response = await http.post("/Status", data, {
+    const response = await http.post("/CourseLevel", data, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -15,8 +14,9 @@ const CreateCourseStatus = async (data, refetch) => {
     } else toast.error(response.message);
     return response;
   } catch (error) {
+    toast.error(error.response.data.ErrorMessage)
     throw new Error(error.response.data.ErrorMessage);
   }
 };
 
-export default CreateCourseStatus;
+export default CreateCourseLevel;

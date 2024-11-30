@@ -18,6 +18,7 @@ import CreateEvents from "./CreateEvent";
 import CreateNewsCategory from "./CreateNewsCategory";
 import CreateTechnologies from "./CreateTechnologies";
 import CreateCourseStatus from "./CreateCourseStatus";
+import CreateCourseLevel from "./CreateCourseLevel";
 
 export {
   AddUserAccess,
@@ -40,4 +41,5 @@ export {
   CreateNewsCategory,
   CreateTechnologies,
   CreateCourseStatus,
+  CreateCourseLevel,
 };
