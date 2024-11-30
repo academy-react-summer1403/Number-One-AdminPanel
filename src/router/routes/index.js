@@ -69,6 +69,9 @@ const ClassRome = lazy(() => import("../../pages/ClassRome"));
 // Department
 const Department = lazy(() => import("../../pages/Department"));
 
+// Term
+const Terms = lazy(() => import("../../pages/Terms"));
+
 // ** Merge Routes
 const Routes = [
   {
@@ -180,6 +183,11 @@ const Routes = [
   {
     path: "/department",
     element: <Department />,
+    // access: ["Teacher", "Administrator"],
+  },
+  {
+    path: "/terms",
+    element: <Terms />,
     // access: ["Teacher", "Administrator"],
   },
   {

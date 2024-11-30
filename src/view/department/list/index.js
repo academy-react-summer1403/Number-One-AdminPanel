@@ -12,7 +12,7 @@ import {
   GetDepartmentList,
 } from "../../../@core/services/api/get-api";
 import TableItems from "./TableItems";
-import HeaderTable from "../../../@core/components/table-list/HeaderTable";
+import { HeaderTable } from "../../../@core/components/table-list";
 import CustomPagination from "../../../@core/components/pagination";
 import EditDepartment from "./EditDepartment";
 import CreateDepartment from "./CreateDepartment";

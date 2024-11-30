@@ -20,6 +20,8 @@ import { BuildingList } from "../view/building/store";
 import ClassList from "../view/classrome/store";
 // Department
 import DepartmentList from "../view/department/store";
+// Term
+import TermList from "../view/term/store";
 
 const rootReducer = {
   navbar,
@@ -40,6 +42,7 @@ const rootReducer = {
   BuildingList,
   ClassList,
   DepartmentList,
+  TermList,
 };
 
 export default rootReducer;

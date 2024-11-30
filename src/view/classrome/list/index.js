@@ -14,7 +14,7 @@ import { handleData, handleQuery, handleRowsOfPage } from "../store";
 import headerTable from "../../../@core/constants/class-manage/HeaderTable";
 import TableItems from "./TableItems";
 import EditClass from "./EditClass";
-import HeaderTable from "../../../@core/components/table-list/HeaderTable";
+import { HeaderTable } from "../../../@core/components/table-list";
 import CreateClass from "./CreateClass";
 
 const ClassRomeWrapper = () => {

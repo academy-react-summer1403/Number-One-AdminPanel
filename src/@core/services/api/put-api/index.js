@@ -14,6 +14,7 @@ import ActiveDeActiveBuilding from "./ActiveDeActiveBuilding";
 import UpdateBuilding from "./UpdateBuilding";
 import UpdateClassRome from "./UpdateClassRome";
 import UpdateDepartment from "./UpdateDepartment";
+import UpdateTerm from "./UpdateTerm";
 
 export {
   UpdateUser,
@@ -32,4 +33,5 @@ export {
   UpdateBuilding,
   UpdateClassRome,
   UpdateDepartment,
+  UpdateTerm,
 };

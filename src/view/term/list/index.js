@@ -1,58 +1,46 @@
 import { Card, Col, Row, Table } from "reactstrap";
-import headerTable from "../../../@core/constants/building/HeaderTable";
-import CustomPagination from "../../../@core/components/pagination";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { handleRowsOfPage, handleData, handleQuery } from "../store";
+import headerTable from "../../../@core/constants/term-manage/HeaderTable";
 import {
-  GetBuildingDetails,
-  GetBuildingList,
+  GetTermDetails,
+  GetTermList,
 } from "../../../@core/services/api/get-api";
 import {
   useQueryWithDependencies,
   useQueryWithoutDependencies,
 } from "../../../utility/hooks/useCustomQuery";
 import TableItems from "./TableItems";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  handleData,
-  handlePageNumber,
-  handleQuery,
-  handleRowsOfPage,
-} from "../store/BuildingList";
-import { Fragment, useEffect, useState } from "react";
-import EditBuilding from "./EditBuilding";
-import CreateBuilding from "./CreateBuilding";
+import CustomPagination from "../../../@core/components/pagination";
+import EditTerm from "./EditTerm";
+import CreateTerm from "./CreateTerm";
 import { Reports, HeaderTable } from "../../../@core/components/table-list";
-import { BuildingReports } from "../../../@core/constants/building/Reports";
+import { TermReports } from "../../../@core/constants/term-manage/Reports";
 
-const BuildingWrapper = () => {
-  const params = useSelector((state) => state.BuildingList);
-  const dispatch = useDispatch();
+const TermsWrapper = () => {
+  const params = useSelector((state) => state.TermList);
   const [id, setId] = useState("");
-
-  const { data: details, isSuccess: detailSuccess } = useQueryWithDependencies(
-    "GET_BUILDING_DETAILS",
-    GetBuildingDetails,
-    id,
-    id
-  );
+  const dispatch = useDispatch();
 
   const {
-    data: buildings,
-    isSuccess,
+    data: terms,
+    isSuccess: termSuccess,
     refetch,
     isRefetching,
-  } = useQueryWithoutDependencies("GET_ALL_BUILDING", GetBuildingList);
+  } = useQueryWithoutDependencies("GET_TERMS", GetTermList);
 
   useEffect(() => {
-    if (isSuccess) {
-      dispatch(handleData(buildings));
+    if (termSuccess) {
+      dispatch(handleData(terms));
     }
-  }, [isSuccess, isRefetching]);
+  }, [termSuccess, isRefetching]);
 
   // Pagination
   const [itemOffset, setItemOffset] = useState(0);
   const endOffset = itemOffset + params.RowsOfPage;
   const handleMovePage = (page) => {
-    const newOffset = (page.selected * params.RowsOfPage) % buildings?.length;
+    const newOffset = (page.selected * params.RowsOfPage) % departments?.length;
     setItemOffset(newOffset);
   };
 
@@ -70,10 +58,13 @@ const BuildingWrapper = () => {
     dispatch(handleRowsOfPage(value));
   };
 
+  const { data: termDetail, isSuccess: detailSuccess } =
+    useQueryWithDependencies("GET_TERM_DETAILS", GetTermDetails, id, id);
+
   return (
     <div className="app-user-list">
       <Row>
-        <Reports reports={BuildingReports(isSuccess && buildings)} />
+        <Reports reports={TermReports(termSuccess && terms)} />
         <Col sm="12">
           <Card className="overflow-hidden">
             <div className="react-dataTable">
@@ -82,7 +73,7 @@ const BuildingWrapper = () => {
                 rowOfPage={params.RowsOfPage}
                 handleRowOfPage={handleRows}
                 handleSearch={handleQuery}
-                buttonText={"افزودن ساختمان"}
+                buttonText={"افزودن ترم"}
               />
               <Table hover>
                 <thead className="text-center">
@@ -99,9 +90,6 @@ const BuildingWrapper = () => {
                     (item, index) => (
                       <TableItems
                         key={index}
-                        id={item.id}
-                        refetch={refetch}
-                        status={item.active}
                         item={item}
                         toggleModal={toggleEditModal}
                         setId={setId}
@@ -112,20 +100,20 @@ const BuildingWrapper = () => {
               </Table>
             </div>
             <CustomPagination
-              total={buildings?.length}
+              total={terms?.length}
               current={params.PageNumber}
               rowsPerPage={params.RowsOfPage}
               handleClickFunc={handleMovePage}
             />
           </Card>
         </Col>
-        <EditBuilding
-          data={detailSuccess && details}
+        <EditTerm
+          data={detailSuccess && termDetail}
           refetch={refetch}
           isOpen={editModal}
           toggle={toggleEditModal}
         />
-        <CreateBuilding
+        <CreateTerm
           refetch={refetch}
           isOpen={createModal}
           toggle={toggleCreateModal}
@@ -135,4 +123,4 @@ const BuildingWrapper = () => {
   );
 };
 
-export default BuildingWrapper;
+export default TermsWrapper;

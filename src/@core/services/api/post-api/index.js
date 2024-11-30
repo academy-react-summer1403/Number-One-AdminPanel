@@ -18,6 +18,7 @@ import CreateEvents from "./CreateEvent";
 import CreateClassRome from "./CreateClass";
 import CreateNewBuilding from "./CreateBuilding";
 import CreateNewDepartment from "./CreateDepartment";
+import CreateNewTerm from "./CreateTerm";
 
 export {
   AddUserAccess,
@@ -40,4 +41,5 @@ export {
   CreateClassRome,
   CreateNewBuilding,
   CreateNewDepartment,
+  CreateNewTerm,
 };
