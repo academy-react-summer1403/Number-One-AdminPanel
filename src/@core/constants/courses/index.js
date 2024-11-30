@@ -10,6 +10,7 @@ import { CourseTableTitles } from "./DetailsTabs";
 import { PaymentCoursesTableTitles } from "./DetailsTabs";
 import { FirstLevelFields } from "./CreateCourse";
 import { secondLevelFields } from "./CreateCourse";
+import { StatisticsOfCourseStatus } from "./StatisticsOfCourses";
 
 export {
   PopularCoursesTitle,
@@ -24,4 +25,5 @@ export {
   PaymentCoursesTableTitles,
   FirstLevelFields,
   secondLevelFields,
+  StatisticsOfCourseStatus,
 };

@@ -1,4 +1,4 @@
-import { Activity, Book, BookOpen, Clock, X } from "react-feather";
+import { Activity, Book, BookOpen, Clock, Sliders, X } from "react-feather";
 
 export const StatisticsOfCourses = (data) => {
     const Activists = data?.courseDtos?.filter((item) => item.isActive);
@@ -46,4 +46,17 @@ export const StatisticsOfCourses = (data) => {
     ];
   
     return courseTechData;
+  };
+
+  export const StatisticsOfCourseStatus= (data) => {
+    const courseStatusData = [
+      {
+        title: "مجموع وضعیت ها",
+        color: "primary",
+        icon: Sliders ,
+        renderStats: data?.length,
+      },
+    ];
+  
+    return courseStatusData;
   };
