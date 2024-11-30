@@ -26,7 +26,7 @@ const LevelsList = createSlice({
       state.Query = action.payload;
       state.FilteredList = state.AllList?.filter(
         (item) =>
-          item.statusName.indexOf(action.payload) != -1 
+          item.levelName.indexOf(action.payload) != -1 
       );
     },
   },

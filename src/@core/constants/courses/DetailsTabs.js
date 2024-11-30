@@ -3,5 +3,6 @@ export const CourseTableTitles = ['نام دانشجو','نام دوره','وض�
 export const PaymentCoursesTableTitles = ['نام کاربر','نام دوره','وضعیت پرداخت','اقدام']
 export const technologiesTableTitles = ['','نام تکنولوژی','توضیحات تکنولوژی','اقدام']
 export const StatusTableTitles = ['','نام وضعیت','توضیحات وضعیت','اقدام']
+export const LevelsTableTitles = ['','نام سطح','توضیحات سطح','اقدام']
 
 
