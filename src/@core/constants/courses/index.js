@@ -1,5 +1,5 @@
 import PopularCoursesTitle from "./PopularCourses";
-import StatisticsOfCourses from "./StatisticsOfCourses";
+import { StatisticsOfCourses } from "./StatisticsOfCourses";
 import coursesSortOption from "./CoursesSortOptions";
 import CoursesInfo from "./CourseInfo";
 import EditCourseField from "./EditCourseField";
@@ -13,8 +13,8 @@ import { secondLevelFields } from "./CreateCourse";
 
 export {
   PopularCoursesTitle,
-  StatisticsOfCourses,
   coursesSortOption,
+  StatisticsOfCourses,
   CoursesInfo,
   EditCourseField,
   DetailsOfCourses,

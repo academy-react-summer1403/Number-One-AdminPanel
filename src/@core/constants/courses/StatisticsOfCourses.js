@@ -1,6 +1,6 @@
-import { Activity, Book, Clock, X } from "react-feather";
+import { Activity, Book, BookOpen, Clock, X } from "react-feather";
 
-const StatisticsOfCourses = (data) => {
+export const StatisticsOfCourses = (data) => {
     const Activists = data?.courseDtos?.filter((item) => item.isActive);
     const Expired = data?.courseDtos?.filter((item) => item.isExpire);
     const Deleted = data?.courseDtos?.filter((item) => item.isdelete);
@@ -34,4 +34,16 @@ const StatisticsOfCourses = (data) => {
     return CommentSummaryData;
   };
 
-  export default StatisticsOfCourses
+
+  export const StatisticsOfCourseTechnologies = (data) => {
+    const courseTechData = [
+      {
+        title: "مجموع دسته بندی ها  ",
+        color: "primary",
+        icon: BookOpen,
+        renderStats: data?.length,
+      },
+    ];
+  
+    return courseTechData;
+  };

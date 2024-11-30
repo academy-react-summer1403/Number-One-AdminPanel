@@ -34,6 +34,7 @@ import GetEventDetail from "./GetEventDetail";
 import GetAllEvents from "./GetAllEvents";
 import GetProductCategoryDetails from "./GetProductCategoryDetails";
 import GetProductCategoryList from "./GetProductCategoryList";
+import GetCourseTechnologies from "./GetCourseTechnologies";
 
 export {
   GetUserList,
@@ -72,4 +73,5 @@ export {
   GetAllEvents,
   GetProductCategoryDetails,
   GetProductCategoryList,
+  GetCourseTechnologies,
 };

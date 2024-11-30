@@ -1,7 +1,8 @@
+import CourseTechnologiesWrapper from "../view/courses/category-manage/list"
 
 const CourseTechnologies = () => {
   return (
-    <div>CourseTechnologies</div>
+    <CourseTechnologiesWrapper/>
   )
 }
 
