@@ -1,5 +1,6 @@
 import { Fragment, useEffect, useState } from "react";
 import {
+  Button,
   Col,
   DropdownItem,
   DropdownMenu,
@@ -26,9 +27,15 @@ import fallback from "../../../../assets/images/cards/Modren-Tech.jpg";
 import ImageFallBack from "../../../../@core/components/image-fallback";
 import { Edit, FileText, MoreVertical } from "react-feather";
 import CustomPagination from "../../../../@core/components/pagination";
+import AddTechnologyModal from "../create";
 
 const CourseTechnologiesWrapper = () => {
   const dispatch = useDispatch();
+  const [showModal, setShowModal] = useState(false);
+  console.log(showModal);
+
+  const [variantState, setVariantState] = useState(undefined);
+  const [categoryDetails, setCategoryDetails] = useState(undefined);
   // redux Params
   const { PageNumber, RowsOfPage, FilteredList, AllList, Query } = useSelector(
     (state) => state.TechnologiesList
@@ -37,17 +44,18 @@ const CourseTechnologiesWrapper = () => {
   const {
     data: CourseTechData,
     isSuccess: successGetTach,
+    isRefetching,
     refetch,
   } = useQueryWithoutDependencies(
     "GET_COURSE_TECHNOLOGIES",
     GetCourseTechnologies
   );
 
-  useEffect(() => {
-    if (successGetTach) {
-      dispatch(handleAllList(CourseTechData));
-    }
-  }, [successGetTach]);
+  const handleCategoryDetail = (Id) => {
+    const detail = CourseTechData.find((item) => item.id == Id);
+    setCategoryDetails(detail);
+    setShowModal((old) => !old);
+  };
 
   // Pagination
   const [itemOffset, setItemOffset] = useState(0);
@@ -59,6 +67,21 @@ const CourseTechnologiesWrapper = () => {
     setItemOffset(newOffset);
   };
 
+  // Use Effects
+  useEffect(() => {
+    if (successGetTach) {
+      dispatch(handleAllList(CourseTechData));
+    }
+  }, [successGetTach, isRefetching]);
+
+  useEffect(() => {
+    if (Query) handleWithOutDispatch(page);
+  }, [Query]);
+
+  useEffect(() => {
+    if (!showModal) setCategoryDetails(undefined);
+  }, [showModal]);
+
   return (
     <Fragment>
       <Row>
@@ -68,6 +91,20 @@ const CourseTechnologiesWrapper = () => {
             statisticsData={StatisticsOfCourseTechnologies}
             resize="12"
           />
+          <div className="d-flex justify-content-end">
+            <Button
+              className=" p-0 py-1 text-center"
+              style={{ width: "100%" }}
+              color="primary"
+              onClick={() => {
+                setVariantState("create");
+                setCategoryDetails("test");
+                setShowModal((old) => !old);
+              }}
+            >
+              <span className="mx-auto">افزودن تکنولوژی</span>
+            </Button>
+          </div>
         </Col>
         <Col md={9} xs={12}>
           <div>
@@ -117,38 +154,15 @@ const CourseTechnologiesWrapper = () => {
                               {item.describe}
                             </td>
                             <td className="text-center">
-                              <UncontrolledDropdown direction="start">
-                                <DropdownToggle
-                                  className="icon-btn hide-arrow"
-                                  color="transparent"
-                                  size="sm"
-                                  caret
-                                >
-                                  <MoreVertical size={15} />
-                                </DropdownToggle>
-                                <DropdownMenu className="d-flex flex-column p-0">
-                                  <DropdownItem
-                                    // key={index}
-                                    onClick={() => {
-                                      // setShowDetailsModal((old) => !old);
-                                      // setCategoryId(item.id)
-                                    }}
-                                  >
-                                    <span className="align-middle">جزئیات</span>
-                                    <FileText className="ms-50" size={15} />
-                                  </DropdownItem>
-                                  <DropdownItem
-                                    // key={index}
-                                    onClick={() => {
-                                      // setVariantState("update");
-                                      // handleCategoryDetail(item.id);
-                                    }}
-                                  >
-                                    <span className="align-middle">ویرایش</span>
-                                    <Edit className="ms-50" size={15} />
-                                  </DropdownItem>
-                                </DropdownMenu>
-                              </UncontrolledDropdown>
+                              <td
+                                onClick={() => {
+                                  setVariantState("update");
+                                  handleCategoryDetail(item.id);
+                                }}
+                              >
+                                <span className="align-middle">ویرایش</span>
+                                <Edit className="ms-50" size={15} />
+                              </td>
                             </td>
                           </tr>
                         );
@@ -169,6 +183,15 @@ const CourseTechnologiesWrapper = () => {
                 </tbody>
               </Table>
             </div>
+            {categoryDetails && (
+              <AddTechnologyModal
+                showModal={showModal}
+                setShowModal={setShowModal}
+                refetch={refetch}
+                variantState={variantState}
+                categoryDetails={categoryDetails}
+              />
+            )}
             <CustomPagination
               total={FilteredList?.length}
               current={PageNumber}

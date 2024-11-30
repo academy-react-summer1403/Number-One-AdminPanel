@@ -59,5 +59,9 @@ export const StatisticsOfNewsCategories = (data) => {
   return newsCategoryData;
 };
 
-
-export const categoryNewsTableTitles = ['','نام دسته بندی','عنوان گوگل','اقدام']
+export const categoryNewsTableTitles = [
+  "",
+  "نام دسته بندی",
+  "عنوان گوگل",
+  "اقدام",
+];

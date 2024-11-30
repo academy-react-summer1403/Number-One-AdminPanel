@@ -45,7 +45,6 @@ const BlogCategoriesWrapper = () => {
     (state) => state.BlogCategoryList
   );
 
-  // console.log(FilteredList);
   // getting data from Api with use Query
   const {
     data: newsCategory,

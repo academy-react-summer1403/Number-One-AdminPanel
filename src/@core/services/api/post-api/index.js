@@ -16,6 +16,7 @@ import GetReplayComments from "../get-api/GetReplayComments";
 import AddReplayComment from "./AddReplayComment";
 import CreateEvents from "./CreateEvent";
 import CreateNewsCategory from "./CreateNewsCategory";
+import CreateTechnologies from "./CreateTechnologies";
 
 export {
   AddUserAccess,
@@ -36,4 +37,5 @@ export {
   AddReplayComment,
   CreateEvents,
   CreateNewsCategory,
+  CreateTechnologies,
 };
