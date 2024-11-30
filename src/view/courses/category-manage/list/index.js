@@ -24,6 +24,7 @@ const CourseTechnologiesWrapper = () => {
             resize="12"
           />
         </Col>
+        {/* TechnologiesList */}
       </Row>
     </Fragment>
   );

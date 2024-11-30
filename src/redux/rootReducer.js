@@ -14,6 +14,7 @@ import { EventsList, CreateEvent } from "../view/event/store";
 import { ShopList , CreateShopsSlice } from "../view/shops/store";
 import { CommentList } from "../view/comments/store";
 import { BlogCategoryList } from "../view/news/add-category/store";
+import { TechnologiesList } from "../view/courses/category-manage/store";
 
 const rootReducer = {
   navbar,
@@ -32,6 +33,7 @@ const rootReducer = {
   EventsList,
   CreateEvent,
   BlogCategoryList,
+  TechnologiesList,
 };
 
 export default rootReducer;
