@@ -38,7 +38,7 @@ export const StatisticsOfCourses = (data) => {
   export const StatisticsOfCourseTechnologies = (data) => {
     const courseTechData = [
       {
-        title: "مجموع دسته بندی ها  ",
+        title: "مجموع تکنولوژی ها  ",
         color: "primary",
         icon: BookOpen,
         renderStats: data?.length,
