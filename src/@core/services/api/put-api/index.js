@@ -14,6 +14,7 @@ import UpdateNewsCategory from "./UpdateNewsCategory";
 import UpdateTechnologies from "./UpdateTechnologies";
 import UpdateCourseStatus from "./UpdateCourseStatus";
 import UpdateCourseLevel from "./UpdateCourseLevel";
+import UpdateShopCategory from "./UpdateShopCategory";
 
 export {
   UpdateUser,
@@ -32,4 +33,5 @@ export {
   UpdateTechnologies,
   UpdateCourseStatus,
   UpdateCourseLevel,
+  UpdateShopCategory,
 };

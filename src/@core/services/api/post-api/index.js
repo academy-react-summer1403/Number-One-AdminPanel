@@ -19,6 +19,7 @@ import CreateNewsCategory from "./CreateNewsCategory";
 import CreateTechnologies from "./CreateTechnologies";
 import CreateCourseStatus from "./CreateCourseStatus";
 import CreateCourseLevel from "./CreateCourseLevel";
+import CreateShopCategory from "./CreateShopCategory";
 
 export {
   AddUserAccess,
@@ -42,4 +43,5 @@ export {
   CreateTechnologies,
   CreateCourseStatus,
   CreateCourseLevel,
+  CreateShopCategory,
 };
