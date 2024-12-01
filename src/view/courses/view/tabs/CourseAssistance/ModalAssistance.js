@@ -141,7 +141,7 @@ const ModalAssistance = ({
         <ModalHeader className="bg-transparent" toggle={toggle}></ModalHeader>
         <ModalBody className="px-sm-5 mx-50 pb-5">
           <div className="text-center mb-2">
-            <h1 className="mb-1">ویرایش منتور</h1>
+            <h1 className="mb-1">{section === "create" ? "ساخت منتور" : "ویرایش منتور"}</h1>
           </div>
           <form onSubmit={formik.handleSubmit}>
             <Row className="gy-1 pt-75">
@@ -179,7 +179,7 @@ const ModalAssistance = ({
               </Col>
               <Col xs={12} className="text-center mt-2 pt-50">
                 <Button type="submit" className="me-1" color="primary">
-                  ویرایش
+                  {section === "create" ? "ساختن" : "ویرایش"}
                 </Button>
                 <Button type="reset" color="secondary" outline onClick={toggle}>
                   لغو
