@@ -140,18 +140,6 @@ export default [
     ],
   },
   {
-    id: "buildingList",
-    title: "ساختمان ها",
-    icon: <Globe size={20} />,
-    navLink: "/buildings",
-  },
-  {
-    id: "commentsListPage",
-    title: "مدیریت کامنت ها",
-    icon: <MessageSquare size={20} />,
-    navLink: "/comments",
-  },
-  {
     id: "support",
     title: "پشتیبانی",
     icon: <Headphones size={20} />,
@@ -169,5 +157,17 @@ export default [
         navLink: "/supportTeacher",
       },
     ],
+  },
+  {
+    id: "buildingList",
+    title: "ساختمان ها",
+    icon: <Globe size={20} />,
+    navLink: "/buildings",
+  },
+  {
+    id: "commentsListPage",
+    title: "مدیریت کامنت ها",
+    icon: <MessageSquare size={20} />,
+    navLink: "/comments",
   },
 ];
