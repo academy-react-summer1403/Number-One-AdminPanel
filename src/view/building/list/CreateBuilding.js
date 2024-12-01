@@ -126,7 +126,6 @@ const CreateBuilding = ({ isOpen, toggle, refetch }) => {
                 </Button>
                 <Button
                   onClick={toggleLocationModal}
-                  type="submit"
                   className="me-1"
                   color="warning"
                 >
