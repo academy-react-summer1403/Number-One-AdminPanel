@@ -6,6 +6,7 @@ const navItems = [
     { id: "3", icon: User, text: "کاربران" },
     { id: "4", icon: Users, text: "گروه ها" },
     { id: "5", icon: DollarSign, text: "پرداختی ها" },
+    { id: "6", icon: User, text: "منتور ها" },
   ];
 
   export default navItems

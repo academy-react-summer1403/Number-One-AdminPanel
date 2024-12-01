@@ -16,7 +16,7 @@ import {
 import Tabs from "./Tabs";
 import ProductsHeader from "../../../@core/components/items-list/ProductsHeader";
 import {
-  handlePageNumber,
+  handleCoursePageNumber,
   handleQueryCourse,
   handleRowsOfPage,
 } from "../store/CourseList";
@@ -47,7 +47,7 @@ const Courses = () => {
   );
   // console.log(DataWithoutDependencies)
   const handlePagination = (page) => {
-    dispatch(handlePageNumber(page.selected + 1));
+    dispatch(handleCoursePageNumber(page.selected + 1));
   };
 
   const toggleTab = (tab) => {

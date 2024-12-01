@@ -44,6 +44,8 @@ import GetTermList from "./GetTermList";
 import GetTermDetails from "./GetTermDetails";
 import GetUserChatInAdmin from "./GetUserChatInAdmin";
 import GetUserChatInTeacher from "./GetUserChatInTeacher";
+import GetCourseAssistance from "./GetCourseAssistance";
+import GetCourseAssistanceDetails from "./GetCourseAssistanceDetails";
 
 export {
   GetUserList,
@@ -92,4 +94,6 @@ export {
   GetTermDetails,
   GetUserChatInAdmin,
   GetUserChatInTeacher,
+  GetCourseAssistance,
+  GetCourseAssistanceDetails,
 };

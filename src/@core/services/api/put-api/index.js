@@ -17,6 +17,7 @@ import UpdateDepartment from "./UpdateDepartment";
 import UpdateTerm from "./UpdateTerm";
 import AddAdminMessage from "./AddAdminMessage";
 import AddTeacherMessage from "./AddTeacherMessage";
+import UpdateCourseAssistance from "./UpdateCourseAssistance";
 
 export {
   UpdateUser,
@@ -38,4 +39,5 @@ export {
   UpdateTerm,
   AddAdminMessage,
   AddTeacherMessage,
+  UpdateCourseAssistance,
 };

@@ -6,7 +6,6 @@ import {
   Card,
   CardBody,
   CardHeader,
-  CardText,
   Col,
   Nav,
   NavItem,
@@ -15,9 +14,6 @@ import {
   TabContent,
   TabPane,
 } from "reactstrap";
-
-// ** Icons Imports
-import { CreditCard, FileText, Lock, User, Users } from "react-feather";
 
 // ** User Components
 // import CoursesGroups from "../courseGroups/TableGr";
@@ -32,6 +28,7 @@ import CourseCom from "./tabs/Comment";
 import CourseUsers from "./tabs/UsersCourses";
 import CoursesGroups from "./tabs/GroupsCourses";
 import Payments from "./tabs/payments";
+import CourseAssistance from "./tabs/CourseAssistance";
 
 const UserTabs = ({
   active,
@@ -95,12 +92,10 @@ const UserTabs = ({
             <Col sm={12}>
               <Card>
                 <CardHeader>
-                <div className="divider-text fs-2">جزئیات</div>
+                  <div className="divider-text fs-2">جزئیات</div>
                 </CardHeader>
                 <CardBody>
-                  <HandleIdentityEditorJs
-                      desc={data?.describe}
-                    />
+                  <HandleIdentityEditorJs desc={data?.describe} />
                 </CardBody>
               </Card>
             </Col>
@@ -118,13 +113,13 @@ const UserTabs = ({
           />
         </TabPane>
         <TabPane tabId="4">
-          <CoursesGroups
-            groupData={groupData}
-            refetchGroup={refetchGroup}
-          />
+          <CoursesGroups groupData={groupData} refetchGroup={refetchGroup} />
         </TabPane>
         <TabPane tabId="5">
           <Payments />
+        </TabPane>
+        <TabPane tabId="6">
+          <CourseAssistance id={data?.courseId} />
         </TabPane>
       </TabContent>
     </Fragment>
