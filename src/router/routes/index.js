@@ -62,6 +62,8 @@ const EventView = lazy(() => import("../../pages/EventDetails"));
 const Shops = lazy(() => import("../../pages/Shops"));
 const CreateShop = lazy(() => import("../../pages/CreateShop"));
 const ShopView = lazy(() => import("../../pages/ShopView"));
+const ShopCategories = lazy(() => import("../../pages/ShopCategories"));
+
 // comments
 const Comments = lazy(() => import("../../pages/Comments"));
 
@@ -165,6 +167,13 @@ const Routes = [
   {
     path: "/createShop",
     element: <CreateShop />,
+  },
+  {
+    path: "/shopCategories",
+    element: <ShopCategories />,
+    // access: ["Teacher", "Administrator"],
+  },
+  {
     path: "/events",
     element: <Events />,
   },

@@ -116,6 +116,12 @@ export default [
         icon: <Circle size={12} />,
         navLink: "/createShop",
       },
+      {
+        id: "shopCategories",
+        title: "مدیریت دسته بندی فروشگاه",
+        icon: <Circle size={12} />,
+        navLink: "/shopCategories",
+      },
     ],
   },
   {
