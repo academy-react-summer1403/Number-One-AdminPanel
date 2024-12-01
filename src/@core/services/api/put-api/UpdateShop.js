@@ -3,7 +3,7 @@ import http from "../../interceptor";
 import axios from "axios";
 
 const UpdateShop = async (id, values,refetch) => {
-  // console.log(id,values)
+  console.log(id,values)
   try {
     const response = await axios.put(
       `https://6653aa591c6af63f46754aa6.mockapi.io//users/${id}`,
