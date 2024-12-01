@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Button, Col, Row, Table } from "reactstrap";
 import GeneralStatistics from "../../../../@core/components/generalStatistics";
 import {
@@ -64,6 +64,12 @@ const ShopCategoriesWrapper = () => {
     const newOffset = (page.selected * RowsOfPage) % shopCategoriesList.length;
     setItemOffset(newOffset);
   };
+
+     // Empty data after closing the modal every time
+     useEffect(() => {
+      if (!showModal) setCategoryDetails(undefined);
+    }, [showModal]);
+  
 
   return (
     <Fragment>

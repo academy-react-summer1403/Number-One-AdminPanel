@@ -20,6 +20,7 @@ import CreateTechnologies from "./CreateTechnologies";
 import CreateCourseStatus from "./CreateCourseStatus";
 import CreateCourseLevel from "./CreateCourseLevel";
 import CreateShopCategory from "./CreateShopCategory";
+import CreateProductCategory from "./CreateProductCategory";
 
 export {
   AddUserAccess,
@@ -44,4 +45,5 @@ export {
   CreateCourseStatus,
   CreateCourseLevel,
   CreateShopCategory,
+  CreateProductCategory,
 };

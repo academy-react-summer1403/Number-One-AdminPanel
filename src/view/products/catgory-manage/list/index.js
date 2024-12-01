@@ -1,5 +1,5 @@
-import { Fragment, useState } from "react";
-import { Col, Row, Table } from "reactstrap";
+import { Fragment, useEffect, useState } from "react";
+import { Button, Col, Row, Table } from "reactstrap";
 import GeneralStatistics from "../../../../@core/components/generalStatistics";
 import {
   useQueryWithDependencies,
@@ -21,9 +21,13 @@ import { useSelector } from "react-redux";
 import { Edit } from "react-feather";
 import CustomPagination from "../../../../@core/components/pagination";
 import Img from "../../../../assets/images/cards/Product.jpg";
+import AddProductCategoryModal from "../create";
 
 
 const ProductCategoryWrapper = () => {
+    const [showModal, setShowModal] = useState(false);
+    const [variantState, setVariantState] = useState(undefined);
+    const [categoryDetails, setCategoryDetails] = useState(undefined);
   // redux Params
   const categoriesParams = useSelector((state) => state.ProductCategoryList);
   const { PageNumber, RowsOfPage, Query } = useSelector(
@@ -46,6 +50,13 @@ const ProductCategoryWrapper = () => {
     categoriesParams
   );
 
+  // Getting the desired item data
+  const handleStatusDetail = (Id) => {
+    const detail = productCategoriesList.find((item) => item.id == Id);
+    setCategoryDetails(detail);
+    setShowModal((old) => !old);
+  };
+
   // Pagination
   const [itemOffset, setItemOffset] = useState(0);
   const endOffset = itemOffset + RowsOfPage;
@@ -56,6 +67,11 @@ const ProductCategoryWrapper = () => {
     setItemOffset(newOffset);
   };
 
+   // Empty data after closing the modal every time
+   useEffect(() => {
+    if (!showModal) setCategoryDetails(undefined);
+  }, [showModal]);
+
   return (
     <Fragment>
       <Row>
@@ -65,6 +81,20 @@ const ProductCategoryWrapper = () => {
             statisticsData={StatisticsOfProductCategory}
             resize="12"
           />
+           <div className="d-flex justify-content-end">
+            <Button
+              className=" p-0 py-1 text-center"
+              style={{ width: "100%" }}
+              color="primary"
+              onClick={() => {
+                setVariantState("create");
+                setCategoryDetails("test");
+                setShowModal((old) => !old);
+              }}
+            >
+              <span className="mx-auto">افزودن دسته بندی</span>
+            </Button>
+          </div>
         </Col>
         <Col md={9} xs={12}>
           <div>
@@ -115,8 +145,8 @@ const ProductCategoryWrapper = () => {
                             <td
                               className="text-center"
                               onClick={() => {
-                                // setVariantState("update");
-                                // handleStatusDetail(item.id);
+                                setVariantState("update");
+                                handleStatusDetail(item.id);
                               }}
                             >
                               <span className="align-middle">ویرایش</span>
@@ -140,6 +170,15 @@ const ProductCategoryWrapper = () => {
                 </tbody>
               </Table>
             </div>
+            {categoryDetails && (
+              <AddProductCategoryModal
+                showModal={showModal}
+                setShowModal={setShowModal}
+                refetch={refetch}
+                variantState={variantState}
+                categoryDetails={categoryDetails}
+              />
+            )}
             <CustomPagination
               total={productCategoriesList?.length}
               current={PageNumber}
