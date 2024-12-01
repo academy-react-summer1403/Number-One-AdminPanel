@@ -1,16 +1,24 @@
-import { Fragment } from "react";
-import { Col, Row } from "reactstrap";
+import { Fragment, useState } from "react";
+import { Col, Row, Table } from "reactstrap";
 import GeneralStatistics from "../../../../@core/components/generalStatistics";
-import { useQueryWithDependencies, useQueryWithoutDependencies } from "../../../../utility/hooks/useCustomQuery";
+import {
+  useQueryWithDependencies,
+  useQueryWithoutDependencies,
+} from "../../../../utility/hooks/useCustomQuery";
 import {
   GetShopCategories,
   GetShopCategoriesList,
 } from "../../../../@core/services/api/get-api";
-import { StatisticsOfShopCategory } from "../../../../@core/constants/shops/ShopCategories";
+import { shopCategoriesTableTitles, StatisticsOfShopCategory } from "../../../../@core/constants/shops/ShopCategories";
 import ListHeader from "../../../../@core/components/products-list/ListHeader";
 import ListSearchbar from "../../../../@core/components/products-list/ListSearchbar";
 import { useSelector } from "react-redux";
 import { handleQuery, handleRowsOfPage } from "../store/ShopCategoryList";
+import HeaderTable from "../../../../@core/components/header-table/HeaderTable";
+import Img from "../../../../assets/images/cards/shop.png";
+import { Edit } from "react-feather";
+import CustomPagination from "../../../../@core/components/pagination";
+
 
 const ShopCategoriesWrapper = () => {
   // redux Params
@@ -34,10 +42,19 @@ const ShopCategoriesWrapper = () => {
     "GET_SHOP_CATEGORIES_LIST",
     GetShopCategoriesList,
     categoriesParams,
-    categoriesParams,
+    categoriesParams
   );
   // console.log(categoriesParams)
   // console.log(shopCategoriesList)
+  // Pagination
+  const [itemOffset, setItemOffset] = useState(0);
+  const endOffset = itemOffset + RowsOfPage;
+  const [page, setPage] = useState({ selected: 0 });
+  const handleWithOutDispatch = (page) => {
+    setPage(page);
+    const newOffset = (page.selected * RowsOfPage) % shopCategoriesList.length;
+    setItemOffset(newOffset);
+  };
 
   return (
     <Fragment>
@@ -66,6 +83,67 @@ const ShopCategoriesWrapper = () => {
                 />
               </Col>
             </Row>
+            <div style={{ overflowX: "auto" }}>
+              <Table hover style={{ overflowX: "auto" }}>
+                <HeaderTable titles={shopCategoriesTableTitles} />
+                <tbody style={{ overflowX: "auto" }}>
+                  {shopCategoriesList && shopCategoriesList?.length > 0 ? (
+                    shopCategoriesList.slice(itemOffset, endOffset)?.map((item) => {
+                      return (
+                        <tr key={item.id}>
+                          <td>
+                            <img
+                              alt="img"
+                              src={Img}
+                              style={{ height: "30px" }}
+                              className="rounded-1"
+                            />
+                          </td>
+                          <td>{item.categoryName}</td>
+                          <td
+                            style={{
+                              maxWidth: "200px",
+                              whiteSpace: "nowrap",
+                              overflow: "hidden",
+                              textOverflow: "ellipsis",
+                            }}
+                          >
+                            {item.describe}
+                          </td>
+                          <td
+                            className="text-center"
+                            onClick={() => {
+                              // setVariantState("update");
+                              // handleStatusDetail(item.id);
+                            }}
+                          >
+                            <span className="align-middle">ویرایش</span>
+                            <Edit className="ms-50" size={15} />
+                          </td>
+                        </tr>
+                      );
+                    })
+                  ) : (
+                    <h6
+                      className="section-label fs-6"
+                      style={{
+                        textAlign: "center",
+                        marginTop: "200px",
+                        marginBottom: "200px",
+                      }}
+                    >
+                        دسته بندی وجود ندارد
+                    </h6>
+                  )}
+                </tbody>
+              </Table>
+            </div>
+            <CustomPagination
+              total={shopCategoriesList?.length}
+              current={PageNumber}
+              rowsPerPage={RowsOfPage}
+              handleClickFunc={handleWithOutDispatch}
+            />
           </div>
         </Col>
       </Row>

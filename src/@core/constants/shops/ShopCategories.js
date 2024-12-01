@@ -12,3 +12,6 @@ export const StatisticsOfShopCategory = (data) => {
 
   return shopCategoryData;
 };
+
+export const shopCategoriesTableTitles = ['','نام دسته یندی','توضیحات دسته بندی','اقدام']
+
