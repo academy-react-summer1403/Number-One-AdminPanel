@@ -15,6 +15,8 @@ import UpdateBuilding from "./UpdateBuilding";
 import UpdateClassRome from "./UpdateClassRome";
 import UpdateDepartment from "./UpdateDepartment";
 import UpdateTerm from "./UpdateTerm";
+import AddAdminMessage from "./AddAdminMessage";
+import AddTeacherMessage from "./AddTeacherMessage";
 
 export {
   UpdateUser,
@@ -34,4 +36,6 @@ export {
   UpdateClassRome,
   UpdateDepartment,
   UpdateTerm,
+  AddAdminMessage,
+  AddTeacherMessage,
 };

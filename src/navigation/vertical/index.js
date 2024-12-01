@@ -9,6 +9,7 @@ import {
   Users,
   Package,
   Globe,
+  Headphones,
 } from "react-feather";
 
 export default [
@@ -139,22 +140,34 @@ export default [
     ],
   },
   {
-    id: "building",
+    id: "buildingList",
     title: "ساختمان ها",
     icon: <Globe size={20} />,
-    children: [
-      {
-        id: "buildingList",
-        title: "لیست ساختمان ها",
-        icon: <Circle size={12} />,
-        navLink: "/buildings",
-      },
-    ],
+    navLink: "/buildings",
   },
   {
     id: "commentsListPage",
     title: "مدیریت کامنت ها",
     icon: <MessageSquare size={20} />,
     navLink: "/comments",
+  },
+  {
+    id: "support",
+    title: "پشتیبانی",
+    icon: <Headphones size={20} />,
+    children: [
+      {
+        id: "supportAdmin",
+        title: "ادمین ها",
+        icon: <Circle size={12} />,
+        navLink: "/supportAdmin",
+      },
+      {
+        id: "supportTeacher",
+        title: "اساتید",
+        icon: <Circle size={12} />,
+        navLink: "/supportTeacher",
+      },
+    ],
   },
 ];

@@ -22,6 +22,8 @@ import ClassList from "../view/classrome/store";
 import DepartmentList from "../view/department/store";
 // Term
 import TermList from "../view/term/store";
+// Support
+import SupportSlice from "../view/support/store";
 
 const rootReducer = {
   navbar,
@@ -43,6 +45,7 @@ const rootReducer = {
   ClassList,
   DepartmentList,
   TermList,
+  SupportSlice,
 };
 
 export default rootReducer;
