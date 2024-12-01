@@ -1,7 +1,8 @@
+import ProductCategoryWrapper from "../view/products/catgory-manage/list"
 
 const ProductCategories = () => {
   return (
-    <div>ProductCategories</div>
+    <ProductCategoryWrapper/>
   )
 }
 
