@@ -86,25 +86,6 @@ export default [
     ],
   },
   {
-    id: "productsManagement",
-    title: "مدیریت محصولات",
-    icon: <ShoppingCart size={20} />,
-    children: [
-      {
-        id: "productList",
-        title: "لیست محصولات",
-        icon: <Circle size={12} />,
-        navLink: "/products",
-      },
-      {
-        id: "Createproduct",
-        title: "افزودن محصول ",
-        icon: <Circle size={12} />,
-        navLink: "/createProducts",
-      },
-    ],
-  },
-  {
     id: "shopPage",
     title: "مدیریت فروشگاه ها",
     icon: <ShoppingBag size={20} />,
@@ -127,10 +108,33 @@ export default [
         icon: <Circle size={12} />,
         navLink: "/shopCategories",
       },
-      
     ],
   },
-
+  {
+    id: "productsManagement",
+    title: "مدیریت محصولات",
+    icon: <ShoppingCart size={20} />,
+    children: [
+      {
+        id: "productList",
+        title: "لیست محصولات",
+        icon: <Circle size={12} />,
+        navLink: "/products",
+      },
+      {
+        id: "Createproduct",
+        title: "افزودن محصول ",
+        icon: <Circle size={12} />,
+        navLink: "/createProducts",
+      },
+      {
+        id: "productCategories",
+        title: "دسته بندی محصول ",
+        icon: <Circle size={12} />,
+        navLink: "/productCategories",
+      },
+    ],
+  },
   {
     id: "eventManagement",
     title: "مدیریت ایونت ها",

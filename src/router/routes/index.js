@@ -53,6 +53,8 @@ const CourseLevels = lazy(() => import("../../pages/CourseLevels"));
 const Products = lazy(() => import("../../pages/Products"));
 const CreateProduct = lazy(() => import("../../pages/CreateProduct"));
 const ProductsView = lazy(() => import("../../pages/ProductsView"));
+const ProductCategories = lazy(() => import("../../pages/ProductCategories"));
+
 // Events
 const Events = lazy(() => import("../../pages/Events"));
 const CreateEvent = lazy(() => import("../../pages/CreateEvent"));
@@ -154,6 +156,13 @@ const Routes = [
     element: <CreateProduct />,
     // access: ["Teacher", "Administrator"],
   },
+  {
+    path: "/productCategories",
+    element: <ProductCategories />,
+    // access: ["Teacher", "Administrator"],
+  },
+
+  
   {
     path: "/shops",
     element: <Shops />,
