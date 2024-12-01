@@ -8,6 +8,7 @@ import {
   ShoppingCart,
   Users,
   Package,
+  Settings,
 } from "react-feather";
 
 export default [
@@ -159,5 +160,11 @@ export default [
     title: "مدیریت کامنت ها",
     icon: <MessageSquare size={20} />,
     navLink: "/comments",
+  },
+  {
+    id: "SiteSetting",
+    title: "تنظیمات سایت",
+    icon: <Settings size={20} />,
+    navLink: "/SiteSetting",
   },
 ];

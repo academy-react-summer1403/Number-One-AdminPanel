@@ -69,6 +69,9 @@ const ShopCategories = lazy(() => import("../../pages/ShopCategories"));
 // comments
 const Comments = lazy(() => import("../../pages/Comments"));
 
+// SiteSetting
+const SiteSetting = lazy(() => import("../../pages/SiteSetting"));
+
 // ** Merge Routes
 const Routes = [
   {
@@ -140,7 +143,7 @@ const Routes = [
     element: <CourseLevels />,
     // access: ["Administrator"],
   },
-  
+
   {
     path: "/products",
     element: <Products />,
@@ -162,7 +165,6 @@ const Routes = [
     // access: ["Teacher", "Administrator"],
   },
 
-  
   {
     path: "/shops",
     element: <Shops />,
@@ -199,6 +201,11 @@ const Routes = [
   {
     path: "/comments",
     element: <Comments />,
+    // access: ["Teacher", "Administrator"],
+  },
+  {
+    path: "/SiteSetting",
+    element: <SiteSetting />,
     // access: ["Teacher", "Administrator"],
   },
   {
