@@ -16,6 +16,7 @@ import UpdateCourseStatus from "./UpdateCourseStatus";
 import UpdateCourseLevel from "./UpdateCourseLevel";
 import UpdateShopCategory from "./UpdateShopCategory";
 import UpdateProductCategory from "./UpdateProductCategory";
+import UpdateSocialGroup from "./UpdateSocialGroup";
 
 export {
   UpdateUser,
@@ -36,4 +37,5 @@ export {
   UpdateCourseLevel,
   UpdateShopCategory,
   UpdateProductCategory,
+  UpdateSocialGroup,
 };

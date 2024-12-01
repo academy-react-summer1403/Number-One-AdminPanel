@@ -32,6 +32,7 @@ import CourseCom from "./tabs/Comment";
 import CourseUsers from "./tabs/UsersCourses";
 import CoursesGroups from "./tabs/GroupsCourses";
 import Payments from "./tabs/payments";
+import SocialGroups from "./tabs/SocialGroups";
 
 const UserTabs = ({
   active,
@@ -125,6 +126,9 @@ const UserTabs = ({
         </TabPane>
         <TabPane tabId="5">
           <Payments />
+        </TabPane>
+        <TabPane tabId="6">
+          <SocialGroups />
         </TabPane>
       </TabContent>
     </Fragment>

@@ -21,7 +21,6 @@ import GetCoursePayment from "./GetCoursePayments";
 import GetReservedCourses from "./GetCoursesReserve";
 import GetAllPayment from "./GetAllCoursePayments";
 import GetUserPayment from "./GetUserPayment";
-import GetCourseStatus from "./GetCourseStatus";
 import GetAllProducts from "./GetAllProducts";
 import GetProductsDetails from "./GetProductsDetails";
 import GetProductsWithParams from "./GetProductsWithParams";
@@ -39,6 +38,8 @@ import GetCoursesStatus from "./GetCoursesStatus";
 import GetCourseLevels from "./GetCourseLevels";
 import GetShopCategoriesList from "./GetShopCategoriesList";
 import GetProductCategories from "./GetProductCategories";
+import GetSocialGroup from "./GetSocialGroup";
+import GetSocialGroupDetails from "./GetSocialGroupDetails";
 export {
   GetUserList,
   UserDetails,
@@ -63,7 +64,6 @@ export {
   GetReservedCourses,
   GetAllPayment,
   GetUserPayment,
-  GetCourseStatus,
   GetAllProducts,
   GetProductsDetails,
   GetProductsWithParams,
@@ -81,4 +81,6 @@ export {
   GetCourseLevels,
   GetShopCategoriesList,
   GetProductCategories,
+  GetSocialGroup,
+  GetSocialGroupDetails,
 };

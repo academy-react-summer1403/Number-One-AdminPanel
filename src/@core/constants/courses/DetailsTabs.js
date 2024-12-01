@@ -5,4 +5,7 @@ export const technologiesTableTitles = ['','نام تکنولوژی','توضیح
 export const StatusTableTitles = ['','نام وضعیت','توضیحات وضعیت','اقدام']
 export const LevelsTableTitles = ['','نام سطح','توضیحات سطح','اقدام']
 
+export const SocialGroupsTableTitle = ['','نام گروه','لینک گروه','عملیات',]
+
+
 
