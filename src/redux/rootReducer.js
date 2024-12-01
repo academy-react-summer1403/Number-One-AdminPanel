@@ -18,6 +18,7 @@ import { TechnologiesList } from "../view/courses/category-manage/store";
 import { StatusList } from "../view/courses/status-manage/store";
 import { LevelsList } from "../view/courses/level-manage/store";
 import { ShopCategoryList } from "../view/shops/category-manage/store";
+import { ProductCategoryList } from "../view/products/catgory-manage/store";
 
 const rootReducer = {
   navbar,
@@ -40,6 +41,7 @@ const rootReducer = {
   StatusList,
   LevelsList,
   ShopCategoryList,
+  ProductCategoryList,
 };
 
 export default rootReducer;

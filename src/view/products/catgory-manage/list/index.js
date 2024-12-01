@@ -1,14 +1,34 @@
-import { Fragment } from "react";
-import { Col, Row } from "reactstrap";
+import { Fragment, useState } from "react";
+import { Col, Row, Table } from "reactstrap";
 import GeneralStatistics from "../../../../@core/components/generalStatistics";
-import { useQueryWithoutDependencies } from "../../../../utility/hooks/useCustomQuery";
-import { GetProductCategoryList } from "../../../../@core/services/api/get-api";
-import { StatisticsOfProductCategory } from "../../../../@core/constants/products-manage/Options";
+import {
+  useQueryWithDependencies,
+  useQueryWithoutDependencies,
+} from "../../../../utility/hooks/useCustomQuery";
+import {
+  GetProductCategories,
+  GetProductCategoryList,
+} from "../../../../@core/services/api/get-api";
+import {
+  productCategoriesTableTitles,
+  StatisticsOfProductCategory,
+} from "../../../../@core/constants/products-manage/Options";
 import ListHeader from "../../../../@core/components/products-list/ListHeader";
 import ListSearchbar from "../../../../@core/components/products-list/ListSearchbar";
 import { handleQuery, handleRowsOfPage } from "../store/ProductCategoryList";
+import HeaderTable from "../../../../@core/components/header-table/HeaderTable";
+import { useSelector } from "react-redux";
+import { Edit } from "react-feather";
+import CustomPagination from "../../../../@core/components/pagination";
+import Img from "../../../../assets/images/cards/Product.jpg";
+
 
 const ProductCategoryWrapper = () => {
+  // redux Params
+  const categoriesParams = useSelector((state) => state.ProductCategoryList);
+  const { PageNumber, RowsOfPage, Query } = useSelector(
+    (state) => state.ProductCategoryList
+  );
   // getting data from Api with use Query
   const {
     data: productCategoriesData,
@@ -17,6 +37,24 @@ const ProductCategoryWrapper = () => {
     "GET_PRODUCT_CATEGORIES",
     GetProductCategoryList
   );
+
+  // getting data from Api with use Query with dependency
+  const { data: productCategoriesList, refetch } = useQueryWithDependencies(
+    "GET_SHOP_CATEGORIES_LIST",
+    GetProductCategories,
+    categoriesParams,
+    categoriesParams
+  );
+
+  // Pagination
+  const [itemOffset, setItemOffset] = useState(0);
+  const endOffset = itemOffset + RowsOfPage;
+  const [page, setPage] = useState({ selected: 0 });
+  const handleWithOutDispatch = (page) => {
+    setPage(page);
+    const newOffset = (page.selected * RowsOfPage) % productCategoriesList.length;
+    setItemOffset(newOffset);
+  };
 
   return (
     <Fragment>
@@ -45,6 +83,69 @@ const ProductCategoryWrapper = () => {
                 />
               </Col>
             </Row>
+            <div style={{ overflowX: "auto" }}>
+              <Table hover style={{ overflowX: "auto" }}>
+                <HeaderTable titles={productCategoriesTableTitles} />
+                <tbody style={{ overflowX: "auto" }}>
+                  {productCategoriesList && productCategoriesList?.length > 0 ? (
+                    productCategoriesList
+                      .slice(itemOffset, endOffset)
+                      ?.map((item) => {
+                        return (
+                          <tr key={item.id}>
+                            <td>
+                              <img
+                                alt="img"
+                                src={Img}
+                                style={{ height: "30px" }}
+                                className="rounded-1"
+                              />
+                            </td>
+                            <td>{item.categoryName}</td>
+                            <td
+                              style={{
+                                maxWidth: "200px",
+                                whiteSpace: "nowrap",
+                                overflow: "hidden",
+                                textOverflow: "ellipsis",
+                              }}
+                            >
+                              {item.describe && item.describe}
+                            </td>
+                            <td
+                              className="text-center"
+                              onClick={() => {
+                                // setVariantState("update");
+                                // handleStatusDetail(item.id);
+                              }}
+                            >
+                              <span className="align-middle">ویرایش</span>
+                              <Edit className="ms-50" size={15} />
+                            </td>
+                          </tr>
+                        );
+                      })
+                  ) : (
+                    <h6
+                      className="section-label fs-6"
+                      style={{
+                        textAlign: "center",
+                        marginTop: "200px",
+                        marginBottom: "200px",
+                      }}
+                    >
+                      دسته بندی وجود ندارد
+                    </h6>
+                  )}
+                </tbody>
+              </Table>
+            </div>
+            <CustomPagination
+              total={productCategoriesList?.length}
+              current={PageNumber}
+              rowsPerPage={RowsOfPage}
+              handleClickFunc={handleWithOutDispatch}
+            />
           </div>
         </Col>
       </Row>

@@ -60,3 +60,5 @@ export const StatisticsOfProductCategory = (data) => {
 
   return productCategoryData;
 };
+export const productCategoriesTableTitles = ['','نام دسته یندی','توضیحات دسته بندی','اقدام']
+

@@ -41,8 +41,6 @@ const ShopCategoriesWrapper = () => {
   // getting data from Api with use Query with dependency
   const {
     data: shopCategoriesList,
-    isSuccess: successGetCategories,
-    isRefetching,
     refetch,
   } = useQueryWithDependencies(
     "GET_SHOP_CATEGORIES_LIST",
