@@ -53,6 +53,8 @@ import GetUserChatInAdmin from "./GetUserChatInAdmin";
 import GetUserChatInTeacher from "./GetUserChatInTeacher";
 import GetCourseAssistance from "./GetCourseAssistance";
 import GetCourseAssistanceDetails from "./GetCourseAssistanceDetails";
+import GetAssistanceWork from "./GetAssistanceWork";
+import GetAssistanceWorkDetail from "./GetAssistanceWorkDetail";
 
 export {
   GetUserList,
@@ -90,7 +92,6 @@ export {
   GetAllEvents,
   GetProductCategoryDetails,
   GetProductCategoryList,
-
   GetCourseTechnologies,
   GetCoursesStatus,
   GetCourseLevels,
@@ -99,7 +100,6 @@ export {
   GetSocialGroup,
   GetSocialGroupDetails,
   GetSiteSetting,
-
   GetBuildingList,
   GetBuildingDetails,
   GetClassRomeList,
@@ -112,5 +112,6 @@ export {
   GetUserChatInTeacher,
   GetCourseAssistance,
   GetCourseAssistanceDetails,
-
+  GetAssistanceWork,
+  GetAssistanceWorkDetail,
 };

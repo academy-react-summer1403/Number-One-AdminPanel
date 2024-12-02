@@ -1,5 +1,8 @@
 import axios from "axios";
-import { useGetItem, useRemoveItem } from "../../../utility/hooks/useLocalStorage";
+import {
+  useGetItem,
+  useRemoveItem,
+} from "../../../utility/hooks/useLocalStorage";
 
 const baseURL = import.meta.env.VITE_BASE_URL;
 
@@ -11,13 +14,23 @@ const onSuccess = (response) => {
   return response.data;
 };
 
-const onError = (err) => {
-  if (err.response.status === 401) {
+const onError = (error) => {
+  if (error.response && error.response.status === 422) {
+    const errorMessage =
+      error.response.data.ErrorMessage || "خطا: ورودی نامعتبر.";
+    toast.error(errorMessage || "با خطا مواجه شدید");
+  }
+  if (error.response.status === 401) {
+    toast.error(errorMessage || "ابتدا وارد حساب کاربری خود شوید");
     useRemoveItem("token");
-    window.location.pathname = "/";
+  }
+  if (error.response.status === 403) {
+    const errorMessage =
+      error.response.data.ErrorMessage || "خطا: ورودی نامعتبر.";
+    toast.error(errorMessage || "با خطا مواجه شدید");
   }
 
-  return Promise.reject(err);
+  return Promise.reject(error);
 };
 
 instance.interceptors.response.use(onSuccess, onError);

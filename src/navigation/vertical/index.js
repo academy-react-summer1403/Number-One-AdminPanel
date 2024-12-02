@@ -68,7 +68,7 @@ export default [
         icon: <Circle size={20} />,
         navLink: "/createCourse",
       },
-          {
+      {
         id: "courseTechnologiesList",
         title: "مدیریت تکنولوژی دوره ها",
         icon: <Circle size={20} />,
@@ -86,7 +86,7 @@ export default [
         icon: <Circle size={20} />,
         navLink: "/courseLevels",
       },
-           {
+      {
         id: "classRome",
         title: "لیست کلاس ها",
         icon: <Circle size={12} />,
@@ -104,8 +104,14 @@ export default [
         icon: <Circle size={12} />,
         navLink: "/terms",
       },
+      {
+        id: "task",
+        title: "تسک ها",
+        icon: <Circle size={12} />,
+        navLink: "/assistanceWork",
+      },
     ],
-},
+  },
   {
     id: "shopPage",
     title: "مدیریت فروشگاه ها",
