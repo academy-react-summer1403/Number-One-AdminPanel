@@ -110,6 +110,12 @@ export default [
         icon: <Circle size={12} />,
         navLink: "/assistanceWork",
       },
+      {
+        id: "schedual",
+        title: "بازه زمانی",
+        icon: <Circle size={12} />,
+        navLink: "/schedual",
+      },
     ],
   },
   {

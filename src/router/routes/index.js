@@ -90,6 +90,9 @@ const SupportTeacher = lazy(() => import("../../pages/SupportTeacher"));
 // Assistance Work
 const AssistanceWork = lazy(() => import("../../pages/AssistanceWork"));
 
+// Schedual
+const Schedual = lazy(() => import("../../pages/Schedual"));
+
 // ** Merge Routes
 const Routes = [
   {
@@ -257,6 +260,11 @@ const Routes = [
   {
     path: "/SiteSetting",
     element: <SiteSetting />,
+    // access: ["Teacher", "Administrator"],
+  },
+  {
+    path: "/schedual",
+    element: <Schedual />,
     // access: ["Teacher", "Administrator"],
   },
   {
