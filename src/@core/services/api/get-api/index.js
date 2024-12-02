@@ -40,6 +40,7 @@ import GetShopCategoriesList from "./GetShopCategoriesList";
 import GetProductCategories from "./GetProductCategories";
 import GetSocialGroup from "./GetSocialGroup";
 import GetSocialGroupDetails from "./GetSocialGroupDetails";
+import GetSiteSetting from "./GetSiteSetting";
 export {
   GetUserList,
   UserDetails,
@@ -83,4 +84,5 @@ export {
   GetProductCategories,
   GetSocialGroup,
   GetSocialGroupDetails,
+  GetSiteSetting,
 };
