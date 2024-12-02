@@ -1,4 +1,4 @@
-import { Activity, ShoppingBag, Slash } from "react-feather";
+import { Activity, ShoppingBag, Slash, Sliders } from "react-feather";
 import {
   handleIsActive,
   handleSortingCol,
@@ -47,3 +47,18 @@ export const ProductsSortOption = [
     setState: handleSortingCol,
   },
 ];
+
+export const StatisticsOfProductCategory = (data) => {
+  const productCategoryData = [
+    {
+      title: "مجموع دسته بندی های محصول ",
+      color: "primary",
+      icon: Sliders,
+      renderStats: data?.length,
+    },
+  ];
+
+  return productCategoryData;
+};
+export const productCategoriesTableTitles = ['','نام دسته یندی','توضیحات دسته بندی','اقدام']
+

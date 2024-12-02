@@ -8,6 +8,7 @@ import {
   ShoppingCart,
   Users,
   Package,
+  Settings,
   Globe,
   Headphones,
 } from "react-feather";
@@ -42,6 +43,12 @@ export default [
         icon: <Circle size={20} />,
         navLink: "/createBlog",
       },
+      {
+        id: "blogCategories",
+        title: "مدیریت دسته بندی اخبار ",
+        icon: <Circle size={20} />,
+        navLink: "/blogCategories",
+      },
     ],
   },
   {
@@ -61,7 +68,25 @@ export default [
         icon: <Circle size={20} />,
         navLink: "/createCourse",
       },
+          {
+        id: "courseTechnologiesList",
+        title: "مدیریت تکنولوژی دوره ها",
+        icon: <Circle size={20} />,
+        navLink: "/courseTechnologies",
+      },
       {
+        id: "courseStatus",
+        title: "مدیریت وضعیت دوره ها",
+        icon: <Circle size={20} />,
+        navLink: "/courseStatus",
+      },
+      {
+        id: "courseLevels",
+        title: "مدیریت سطح دوره ها",
+        icon: <Circle size={20} />,
+        navLink: "/courseLevels",
+      },
+           {
         id: "classRome",
         title: "لیست کلاس ها",
         icon: <Circle size={12} />,
@@ -78,6 +103,31 @@ export default [
         title: "لیست ترم ها",
         icon: <Circle size={12} />,
         navLink: "/terms",
+      },
+    ],
+},
+  {
+    id: "shopPage",
+    title: "مدیریت فروشگاه ها",
+    icon: <ShoppingBag size={20} />,
+    children: [
+      {
+        id: "shop1Page",
+        title: "لیست فروشگاه ها",
+        icon: <Circle size={12} />,
+        navLink: "/shops",
+      },
+      {
+        id: "shop2Page",
+        title: "افزودن فروشگاه ",
+        icon: <Circle size={12} />,
+        navLink: "/createShop",
+      },
+      {
+        id: "shopCategories",
+        title: " دسته بندی فروشگاه",
+        icon: <Circle size={12} />,
+        navLink: "/shopCategories",
       },
     ],
   },
@@ -98,28 +148,14 @@ export default [
         icon: <Circle size={12} />,
         navLink: "/createProducts",
       },
-    ],
-  },
-  {
-    id: "shopPage",
-    title: "مدیریت فروشگاه ها",
-    icon: <ShoppingBag size={20} />,
-    children: [
       {
-        id: "shop1Page",
-        title: "لیست فروشگاه ها",
+        id: "productCategories",
+        title: "دسته بندی محصول ",
         icon: <Circle size={12} />,
-        navLink: "/shops",
-      },
-      {
-        id: "shop2Page",
-        title: "افزودن فروشگاه ",
-        icon: <Circle size={12} />,
-        navLink: "/createShop",
+        navLink: "/productCategories",
       },
     ],
   },
-
   {
     id: "eventManagement",
     title: "مدیریت ایونت ها",
@@ -169,5 +205,11 @@ export default [
     title: "مدیریت کامنت ها",
     icon: <MessageSquare size={20} />,
     navLink: "/comments",
+  },
+  {
+    id: "SiteSetting",
+    title: "تنظیمات سایت",
+    icon: <Settings size={20} />,
+    navLink: "/SiteSetting",
   },
 ];

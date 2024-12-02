@@ -1,4 +1,15 @@
-import { Mail, Home, Users, Book, Circle, BookOpen, MessageSquare, ShoppingCart, ShoppingBag, Package } from "react-feather";
+import {
+  Mail,
+  Home,
+  Users,
+  Book,
+  Circle,
+  BookOpen,
+  MessageSquare,
+  ShoppingCart,
+  ShoppingBag,
+  Package,
+} from "react-feather";
 
 export default [
   {
@@ -30,6 +41,12 @@ export default [
         icon: <Circle size={20} />,
         navLink: "/createBlog",
       },
+      {
+        id: "blogCategories",
+        title: "مدیریت دسته بندی اخبار ",
+        icon: <Circle size={20} />,
+        navLink: "/blogCategories",
+      },
     ],
   },
   {
@@ -48,6 +65,18 @@ export default [
         title: "افزودن دوره جدید",
         icon: <Circle size={20} />,
         navLink: "/createCourse",
+      },
+      {
+        id: "courseTechnologiesList",
+        title: "مدیریت تکنولوژی دوره ها",
+        icon: <Circle size={20} />,
+        navLink: "/courseTechnologies",
+      },
+      {
+        id: "courseStatus",
+        title: "مدیریت وضعیت دوره ها",
+        icon: <Circle size={20} />,
+        navLink: "/courseStatus",
       },
     ],
   },
@@ -86,6 +115,12 @@ export default [
         title: "افزودن فروشگاه ",
         icon: <Circle size={12} />,
         navLink: "/createShop",
+      },
+      {
+        id: "shopCategories",
+        title: "مدیریت دسته بندی فروشگاه",
+        icon: <Circle size={12} />,
+        navLink: "/shopCategories",
       },
     ],
   },

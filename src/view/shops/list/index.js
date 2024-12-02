@@ -7,13 +7,19 @@ import GetShopList from "../../../@core/services/api/get-api/GetShopList";
 import { useGetItem } from "../../../utility/hooks/useLocalStorage";
 import { useQueryWithDependencies } from "../../../utility/hooks/useCustomQuery";
 import GeneralStatistics from "../../../@core/components/generalStatistics";
-import { handleAllList, handleQuery, handleRowsOfPage } from "../store/ShopList";
+import {
+  handleAllList,
+  handleQuery,
+  handleRowsOfPage,
+} from "../store/ShopList";
 import StatisticsOfShop from "../../../@core/constants/shops/StatisticsOfShop";
 import ShopCard from "./ShopCard";
 import CustomPagination from "../../../@core/components/pagination";
 import ListHeader from "../../../@core/components/products-list/ListHeader";
 import { ShopSortOption } from "../../../@core/constants/shops";
 import ListSearchbar from "../../../@core/components/products-list/ListSearchbar";
+import { UpdateShop } from "../../../@core/services/api/put-api";
+import { useMutation } from "@tanstack/react-query";
 
 const ShopPage = () => {
   const { PageNumber, RowsOfPage, FilteredList, AllList } = useSelector(
@@ -23,12 +29,12 @@ const ShopPage = () => {
   const userId = useGetItem("id");
   // console.log(userInfo);
   // Getting shop data from Api With use Query
-  const { data: shopData, isSuccess } = useQueryWithDependencies(
-    "GET_SHOP_LIST",
-    GetShopList,
-    null,
-    null
-  );
+  const {
+    data: shopData,
+    isSuccess,
+    refetch,
+    isRefetching,
+  } = useQueryWithDependencies("GET_SHOP_LIST", GetShopList, null, null);
   // console.log(shopData)
 
   // Getting stores that have admin access
@@ -46,7 +52,7 @@ const ShopPage = () => {
 
   useEffect(() => {
     GetAccessibleShops();
-  }, [isSuccess]);
+  }, [isSuccess, isRefetching]);
 
   // Pagination
   const [itemOffset, setItemOffset] = useState(0);
@@ -54,6 +60,24 @@ const ShopPage = () => {
   const handleWithOutDispatch = (page) => {
     const newOffset = (page.selected * RowsOfPage) % FilteredList.length;
     setItemOffset(newOffset);
+  };
+
+  // handle Active and DeActive shop
+  const { mutate: activeMutate } = useMutation({
+    mutationKey: ["ACTIVE_AND_DETECTIVE_SHOP"],
+    mutationFn: (data) => {
+      console.log(data);
+      UpdateShop(data.id, { isActive: data.isActive }, refetch);
+    },
+  });
+
+  const handleActiveDeactive = (boolean, id) => {
+    try {
+      const dataObj = { id: id, isActive: boolean };
+      activeMutate(dataObj);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -89,6 +113,8 @@ const ShopPage = () => {
                         startTime={item.startTime}
                         endTime={item.endTime}
                         href={"/shops/view/"}
+                        handleActiveDeactive={handleActiveDeactive}
+                        status={item.isActive}
                       />
                     )
                   )}

@@ -18,6 +18,8 @@ import persian_fa from "react-date-object/locales/persian_fa";
 import DateObject from "react-date-object";
 import { EditShopFields } from "../../../@core/constants/shops";
 import { UpdateShop } from "../../../@core/services/api/put-api";
+import { useQueryWithoutDependencies } from "../../../utility/hooks/useCustomQuery";
+import GetShopCategories from "../../../@core/services/api/get-api/GetShopCategories";
 
 const EditShop = ({ data, isOpen, toggle, refetch, validation }) => {
   const [initialValues, setInitialValues] = useState({});
@@ -48,6 +50,11 @@ const EditShop = ({ data, isOpen, toggle, refetch, validation }) => {
     },
   });
 
+  const { data: shopsCategory, isSuccess: shopSuccess } = useQueryWithoutDependencies(
+    "GET_SHOPS_CATEGORY",
+    GetShopCategories
+  );
+
   return (
     <Modal
       isOpen={isOpen}
@@ -77,7 +84,7 @@ const EditShop = ({ data, isOpen, toggle, refetch, validation }) => {
                 <div className="text-danger">{formik.errors.name}</div>
               ) : null}
             </Col>
-            <Col md="6" className="mb-1">
+            {/* <Col md="6" className="mb-1">
               <Label className="form-label" for="category">
                 دسته بندی
               </Label>
@@ -92,7 +99,32 @@ const EditShop = ({ data, isOpen, toggle, refetch, validation }) => {
               {formik.touched.category && formik.errors.category ? (
                 <div className="text-danger">{formik.errors.category}</div>
               ) : null}
-            </Col>
+            </Col> */}
+            <Col sm="6" className="mb-1">
+        <Label className="form-label" for="categoryId">
+            دسته بندی
+          </Label>
+          <Input
+            type="select"
+            name="categoryId"
+            id="categoryId"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.categoryId}
+            invalid={formik.touched.categoryId && !!formik.errors.categoryId}
+          >
+            <option value="">انتخاب کنید</option>
+            {shopSuccess &&
+              shopsCategory.map((category) => (
+                <option key={category.id} value={category.id}>
+                  {category.categoryName}
+                </option>
+              ))}
+          </Input>
+          {formik.touched.categoryId && formik.errors.categoryId ? (
+            <div className="text-danger">{formik.errors.categoryId}</div>
+          ) : null}
+        </Col>
             <Col md="6">
               <Label className="form-label" for="address">
                 آدرس

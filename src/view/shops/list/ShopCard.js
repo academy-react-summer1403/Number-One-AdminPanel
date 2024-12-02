@@ -10,6 +10,7 @@ import HandleIdentityEditorJs from "../../../utility/create-editorjs-blocks/Iden
 import { useQueryWithDependencies } from "../../../utility/hooks/useCustomQuery";
 import GetShopCategory from "../../../@core/services/api/get-api/GetShopCategory";
 import ImageFallBack from "../../../@core/components/image-fallback";
+import ChangeStatusButton from "../../../@core/components/products-list/ChangeStatusButton";
 
 const ShopCard = (props) => {
   const {
@@ -22,6 +23,8 @@ const ShopCard = (props) => {
     startTime,
     endTime,
     href,
+    handleActiveDeactive,
+    status,
   } = props;
 
    // Get Category For Shop
@@ -31,10 +34,15 @@ const ShopCard = (props) => {
     categoryId,
     categoryId
   );
-  console.log(image)
+  // console.log(image)
 
   return (
     <Card className="ecommerce-card">
+       <ChangeStatusButton
+        handleActiveOrDetective={handleActiveDeactive}
+        id={id}
+        status={status}
+      />
       <Link to={href + id}>
         <div
           className="item-img text-center p-0"

@@ -10,6 +10,13 @@ import ChangeCourseStatus from "./ChangeCourseStatus";
 import UpdateProducts from "./UpdateProducts";
 import UpdateShop from "./UpdateShop";
 import UpdateEvent from "./UpdateEvent";
+import UpdateNewsCategory from "./UpdateNewsCategory";
+import UpdateTechnologies from "./UpdateTechnologies";
+import UpdateCourseStatus from "./UpdateCourseStatus";
+import UpdateCourseLevel from "./UpdateCourseLevel";
+import UpdateShopCategory from "./UpdateShopCategory";
+import UpdateProductCategory from "./UpdateProductCategory";
+import UpdateSocialGroup from "./UpdateSocialGroup";
 import ActiveDeActiveBuilding from "./ActiveDeActiveBuilding";
 import UpdateBuilding from "./UpdateBuilding";
 import UpdateClassRome from "./UpdateClassRome";
@@ -32,6 +39,13 @@ export {
   UpdateProducts,
   UpdateShop,
   UpdateEvent,
+  UpdateNewsCategory,
+  UpdateTechnologies,
+  UpdateCourseStatus,
+  UpdateCourseLevel,
+  UpdateShopCategory,
+  UpdateProductCategory,
+  UpdateSocialGroup,
   ActiveDeActiveBuilding,
   UpdateBuilding,
   UpdateClassRome,

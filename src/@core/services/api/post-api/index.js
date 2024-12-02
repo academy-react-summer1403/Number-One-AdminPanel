@@ -15,11 +15,19 @@ import CreateShop from "./CreateShop";
 import GetReplayComments from "../get-api/GetReplayComments";
 import AddReplayComment from "./AddReplayComment";
 import CreateEvents from "./CreateEvent";
+import CreateNewsCategory from "./CreateNewsCategory";
+import CreateTechnologies from "./CreateTechnologies";
+import CreateCourseStatus from "./CreateCourseStatus";
+import CreateCourseLevel from "./CreateCourseLevel";
+import CreateShopCategory from "./CreateShopCategory";
+import CreateProductCategory from "./CreateProductCategory";
+import AddSocialGroup from "./AddSocialGroup";
 import CreateClassRome from "./CreateClass";
 import CreateNewBuilding from "./CreateBuilding";
 import CreateNewDepartment from "./CreateDepartment";
 import CreateNewTerm from "./CreateTerm";
 import CreateCourseAssistance from "./CreateCourseAssistance";
+
 
 export {
   AddUserAccess,
@@ -39,6 +47,14 @@ export {
   GetReplayComments,
   AddReplayComment,
   CreateEvents,
+  CreateNewsCategory,
+  CreateTechnologies,
+  CreateCourseStatus,
+  CreateCourseLevel,
+  CreateShopCategory,
+  CreateProductCategory,
+  AddSocialGroup,
+
   CreateClassRome,
   CreateNewBuilding,
   CreateNewDepartment,

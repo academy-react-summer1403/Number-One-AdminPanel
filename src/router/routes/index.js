@@ -39,14 +39,22 @@ const UserDetails = lazy(() => import("../../pages/UserDetails"));
 const News = lazy(() => import("../../pages/News"));
 const CreateNews = lazy(() => import("../../pages/CreateNews"));
 const NewsDetails = lazy(() => import("../../pages/NewsDetails"));
+const BlogCategories = lazy(() => import("../../pages/BlogCategories"));
+
 // Courses
 const Courses = lazy(() => import("../../pages/Courses"));
 const CreateCourses = lazy(() => import("../../pages/CreateCourse"));
 const CourseDetails = lazy(() => import("../../pages/CourseDetails"));
+const CourseTechnologies = lazy(() => import("../../pages/CourseTechnologies"));
+const CourseStatus = lazy(() => import("../../pages/CourseStatus"));
+const CourseLevels = lazy(() => import("../../pages/CourseLevels"));
+
 // Products
 const Products = lazy(() => import("../../pages/Products"));
 const CreateProduct = lazy(() => import("../../pages/CreateProduct"));
 const ProductsView = lazy(() => import("../../pages/ProductsView"));
+const ProductCategories = lazy(() => import("../../pages/ProductCategories"));
+
 // Events
 const Events = lazy(() => import("../../pages/Events"));
 const CreateEvent = lazy(() => import("../../pages/CreateEvent"));
@@ -56,10 +64,13 @@ const EventView = lazy(() => import("../../pages/EventDetails"));
 const Shops = lazy(() => import("../../pages/Shops"));
 const CreateShop = lazy(() => import("../../pages/CreateShop"));
 const ShopView = lazy(() => import("../../pages/ShopView"));
+const ShopCategories = lazy(() => import("../../pages/ShopCategories"));
 
 // comments
 const Comments = lazy(() => import("../../pages/Comments"));
 
+// SiteSetting
+const SiteSetting = lazy(() => import("../../pages/SiteSetting"));
 // buildings
 const Buildings = lazy(() => import("../../pages/Buildings"));
 
@@ -113,6 +124,11 @@ const Routes = [
     // access: ["Administrator"],
   },
   {
+    path: "/blogCategories",
+    element: <BlogCategories />,
+    // access: ["Administrator"],
+  },
+  {
     path: "/courses",
     element: <Courses />,
     // access: ["Administrator"],
@@ -127,6 +143,22 @@ const Routes = [
     element: <CourseDetails />,
     // access: ["Administrator"],
   },
+  {
+    path: "/courseTechnologies",
+    element: <CourseTechnologies />,
+    // access: ["Administrator"],
+  },
+  {
+    path: "/courseStatus",
+    element: <CourseStatus />,
+    // access: ["Administrator"],
+  },
+  {
+    path: "/courseLevels",
+    element: <CourseLevels />,
+    // access: ["Administrator"],
+  },
+
   {
     path: "/products",
     element: <Products />,
@@ -143,6 +175,12 @@ const Routes = [
     // access: ["Teacher", "Administrator"],
   },
   {
+    path: "/productCategories",
+    element: <ProductCategories />,
+    // access: ["Teacher", "Administrator"],
+  },
+
+  {
     path: "/shops",
     element: <Shops />,
     // access: ["Teacher", "Administrator"],
@@ -155,6 +193,11 @@ const Routes = [
   {
     path: "/createShop",
     element: <CreateShop />,
+  },
+  {
+    path: "/shopCategories",
+    element: <ShopCategories />,
+    // access: ["Teacher", "Administrator"],
   },
   {
     path: "/events",
@@ -202,6 +245,11 @@ const Routes = [
   {
     path: "/supportTeacher",
     element: <SupportTeacher />,
+    // access: ["Teacher", "Administrator"],
+  },
+  {
+    path: "/SiteSetting",
+    element: <SiteSetting />,
     // access: ["Teacher", "Administrator"],
   },
   {
