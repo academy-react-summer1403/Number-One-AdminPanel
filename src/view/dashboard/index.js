@@ -8,6 +8,7 @@ import { ThemeColors } from "../../utility/context/ThemeColors";
 import Sales from "./Sales";
 import RevenueReport from "./RevenueReport";
 import ChartjsPolarAreaChart from "./ChartjsPolarAreaChart";
+import Earnings from "./Earnings";
 
 const Dashboard = () => {
   // ** ThemeColors
@@ -16,7 +17,12 @@ const Dashboard = () => {
     <div id="dashboard-ecommerce">
       <Row className="match-height">
         <Col lg="4" sm="12">
-          <CardCongratulations />
+          <Col sm="12">
+            <CardCongratulations />
+          </Col>
+          <Col sm="12">
+            <Earnings />
+          </Col>
         </Col>
         <Col lg="8" xs="12">
           <StatsCard />
