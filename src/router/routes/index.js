@@ -71,6 +71,21 @@ const Comments = lazy(() => import("../../pages/Comments"));
 
 // SiteSetting
 const SiteSetting = lazy(() => import("../../pages/SiteSetting"));
+// buildings
+const Buildings = lazy(() => import("../../pages/Buildings"));
+
+// ClassRome
+const ClassRome = lazy(() => import("../../pages/ClassRome"));
+
+// Department
+const Department = lazy(() => import("../../pages/Department"));
+
+// Term
+const Terms = lazy(() => import("../../pages/Terms"));
+
+// Support
+const SupportAdmin = lazy(() => import("../../pages/SupportAdmin"));
+const SupportTeacher = lazy(() => import("../../pages/SupportTeacher"));
 
 // ** Merge Routes
 const Routes = [
@@ -201,6 +216,35 @@ const Routes = [
   {
     path: "/comments",
     element: <Comments />,
+  },
+  {
+    path: "/buildings",
+    element: <Buildings />,
+    // access: ["Teacher", "Administrator"],
+  },
+  {
+    path: "/classRome",
+    element: <ClassRome />,
+    // access: ["Teacher", "Administrator"],
+  },
+  {
+    path: "/department",
+    element: <Department />,
+    // access: ["Teacher", "Administrator"],
+  },
+  {
+    path: "/terms",
+    element: <Terms />,
+    // access: ["Teacher", "Administrator"],
+  },
+  {
+    path: "/supportAdmin",
+    element: <SupportAdmin />,
+    // access: ["Teacher", "Administrator"],
+  },
+  {
+    path: "/supportTeacher",
+    element: <SupportTeacher />,
     // access: ["Teacher", "Administrator"],
   },
   {

@@ -22,6 +22,12 @@ import CreateCourseLevel from "./CreateCourseLevel";
 import CreateShopCategory from "./CreateShopCategory";
 import CreateProductCategory from "./CreateProductCategory";
 import AddSocialGroup from "./AddSocialGroup";
+import CreateClassRome from "./CreateClass";
+import CreateNewBuilding from "./CreateBuilding";
+import CreateNewDepartment from "./CreateDepartment";
+import CreateNewTerm from "./CreateTerm";
+import CreateCourseAssistance from "./CreateCourseAssistance";
+
 
 export {
   AddUserAccess,
@@ -48,4 +54,10 @@ export {
   CreateShopCategory,
   CreateProductCategory,
   AddSocialGroup,
+
+  CreateClassRome,
+  CreateNewBuilding,
+  CreateNewDepartment,
+  CreateNewTerm,
+  CreateCourseAssistance,
 };

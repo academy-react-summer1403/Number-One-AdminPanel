@@ -12,7 +12,7 @@ const CoursesList = createSlice({
   name: "courses-list",
   initialState,
   reducers: {
-    handlePageNumber: (state, action) => {
+    handleCoursePageNumber: (state, action) => {
       state.PageNumber = action.payload;
     },
     handleRowsOfPage: (state, action) => {
@@ -31,7 +31,7 @@ const CoursesList = createSlice({
 });
 
 export const {
-  handlePageNumber,
+  handleCoursePageNumber,
   handleRowsOfPage,
   handleSortingCol,
   handleSortType,

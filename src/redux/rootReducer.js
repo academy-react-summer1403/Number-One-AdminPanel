@@ -10,15 +10,28 @@ import { CreateNewsSlice, NewsDetail, NewsList } from "../view/news/store";
 import { CreateProductsSlice, ProductsList } from "../view/products/store";
 // Events
 import { EventsList, CreateEvent } from "../view/event/store";
-
-import { ShopList , CreateShopsSlice } from "../view/shops/store";
+// Shop
+import { ShopList, CreateShopsSlice } from "../view/shops/store";
+// Comments
 import { CommentList } from "../view/comments/store";
+
+//Categories
 import { BlogCategoryList } from "../view/news/add-category/store";
 import { TechnologiesList } from "../view/courses/category-manage/store";
 import { StatusList } from "../view/courses/status-manage/store";
 import { LevelsList } from "../view/courses/level-manage/store";
 import { ShopCategoryList } from "../view/shops/category-manage/store";
 import { ProductCategoryList } from "../view/products/catgory-manage/store";
+//Building
+import { BuildingList } from "../view/building/store";
+// ClassRome
+import ClassList from "../view/classrome/store";
+// Department
+import DepartmentList from "../view/department/store";
+// Term
+import TermList from "../view/term/store";
+// Support
+import SupportSlice from "../view/support/store";
 
 const rootReducer = {
   navbar,
@@ -42,6 +55,11 @@ const rootReducer = {
   LevelsList,
   ShopCategoryList,
   ProductCategoryList,
+  BuildingList,
+  ClassList,
+  DepartmentList,
+  TermList,
+  SupportSlice,
 };
 
 export default rootReducer;

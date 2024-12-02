@@ -17,6 +17,14 @@ import UpdateCourseLevel from "./UpdateCourseLevel";
 import UpdateShopCategory from "./UpdateShopCategory";
 import UpdateProductCategory from "./UpdateProductCategory";
 import UpdateSocialGroup from "./UpdateSocialGroup";
+import ActiveDeActiveBuilding from "./ActiveDeActiveBuilding";
+import UpdateBuilding from "./UpdateBuilding";
+import UpdateClassRome from "./UpdateClassRome";
+import UpdateDepartment from "./UpdateDepartment";
+import UpdateTerm from "./UpdateTerm";
+import AddAdminMessage from "./AddAdminMessage";
+import AddTeacherMessage from "./AddTeacherMessage";
+import UpdateCourseAssistance from "./UpdateCourseAssistance";
 
 export {
   UpdateUser,
@@ -38,4 +46,12 @@ export {
   UpdateShopCategory,
   UpdateProductCategory,
   UpdateSocialGroup,
+  ActiveDeActiveBuilding,
+  UpdateBuilding,
+  UpdateClassRome,
+  UpdateDepartment,
+  UpdateTerm,
+  AddAdminMessage,
+  AddTeacherMessage,
+  UpdateCourseAssistance,
 };

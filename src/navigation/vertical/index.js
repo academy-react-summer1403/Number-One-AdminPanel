@@ -9,6 +9,8 @@ import {
   Users,
   Package,
   Settings,
+  Globe,
+  Headphones,
 } from "react-feather";
 
 export default [
@@ -66,7 +68,7 @@ export default [
         icon: <Circle size={20} />,
         navLink: "/createCourse",
       },
-      {
+          {
         id: "courseTechnologiesList",
         title: "مدیریت تکنولوژی دوره ها",
         icon: <Circle size={20} />,
@@ -84,8 +86,26 @@ export default [
         icon: <Circle size={20} />,
         navLink: "/courseLevels",
       },
+           {
+        id: "classRome",
+        title: "لیست کلاس ها",
+        icon: <Circle size={12} />,
+        navLink: "/classRome",
+      },
+      {
+        id: "department",
+        title: "لیست بخش ها",
+        icon: <Circle size={12} />,
+        navLink: "/department",
+      },
+      {
+        id: "terms",
+        title: "لیست ترم ها",
+        icon: <Circle size={12} />,
+        navLink: "/terms",
+      },
     ],
-  },
+},
   {
     id: "shopPage",
     title: "مدیریت فروشگاه ها",
@@ -154,6 +174,31 @@ export default [
         navLink: "/createEvents",
       },
     ],
+  },
+  {
+    id: "support",
+    title: "پشتیبانی",
+    icon: <Headphones size={20} />,
+    children: [
+      {
+        id: "supportAdmin",
+        title: "ادمین ها",
+        icon: <Circle size={12} />,
+        navLink: "/supportAdmin",
+      },
+      {
+        id: "supportTeacher",
+        title: "اساتید",
+        icon: <Circle size={12} />,
+        navLink: "/supportTeacher",
+      },
+    ],
+  },
+  {
+    id: "buildingList",
+    title: "ساختمان ها",
+    icon: <Globe size={20} />,
+    navLink: "/buildings",
   },
   {
     id: "commentsListPage",

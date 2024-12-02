@@ -41,6 +41,19 @@ import GetProductCategories from "./GetProductCategories";
 import GetSocialGroup from "./GetSocialGroup";
 import GetSocialGroupDetails from "./GetSocialGroupDetails";
 import GetSiteSetting from "./GetSiteSetting";
+import GetBuildingList from "./GetBuildingList";
+import GetBuildingDetails from "./GetBuildingDetails";
+import GetClassRomeList from "./GetClassRomeList";
+import GetClassRomeDetail from "./GetClassRomeDetail";
+import GetDepartmentList from "./GetDepartmentList";
+import GetDepartmentDetails from "./GetDepartmentDetails";
+import GetTermList from "./GetTermList";
+import GetTermDetails from "./GetTermDetails";
+import GetUserChatInAdmin from "./GetUserChatInAdmin";
+import GetUserChatInTeacher from "./GetUserChatInTeacher";
+import GetCourseAssistance from "./GetCourseAssistance";
+import GetCourseAssistanceDetails from "./GetCourseAssistanceDetails";
+
 export {
   GetUserList,
   UserDetails,
@@ -77,6 +90,7 @@ export {
   GetAllEvents,
   GetProductCategoryDetails,
   GetProductCategoryList,
+
   GetCourseTechnologies,
   GetCoursesStatus,
   GetCourseLevels,
@@ -85,4 +99,18 @@ export {
   GetSocialGroup,
   GetSocialGroupDetails,
   GetSiteSetting,
+
+  GetBuildingList,
+  GetBuildingDetails,
+  GetClassRomeList,
+  GetClassRomeDetail,
+  GetDepartmentList,
+  GetDepartmentDetails,
+  GetTermList,
+  GetTermDetails,
+  GetUserChatInAdmin,
+  GetUserChatInTeacher,
+  GetCourseAssistance,
+  GetCourseAssistanceDetails,
+
 };
