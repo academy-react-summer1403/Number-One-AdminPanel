@@ -121,6 +121,8 @@ const UserTabs = ({
         </TabPane>
         <TabPane tabId="6">
           <SocialGroups />
+        </TabPane>
+        <TabPane tabId="7">
           <CourseAssistance id={data?.courseId} />
         </TabPane>
       </TabContent>
