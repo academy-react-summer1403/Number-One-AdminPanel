@@ -46,6 +46,8 @@ import GetUserChatInAdmin from "./GetUserChatInAdmin";
 import GetUserChatInTeacher from "./GetUserChatInTeacher";
 import GetCourseAssistance from "./GetCourseAssistance";
 import GetCourseAssistanceDetails from "./GetCourseAssistanceDetails";
+import GetAssistanceWork from "./GetAssistanceWork";
+import GetAssistanceWorkDetail from "./GetAssistanceWorkDetail";
 
 export {
   GetUserList,
@@ -96,4 +98,6 @@ export {
   GetUserChatInTeacher,
   GetCourseAssistance,
   GetCourseAssistanceDetails,
+  GetAssistanceWork,
+  GetAssistanceWorkDetail,
 };

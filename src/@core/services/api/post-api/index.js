@@ -20,6 +20,7 @@ import CreateNewBuilding from "./CreateBuilding";
 import CreateNewDepartment from "./CreateDepartment";
 import CreateNewTerm from "./CreateTerm";
 import CreateCourseAssistance from "./CreateCourseAssistance";
+import CreateAssistanceWork from "./CreateAssistanceWork";
 
 export {
   AddUserAccess,
@@ -44,4 +45,5 @@ export {
   CreateNewDepartment,
   CreateNewTerm,
   CreateCourseAssistance,
+  CreateAssistanceWork,
 };

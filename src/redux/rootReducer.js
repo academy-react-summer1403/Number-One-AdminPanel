@@ -24,6 +24,10 @@ import DepartmentList from "../view/department/store";
 import TermList from "../view/term/store";
 // Support
 import SupportSlice from "../view/support/store";
+// Assistance Work
+import AssistanceWorkList from "../view/assistance-work/store";
+// Assistance Course
+import AssistanceCourseSlice from "../view/courses/store/AssistanceCourseSlice";
 
 const rootReducer = {
   navbar,
@@ -46,6 +50,8 @@ const rootReducer = {
   DepartmentList,
   TermList,
   SupportSlice,
+  AssistanceWorkList,
+  AssistanceCourseSlice,
 };
 
 export default rootReducer;

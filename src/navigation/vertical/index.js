@@ -79,6 +79,12 @@ export default [
         icon: <Circle size={12} />,
         navLink: "/terms",
       },
+      {
+        id: "task",
+        title: "تسک ها",
+        icon: <Circle size={12} />,
+        navLink: "/assistanceWork",
+      },
     ],
   },
   {
