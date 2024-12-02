@@ -68,7 +68,6 @@ const CommentsList = () => {
       // enabled: !!(idsObj.courseId && idsObj.commentId),
     }
   );
-  console.log(ReplayData)
 
   // Adding data from api with use mutation
   const { mutate: acceptComment } = useMutationWithRefetch(

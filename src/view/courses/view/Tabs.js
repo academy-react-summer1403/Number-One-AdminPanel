@@ -28,6 +28,7 @@ import CourseCom from "./tabs/Comment";
 import CourseUsers from "./tabs/UsersCourses";
 import CoursesGroups from "./tabs/GroupsCourses";
 import Payments from "./tabs/payments";
+import SocialGroups from "./tabs/SocialGroups";
 import CourseAssistance from "./tabs/CourseAssistance";
 
 const UserTabs = ({
@@ -119,6 +120,7 @@ const UserTabs = ({
           <Payments />
         </TabPane>
         <TabPane tabId="6">
+          <SocialGroups />
           <CourseAssistance id={data?.courseId} />
         </TabPane>
       </TabContent>

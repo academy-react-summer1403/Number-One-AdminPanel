@@ -21,7 +21,6 @@ import GetCoursePayment from "./GetCoursePayments";
 import GetReservedCourses from "./GetCoursesReserve";
 import GetAllPayment from "./GetAllCoursePayments";
 import GetUserPayment from "./GetUserPayment";
-import GetCourseStatus from "./GetCourseStatus";
 import GetAllProducts from "./GetAllProducts";
 import GetProductsDetails from "./GetProductsDetails";
 import GetProductsWithParams from "./GetProductsWithParams";
@@ -34,6 +33,14 @@ import GetEventDetail from "./GetEventDetail";
 import GetAllEvents from "./GetAllEvents";
 import GetProductCategoryDetails from "./GetProductCategoryDetails";
 import GetProductCategoryList from "./GetProductCategoryList";
+import GetCourseTechnologies from "./GetCourseTechnologies";
+import GetCoursesStatus from "./GetCoursesStatus";
+import GetCourseLevels from "./GetCourseLevels";
+import GetShopCategoriesList from "./GetShopCategoriesList";
+import GetProductCategories from "./GetProductCategories";
+import GetSocialGroup from "./GetSocialGroup";
+import GetSocialGroupDetails from "./GetSocialGroupDetails";
+import GetSiteSetting from "./GetSiteSetting";
 import GetBuildingList from "./GetBuildingList";
 import GetBuildingDetails from "./GetBuildingDetails";
 import GetClassRomeList from "./GetClassRomeList";
@@ -73,7 +80,6 @@ export {
   GetReservedCourses,
   GetAllPayment,
   GetUserPayment,
-  GetCourseStatus,
   GetAllProducts,
   GetProductsDetails,
   GetProductsWithParams,
@@ -86,6 +92,14 @@ export {
   GetAllEvents,
   GetProductCategoryDetails,
   GetProductCategoryList,
+  GetCourseTechnologies,
+  GetCoursesStatus,
+  GetCourseLevels,
+  GetShopCategoriesList,
+  GetProductCategories,
+  GetSocialGroup,
+  GetSocialGroupDetails,
+  GetSiteSetting,
   GetBuildingList,
   GetBuildingDetails,
   GetClassRomeList,

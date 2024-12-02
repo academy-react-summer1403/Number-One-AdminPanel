@@ -35,7 +35,8 @@ import ModalGroup from "../ModalGroupe";
 const CoursesGroups = ({ groupData, refetchGroup }) => {
   // ** States
   const [sidebarOpen, setSidebarOpen] = useState(false);
-
+  
+  const [showModal, setShowModal] = useState(false);
   const [variantState, setVariantState] = useState("");
   const [groupId, setGroupId] = useState(undefined);
 
@@ -59,7 +60,6 @@ const CoursesGroups = ({ groupData, refetchGroup }) => {
     setItemOffset(newOffset);
   };
 
-  const [showModal, setShowModal] = useState(false);
   return (
     <Fragment>
       <div className="d-flex mb-1">

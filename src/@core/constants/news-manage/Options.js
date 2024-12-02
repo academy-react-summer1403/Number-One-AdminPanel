@@ -1,5 +1,8 @@
 import { Activity, Book, Slash } from "react-feather";
-import { handleIsActive, handleSortingCol } from "../../../view/news/store/NewsList";
+import {
+  handleIsActive,
+  handleSortingCol,
+} from "../../../view/news/store/NewsList";
 
 export const StatisticsOfNews = (data) => {
   const newsSummaryData = [
@@ -41,4 +44,24 @@ export const NewsSortOption = [
     ],
     setState: handleSortingCol,
   },
+];
+
+export const StatisticsOfNewsCategories = (data) => {
+  const newsCategoryData = [
+    {
+      title: "مجموع دسته بندی ها  ",
+      color: "primary",
+      icon: Book,
+      renderStats: data?.length,
+    },
+  ];
+
+  return newsCategoryData;
+};
+
+export const categoryNewsTableTitles = [
+  "",
+  "نام دسته بندی",
+  "عنوان گوگل",
+  "اقدام",
 ];

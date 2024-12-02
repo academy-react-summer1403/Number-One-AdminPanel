@@ -3,7 +3,7 @@ import { Fragment, useState } from "react";
 
 // ** Reactstrap Imports
 import { Modal, ModalHeader, ModalBody, Button } from "reactstrap";
-import { GetCourseStatus } from "../../../@core/services/api/get-api";
+import { GetCoursesStatus} from "../../../@core/services/api/get-api";
 import { ChangeCourseStatus } from "../../../@core/services/api/put-api";
 import { useQueryWithDependencies } from "../../../utility/hooks/useCustomQuery";
 import Select from "react-select";
@@ -21,7 +21,7 @@ const ChangeStatusModal = ({ changeStatusModal, id, toggle, refetch }) => {
   // API  Getting data from Api with use Query
   const { data: courseStatus } = useQueryWithDependencies(
     "GET_COURSE_STATUS",
-    GetCourseStatus,
+    GetCoursesStatus,
     null,
     null
   );
