@@ -1,5 +1,7 @@
+import SchedualListWrapper from "../view/schedual/list";
+
 const Schedual = () => {
-  return <div></div>;
+  return <SchedualListWrapper />;
 };
 
 export default Schedual;

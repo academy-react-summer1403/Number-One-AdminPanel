@@ -11,6 +11,9 @@ const HeaderTable = ({
   rowOfPage,
   handleSearch,
   buttonText,
+  isFilter = false,
+  toggleFilter,
+  isSearching = true,
 }) => {
   const dispatch = useDispatch();
 
@@ -41,19 +44,20 @@ const HeaderTable = ({
           xl="6"
           className="d-flex align-items-sm-center justify-content-xl-end justify-content-start flex-xl-nowrap flex-wrap flex-sm-row flex-column pe-xl-1 p-0 mt-xl-0 mt-1"
         >
-          <div className="d-flex align-items-center mb-sm-0 mb-1 me-1">
-            <Input
-              style={{ width: "300px" }}
-              id="searchBox"
-              placeholder="جستجو ..."
-              onChange={(e) => {
-                e.preventDefault();
-                dispatch(handleSearch(searchBox.value));
-              }}
-            />
-          </div>
-
-          <div className="d-flex align-items-center table-header-actions">
+          {isSearching && (
+            <div className="d-flex align-items-center mb-sm-0 mb-1 me-1">
+              <Input
+                style={{ width: "300px" }}
+                id="searchBox"
+                placeholder="جستجو ..."
+                onChange={(e) => {
+                  e.preventDefault();
+                  dispatch(handleSearch(searchBox.value));
+                }}
+              />
+            </div>
+          )}
+          <div className="d-flex align-items-center gap-75 table-header-actions">
             <Button
               className="add-new-user"
               color="primary"
@@ -61,6 +65,15 @@ const HeaderTable = ({
             >
               {buttonText}
             </Button>
+            {isFilter && (
+              <Button
+                className="add-new-user"
+                color="primary"
+                onClick={toggleFilter}
+              >
+                فیلتر
+              </Button>
+            )}
           </div>
         </Col>
       </Row>
