@@ -9,69 +9,61 @@ import { useQueryWithDependencies } from "../../utility/hooks/useCustomQuery";
 import {
   GetCommentsManage,
   GetCourses,
+  GetDashboardReport,
 } from "../../@core/services/api/get-api";
 import StatsVertical from "./StatsVertical";
 import getUsers from "../user/store/GetUsers";
 import { handleTeachers, handleTotalCount } from "../user/store/UserInfoSlice";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { generalStatistics } from "../../@core/constants/dashboard";
 
 const StatsCard = () => {
   const userReports = useSelector((state) => state.UserInfoSlice);
+  const [data, setData] = useState([]);
+  const teachers = getUsers(handleTeachers, 2);
 
   // Getting Data from Api with use Query
-  const { data: courses } = useQueryWithDependencies(
+  const { data: courses, isSuccess: courseSuccess } = useQueryWithDependencies(
     "GET_COURSES_DATA",
     GetCourses,
     null,
     { PageNumber: 1, RowsOfPage: 1000 }
   );
-  const { data: comments } = useQueryWithDependencies(
-    "GET_COMMENTS_DATA",
-    GetCommentsManage,
+  const { data: comments, isSuccess: commentSuccess } =
+    useQueryWithDependencies(
+      "GET_COMMENTS_DATA",
+      GetCommentsManage,
+      null,
+      null
+    );
+
+  const {
+    data: dashboardReport,
+    isRefetching,
+    isSuccess: reportSuccess,
+  } = useQueryWithDependencies(
+    "GET_DASHBOARD_REPORT",
+    GetDashboardReport,
     null,
     null
   );
-
-  const allUsers = getUsers(handleTotalCount);
-  const teachers = getUsers(handleTeachers, 2);
+  // console.log(dashboardReport);
 
   useEffect(() => {
-    allUsers;
     teachers;
-  }, []);
+    if (dashboardReport && courses && userReports && comments) {
+      setData(
+        generalStatistics(courses, comments, userReports, dashboardReport)
+      );
+    }
+  }, [reportSuccess, commentSuccess, courseSuccess]);
 
-  const data = [
-    {
-      title: userReports?.totalCount.totalCount,
-      subtitle: " کاربران",
-      color: "primary",
-      icon: <Users size={24} />,
-    },
-    {
-      title: courses?.totalCount,
-      subtitle: "دوره ها",
-      color: "secondary",
-      icon: <Book size={24} />,
-    },
-    {
-      title: comments?.totalCount,
-      subtitle: "کامنت ها",
-      color: "success",
-      icon: <Send size={24} />,
-    },
-    {
-      title: userReports?.teachers.totalCount,
-      subtitle: "اساتید",
-      color: "danger",
-      icon: <Award size={24} />,
-    },
-  ];
-
+  // console.log(data);
   return (
-    <div className="app-user-list h-100" style={{marginBottom: "28px"}}>
+    <div className="app-user-list h-100" style={{ marginBottom: "28px" }}>
       <Row className="h-100">
         {data?.map((item, index) => (
-          <Col key={index} md="3" sm="6" className="h-100">
+          <Col key={index} md="3" sm="6" className="mb-1">
             <StatsVertical
               holderStyle="h-100 mb-0"
               key={index}

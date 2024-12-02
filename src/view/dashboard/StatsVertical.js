@@ -16,7 +16,7 @@ const StatsVertical = ({
     <Card className={`text-center ${holderStyle}`}>
       <CardBody className={className && className}>
         <div
-          className={`avatar p-40 m-0 p-1 mt-2 mb-2 ${
+          className={`avatar p-1 m-0 p-1 mt-2 mb-2 ${
             color ? `bg-light-${color}` : "bg-light-primary"
           }`}
         >

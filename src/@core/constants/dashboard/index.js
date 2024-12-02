@@ -1,3 +1,4 @@
 import { GoalOverViewData } from "./GoalOverviewArrays";
+import { generalStatistics } from "./Options";
 
-export { GoalOverViewData };
+export { GoalOverViewData,generalStatistics };
