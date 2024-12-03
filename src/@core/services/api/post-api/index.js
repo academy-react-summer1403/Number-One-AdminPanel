@@ -29,6 +29,7 @@ import CreateNewTerm from "./CreateTerm";
 import CreateCourseAssistance from "./CreateCourseAssistance";
 import CreateAssistanceWork from "./CreateAssistanceWork";
 import CreateSchedule from "./CreateSchedule";
+import CreateScheduleAuto from "./CreateScheduleAuto";
 
 
 export {
@@ -63,4 +64,5 @@ export {
   CreateCourseAssistance,
   CreateAssistanceWork,
   CreateSchedule,
+  CreateScheduleAuto,
 };

@@ -14,7 +14,7 @@ import {
 } from "reactstrap";
 
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { CreateSchedule } from "../../../@core/services/api/post-api";
+import { CreateSchedule, CreateScheduleAuto } from "../../../@core/services/api/post-api";
 import gregorian from "react-date-object/calendars/gregorian";
 import gregorian_en from "react-date-object/locales/gregorian_en";
 import ScheduleValidation from "../../../@core/validations/Schedule.Validation";
@@ -39,9 +39,11 @@ import {
   handleQueryCourse,
 } from "../../courses/store/CourseList";
 import { UpdateSchedule } from "../../../@core/services/api/put-api";
+import { addScheduleButton } from "../../../@core/constants/schedual/ScheduleFields";
 const ModalSchedule = ({ showModal, toggle, data, refetch, variantState }) => {
   // states & params
   const [courseId, setCourseId] = useState(undefined);
+  const [addStatus, setAddStatus] = useState("auto");
   const courseParams = useSelector((state) => state.CoursesList);
   const courseTableHeader = ["", "نام دوره", "وضعیت", "عملیات"];
 
@@ -50,6 +52,7 @@ const ModalSchedule = ({ showModal, toggle, data, refetch, variantState }) => {
     create: "افزودن بازه زمانی جدید ",
     update: "ویرایش بازه زمانی",
   };
+  // console.log(data)
 
   // Get All Users
   const { data: courses } = useQueryWithDependencies(
@@ -91,11 +94,20 @@ const ModalSchedule = ({ showModal, toggle, data, refetch, variantState }) => {
     enabled: !!(course?.teacherId !== undefined),
   });
 
-  // Creating schedule
-  const { mutate: AddSchedule } = useMutation({
-    mutationKey: ["CREATE_SCHEDULE"],
+  // Creating schedule manual
+  const { mutate: AddScheduleManual } = useMutation({
+    mutationKey: ["CREATE_SCHEDULE_MANUAL"],
     mutationFn: (values) => {
       CreateSchedule(courseId, values, refetch);
+    },
+    onSuccess: () => toggle(),
+  });
+  
+   // Creating schedule manual
+   const { mutate: AddScheduleAuto } = useMutation({
+    mutationKey: ["CREATE_SCHEDULE_AUTO"],
+    mutationFn: (values) => {
+      CreateScheduleAuto(courseId, values, refetch);
     },
     onSuccess: () => toggle(),
   });
@@ -117,8 +129,8 @@ const ModalSchedule = ({ showModal, toggle, data, refetch, variantState }) => {
     endTime: variantState == "update" ? data?.endTime : "",
     weekNumber: variantState == "update" ? data?.weekNumber : "",
     rowEffect: variantState == "update" ? data?.rowEffect : "",
-    forming: variantState == "update" ? data?.forming : "",
-    lockToRaise: variantState == "update" ? data?.lockToRaise : "",
+    forming: variantState == "update" ? data?.forming : undefined,
+    lockToRaise: variantState == "update" ? data?.lockToRaise : undefined,
   };
   // use Formik
   const formik = useFormik({
@@ -126,8 +138,9 @@ const ModalSchedule = ({ showModal, toggle, data, refetch, variantState }) => {
     validationSchema: ScheduleValidation,
     onSubmit: async (values, { setSubmitting }) => {
       if (variantState == "create") {
-        // console.log(values);
-        AddSchedule(values);
+        if(addStatus === "manual"){
+        AddScheduleManual(values);
+        }else AddScheduleAuto([values,values]);
       } else {
         updateMutate(Object.assign(values, { id: data?.id }));
       }
@@ -158,6 +171,22 @@ const ModalSchedule = ({ showModal, toggle, data, refetch, variantState }) => {
       >
         <ModalHeader toggle={toggle}>
           {titleVariant?.[variantState]}
+          <div className="demo-inline-spacing">
+            {variantState == "create"
+              ? addScheduleButton.map((button, index) => (
+                  <div key={index} className="form-check">
+                    <Input type="radio" id={button.id} name="ex1" defaultChecked/>
+                    <Label
+                      className="form-check-label"
+                      for={button.id}
+                      onClick={() => setAddStatus(button.value)}
+                    >
+                      {button.label}
+                    </Label>
+                  </div>
+                ))
+              : null}
+          </div>
         </ModalHeader>
         <ModalBody>
           <Form onSubmit={formik.handleSubmit}>
@@ -257,7 +286,7 @@ const ModalSchedule = ({ showModal, toggle, data, refetch, variantState }) => {
               {data && (
                 <Col sm="6">
                   <CardBody className="d-flex justify-content-between">
-                    <div className="d-flex align-items-center gap-1 mt-1">
+                    <div className="d-flex align-items-center gap-1 mt-2">
                       <Label
                         className="form-switch form-check-success"
                         for="forming"
@@ -269,7 +298,7 @@ const ModalSchedule = ({ showModal, toggle, data, refetch, variantState }) => {
                           type="switch"
                           name="forming"
                           id="forming"
-                          onChange={formik.handleChange}
+                          onChange={data && formik.handleChange}
                           onBlur={formik.handleBlur}
                           checked={formik.values.forming}
                           invalid={
@@ -278,7 +307,7 @@ const ModalSchedule = ({ showModal, toggle, data, refetch, variantState }) => {
                         />
                       </div>
                     </div>
-                    <div className="d-flex align-items-center gap-1 mt-1">
+                    <div className="d-flex align-items-center gap-1 mt-2">
                       <Label
                         className="form-switch form-check-success"
                         for="lockToRaise"
@@ -290,7 +319,7 @@ const ModalSchedule = ({ showModal, toggle, data, refetch, variantState }) => {
                           type="switch"
                           name="lockToRaise"
                           id="lockToRaise"
-                          onChange={formik.handleChange}
+                          onChange={data && formik.handleChange}
                           onBlur={formik.handleBlur}
                           checked={formik.values.lockToRaise}
                           invalid={
