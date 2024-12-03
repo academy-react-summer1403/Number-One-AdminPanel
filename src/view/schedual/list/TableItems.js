@@ -7,35 +7,60 @@ import {
 } from "reactstrap";
 import ChangeMoment from "../../../utility/moment";
 import { Activity, Edit, MoreVertical } from "react-feather";
+import { useQueryWithDependencies } from "../../../utility/hooks/useCustomQuery";
+import { GetGroupDetails } from "../../../@core/services/api/get-api";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { handleDetailGroup } from "../store";
 
-const TableItems = ({ item, toggleModal,setVariantState ,setId }) => {
-  // console.log(item)
+// console.log(item)
+const TableItems = ({ item, toggleModal, setVariantState, setId }) => {
+  const [existedGroup, setExistedGroup] = useState();
+  const DetailGroup = useSelector((state) => state.SchedualSlice.DetailGroup);
+  const dispatch = useDispatch();
+
+  const handleGet = async () => {
+    const group = await GetGroupDetails(item.courseGroupId);
+    if (group) {
+      let details = {
+        groupName: group?.courseGroupDto?.groupName,
+        groupId: group?.courseGroupDto?.groupId,
+      };
+      dispatch(handleDetailGroup(details));
+    }
+  };
+
+  useEffect(() => {
+    let exist = DetailGroup.find((ev) => ev.groupId === item.courseGroupId);
+    if (exist) {
+      setExistedGroup(exist);
+    } else {
+      handleGet();
+    }
+  }, [item]);
+
   return (
     <tr className="text-center">
       <td className="px-0" style={{ width: "180px" }}>
-        {item.courseGroupId}
+        {existedGroup ? existedGroup.groupName : ""}
       </td>
       <td className="px-0" style={{ width: "130px" }}>
-        {item.startTime}
+        {item.startTime} تا {item.endTime}
       </td>
-      <td className="px-0" style={{ width: "130px" }}>
-        {item.endTime}
-      </td>
-      <td className="px-0" style={{ width: "100px" }}>
+      <td className="px-0" style={{ width: "80px" }}>
         {item.weekNumber}
       </td>
-      <td className="px-0" style={{ width: "200px" }}>
-        {ChangeMoment(item.startDate, "YYYY/MM/DD", "persian")} تا{" "}
-        {ChangeMoment(item.endDate, "YYYY/MM/DD", "persian")}
+      <td className="px-0" style={{ width: "120px" }}>
+        {ChangeMoment(item.startDate, "YYYY/MM/DD", "persian")}
       </td>
       <td className="px-0" style={{ width: "150px" }}>
         <Badge color={item.forming ? "success" : "danger"}>
           {item.forming ? "تشکیل شده" : "تشکیل نشده"}
         </Badge>
       </td>
-      <td className="px-0" style={{ width: "150px" }}>
-        <Badge color={item.forming ? "success" : "danger"}>
-          {item.lockToRaise ? "می تواند شرکت کند" : "نمی تواند شرکت کند"}
+      <td className="px-0" style={{ width: "100px" }}>
+        <Badge color={item.lockToRaise ? "success" : "danger"}>
+          {item.lockToRaise ? "می تواند" : "نمی تواند"}
         </Badge>
       </td>
       <td style={{ width: "100px" }} className="px-0">
@@ -63,7 +88,7 @@ const TableItems = ({ item, toggleModal,setVariantState ,setId }) => {
               onClick={(e) => {
                 e.preventDefault();
                 toggleModal();
-                setVariantState("update")
+                setVariantState("update");
                 setId(item.id);
               }}
             >

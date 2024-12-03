@@ -2,14 +2,15 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useQueryWithDependencies } from "../../../utility/hooks/useCustomQuery";
 import GetAdminScheduals from "../../../@core/services/api/get-api/GetAdminScheduals";
-import { handleData, handleQuery, handleRowsOfPage } from "../store";
+import { handleData, handleFilterDate, handleRowsOfPage } from "../store";
 import { HeaderTable } from "../../../@core/components/table-list";
 import { Card, Col, Row, Table } from "reactstrap";
 import headerTable from "../../../@core/constants/schedual/HeaderTable";
 import CustomPagination from "../../../@core/components/pagination";
 import TableItems from "./TableItems";
-import FilterModal from "./FilterModal";
+// import FilterModal from "./FilterModal";
 import ModalSchedule from "../create/ModalSchedule";
+import SchedualCalendar from "./Calendar";
 
 const SchedualListWrapper = () => {
   const params = useSelector((state) => state.SchedualSlice);
@@ -78,16 +79,24 @@ const SchedualListWrapper = () => {
 
   return (
     <div className="app-user-list">
-      <Row>
-        <Col sm="12">
-          <Card className="overflow-hidden">
-            <div className="react-dataTable">
+      <Card className="overflow-hidden">
+        {/* <HeaderTable
+          toggleSidebar={toggleShowModal}
+          rowOfPage={params.RowsOfPage}
+          handleRowOfPage={handleRows}
+          buttonText={"افزودن بازه زمانی"}
+          toggleFilter={toggleFilterModal}
+          isSearching={false}
+        /> */}
+        <Row className="px-2">
+          <Col sm="8">
+            <div className="react-dataTable overflow-hidden">
               <HeaderTable
                 toggleSidebar={toggleShowModal}
                 setScheduleDetails={setScheduleDetails}
                 rowOfPage={params.RowsOfPage}
                 handleRowOfPage={handleRows}
-                handleSearch={handleQuery}
+                // handleSearch={handleQuery}
                 buttonText={"افزودن بازه زمانی"}
                 isFilter
                 toggleFilter={toggleFilterModal}
@@ -126,23 +135,23 @@ const SchedualListWrapper = () => {
               rowsPerPage={params.RowsOfPage}
               handleClickFunc={handleMovePage}
             />
-          </Card>
-        </Col>
-        <FilterModal
-          refetch={refetch}
-          isOpen={filterModal}
-          toggle={toggleFilterModal}
-        />
-        {scheduleDetails && (
-          <ModalSchedule
-            showModal={showModal}
-            toggle={toggleShowModal}
-            data={scheduleDetails}
+          </Col>
+          {/* <FilterModal
             refetch={refetch}
-            variantState={variantState}
-          />
-        )}
-      </Row>
+            isOpen={filterModal}
+            toggle={toggleFilterModal}
+          /> */}
+          {scheduleDetails && (
+            <ModalSchedule
+              showModal={showModal}
+              toggle={toggleShowModal}
+              data={scheduleDetails}
+              refetch={refetch}
+              variantState={variantState}
+            />
+          )}
+        </Row>
+      </Card>
     </div>
   );
 };

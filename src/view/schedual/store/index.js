@@ -4,11 +4,11 @@ import toast from "react-hot-toast";
 const initialState = {
   PageNumber: 1,
   RowsOfPage: 9,
-  Query: undefined,
   startDate: "1900/01/10",
   endDate: "3000/01/10",
   FilteredData: [],
   Data: [],
+  DetailGroup: [],
 };
 
 const SchedualSlice = createSlice({
@@ -25,19 +25,18 @@ const SchedualSlice = createSlice({
     handleRowsOfPage: (state, action) => {
       state.RowsOfPage = action.payload;
     },
-    handleQuery: (state, action) => {
-      state.Query = action.payload;
-      state.FilteredData = state.Data.filter(
-        (item) =>
-          item.buildingName
-            .toLowerCase()
-            .indexOf(action.payload.toLowerCase()) != -1
-      );
-    },
     handleFilterDate: (state, action) => {
       state.startDate = action.payload.startDate;
       state.endDate = action.payload.endDate;
-      toast.success("فیلتر اعمال شد")
+      toast.success("فیلتر اعمال شد");
+    },
+    handleDetailGroup: (state, action) => {
+      let exist = state.DetailGroup.find(
+        (ev) => ev.groupId === action.payload.groupId
+      );
+      if (!exist) {
+        state.DetailGroup.push(action.payload);
+      }
     },
   },
 });
@@ -45,8 +44,8 @@ const SchedualSlice = createSlice({
 export const {
   handlePageNumber,
   handleRowsOfPage,
-  handleQuery,
   handleData,
   handleFilterDate,
+  handleDetailGroup,
 } = SchedualSlice.actions;
 export default SchedualSlice.reducer;
