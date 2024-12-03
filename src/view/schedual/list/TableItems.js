@@ -57,9 +57,9 @@ const TableItems = ({ item, toggle, setId }) => {
           {item.forming ? "تشکیل شده" : "تشکیل نشده"}
         </Badge>
       </td>
-      <td className="px-0" style={{ width: "150px" }}>
+      <td className="px-0" style={{ width: "100px" }}>
         <Badge color={item.lockToRaise ? "success" : "danger"}>
-          {item.lockToRaise ? "می تواند شرکت کند" : "نمی تواند شرکت کند"}
+          {item.lockToRaise ? "می تواند" : "نمی تواند"}
         </Badge>
       </td>
       <td style={{ width: "100px" }} className="px-0">
