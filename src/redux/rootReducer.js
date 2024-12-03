@@ -36,6 +36,8 @@ import SupportSlice from "../view/support/store";
 import AssistanceWorkList from "../view/assistance-work/store";
 // Assistance Course
 import AssistanceCourseSlice from "../view/courses/store/AssistanceCourseSlice";
+// Schedual
+import SchedualSlice from "../view/schedual/store";
 
 const rootReducer = {
   navbar,
@@ -66,6 +68,7 @@ const rootReducer = {
   SupportSlice,
   AssistanceWorkList,
   AssistanceCourseSlice,
+  SchedualSlice,
 };
 
 export default rootReducer;
