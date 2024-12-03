@@ -17,7 +17,6 @@ const SchedualListWrapper = () => {
   const [id, setId] = useState("");
   const [scheduleDetails, setScheduleDetails] = useState(undefined);
   const [variantState, setVariantState] = useState(undefined);
-  console.log(scheduleDetails);
 
   const {
     data: scheduals,

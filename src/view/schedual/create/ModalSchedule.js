@@ -40,12 +40,12 @@ import {
 } from "../../courses/store/CourseList";
 import { UpdateSchedule } from "../../../@core/services/api/put-api";
 const ModalSchedule = ({ showModal, toggle, data, refetch, variantState }) => {
+  // states & params
   const [courseId, setCourseId] = useState(undefined);
   const courseParams = useSelector((state) => state.CoursesList);
   const courseTableHeader = ["", "نام دوره", "وضعیت", "عملیات"];
-  // Convert date to jalali and send to api
-  // const [startValue, setStartValue] = useState(new Date());
 
+  // Variants
   const titleVariant = {
     create: "افزودن بازه زمانی جدید ",
     update: "ویرایش بازه زمانی",
@@ -66,7 +66,7 @@ const ModalSchedule = ({ showModal, toggle, data, refetch, variantState }) => {
     courseId,
     courseId !== undefined
   );
-
+  // Get Group details
   const { data: groupDetails, isSuccess } = useQueryWithDependencies(
     "GET_GROUP_DETAILS",
     GetGroupDetails,
@@ -91,7 +91,7 @@ const ModalSchedule = ({ showModal, toggle, data, refetch, variantState }) => {
     enabled: !!(course?.teacherId !== undefined),
   });
 
-  // Creating categories for blogs
+  // Creating schedule
   const { mutate: AddSchedule } = useMutation({
     mutationKey: ["CREATE_SCHEDULE"],
     mutationFn: (values) => {
@@ -100,7 +100,7 @@ const ModalSchedule = ({ showModal, toggle, data, refetch, variantState }) => {
     onSuccess: () => toggle(),
   });
 
-  // Editing categories for blogs
+  // Editing schedule
   const { mutate: updateMutate } = useMutation({
     mutationKey: ["UPDATE_SCHEDULE"],
     mutationFn: (values) => {
@@ -108,6 +108,7 @@ const ModalSchedule = ({ showModal, toggle, data, refetch, variantState }) => {
     },
     onSuccess: () => toggle(),
   });
+
   // initialValues
   const initialValues = {
     courseGroupId: variantState == "update" ? data?.courseGroupId : "",
@@ -119,8 +120,7 @@ const ModalSchedule = ({ showModal, toggle, data, refetch, variantState }) => {
     forming: variantState == "update" ? data?.forming : "",
     lockToRaise: variantState == "update" ? data?.lockToRaise : "",
   };
-  console.log(data?.startDate);
-
+  // use Formik
   const formik = useFormik({
     initialValues,
     validationSchema: ScheduleValidation,
@@ -135,6 +135,7 @@ const ModalSchedule = ({ showModal, toggle, data, refetch, variantState }) => {
     },
   });
 
+  // Convert Gregorian date to solar
   const handleDatePicker = (date) => {
     const gregorianDate = new DateObject(date)
       .convert(gregorian, gregorian_en)
@@ -167,12 +168,8 @@ const ModalSchedule = ({ showModal, toggle, data, refetch, variantState }) => {
                 </Label>
                 <Input
                   placeholder="نام دوره"
-                  // name="courseId"
                   onClick={toggleChooseCourseModal}
-                  value={
-                    // ? groupDetails?.courseGroupDto?.courseName
-                    course?.title
-                  }
+                  value={course?.title}
                 />
               </Col>
               <Col sm="6" className="mb-1">
@@ -191,7 +188,6 @@ const ModalSchedule = ({ showModal, toggle, data, refetch, variantState }) => {
                     !!formik.errors.courseGroupId
                   }
                 >
-                  {/* <option value="">انتخاب کنید</option> */}
                   {groupData?.length > 0 ? (
                     groupData.map((group, index) => (
                       <option key={index} value={group.groupId}>
@@ -269,7 +265,6 @@ const ModalSchedule = ({ showModal, toggle, data, refetch, variantState }) => {
                         حالت برگزاری کلاس
                       </Label>
                       <div className="form-switch form-check-success">
-                        {/* {console.log(formik.values.forming)} */}
                         <Input
                           type="switch"
                           name="forming"
@@ -291,7 +286,6 @@ const ModalSchedule = ({ showModal, toggle, data, refetch, variantState }) => {
                         وضعیت حضور و غیاب
                       </Label>
                       <div className="form-switch form-check-success">
-                        {/* {console.log(formik.values.lockToRaise)} */}
                         <Input
                           type="switch"
                           name="lockToRaise"
@@ -309,24 +303,6 @@ const ModalSchedule = ({ showModal, toggle, data, refetch, variantState }) => {
                   </CardBody>
                 </Col>
               )}
-              {/* <Label className="form-check-label" htmlFor={htmlFor}>
-                <span className="switch-icon-left">
-                  <Check size={14} />
-                </span>
-                <span className="switch-icon-right">
-                  <X size={14} />
-                </span>
-              </Label> */}
-              {/* <div className="form-switch form-check-success">
-                    <Input
-                      type="switch"
-                      checked={item.role}
-                      id={item.id}
-                      name={item.id}
-                      onChange={item.action}
-                    />
-                    <CustomLabel htmlFor={item.id} />
-                  </div> */}
               <Col sm="12">
                 <div className="d-flex mt-1">
                   <Button
