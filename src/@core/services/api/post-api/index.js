@@ -28,6 +28,7 @@ import CreateNewDepartment from "./CreateDepartment";
 import CreateNewTerm from "./CreateTerm";
 import CreateCourseAssistance from "./CreateCourseAssistance";
 import CreateAssistanceWork from "./CreateAssistanceWork";
+import CreateSchedule from "./CreateSchedule";
 
 
 export {
@@ -55,11 +56,11 @@ export {
   CreateShopCategory,
   CreateProductCategory,
   AddSocialGroup,
-
   CreateClassRome,
   CreateNewBuilding,
   CreateNewDepartment,
   CreateNewTerm,
   CreateCourseAssistance,
   CreateAssistanceWork,
+  CreateSchedule,
 };

@@ -7,6 +7,7 @@ import "@styles/react/libs/tables/react-dataTable-component.scss";
 
 const HeaderTable = ({
   toggleSidebar,
+  setScheduleDetails,
   handleRowOfPage,
   rowOfPage,
   handleSearch,
@@ -61,7 +62,10 @@ const HeaderTable = ({
             <Button
               className="add-new-user"
               color="primary"
-              onClick={toggleSidebar}
+              onClick={() => {
+                toggleSidebar();
+                setScheduleDetails("test");
+              }}
             >
               {buttonText}
             </Button>

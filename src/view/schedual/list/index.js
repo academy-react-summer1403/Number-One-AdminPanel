@@ -9,11 +9,13 @@ import headerTable from "../../../@core/constants/schedual/HeaderTable";
 import CustomPagination from "../../../@core/components/pagination";
 import TableItems from "./TableItems";
 import FilterModal from "./FilterModal";
+import ModalSchedule from "../create/ModalSchedule";
 
 const SchedualListWrapper = () => {
   const params = useSelector((state) => state.SchedualSlice);
   const dispatch = useDispatch();
   const [id, setId] = useState("");
+  const [scheduleDetails, setScheduleDetails] = useState(undefined);
 
   const {
     data: scheduals,
@@ -31,6 +33,19 @@ const SchedualListWrapper = () => {
     }
   }, [isSuccess, isRefetching]);
 
+  // Getting the desired item data
+  const handleStatusDetail = () => {
+    const detail = scheduals.find((item) => item.id == id);
+    setScheduleDetails(detail);
+  };
+  console.log(scheduleDetails)
+
+  useEffect(() => {
+    if (isSuccess) {
+      handleStatusDetail();
+    }
+  }, [id]);
+
   // Pagination
   const [itemOffset, setItemOffset] = useState(0);
   const endOffset = itemOffset + params.RowsOfPage;
@@ -46,6 +61,7 @@ const SchedualListWrapper = () => {
   // Create Modal
   const [createModal, setCreateModal] = useState(false);
   const toggleCreateModal = () => setCreateModal(!createModal);
+  console.log(createModal)
 
   // Filter Modal
   const [filterModal, setFilterModal] = useState(false);
@@ -57,6 +73,11 @@ const SchedualListWrapper = () => {
     dispatch(handleRowsOfPage(value));
   };
 
+  // Empty data after closing the modal every time
+  useEffect(() => {
+    if (!createModal) setScheduleDetails(undefined);
+  }, [createModal]);
+
   return (
     <div className="app-user-list">
       <Row>
@@ -65,6 +86,7 @@ const SchedualListWrapper = () => {
             <div className="react-dataTable">
               <HeaderTable
                 toggleSidebar={toggleCreateModal}
+                setScheduleDetails={setScheduleDetails}
                 rowOfPage={params.RowsOfPage}
                 handleRowOfPage={handleRows}
                 handleSearch={handleQuery}
@@ -111,17 +133,26 @@ const SchedualListWrapper = () => {
           isOpen={filterModal}
           toggle={toggleFilterModal}
         />
-        {/* <EditBuilding
-          data={detailSuccess && details}
-          refetch={refetch}
-          isOpen={editModal}
-          toggle={toggleEditModal}
-        />
-        <CreateBuilding
-          refetch={refetch}
-          isOpen={createModal}
-          toggle={toggleCreateModal}
-        /> */}
+        {scheduleDetails && (
+          <>
+            <ModalSchedule
+              showModal={editModal}
+              toggle={toggleEditModal}
+              data={scheduleDetails}
+              refetch={refetch}
+              // courseId={id}
+              variantState={"update"}
+            />
+            <ModalSchedule
+              showModal={createModal}
+              toggle={toggleCreateModal}
+              data={undefined}
+              refetch={refetch}
+              // courseId={id}
+              variantState={"create"}
+            />
+          </>
+        )}
       </Row>
     </div>
   );

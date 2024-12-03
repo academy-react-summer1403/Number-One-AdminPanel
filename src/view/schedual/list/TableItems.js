@@ -8,7 +8,8 @@ import {
 import ChangeMoment from "../../../utility/moment";
 import { Activity, Edit, MoreVertical } from "react-feather";
 
-const TableItems = ({ item, toggle, setId }) => {
+const TableItems = ({ item, toggleModal, setId }) => {
+  // console.log(item)
   return (
     <tr className="text-center">
       <td className="px-0" style={{ width: "180px" }}>
@@ -61,8 +62,8 @@ const TableItems = ({ item, toggle, setId }) => {
               href="/"
               onClick={(e) => {
                 e.preventDefault();
-                toggle();
-                setId(id);
+                toggleModal();
+                // setId(id);
               }}
             >
               <Edit className="me-50" size={15} />{" "}
