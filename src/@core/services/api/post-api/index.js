@@ -30,7 +30,7 @@ import CreateCourseAssistance from "./CreateCourseAssistance";
 import CreateAssistanceWork from "./CreateAssistanceWork";
 import CreateSchedule from "./CreateSchedule";
 import CreateScheduleAuto from "./CreateScheduleAuto";
-
+import UpdateJobHistoryShow from "./UpdateJobHistoryShow";
 
 export {
   AddUserAccess,
@@ -65,4 +65,5 @@ export {
   CreateAssistanceWork,
   CreateSchedule,
   CreateScheduleAuto,
+  UpdateJobHistoryShow,
 };

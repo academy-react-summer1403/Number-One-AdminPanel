@@ -12,6 +12,7 @@ const HeaderTable = ({
   rowOfPage,
   buttonText,
   setVariantState,
+  isCreate = true,
 }) => {
   const dispatch = useDispatch();
 
@@ -55,6 +56,28 @@ const HeaderTable = ({
               {buttonText}
             </Button>
           </div>
+          <div className="d-flex align-items-center mb-sm-0 mb-1 me-1">
+            <Input
+              style={{ width: "300px" }}
+              id="searchBox"
+              placeholder="جستجو ..."
+              onChange={(e) => {
+                e.preventDefault();
+                dispatch(handleSearch(searchBox.value));
+              }}
+            />
+          </div>
+          {isCreate && (
+            <div className="d-flex align-items-center table-header-actions">
+              <Button
+                className="add-new-user"
+                color="primary"
+                onClick={toggleSidebar}
+              >
+                {buttonText}
+              </Button>
+            </div>
+          )}
         </Col>
       </Row>
     </div>
