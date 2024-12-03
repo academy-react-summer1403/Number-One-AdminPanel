@@ -8,7 +8,7 @@ import {
 import ChangeMoment from "../../../utility/moment";
 import { Activity, Edit, MoreVertical } from "react-feather";
 
-const TableItems = ({ item, toggleModal, setId }) => {
+const TableItems = ({ item, toggleModal,setVariantState ,setId }) => {
   // console.log(item)
   return (
     <tr className="text-center">
@@ -63,7 +63,8 @@ const TableItems = ({ item, toggleModal, setId }) => {
               onClick={(e) => {
                 e.preventDefault();
                 toggleModal();
-                // setId(id);
+                setVariantState("update")
+                setId(item.id);
               }}
             >
               <Edit className="me-50" size={15} />{" "}

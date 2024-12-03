@@ -14,6 +14,7 @@ const HeaderTable = ({
   buttonText,
   isFilter = false,
   toggleFilter,
+  setVariantState,
   isSearching = true,
 }) => {
   const dispatch = useDispatch();
@@ -65,6 +66,7 @@ const HeaderTable = ({
               onClick={() => {
                 toggleSidebar();
                 setScheduleDetails("test");
+                setVariantState("create")
               }}
             >
               {buttonText}

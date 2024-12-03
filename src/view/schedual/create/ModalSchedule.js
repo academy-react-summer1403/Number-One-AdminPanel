@@ -10,6 +10,7 @@ import {
   Modal,
   ModalHeader,
   ModalBody,
+  CardBody,
 } from "reactstrap";
 
 import { useMutation, useQuery } from "@tanstack/react-query";
@@ -20,7 +21,7 @@ import ScheduleValidation from "../../../@core/validations/Schedule.Validation";
 import DatePicker from "react-multi-date-picker";
 import persian from "react-date-object/calendars/persian";
 import persian_fa from "react-date-object/locales/persian_fa";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import DateObject from "react-date-object";
 import { ScheduleNumberFields } from "../../../@core/constants/schedual";
 import ModalApiItemList from "../../../@core/components/modal/ModalApiItemList";
@@ -30,16 +31,20 @@ import {
   GetCourseById,
   GetCourseGroups,
   GetCourses,
+  GetGroupDetails,
 } from "../../../@core/services/api/get-api";
 import { useQueryWithDependencies } from "../../../utility/hooks/useCustomQuery";
 import {
   handleCoursePageNumber,
   handleQueryCourse,
 } from "../../courses/store/CourseList";
+import { UpdateSchedule } from "../../../@core/services/api/put-api";
 const ModalSchedule = ({ showModal, toggle, data, refetch, variantState }) => {
   const [courseId, setCourseId] = useState(undefined);
   const courseParams = useSelector((state) => state.CoursesList);
   const courseTableHeader = ["", "نام دوره", "وضعیت", "عملیات"];
+  // Convert date to jalali and send to api
+  // const [startValue, setStartValue] = useState(new Date());
 
   const titleVariant = {
     create: "افزودن بازه زمانی جدید ",
@@ -61,6 +66,19 @@ const ModalSchedule = ({ showModal, toggle, data, refetch, variantState }) => {
     courseId,
     courseId !== undefined
   );
+
+  const { data: groupDetails, isSuccess } = useQueryWithDependencies(
+    "GET_GROUP_DETAILS",
+    GetGroupDetails,
+    data?.courseGroupId,
+    data?.courseGroupId,
+    data?.courseGroupId !== undefined
+  );
+
+  useEffect(() => {
+    if (isSuccess) setCourseId(groupDetails?.courseGroupDto?.courseId);
+  }, [isSuccess]);
+
   // Get course Groups
   const { data: groupData, refetch: refetchGroup } = useQuery({
     queryKey: ["GET_COURSE_GROUPS", courseId],
@@ -72,7 +90,6 @@ const ModalSchedule = ({ showModal, toggle, data, refetch, variantState }) => {
     },
     enabled: !!(course?.teacherId !== undefined),
   });
-  console.log(groupData);
 
   // Creating categories for blogs
   const { mutate: AddSchedule } = useMutation({
@@ -82,41 +99,37 @@ const ModalSchedule = ({ showModal, toggle, data, refetch, variantState }) => {
     },
     onSuccess: () => toggle(),
   });
-  //   console.log(data)
-
-  // Convert date to jalali and send to api
-  const [startValue, setStartValue] = useState(new Date());
 
   // Editing categories for blogs
-  //   const { mutate: updateMutate } = useMutation({
-  //     mutationKey: ["UPDATE_LEVEL"],
-  //     mutationFn: (values) => {
-  //       UpdateCourseLevel(values, refetch);
-  //     },
-  //     onSuccess: () => setShowModal(!showModal),
-  //   });
+  const { mutate: updateMutate } = useMutation({
+    mutationKey: ["UPDATE_SCHEDULE"],
+    mutationFn: (values) => {
+      UpdateSchedule(courseId, values, refetch);
+    },
+    onSuccess: () => toggle(),
+  });
   // initialValues
-  //   console.log(data.levelName);
   const initialValues = {
-    // courseGroupId: variantState == "update" ? data.courseGroupId : "",
     courseGroupId: variantState == "update" ? data?.courseGroupId : "",
+    startDate: variantState == "update" ? data?.startDate : "",
     startTime: variantState == "update" ? data?.startTime : "",
     endTime: variantState == "update" ? data?.endTime : "",
     weekNumber: variantState == "update" ? data?.weekNumber : "",
     rowEffect: variantState == "update" ? data?.rowEffect : "",
+    forming: variantState == "update" ? data?.forming : "",
+    lockToRaise: variantState == "update" ? data?.lockToRaise : "",
   };
+  console.log(data?.startDate);
 
   const formik = useFormik({
     initialValues,
     validationSchema: ScheduleValidation,
     onSubmit: async (values, { setSubmitting }) => {
-      alert();
-      console.log(variantState);
       if (variantState == "create") {
-        console.log(values);
+        // console.log(values);
         AddSchedule(values);
       } else {
-        // updateMutate(Object.assign(values, { id: data.id }));
+        updateMutate(Object.assign(values, { id: data?.id }));
       }
       setSubmitting(false);
     },
@@ -125,9 +138,9 @@ const ModalSchedule = ({ showModal, toggle, data, refetch, variantState }) => {
   const handleDatePicker = (date) => {
     const gregorianDate = new DateObject(date)
       .convert(gregorian, gregorian_en)
-      .format("YYYY-M-DT00:00:00");
+      .format("YYYY-MM-DDT00:00:00");
     formik.setFieldValue("startDate", gregorianDate);
-    setStartValue(date);
+    // setStartValue(date);
   };
 
   // Choose Course Modal
@@ -153,14 +166,14 @@ const ModalSchedule = ({ showModal, toggle, data, refetch, variantState }) => {
                   انتخاب دوره
                 </Label>
                 <Input
-                  // id="courseId"
                   placeholder="نام دوره"
                   // name="courseId"
                   onClick={toggleChooseCourseModal}
-                  value={course?.title}
-                  // invalid={!!formik.errors.courseId}
+                  value={
+                    // ? groupDetails?.courseGroupDto?.courseName
+                    course?.title
+                  }
                 />
-                {/* <FormFeedback>{formik.errors.courseId}</FormFeedback> */}
               </Col>
               <Col sm="6" className="mb-1">
                 <Label className="form-label" for="courseGroupId">
@@ -207,7 +220,7 @@ const ModalSchedule = ({ showModal, toggle, data, refetch, variantState }) => {
                   containerStyle={{
                     width: "100%",
                   }}
-                  value={startValue}
+                  value={formik.values.startDate}
                   format="YYYY/MM/DD"
                   onChange={(date) => handleDatePicker(date)}
                   style={{
@@ -245,6 +258,75 @@ const ModalSchedule = ({ showModal, toggle, data, refetch, variantState }) => {
                   ) : null}
                 </Col>
               ))}
+              {data && (
+                <Col sm="6">
+                  <CardBody className="d-flex justify-content-between">
+                    <div className="d-flex align-items-center gap-1 mt-1">
+                      <Label
+                        className="form-switch form-check-success"
+                        for="forming"
+                      >
+                        حالت برگزاری کلاس
+                      </Label>
+                      <div className="form-switch form-check-success">
+                        {/* {console.log(formik.values.forming)} */}
+                        <Input
+                          type="switch"
+                          name="forming"
+                          id="forming"
+                          onChange={formik.handleChange}
+                          onBlur={formik.handleBlur}
+                          checked={formik.values.forming}
+                          invalid={
+                            formik.touched.forming && !!formik.errors.forming
+                          }
+                        />
+                      </div>
+                    </div>
+                    <div className="d-flex align-items-center gap-1 mt-1">
+                      <Label
+                        className="form-switch form-check-success"
+                        for="lockToRaise"
+                      >
+                        وضعیت حضور و غیاب
+                      </Label>
+                      <div className="form-switch form-check-success">
+                        {/* {console.log(formik.values.lockToRaise)} */}
+                        <Input
+                          type="switch"
+                          name="lockToRaise"
+                          id="lockToRaise"
+                          onChange={formik.handleChange}
+                          onBlur={formik.handleBlur}
+                          checked={formik.values.lockToRaise}
+                          invalid={
+                            formik.touched.lockToRaise &&
+                            !!formik.errors.lockToRaise
+                          }
+                        />
+                      </div>
+                    </div>
+                  </CardBody>
+                </Col>
+              )}
+              {/* <Label className="form-check-label" htmlFor={htmlFor}>
+                <span className="switch-icon-left">
+                  <Check size={14} />
+                </span>
+                <span className="switch-icon-right">
+                  <X size={14} />
+                </span>
+              </Label> */}
+              {/* <div className="form-switch form-check-success">
+                    <Input
+                      type="switch"
+                      checked={item.role}
+                      id={item.id}
+                      name={item.id}
+                      onChange={item.action}
+                    />
+                    <CustomLabel htmlFor={item.id} />
+                  </div> */}
               <Col sm="12">
                 <div className="d-flex mt-1">
                   <Button

@@ -16,6 +16,8 @@ const SchedualListWrapper = () => {
   const dispatch = useDispatch();
   const [id, setId] = useState("");
   const [scheduleDetails, setScheduleDetails] = useState(undefined);
+  const [variantState, setVariantState] = useState(undefined);
+  console.log(scheduleDetails);
 
   const {
     data: scheduals,
@@ -38,7 +40,6 @@ const SchedualListWrapper = () => {
     const detail = scheduals.find((item) => item.id == id);
     setScheduleDetails(detail);
   };
-  console.log(scheduleDetails)
 
   useEffect(() => {
     if (isSuccess) {
@@ -54,14 +55,9 @@ const SchedualListWrapper = () => {
     setItemOffset(newOffset);
   };
 
-  // Edit Modal
-  const [editModal, setEditModal] = useState(false);
-  const toggleEditModal = () => setEditModal(!editModal);
-
-  // Create Modal
-  const [createModal, setCreateModal] = useState(false);
-  const toggleCreateModal = () => setCreateModal(!createModal);
-  console.log(createModal)
+  // create and edit Modal
+  const [showModal, setShowModal] = useState(false);
+  const toggleShowModal = () => setShowModal(!showModal);
 
   // Filter Modal
   const [filterModal, setFilterModal] = useState(false);
@@ -75,8 +71,11 @@ const SchedualListWrapper = () => {
 
   // Empty data after closing the modal every time
   useEffect(() => {
-    if (!createModal) setScheduleDetails(undefined);
-  }, [createModal]);
+    if (!showModal) {
+      setScheduleDetails(undefined);
+      setId("");
+    }
+  }, [showModal]);
 
   return (
     <div className="app-user-list">
@@ -85,7 +84,7 @@ const SchedualListWrapper = () => {
           <Card className="overflow-hidden">
             <div className="react-dataTable">
               <HeaderTable
-                toggleSidebar={toggleCreateModal}
+                toggleSidebar={toggleShowModal}
                 setScheduleDetails={setScheduleDetails}
                 rowOfPage={params.RowsOfPage}
                 handleRowOfPage={handleRows}
@@ -93,6 +92,7 @@ const SchedualListWrapper = () => {
                 buttonText={"افزودن بازه زمانی"}
                 isFilter
                 toggleFilter={toggleFilterModal}
+                setVariantState={setVariantState}
                 isSearching={false}
               />
               <Table hover>
@@ -112,7 +112,8 @@ const SchedualListWrapper = () => {
                         key={index}
                         refetch={refetch}
                         item={item}
-                        toggleModal={toggleEditModal}
+                        setVariantState={setVariantState}
+                        toggleModal={toggleShowModal}
                         setId={setId}
                       />
                     )
@@ -134,24 +135,13 @@ const SchedualListWrapper = () => {
           toggle={toggleFilterModal}
         />
         {scheduleDetails && (
-          <>
-            <ModalSchedule
-              showModal={editModal}
-              toggle={toggleEditModal}
-              data={scheduleDetails}
-              refetch={refetch}
-              // courseId={id}
-              variantState={"update"}
-            />
-            <ModalSchedule
-              showModal={createModal}
-              toggle={toggleCreateModal}
-              data={undefined}
-              refetch={refetch}
-              // courseId={id}
-              variantState={"create"}
-            />
-          </>
+          <ModalSchedule
+            showModal={showModal}
+            toggle={toggleShowModal}
+            data={scheduleDetails}
+            refetch={refetch}
+            variantState={variantState}
+          />
         )}
       </Row>
     </div>
