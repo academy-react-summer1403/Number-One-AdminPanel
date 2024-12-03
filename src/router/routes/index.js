@@ -35,6 +35,7 @@ const Sample = lazy(() => import("../../pages/Sample"));
 // User
 const Users = lazy(() => import("../../pages/Users"));
 const UserDetails = lazy(() => import("../../pages/UserDetails"));
+const JobHistory = lazy(() => import("../../pages/JobHistory"));
 // News
 const News = lazy(() => import("../../pages/News"));
 const CreateNews = lazy(() => import("../../pages/CreateNews"));
@@ -109,6 +110,11 @@ const Routes = [
   {
     path: "/users/view/:id",
     element: <UserDetails />,
+    access: ["Administrator"],
+  },
+  {
+    path: "/job",
+    element: <JobHistory />,
     access: ["Administrator"],
   },
   {
@@ -223,7 +229,7 @@ const Routes = [
   {
     path: "/buildings",
     element: <Buildings />,
-    // access: ["Teacher", "Administrator"],
+    access: ["Administrator"],
   },
   {
     path: "/classRome",

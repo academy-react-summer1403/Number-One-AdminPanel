@@ -55,6 +55,7 @@ import GetCourseAssistance from "./GetCourseAssistance";
 import GetCourseAssistanceDetails from "./GetCourseAssistanceDetails";
 import GetAssistanceWork from "./GetAssistanceWork";
 import GetAssistanceWorkDetail from "./GetAssistanceWorkDetail";
+import GetJobHistory from "./GetJobHistory";
 
 export {
   GetUserList,
@@ -114,4 +115,5 @@ export {
   GetCourseAssistanceDetails,
   GetAssistanceWork,
   GetAssistanceWorkDetail,
+  GetJobHistory,
 };

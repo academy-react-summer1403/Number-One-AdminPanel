@@ -11,6 +11,7 @@ const HeaderTable = ({
   rowOfPage,
   handleSearch,
   buttonText,
+  isCreate = true,
 }) => {
   const dispatch = useDispatch();
 
@@ -52,16 +53,17 @@ const HeaderTable = ({
               }}
             />
           </div>
-
-          <div className="d-flex align-items-center table-header-actions">
-            <Button
-              className="add-new-user"
-              color="primary"
-              onClick={toggleSidebar}
-            >
-              {buttonText}
-            </Button>
-          </div>
+          {isCreate && (
+            <div className="d-flex align-items-center table-header-actions">
+              <Button
+                className="add-new-user"
+                color="primary"
+                onClick={toggleSidebar}
+              >
+                {buttonText}
+              </Button>
+            </div>
+          )}
         </Col>
       </Row>
     </div>
