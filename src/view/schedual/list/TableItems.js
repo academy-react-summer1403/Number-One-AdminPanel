@@ -13,7 +13,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { handleDetailGroup } from "../store";
 
-const TableItems = ({ item, toggle, setId }) => {
+const TableItems = ({ item, toggleSession, toggleEdit, setId }) => {
   const [existedGroup, setExistedGroup] = useState();
   const DetailGroup = useSelector((state) => state.SchedualSlice.DetailGroup);
   const dispatch = useDispatch();
@@ -34,7 +34,7 @@ const TableItems = ({ item, toggle, setId }) => {
     if (exist) {
       setExistedGroup(exist);
     } else {
-      handleGet()
+      handleGet();
     }
   }, [item]);
 
@@ -77,6 +77,8 @@ const TableItems = ({ item, toggle, setId }) => {
               href="/"
               onClick={(e) => {
                 e.preventDefault();
+                setId(item.id);
+                toggleSession();
               }}
             >
               <Activity className="me-50" size={15} />{" "}
@@ -86,7 +88,7 @@ const TableItems = ({ item, toggle, setId }) => {
               href="/"
               onClick={(e) => {
                 e.preventDefault();
-                toggle();
+                toggleEdit();
                 setId(id);
               }}
             >

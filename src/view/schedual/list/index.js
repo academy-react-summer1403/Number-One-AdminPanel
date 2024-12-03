@@ -2,13 +2,14 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useQueryWithDependencies } from "../../../utility/hooks/useCustomQuery";
 import GetAdminScheduals from "../../../@core/services/api/get-api/GetAdminScheduals";
-import { handleData, handleFilterDate, handleRowsOfPage } from "../store";
+import { handleData, handleRowsOfPage } from "../store";
 import { HeaderTable } from "../../../@core/components/table-list";
 import { Card, Col, Row, Table } from "reactstrap";
 import headerTable from "../../../@core/constants/schedual/HeaderTable";
 import CustomPagination from "../../../@core/components/pagination";
 import TableItems from "./TableItems";
 import SchedualCalendar from "./Calendar";
+import SessionModal from "../session";
 
 const SchedualListWrapper = () => {
   const params = useSelector((state) => state.SchedualSlice);
@@ -47,9 +48,9 @@ const SchedualListWrapper = () => {
   const [createModal, setCreateModal] = useState(false);
   const toggleCreateModal = () => setCreateModal(!createModal);
 
-  // Filter Modal
-  const [filterModal, setFilterModal] = useState(false);
-  const toggleFilterModal = () => setFilterModal(!filterModal);
+  // Session Modal
+  const [sessionModal, setSessionModal] = useState(false);
+  const toggleSessionModal = () => setSessionModal(!sessionModal);
 
   // Handle RowOfPage for list
   const handleRows = (e) => {
@@ -65,7 +66,6 @@ const SchedualListWrapper = () => {
           rowOfPage={params.RowsOfPage}
           handleRowOfPage={handleRows}
           buttonText={"افزودن بازه زمانی"}
-          toggleFilter={toggleFilterModal}
           isSearching={false}
         />
         <Row className="px-2">
@@ -88,7 +88,8 @@ const SchedualListWrapper = () => {
                         key={index}
                         refetch={refetch}
                         item={item}
-                        toggleModal={toggleEditModal}
+                        toggleEdit={toggleEditModal}
+                        toggleSession={toggleSessionModal}
                         setId={setId}
                       />
                     )
@@ -110,6 +111,7 @@ const SchedualListWrapper = () => {
           </Col>
         </Row>
       </Card>
+      <SessionModal isOpen={sessionModal} toggle={toggleSessionModal} id={id} />
       {/* <EditBuilding
           data={detailSuccess && details}
           refetch={refetch}

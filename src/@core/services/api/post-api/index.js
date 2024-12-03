@@ -28,7 +28,8 @@ import CreateNewDepartment from "./CreateDepartment";
 import CreateNewTerm from "./CreateTerm";
 import CreateCourseAssistance from "./CreateCourseAssistance";
 import CreateAssistanceWork from "./CreateAssistanceWork";
-
+import AddHomeWork from "./AddHomeWork";
+import AddSession from "./AddSession";
 
 export {
   AddUserAccess,
@@ -55,11 +56,12 @@ export {
   CreateShopCategory,
   CreateProductCategory,
   AddSocialGroup,
-
+  AddHomeWork,
   CreateClassRome,
   CreateNewBuilding,
   CreateNewDepartment,
   CreateNewTerm,
   CreateCourseAssistance,
   CreateAssistanceWork,
+  AddSession,
 };
