@@ -226,7 +226,7 @@ const ModalSchedule = ({ showModal, toggle, data, refetch, variantState }) => {
                   ) : groupData?.length == 0 ? (
                     <option>گروهی برای این دوره وجود ندارد</option>
                   ) : (
-                    <option>ابتدا گروه را انتخاب نمایید</option>
+                    <option>ابتدا دوره را انتخاب نمایید</option>
                   )}
                 </Input>
                 {formik.touched.courseGroupId && formik.errors.courseGroupId ? (

@@ -8,7 +8,6 @@ import { Card, Col, Row, Table } from "reactstrap";
 import headerTable from "../../../@core/constants/schedual/HeaderTable";
 import CustomPagination from "../../../@core/components/pagination";
 import TableItems from "./TableItems";
-// import FilterModal from "./FilterModal";
 import ModalSchedule from "../create/ModalSchedule";
 import SchedualCalendar from "./Calendar";
 
@@ -80,14 +79,6 @@ const SchedualListWrapper = () => {
   return (
     <div className="app-user-list">
       <Card className="overflow-hidden">
-        {/* <HeaderTable
-          toggleSidebar={toggleShowModal}
-          rowOfPage={params.RowsOfPage}
-          handleRowOfPage={handleRows}
-          buttonText={"افزودن بازه زمانی"}
-          toggleFilter={toggleFilterModal}
-          isSearching={false}
-        /> */}
         <Row className="px-2">
           <Col sm="8">
             <div className="react-dataTable overflow-hidden">
@@ -136,11 +127,9 @@ const SchedualListWrapper = () => {
               handleClickFunc={handleMovePage}
             />
           </Col>
-          {/* <FilterModal
-            refetch={refetch}
-            isOpen={filterModal}
-            toggle={toggleFilterModal}
-          /> */}
+          <Col sm="4">
+            <SchedualCalendar />
+          </Col>
           {scheduleDetails && (
             <ModalSchedule
               showModal={showModal}
