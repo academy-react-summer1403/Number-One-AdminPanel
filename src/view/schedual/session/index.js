@@ -1,23 +1,24 @@
 import {
+  Badge,
   Button,
   Col,
   Modal,
   ModalBody,
   ModalHeader,
   Row,
-  Table,
 } from "reactstrap";
-import { headerTable } from "../../../@core/constants/session/HeaderTable";
+import { SessionDetails } from "../../../@core/constants/session/HeaderTable";
 import { useQueryWithDependencies } from "../../../utility/hooks/useCustomQuery";
 import { GetSessionDetail } from "../../../@core/services/api/get-api";
-import { Fragment, useState } from "react";
-import SessionTableItems from "./SessionTableItems";
+import { Fragment, useEffect, useState } from "react";
 import HomeWorkModal from "./HWModal";
 import AddUpdateSessionModal from "./AddUpdateSession";
-import toast from "react-hot-toast";
+import ChangeMoment from "../../../utility/moment";
+import SessionButtons from "./SessionButtons";
 
 const SessionModal = ({ id, isOpen, toggle }) => {
   const [sessId, setSessId] = useState();
+  const [details, setDetails] = useState(undefined);
   const { data, isSuccess, refetch } = useQueryWithDependencies(
     "GET_SESSION",
     GetSessionDetail,
@@ -37,72 +38,85 @@ const SessionModal = ({ id, isOpen, toggle }) => {
   const [updateSessionModal, setUpdateSessionModal] = useState(false);
   const toggleUpdateSessionModal = () =>
     setUpdateSessionModal(!updateSessionModal);
-
-  const handleShowAddModal = () => {
-    if (!data) {
-      toggleAddSessionModal();
-    } else {
-      toast.error("جلسه از قبل وجود دارد");
-    }
-  };
+  useEffect(() => {
+    if (isSuccess) setDetails(SessionDetails(data));
+  }, [isSuccess]);
 
   return (
     <Fragment>
-      <Modal
-        isOpen={isOpen}
-        toggle={toggle}
-        className="modal-dialog-centered modal-xl"
-      >
-        <ModalHeader className="bg-transparent" toggle={toggle}></ModalHeader>
-        <ModalBody className="px-sm-5 mx-50 pb-5">
-          <div className="text-center mb-2">
-            <h1 className="mb-1">جلسه</h1>
-          </div>
-          <Row>
-            <Col xs={12}>
-              <Table hover>
-                <thead className="text-center">
-                  <tr>
-                    {headerTable.map((item, index) => (
-                      <th key={index} className="px-0">
-                        {item}
-                      </th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {data && (
-                    <SessionTableItems
-                      refetch={refetch}
-                      item={isSuccess && data}
-                      toggleHW={toggleHWModal}
-                      toggleEdit={toggleUpdateSessionModal}
-                      setId={setSessId}
-                    />
+      <div className="vertically-centered-modal ">
+        <Modal
+          className="modal-dialog-centered modal-lg"
+          isOpen={isOpen}
+          toggle={toggle}
+        >
+          <ModalHeader toggle={toggle}>جلسه</ModalHeader>
+          <ModalBody>
+            <Row>
+              <Col className="card text-wrap py-1" sm="7">
+                {details &&
+                  details?.map((item, index) => (
+                    <p key={index}>
+                      {item.label}:
+                      <span className="ms-1 text-wrap">{item.value}</span>
+                    </p>
+                  ))}
+                <p>
+                  {" "}
+                  تاریخ شروع:{" "}
+                  <span className="ms-1">
+                    {" "}
+                    {ChangeMoment(data?.insertDate, "YYYY/MM/DD", "persian")}
+                  </span>{" "}
+                </p>
+                <div style={{ width: "150px" }}>
+                  <span>وضعیت : </span>
+                  <Badge color={data?.forming ? "success" : "danger"}>
+                    {data?.forming ? "تشکیل شده" : "تشکیل نشده"}
+                  </Badge>
+                </div>
+              </Col>
+              <Col sm="5">
+                <div
+                  className="text-center py-auto shadow"
+                  style={{ height: "200px", paddingTop: "90px" }}
+                >
+                  {data?.sessionFileDtos.length == 0 ? (
+                    <h4 className="my-6">فایلی هنوز وجود ندارد!</h4>
+                  ) : (
+                    <img src={data?.sessionFileDtos[0]} />
                   )}
-                </tbody>
-              </Table>
-              {!data && (
+                </div>
+                <SessionButtons
+                  data={isSuccess && data}
+                  toggleHW={toggleHWModal}
+                  toggleEdit={toggleUpdateSessionModal}
+                  setId={setSessId}
+                />
+              </Col>
+            </Row>
+            {!data && (
+              <>
                 <span className="w-100 text-center my-5 d-block">
                   جلسه ای وجود ندارد
                 </span>
-              )}
-            </Col>
-            <Col xs={12} className="text-center mt-2 pt-50 mt-5">
-              <Button
-                className="me-1"
-                color="primary"
-                onClick={handleShowAddModal}
-              >
-                ساخت جلسه
-              </Button>
-              <Button color="secondary" outline onClick={toggle}>
-                بستن
-              </Button>
-            </Col>
-          </Row>
-        </ModalBody>
-      </Modal>
+                <Col xs={12} className="text-center mt-2 pt-50 mt-5">
+                  <Button
+                    className="me-1"
+                    color="primary"
+                    onClick={() => toggleAddSessionModal}
+                  >
+                    ساخت جلسه
+                  </Button>
+                  <Button color="secondary" outline onClick={toggle}>
+                    بستن
+                  </Button>
+                </Col>
+              </>
+            )}
+          </ModalBody>
+        </Modal>
+      </div>
       <HomeWorkModal isOpen={HWModal} toggle={toggleHWModal} id={sessId} />
       <AddUpdateSessionModal
         isOpen={addSessionModal}
