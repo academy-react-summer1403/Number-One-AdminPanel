@@ -6,9 +6,10 @@ import { User } from "react-feather";
 
 const Tabs = ({ activeTab, toggleTab }) => {
   const tabsData = [
-    { tabId: "1", title: "دوره های من" },
+    { tabId: "1", title: "همه دوره ها" },
     { tabId: "2", title: "دوره های رزرو شده" },
     { tabId: "3", title: "پرداختی دوره ها" },
+    { tabId: "4", title: "دوره های من" },
   ];
 
   return (

@@ -25,7 +25,11 @@ const CoursesList = createSlice({
       state.SortType = action.payload;
     },
     handleQueryCourse: (state, action) => {
-      state.Query = action.payload;
+      if (action.payload == "") {
+        state.Query = undefined;
+      } else {
+        state.Query = action.payload;
+      }
     },
   },
 });

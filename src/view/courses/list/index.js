@@ -1,5 +1,5 @@
 // ** React Imports
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 
 // ** Reactstrap Imports
 import { Col, Row, TabContent, TabPane } from "reactstrap";
@@ -7,7 +7,10 @@ import { useQueryWithDependencies } from "../../../utility/hooks/useCustomQuery"
 import { useDispatch, useSelector } from "react-redux";
 // import CourseReserve from "../allCourseRes/CourseReserve";
 // import PaymentOfCourses from "../payment-courses/PaymentOfCourses";
-import { GetCourses } from "../../../@core/services/api/get-api";
+import {
+  GetCourses,
+  GetCourseTeacher,
+} from "../../../@core/services/api/get-api";
 import GeneralStatistics from "../../../@core/components/generalStatistics";
 import {
   coursesSortOption,
@@ -31,9 +34,13 @@ const Courses = () => {
   const [activeView, setActiveView] = useState("grid");
   const [activeTab, setActiveTab] = useState("1");
   const dispatch = useDispatch();
-  const CoursesParams = useSelector((state) => state.CoursesList);
+  let CoursesParams = useSelector((state) => state.CoursesList);
   // getting Data for api with use Query
-  const { data: coursesData, isSuccess, refetch } = useQueryWithDependencies(
+  const {
+    data: coursesData,
+    isSuccess,
+    refetch,
+  } = useQueryWithDependencies(
     "GET_COURSES_DATA",
     GetCourses,
     CoursesParams,
@@ -45,6 +52,18 @@ const Courses = () => {
     null,
     null
   );
+
+  const {
+    data: courseTeacher,
+    isSuccess: courseTeacherSuccess,
+    refetch: courseTeacherRefetch,
+  } = useQueryWithDependencies(
+    "GET_COURSES_TEACHER",
+    GetCourseTeacher,
+    CoursesParams,
+    CoursesParams
+  );
+
   // console.log(DataWithoutDependencies)
   const handlePagination = (page) => {
     dispatch(handleCoursePageNumber(page.selected + 1));
@@ -65,6 +84,12 @@ const Courses = () => {
       throw new Error("ERROR: ", error);
     }
   };
+
+  useEffect(() => {
+    if (activeTab == "1" || activeTab == "4") {
+      dispatch(handleQueryCourse(undefined));
+    }
+  }, [activeTab]);
 
   return (
     <Fragment>
@@ -111,6 +136,24 @@ const Courses = () => {
                 <TabPane tabId="3">
                   <PaymentOfCourses
                     courseId={DataWithoutDependencies?.courseDtos[0]?.courseId}
+                  />
+                </TabPane>
+                <TabPane tabId="4">
+                  <ProductsHeader
+                    rowsFunc={handleRowsOfPage}
+                    sortOptions={coursesSortOption}
+                  />
+                  <ListSearchbar QueryFunction={handleQueryCourse} />
+                  <CourseCard
+                    activeView={activeView}
+                    item={courseTeacher?.teacherCourseDtos}
+                    handleActiveOrDetective={activeOrDeActive}
+                  />
+                  <CustomPagination
+                    total={courseTeacher?.totalCount}
+                    current={CoursesParams.PageNumber}
+                    rowsPerPage={CoursesParams.RowsOfPage}
+                    handleClickFunc={handlePagination}
                   />
                 </TabPane>
               </TabContent>
