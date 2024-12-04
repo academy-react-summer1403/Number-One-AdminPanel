@@ -127,7 +127,7 @@ const SchedualListWrapper = () => {
               handleClickFunc={handleMovePage}
             />
           </Col>
-          <Col sm="4">
+          <Col sm="4" className="my-2">
             <SchedualCalendar />
           </Col>
           {scheduleDetails && (
