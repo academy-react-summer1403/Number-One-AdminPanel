@@ -10,30 +10,18 @@ import Connections from "./Connections";
 import UserComments from "./UserComments";
 
 const UserTabs = ({ active, toggleTab, userDetails }) => {
-  const [isTeacher, steIsTeacher] = useState(false);
-
-  useEffect(() => {
-    let exist = userDetails?.roles?.find((ev) => ev.roleName == "Teacher");
-    if (exist) {
-      steIsTeacher(true);
-    } else {
-      steIsTeacher(false);
-    }
-  }, [userDetails]);
-
   const Tabs = [
-    { icon: User, id: "1", title: "دوره ها", show: true },
-    { icon: BookOpen, id: "2", title: "دوره های رزرو", show: true },
-    { icon: Lock, id: "3", title: "کامنت ها", show: true },
-    { icon: Link, id: "4", title: "سایر اطاعات کاربر", show: true },
-    { icon: Table, id: "5", title: "دوره های این معلم", show: isTeacher },
+    { icon: User, id: "1", title: "دوره ها" },
+    { icon: BookOpen, id: "2", title: "دوره های رزرو" },
+    { icon: Lock, id: "3", title: "کامنت ها" },
+    { icon: Link, id: "4", title: "سایر اطاعات کاربر" },
   ];
 
   return (
     <Fragment>
       <Nav pills className="mb-2">
         {Tabs.map((item) => (
-          <NavItem key={item.id} className={!item.show && "d-none"}>
+          <NavItem key={item.id}>
             <NavLink
               active={active === item.id}
               onClick={() => toggleTab(item.id)}
