@@ -15,6 +15,7 @@ import HomeWorkModal from "./HWModal";
 import AddUpdateSessionModal from "./AddUpdateSession";
 import ChangeMoment from "../../../utility/moment";
 import SessionButtons from "./SessionButtons";
+import AddSessionFileModal from "./AddSessionFileModal";
 
 const SessionModal = ({ id, isOpen, toggle }) => {
   const [sessId, setSessId] = useState();
@@ -33,6 +34,11 @@ const SessionModal = ({ id, isOpen, toggle }) => {
   // Add Session Modal
   const [addSessionModal, setAddSessionModal] = useState(false);
   const toggleAddSessionModal = () => setAddSessionModal(!addSessionModal);
+
+  // Add Session file Modal
+  const [addFileModal, setAddFileModal] = useState(false);
+  const toggleAddFileModal = () => setAddFileModal(!addFileModal);
+  console.log(addFileModal)
 
   // Update Session Modal
   const [updateSessionModal, setUpdateSessionModal] = useState(false);
@@ -91,6 +97,7 @@ const SessionModal = ({ id, isOpen, toggle }) => {
                   data={isSuccess && data}
                   toggleHW={toggleHWModal}
                   toggleEdit={toggleUpdateSessionModal}
+                  toggleAddFileModal={toggleAddFileModal}
                   setId={setSessId}
                 />
               </Col>
@@ -132,6 +139,7 @@ const SessionModal = ({ id, isOpen, toggle }) => {
         data={isSuccess && data}
         section={"update"}
       />
+       <AddSessionFileModal isOpen={addFileModal} toggle={toggleAddFileModal}/>
     </Fragment>
   );
 };

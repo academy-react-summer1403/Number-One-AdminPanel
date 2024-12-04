@@ -1,6 +1,12 @@
 import { Button, Col, Row } from "reactstrap";
 
-const SessionButtons = ({ data, toggleHW, toggleEdit, setId }) => {
+const SessionButtons = ({
+  data,
+  toggleHW,
+  toggleAddFileModal,
+  toggleEdit,
+  setId,
+}) => {
   return (
     <>
       <Row className="py-1">
@@ -8,7 +14,10 @@ const SessionButtons = ({ data, toggleHW, toggleEdit, setId }) => {
           <Button
             className="w-100"
             color="primary"
-            // onClick={() => toggleAddSessionModal}
+            onClick={(e) => {
+              e.preventDefault();
+              toggleAddFileModal();
+            }}
           >
             افزودن فایل
           </Button>
