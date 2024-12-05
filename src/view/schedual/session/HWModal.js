@@ -19,7 +19,8 @@ const HomeWorkModal = ({ toggle, isOpen, id }) => {
     "GET_HOME_WORK",
     GetHomeWork,
     id,
-    id
+    id,
+    id != undefined
   );
 
   // Home Works Modal

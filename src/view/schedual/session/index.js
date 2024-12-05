@@ -34,7 +34,8 @@ const SessionModal = ({ id, isOpen, toggle }) => {
     "GET_SESSION",
     GetSessionDetail,
     id,
-    id
+    id,
+    id != undefined
   );
   // delete file session
   const { mutate } = useMutationWithRefetch("DELETE_FILE", DeleteSessionFile);

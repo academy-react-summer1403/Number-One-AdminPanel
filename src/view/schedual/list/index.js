@@ -80,13 +80,6 @@ const SchedualListWrapper = () => {
   return (
     <div className="app-user-list">
       <Card className="overflow-hidden">
-        <HeaderTable
-          toggleSidebar={toggleCreateModal}
-          rowOfPage={params.RowsOfPage}
-          handleRowOfPage={handleRows}
-          buttonText={"افزودن بازه زمانی"}
-          isSearching={false}
-        />
         <Row className="px-2">
           <Col sm="8">
             <div className="react-dataTable overflow-hidden">
@@ -98,36 +91,38 @@ const SchedualListWrapper = () => {
                 // handleSearch={handleQuery}
                 buttonText={"افزودن بازه زمانی"}
                 isFilter
-                toggleFilter={toggleFilterModal}
+                // toggleFilter={toggleFilterModal}
                 setVariantState={setVariantState}
                 isSearching={false}
               />
-              <Table hover>
-                <thead className="text-center">
-                  <tr>
-                    {headerTable.map((item, index) => (
-                      <th key={index} className="px-0">
-                        {item}
-                      </th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {params.FilteredData?.slice(itemOffset, endOffset)?.map(
-                    (item, index) => (
-                      <TableItems
-                        key={index}
-                        refetch={refetch}
-                        item={item}
-                        toggleSession={toggleSessionModal}
-                        setVariantState={setVariantState}
-                        toggleModal={toggleShowModal}
-                        setId={setId}
-                      />
-                    )
-                  )}
-                </tbody>
-              </Table>
+              <div style={{ overflowX: "auto" }}>
+                <Table hover>
+                  <thead className="text-center">
+                    <tr>
+                      {headerTable.map((item, index) => (
+                        <th key={index} className="px-0">
+                          {item}
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {params.FilteredData?.slice(itemOffset, endOffset)?.map(
+                      (item, index) => (
+                        <TableItems
+                          key={index}
+                          refetch={refetch}
+                          item={item}
+                          toggleSession={toggleSessionModal}
+                          setVariantState={setVariantState}
+                          toggleModal={toggleShowModal}
+                          setId={setId}
+                        />
+                      )
+                    )}
+                  </tbody>
+                </Table>
+              </div>
             </div>
             <CustomPagination
               total={scheduals?.length}
@@ -151,17 +146,6 @@ const SchedualListWrapper = () => {
         </Row>
       </Card>
       <SessionModal isOpen={sessionModal} toggle={toggleSessionModal} id={id} />
-      {/* <EditBuilding
-          data={detailSuccess && details}
-          refetch={refetch}
-          isOpen={editModal}
-          toggle={toggleEditModal}
-        />
-        <CreateBuilding
-          refetch={refetch}
-          isOpen={createModal}
-          toggle={toggleCreateModal}
-        /> */}
     </div>
   );
 };

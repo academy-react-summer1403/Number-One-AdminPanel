@@ -13,7 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { handleDetailGroup } from "../store";
 
 // console.log(item)
-const TableItems = ({ item, toggleModal, setVariantState, setId }) => {
+const TableItems = ({ item, toggleModal, toggleSession,setVariantState, setId }) => {
   const [existedGroup, setExistedGroup] = useState();
   const DetailGroup = useSelector((state) => state.SchedualSlice.DetailGroup);
   const dispatch = useDispatch();
@@ -40,24 +40,24 @@ const TableItems = ({ item, toggleModal, setVariantState, setId }) => {
 
   return (
     <tr className="text-center">
-      <td className="px-0" style={{ width: "180px" }}>
+      <td className="px-1" style={{ width: "180px" }}>
         {existedGroup ? existedGroup.groupName : ""}
       </td>
-      <td className="px-0" style={{ width: "130px" }}>
+      <td className="px-1" style={{ width: "130px" }}>
         {item.startTime} تا {item.endTime}
       </td>
-      <td className="px-0" style={{ width: "80px" }}>
+      <td className="px-1" style={{ width: "80px" }}>
         {item.weekNumber}
       </td>
-      <td className="px-0" style={{ width: "120px" }}>
+      <td className="px-1" style={{ width: "120px" }}>
         {ChangeMoment(item.startDate, "YYYY/MM/DD", "persian")}
       </td>
-      <td className="px-0" style={{ width: "150px" }}>
+      <td className="px-1" style={{ width: "150px" }}>
         <Badge color={item.forming ? "success" : "danger"}>
           {item.forming ? "تشکیل شده" : "تشکیل نشده"}
         </Badge>
       </td>
-      <td className="px-0" style={{ width: "100px" }}>
+      <td className="px-1" style={{ width: "100px" }}>
         <Badge color={item.lockToRaise ? "success" : "danger"}>
           {item.lockToRaise ? "می تواند" : "نمی تواند"}
         </Badge>

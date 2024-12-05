@@ -1,11 +1,13 @@
 import http from "../../interceptor";
 
 const GetSessionDetail = async (id) => {
-  try {
-    const response = await http.get(`/Session/SessionDetail?SessionId=${id}`);
-    return response;
-  } catch (error) {
-    console.log(error);
+  if (id) {
+    try {
+      const response = await http.get(`/Session/SessionDetail?SessionId=${id}`);
+      return response;
+    } catch (error) {
+      console.log(error);
+    }
   }
 };
 
