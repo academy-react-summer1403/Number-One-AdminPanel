@@ -60,6 +60,7 @@ import GetSessionDetail from "./GetSessionDetail";
 import GetHomeWork from "./GetHomeWork";
 import GetJobHistory from "./GetJobHistory";
 import GetCourseTeacher from "./GetCourseTeacher";
+import GetCourseUserList from "./GetCourseUserList";
 
 export {
   GetUserList,
@@ -123,5 +124,7 @@ export {
   GetSessionDetail,
   GetHomeWork,
   GetJobHistory,
+  GetAdminScheduals,
   GetCourseTeacher,
+  GetCourseUserList,
 };

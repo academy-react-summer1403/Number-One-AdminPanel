@@ -40,6 +40,8 @@ import AssistanceCourseSlice from "../view/courses/store/AssistanceCourseSlice";
 import SchedualSlice from "../view/schedual/store";
 // Job History
 import JobHistorySlice from "../view/job-history/store";
+// Course User
+import CourseUserSlice from "../view/course-user/store";
 
 const rootReducer = {
   navbar,
@@ -72,6 +74,7 @@ const rootReducer = {
   AssistanceCourseSlice,
   SchedualSlice,
   JobHistorySlice,
+  CourseUserSlice,
 };
 
 export default rootReducer;
