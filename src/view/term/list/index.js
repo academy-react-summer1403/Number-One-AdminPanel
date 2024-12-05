@@ -17,6 +17,7 @@ import EditTerm from "./EditTerm";
 import CreateTerm from "./CreateTerm";
 import { Reports, HeaderTable } from "../../../@core/components/table-list";
 import { TermReports } from "../../../@core/constants/term-manage/Reports";
+import CloseDateModal from "./CloseDateModal";
 
 const TermsWrapper = () => {
   const params = useSelector((state) => state.TermList);
@@ -51,6 +52,10 @@ const TermsWrapper = () => {
   // Create Modal
   const [createModal, setCreateModal] = useState(false);
   const toggleCreateModal = () => setCreateModal(!createModal);
+
+  // Close Date Modal
+  const [addCloseDateModal, setAddCloseDateModal] = useState(false);
+  const toggleAddCloseModal = () => setAddCloseDateModal(!addCloseDateModal);
 
   // Handle RowOfPage for list
   const handleRows = (e) => {
@@ -92,6 +97,7 @@ const TermsWrapper = () => {
                         key={index}
                         item={item}
                         toggleModal={toggleEditModal}
+                        addCloseDateModal={toggleAddCloseModal}
                         setId={setId}
                       />
                     )
@@ -117,6 +123,18 @@ const TermsWrapper = () => {
           refetch={refetch}
           isOpen={createModal}
           toggle={toggleCreateModal}
+        />
+        <CloseDateModal
+          data={{
+            closeReason: "",
+            endCloseDate: "",
+            startCloseDate: "",
+            termId: id,
+          }}
+          isOpen={addCloseDateModal}
+          refetch={refetch}
+          section={"create"}
+          toggle={toggleAddCloseModal}
         />
       </Row>
     </div>

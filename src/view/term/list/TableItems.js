@@ -8,7 +8,7 @@ import {
 import ChangeMoment from "../../../utility/moment";
 import { Edit, MoreVertical } from "react-feather";
 
-const TableItems = ({ item, toggleModal, setId }) => {
+const TableItems = ({ item, toggleModal, setId, addCloseDateModal }) => {
   return (
     <tr className="text-center">
       <td className="px-0" style={{ width: "80px" }}>
@@ -54,13 +54,23 @@ const TableItems = ({ item, toggleModal, setId }) => {
               <Edit className="me-50" size={15} />{" "}
               <span className="align-middle">ویرایش</span>
             </DropdownItem>
+            <DropdownItem
+              href="/"
+              onClick={(e) => {
+                e.preventDefault();
+                setId(item.id);
+                addCloseDateModal()
+              }}
+            >
+              تاریخ بسته شدن
+            </DropdownItem>
             {/* <DropdownItem
               href="/"
               onClick={(e) => {
                 e.preventDefault();
               }}
             >
-              افزودن تاریخ بسته شدن
+              ویرایش تاریخ بسته شدن
             </DropdownItem> */}
           </DropdownMenu>
         </UncontrolledDropdown>

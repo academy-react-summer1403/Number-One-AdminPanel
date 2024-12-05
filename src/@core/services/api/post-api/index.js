@@ -31,6 +31,7 @@ import CreateAssistanceWork from "./CreateAssistanceWork";
 import CreateSchedule from "./CreateSchedule";
 import CreateScheduleAuto from "./CreateScheduleAuto";
 import UpdateJobHistoryShow from "./UpdateJobHistoryShow";
+import AddTermCloseDate from "./AddTermCloseDate";
 
 export {
   AddUserAccess,
@@ -66,4 +67,5 @@ export {
   CreateSchedule,
   CreateScheduleAuto,
   UpdateJobHistoryShow,
+  AddTermCloseDate,
 };

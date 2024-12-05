@@ -42,9 +42,9 @@ const EditTerm = ({ data, refetch, isOpen, toggle }) => {
     initialValues: initialValues && initialValues,
     enableReinitialize: true,
     onSubmit: (values) => {
-      if (values.expire === "false") {
+      if (values.expire == "false" || values.expire == false) {
         mutate({ ...values, expire: false });
-      } else if (values.expire === "true") {
+      } else if (values.expire == "true" || values.expire == true) {
         mutate({ ...values, expire: true });
       }
     },
