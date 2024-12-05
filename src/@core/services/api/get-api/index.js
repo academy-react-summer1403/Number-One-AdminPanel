@@ -124,7 +124,6 @@ export {
   GetSessionDetail,
   GetHomeWork,
   GetJobHistory,
-  GetAdminScheduals,
   GetCourseTeacher,
   GetCourseUserList,
 };
