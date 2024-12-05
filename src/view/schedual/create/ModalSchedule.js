@@ -14,7 +14,10 @@ import {
 } from "reactstrap";
 
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { CreateSchedule, CreateScheduleAuto } from "../../../@core/services/api/post-api";
+import {
+  CreateSchedule,
+  CreateScheduleAuto,
+} from "../../../@core/services/api/post-api";
 import gregorian from "react-date-object/calendars/gregorian";
 import gregorian_en from "react-date-object/locales/gregorian_en";
 import ScheduleValidation from "../../../@core/validations/Schedule.Validation";
@@ -102,9 +105,9 @@ const ModalSchedule = ({ showModal, toggle, data, refetch, variantState }) => {
     },
     onSuccess: () => toggle(),
   });
-  
-   // Creating schedule manual
-   const { mutate: AddScheduleAuto } = useMutation({
+
+  // Creating schedule manual
+  const { mutate: AddScheduleAuto } = useMutation({
     mutationKey: ["CREATE_SCHEDULE_AUTO"],
     mutationFn: (values) => {
       CreateScheduleAuto(courseId, values, refetch);
@@ -140,9 +143,9 @@ const ModalSchedule = ({ showModal, toggle, data, refetch, variantState }) => {
     validationSchema: ScheduleValidation,
     onSubmit: async (values, { setSubmitting }) => {
       if (variantState == "create") {
-        if(addStatus === "manual"){
-        AddScheduleManual(values);
-        }else AddScheduleAuto([values,values]);
+        if (addStatus === "manual") {
+          AddScheduleManual(values);
+        } else AddScheduleAuto([values, values]);
       } else {
         updateMutate(Object.assign(values, { id: data?.id }));
       }
@@ -172,12 +175,19 @@ const ModalSchedule = ({ showModal, toggle, data, refetch, variantState }) => {
         toggle={toggle}
       >
         <ModalHeader toggle={toggle}>
-          {titleVariant?.[variantState]}
+          <div className="text-center mb-2">
+            <h1 className="mb-1">{titleVariant?.[variantState]}</h1>
+          </div>
           <div className="demo-inline-spacing">
             {variantState == "create"
               ? addScheduleButton.map((button, index) => (
                   <div key={index} className="form-check">
-                    <Input type="radio" id={button.id} name="ex1" defaultChecked/>
+                    <Input
+                      type="radio"
+                      id={button.id}
+                      name="ex1"
+                      defaultChecked
+                    />
                     <Label
                       className="form-check-label"
                       for={button.id}

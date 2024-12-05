@@ -38,6 +38,8 @@ import AssistanceWorkList from "../view/assistance-work/store";
 import AssistanceCourseSlice from "../view/courses/store/AssistanceCourseSlice";
 // Schedual
 import SchedualSlice from "../view/schedual/store";
+import SchedualTeacherSlice from "../view/schedual/store/SchedualTeacher";
+import SchedualUserSlice from "../view/schedual/store/SchedualUser";
 // Job History
 import JobHistorySlice from "../view/job-history/store";
 // Course User
@@ -75,6 +77,8 @@ const rootReducer = {
   SchedualSlice,
   JobHistorySlice,
   CourseUserSlice,
+  SchedualTeacherSlice,
+  SchedualUserSlice,
 };
 
 export default rootReducer;

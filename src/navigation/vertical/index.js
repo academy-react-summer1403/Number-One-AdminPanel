@@ -11,6 +11,7 @@ import {
   Settings,
   Globe,
   Headphones,
+  Calendar,
 } from "react-feather";
 
 export default [
@@ -123,11 +124,30 @@ export default [
         icon: <Circle size={12} />,
         navLink: "/assistanceWork",
       },
+    ],
+  },
+  {
+    id: "schedualPages",
+    title: "مدیریت بازه های زمانی",
+    icon: <Calendar size={20} />,
+    children: [
       {
-        id: "schedual",
-        title: "بازه زمانی",
+        id: "schedualTeacher",
+        title: "بازه زمانی شما",
         icon: <Circle size={12} />,
-        navLink: "/schedual",
+        navLink: "/schedualTeacher",
+      },
+      {
+        id: "schedualAdmin",
+        title: "بازه زمانی ادمین",
+        icon: <Circle size={12} />,
+        navLink: "/schedualAdmin",
+      },
+      {
+        id: "schedualStudent",
+        title: "بازه زمانی کاربر",
+        icon: <Circle size={12} />,
+        navLink: "/schedualStudent",
       },
       {
         id: "courseUser",

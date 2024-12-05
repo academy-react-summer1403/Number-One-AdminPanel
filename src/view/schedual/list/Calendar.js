@@ -9,10 +9,9 @@ import DateObject from "react-date-object";
 import gregorian from "react-date-object/calendars/gregorian";
 import gregorian_en from "react-date-object/locales/gregorian_en";
 import { useEffect, useState } from "react";
-import { handleFilterDate } from "../store";
 import { useDispatch } from "react-redux";
 
-const SchedualCalendar = () => {
+const SchedualCalendar = ({handleFilterDate}) => {
   const [dates, setDates] = useState([]);
   const [allDates, setAllDates] = useState([]);
   const dispatch = useDispatch();

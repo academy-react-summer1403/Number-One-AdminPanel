@@ -10,10 +10,15 @@ import CustomPagination from "../../../@core/components/pagination";
 import TableItems from "./TableItems";
 import ModalSchedule from "../create/ModalSchedule";
 import SchedualCalendar from "./Calendar";
-import SessionModal from "../session";
+import { GetTeacherScheduals } from "../../../@core/services/api/get-api";
+import {
+  handleDataTeacher,
+  handleFilterDateTeacher,
+  handleRowsOfPageTeacher,
+} from "../store/SchedualTeacher";
 
-const SchedualListWrapper = () => {
-  const params = useSelector((state) => state.SchedualSlice);
+const TeacherSchedualWrapper = () => {
+  const params = useSelector((state) => state.SchedualTeacherSlice);
   const dispatch = useDispatch();
   const [id, setId] = useState("");
   const [scheduleDetails, setScheduleDetails] = useState(undefined);
@@ -24,27 +29,30 @@ const SchedualListWrapper = () => {
     isSuccess,
     refetch,
     isRefetching,
-  } = useQueryWithDependencies("GET_SCHEDUAL_LIST", GetAdminScheduals, params, {
-    startDate: params?.startDate,
-    endDate: params?.endDate,
-  });
+  } = useQueryWithDependencies(
+    "GET_SCHEDUAL_LIST",
+    GetTeacherScheduals,
+    params,
+    {
+      startDate: params?.startDate,
+      endDate: params?.endDate,
+    }
+  );
 
   useEffect(() => {
     if (isSuccess) {
-      dispatch(handleData(scheduals));
+      dispatch(handleDataTeacher(scheduals));
     }
   }, [isSuccess, isRefetching]);
 
   // Getting the desired item data
   const handleStatusDetail = () => {
-    const detail = scheduals.find((item) => item.id == id);
+    const detail = scheduals?.find((item) => item.id == id);
     setScheduleDetails(detail);
   };
 
   useEffect(() => {
-    if (isSuccess) {
-      handleStatusDetail();
-    }
+    handleStatusDetail();
   }, [id]);
 
   // Pagination
@@ -59,14 +67,14 @@ const SchedualListWrapper = () => {
   const [showModal, setShowModal] = useState(false);
   const toggleShowModal = () => setShowModal(!showModal);
 
-  // Session Modal
-  const [sessionModal, setSessionModal] = useState(false);
-  const toggleSessionModal = () => setSessionModal(!sessionModal);
+  // Filter Modal
+  const [filterModal, setFilterModal] = useState(false);
+  const toggleFilterModal = () => setFilterModal(!filterModal);
 
   // Handle RowOfPage for list
   const handleRows = (e) => {
     const value = parseInt(e.currentTarget.value);
-    dispatch(handleRowsOfPage(value));
+    dispatch(handleRowsOfPageTeacher(value));
   };
 
   // Empty data after closing the modal every time
@@ -88,41 +96,41 @@ const SchedualListWrapper = () => {
                 setScheduleDetails={setScheduleDetails}
                 rowOfPage={params.RowsOfPage}
                 handleRowOfPage={handleRows}
-                // handleSearch={handleQuery}
                 buttonText={"افزودن بازه زمانی"}
                 isFilter
-                // toggleFilter={toggleFilterModal}
+                toggleFilter={toggleFilterModal}
                 setVariantState={setVariantState}
                 isSearching={false}
               />
-              <div style={{ overflowX: "auto" }}>
-                <Table hover>
-                  <thead className="text-center">
-                    <tr>
-                      {headerTable.map((item, index) => (
-                        <th key={index} className="px-0">
-                          {item}
-                        </th>
-                      ))}
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {params.FilteredData?.slice(itemOffset, endOffset)?.map(
+              <Table hover>
+                <thead className="text-center">
+                  <tr>
+                    {headerTable.map((item, index) => (
+                      <th key={index} className="px-0">
+                        {item}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {params.FilteredData.length > 0 &&
+                    params.FilteredData.slice(itemOffset, endOffset)?.map(
                       (item, index) => (
                         <TableItems
                           key={index}
                           refetch={refetch}
                           item={item}
-                          toggleSession={toggleSessionModal}
                           setVariantState={setVariantState}
                           toggleModal={toggleShowModal}
                           setId={setId}
                         />
                       )
                     )}
-                  </tbody>
-                </Table>
-              </div>
+                </tbody>
+              </Table>
+              {params.FilteredData.length == 0 && (
+                <div className="w-100 my-5 text-center">موردی یافت نشد</div>
+              )}
             </div>
             <CustomPagination
               total={scheduals?.length}
@@ -131,8 +139,8 @@ const SchedualListWrapper = () => {
               handleClickFunc={handleMovePage}
             />
           </Col>
-          <Col sm="4">
-            <SchedualCalendar />
+          <Col sm="4" className="my-2">
+            <SchedualCalendar handleFilterDate={handleFilterDateTeacher} />
           </Col>
           {scheduleDetails && (
             <ModalSchedule
@@ -145,9 +153,8 @@ const SchedualListWrapper = () => {
           )}
         </Row>
       </Card>
-      <SessionModal isOpen={sessionModal} toggle={toggleSessionModal} id={id} />
     </div>
   );
 };
 
-export default SchedualListWrapper;
+export default TeacherSchedualWrapper;

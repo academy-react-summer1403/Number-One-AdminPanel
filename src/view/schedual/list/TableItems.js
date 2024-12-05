@@ -26,6 +26,7 @@ const TableItems = ({ item, toggleModal, toggleSession,setVariantState, setId })
         groupId: group?.courseGroupDto?.groupId,
       };
       dispatch(handleDetailGroup(details));
+      setExistedGroup(details);
     }
   };
 
