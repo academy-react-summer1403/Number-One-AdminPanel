@@ -10,7 +10,7 @@ const SessionButtons = ({
   return (
     <>
       <Row className="py-1">
-        <Col xs="6">
+        <Col xs="12">
           <Button
             className="w-100"
             color="primary"
@@ -20,15 +20,6 @@ const SessionButtons = ({
             }}
           >
             افزودن فایل
-          </Button>
-        </Col>
-        <Col xs="6">
-          <Button
-            className="w-100"
-            color="danger"
-            // onClick={() => toggleAddSessionModal}
-          >
-            حذف فایل
           </Button>
         </Col>
       </Row>

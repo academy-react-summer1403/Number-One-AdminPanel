@@ -19,7 +19,7 @@ import { UpdateSession } from "../../../@core/services/api/put-api";
 
 const AddUpdateSessionModal = ({ refetch, data, toggle, isOpen, section }) => {
   const [initialValues, setInitialValues] = useState();
-
+console.log(isOpen)
   useEffect(() => {
     setInitialValues(EditSessionFields(data));
   }, [data]);

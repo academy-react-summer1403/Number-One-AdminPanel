@@ -10,10 +10,11 @@ import {
 } from "reactstrap";
 import AddSessionNavItems from "../../../@core/constants/session/NavItems";
 import { useState } from "react";
+import AddFileUpload from "./AddFileUpload";
+import AddFileWithUrl from "./AddFileWithUrl";
 
-const AddSessionFileModal = ({ isOpen, toggle }) => {
+const AddSessionFileModal = ({ sessionData,refetch,isOpen, toggle }) => {
   const [active, setActive] = useState("1");
-  console.log(isOpen);
 
   const toggleTab = (tab) => {
     if (active !== tab) {
@@ -22,7 +23,7 @@ const AddSessionFileModal = ({ isOpen, toggle }) => {
   };
   return (
     <Modal isOpen={isOpen} toggle={toggle} className="modal-dialog-centered">
-      <ModalHeader className="bg-transparent" toggle={toggle}></ModalHeader>
+      <ModalHeader className="bg-transparent" toggle={toggle}>افزودن فایل جلسه</ModalHeader>
       <ModalBody className="px-sm-5 mx-50 pb-5">
         <Nav pills className="mb-2">
           {AddSessionNavItems.map((items, index) => (
@@ -38,8 +39,12 @@ const AddSessionFileModal = ({ isOpen, toggle }) => {
           ))}
         </Nav>
         <TabContent activeTab={active}>
-          <TabPane tabId="1">uopload</TabPane>
-          <TabPane tabId="2">url</TabPane>
+          <TabPane tabId="1">
+            <AddFileUpload sessionData={sessionData} refetch={refetch} toggle={toggle}/>
+          </TabPane>
+          <TabPane tabId="2">
+          <AddFileWithUrl  sessionData={sessionData} refetch={refetch} toggle={toggle}/>
+          </TabPane>
         </TabContent>
       </ModalBody>
     </Modal>

@@ -8,7 +8,10 @@ import {
   Row,
 } from "reactstrap";
 import { SessionDetails } from "../../../@core/constants/session/HeaderTable";
-import { useQueryWithDependencies } from "../../../utility/hooks/useCustomQuery";
+import {
+  useMutationWithRefetch,
+  useQueryWithDependencies,
+} from "../../../utility/hooks/useCustomQuery";
 import { GetSessionDetail } from "../../../@core/services/api/get-api";
 import { Fragment, useEffect, useState } from "react";
 import HomeWorkModal from "./HWModal";
@@ -16,6 +19,13 @@ import AddUpdateSessionModal from "./AddUpdateSession";
 import ChangeMoment from "../../../utility/moment";
 import SessionButtons from "./SessionButtons";
 import AddSessionFileModal from "./AddSessionFileModal";
+// Slider
+import SwiperCore, { Navigation } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// Style
+import "@styles/react/libs/swiper/swiper.scss";
+import { DeleteSessionFile } from "../../../@core/services/api/delete-api";
 
 const SessionModal = ({ id, isOpen, toggle }) => {
   const [sessId, setSessId] = useState();
@@ -26,6 +36,8 @@ const SessionModal = ({ id, isOpen, toggle }) => {
     id,
     id
   );
+  // delete file session
+  const { mutate } = useMutationWithRefetch("DELETE_FILE", DeleteSessionFile);
 
   // Home Works Modal
   const [HWModal, setHWModal] = useState(false);
@@ -38,7 +50,6 @@ const SessionModal = ({ id, isOpen, toggle }) => {
   // Add Session file Modal
   const [addFileModal, setAddFileModal] = useState(false);
   const toggleAddFileModal = () => setAddFileModal(!addFileModal);
-  console.log(addFileModal)
 
   // Update Session Modal
   const [updateSessionModal, setUpdateSessionModal] = useState(false);
@@ -48,6 +59,39 @@ const SessionModal = ({ id, isOpen, toggle }) => {
     if (isSuccess) setDetails(SessionDetails(data));
   }, [isSuccess]);
 
+  const renderSlider = () => {
+    SwiperCore.use([Navigation]);
+    if (data) {
+      const params = {
+        className: "swiper-responsive-breakpoints swiper-container px-4 py-2",
+        slidesPerView: 1,
+        // spaceBetween: 5,
+        navigation: true,
+      };
+      return (
+        <Swiper {...params} className="p-0">
+          {data?.sessionFileDtos?.map((item, index) => (
+            <SwiperSlide key={index}>
+              <Badge
+                color={"danger"}
+                style={{ position: "absolute", bottom: "0", cursor: "pointer" }}
+                onClick={() => mutate(item.id)}
+              >
+                حذف فایل
+              </Badge>
+              <img
+                style={{ height: "200px", width: "100%" }}
+                alt="no-image"
+                src={item.fileAddress}
+                className="img-fluid rounded"
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      );
+    }
+  };
+
   return (
     <Fragment>
       <div className="vertically-centered-modal ">
@@ -56,52 +100,54 @@ const SessionModal = ({ id, isOpen, toggle }) => {
           isOpen={isOpen}
           toggle={toggle}
         >
-          <ModalHeader toggle={toggle}>جلسه</ModalHeader>
+          <ModalHeader toggle={toggle}>جزئیات جلسه</ModalHeader>
           <ModalBody>
-            <Row>
-              <Col className="card text-wrap py-1" sm="7">
-                {details &&
-                  details?.map((item, index) => (
-                    <p key={index}>
-                      {item.label}:
-                      <span className="ms-1 text-wrap">{item.value}</span>
-                    </p>
-                  ))}
-                <p>
-                  {" "}
-                  تاریخ شروع:{" "}
-                  <span className="ms-1">
-                    {" "}
-                    {ChangeMoment(data?.insertDate, "YYYY/MM/DD", "persian")}
-                  </span>{" "}
-                </p>
-                <div style={{ width: "150px" }}>
-                  <span>وضعیت : </span>
-                  <Badge color={data?.forming ? "success" : "danger"}>
-                    {data?.forming ? "تشکیل شده" : "تشکیل نشده"}
-                  </Badge>
-                </div>
-              </Col>
-              <Col sm="5">
-                <div
-                  className="text-center py-auto shadow"
-                  style={{ height: "200px", paddingTop: "90px" }}
-                >
-                  {data?.sessionFileDtos.length == 0 ? (
-                    <h4 className="my-6">فایلی هنوز وجود ندارد!</h4>
-                  ) : (
-                    <img src={data?.sessionFileDtos[0]} />
-                  )}
-                </div>
-                <SessionButtons
-                  data={isSuccess && data}
-                  toggleHW={toggleHWModal}
-                  toggleEdit={toggleUpdateSessionModal}
-                  toggleAddFileModal={toggleAddFileModal}
-                  setId={setSessId}
-                />
-              </Col>
-            </Row>
+            {data && (
+              <Row>
+                <Col className="card text-wrap py-1" sm="7">
+                  {details &&
+                    details?.map((item, index) => (
+                      <p key={index}>
+                        {item.label}:
+                        <span className="ms-1 text-wrap">{item.value}</span>
+                      </p>
+                    ))}
+                  <p>
+                    تاریخ شروع:{" "}
+                    <span className="ms-1">
+                      {ChangeMoment(data?.insertDate, "YYYY/MM/DD", "persian")}
+                    </span>{" "}
+                  </p>
+                  <div style={{ width: "150px" }}>
+                    <span>وضعیت : </span>
+                    <Badge color={data?.forming ? "success" : "danger"}>
+                      {data?.forming ? "تشکیل شده" : "تشکیل نشده"}
+                    </Badge>
+                  </div>
+                </Col>
+                <Col sm="5">
+                  <div
+                    className="text-center shadow"
+                    style={{ height: "200px" }}
+                  >
+                    {data?.sessionFileDtos?.length != 0 ? (
+                      renderSlider()
+                    ) : (
+                      <h4 className="my-6" style={{ paddingTop: "90px" }}>
+                        فایلی هنوز وجود ندارد!
+                      </h4>
+                    )}
+                  </div>
+                  <SessionButtons
+                    data={isSuccess && data}
+                    toggleHW={toggleHWModal}
+                    toggleEdit={toggleUpdateSessionModal}
+                    toggleAddFileModal={toggleAddFileModal}
+                    setId={setSessId}
+                  />
+                </Col>
+              </Row>
+            )}
             {!data && (
               <>
                 <span className="w-100 text-center my-5 d-block">
@@ -111,7 +157,7 @@ const SessionModal = ({ id, isOpen, toggle }) => {
                   <Button
                     className="me-1"
                     color="primary"
-                    onClick={() => toggleAddSessionModal}
+                    onClick={toggleAddSessionModal}
                   >
                     ساخت جلسه
                   </Button>
@@ -139,7 +185,12 @@ const SessionModal = ({ id, isOpen, toggle }) => {
         data={isSuccess && data}
         section={"update"}
       />
-       <AddSessionFileModal isOpen={addFileModal} toggle={toggleAddFileModal}/>
+      <AddSessionFileModal
+        sessionData={isSuccess && data}
+        refetch={refetch}
+        isOpen={addFileModal}
+        toggle={toggleAddFileModal}
+      />
     </Fragment>
   );
 };

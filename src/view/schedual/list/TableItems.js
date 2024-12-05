@@ -89,7 +89,7 @@ const TableItems = ({ item, toggleSession, toggleEdit, setId }) => {
               onClick={(e) => {
                 e.preventDefault();
                 toggleEdit();
-                setId(id);
+                setId(item.id);
               }}
             >
               <Edit className="me-50" size={15} />{" "}

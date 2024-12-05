@@ -30,6 +30,8 @@ import CreateCourseAssistance from "./CreateCourseAssistance";
 import CreateAssistanceWork from "./CreateAssistanceWork";
 import AddHomeWork from "./AddHomeWork";
 import AddSession from "./AddSession";
+import AddFileSessionUpload from "./AddFileSessionUpload";
+import AddFileSessionWithId from "./AddFileSessionWithId";
 
 export {
   AddUserAccess,
@@ -64,4 +66,6 @@ export {
   CreateCourseAssistance,
   CreateAssistanceWork,
   AddSession,
+  AddFileSessionUpload,
+  AddFileSessionWithId,
 };

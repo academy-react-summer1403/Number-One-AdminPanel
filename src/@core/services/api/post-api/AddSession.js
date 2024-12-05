@@ -4,7 +4,7 @@ import http from "../../interceptor";
 const AddSession = async (values, refetch) => {
   try {
     const response = await toast.promise(
-      http.post("/Session/AddSession", values),
+      http.post("/Session/AddSession",  values),
       {
         error: "جلسه ساخته نشد",
         loading: "در حال ساختن جلسه...",
