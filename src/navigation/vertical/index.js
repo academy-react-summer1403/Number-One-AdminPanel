@@ -124,6 +124,12 @@ export default [
         icon: <Circle size={12} />,
         navLink: "/assistanceWork",
       },
+      {
+        id: "courseUser",
+        title: "لیست کاربران دوره",
+        icon: <Circle size={12} />,
+        navLink: "/courseUser",
+      },
     ],
   },
   {
@@ -148,12 +154,6 @@ export default [
         title: "بازه زمانی کاربر",
         icon: <Circle size={12} />,
         navLink: "/schedualStudent",
-      },
-      {
-        id: "courseUser",
-        title: "لیست کاربران دوره",
-        icon: <Circle size={12} />,
-        navLink: "/courseUser",
       },
     ],
   },
