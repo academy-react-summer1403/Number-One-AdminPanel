@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useQueryWithDependencies } from "../../../utility/hooks/useCustomQuery";
 import GetAdminScheduals from "../../../@core/services/api/get-api/GetAdminScheduals";
-import { handleData, handleFilterDate, handleRowsOfPage } from "../store";
+import { handleData, handleRowsOfPage } from "../store";
 import { HeaderTable } from "../../../@core/components/table-list";
 import { Card, Col, Row, Table } from "reactstrap";
 import headerTable from "../../../@core/constants/schedual/HeaderTable";
@@ -10,9 +10,15 @@ import CustomPagination from "../../../@core/components/pagination";
 import TableItems from "./TableItems";
 import ModalSchedule from "../create/ModalSchedule";
 import SchedualCalendar from "./Calendar";
+import { GetTeacherScheduals } from "../../../@core/services/api/get-api";
+import {
+  handleDataTeacher,
+  handleFilterDateTeacher,
+  handleRowsOfPageTeacher,
+} from "../store/SchedualTeacher";
 
-const SchedualListWrapper = () => {
-  const params = useSelector((state) => state.SchedualSlice);
+const TeacherSchedualWrapper = () => {
+  const params = useSelector((state) => state.SchedualTeacherSlice);
   const dispatch = useDispatch();
   const [id, setId] = useState("");
   const [scheduleDetails, setScheduleDetails] = useState(undefined);
@@ -23,27 +29,30 @@ const SchedualListWrapper = () => {
     isSuccess,
     refetch,
     isRefetching,
-  } = useQueryWithDependencies("GET_SCHEDUAL_LIST", GetAdminScheduals, params, {
-    startDate: params?.startDate,
-    endDate: params?.endDate,
-  });
+  } = useQueryWithDependencies(
+    "GET_SCHEDUAL_LIST",
+    GetTeacherScheduals,
+    params,
+    {
+      startDate: params?.startDate,
+      endDate: params?.endDate,
+    }
+  );
 
   useEffect(() => {
     if (isSuccess) {
-      dispatch(handleData(scheduals));
+      dispatch(handleDataTeacher(scheduals));
     }
   }, [isSuccess, isRefetching]);
 
   // Getting the desired item data
   const handleStatusDetail = () => {
-    const detail = scheduals.find((item) => item.id == id);
+    const detail = scheduals?.find((item) => item.id == id);
     setScheduleDetails(detail);
   };
 
   useEffect(() => {
-    if (isSuccess) {
-      handleStatusDetail();
-    }
+    handleStatusDetail();
   }, [id]);
 
   // Pagination
@@ -65,7 +74,7 @@ const SchedualListWrapper = () => {
   // Handle RowOfPage for list
   const handleRows = (e) => {
     const value = parseInt(e.currentTarget.value);
-    dispatch(handleRowsOfPage(value));
+    dispatch(handleRowsOfPageTeacher(value));
   };
 
   // Empty data after closing the modal every time
@@ -87,7 +96,6 @@ const SchedualListWrapper = () => {
                 setScheduleDetails={setScheduleDetails}
                 rowOfPage={params.RowsOfPage}
                 handleRowOfPage={handleRows}
-                // handleSearch={handleQuery}
                 buttonText={"افزودن بازه زمانی"}
                 isFilter
                 toggleFilter={toggleFilterModal}
@@ -105,20 +113,24 @@ const SchedualListWrapper = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {params.FilteredData?.slice(itemOffset, endOffset)?.map(
-                    (item, index) => (
-                      <TableItems
-                        key={index}
-                        refetch={refetch}
-                        item={item}
-                        setVariantState={setVariantState}
-                        toggleModal={toggleShowModal}
-                        setId={setId}
-                      />
-                    )
-                  )}
+                  {params.FilteredData.length > 0 &&
+                    params.FilteredData.slice(itemOffset, endOffset)?.map(
+                      (item, index) => (
+                        <TableItems
+                          key={index}
+                          refetch={refetch}
+                          item={item}
+                          setVariantState={setVariantState}
+                          toggleModal={toggleShowModal}
+                          setId={setId}
+                        />
+                      )
+                    )}
                 </tbody>
               </Table>
+              {params.FilteredData.length == 0 && (
+                <div className="w-100 my-5 text-center">موردی یافت نشد</div>
+              )}
             </div>
             <CustomPagination
               total={scheduals?.length}
@@ -128,7 +140,7 @@ const SchedualListWrapper = () => {
             />
           </Col>
           <Col sm="4" className="my-2">
-            <SchedualCalendar />
+            <SchedualCalendar handleFilterDate={handleFilterDateTeacher} />
           </Col>
           {scheduleDetails && (
             <ModalSchedule
@@ -145,4 +157,4 @@ const SchedualListWrapper = () => {
   );
 };
 
-export default SchedualListWrapper;
+export default TeacherSchedualWrapper;

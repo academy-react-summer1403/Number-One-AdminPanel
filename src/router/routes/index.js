@@ -91,7 +91,10 @@ const SupportTeacher = lazy(() => import("../../pages/SupportTeacher"));
 const AssistanceWork = lazy(() => import("../../pages/AssistanceWork"));
 
 // Schedual
-const Schedual = lazy(() => import("../../pages/Schedual"));
+const AdminSchedual = lazy(() => import("../../pages/AdminSchedual"));
+const TeacherSchedual = lazy(() => import("../../pages/TeacherSchedual"));
+const UserSchedual = lazy(() => import("../../pages/UserSchedual"));
+
 
 // ** Merge Routes
 const Routes = [
@@ -263,9 +266,19 @@ const Routes = [
     // access: ["Teacher", "Administrator"],
   },
   {
-    path: "/schedual",
-    element: <Schedual />,
-    // access: ["Teacher", "Administrator"],
+    path: "/schedualAdmin",
+    element: <AdminSchedual />,
+    access: ["Administrator"],
+  },
+  {
+    path: "/schedualTeacher",
+    element: <TeacherSchedual />,
+    access: ["Administrator", "Teacher"],
+  },
+  {
+    path: "/schedualStudent",
+    element: <UserSchedual />,
+    access: ["Administrator", "Teacher"],
   },
   {
     path: "/sample",
