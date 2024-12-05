@@ -92,12 +92,11 @@ const TeacherSchedualWrapper = () => {
           <Col sm="8">
             <div className="react-dataTable overflow-hidden">
               <HeaderTable
+                isCreate={false}
                 toggleSidebar={toggleShowModal}
                 setScheduleDetails={setScheduleDetails}
                 rowOfPage={params.RowsOfPage}
                 handleRowOfPage={handleRows}
-                buttonText={"افزودن بازه زمانی"}
-                isFilter
                 toggleFilter={toggleFilterModal}
                 setVariantState={setVariantState}
                 isSearching={false}

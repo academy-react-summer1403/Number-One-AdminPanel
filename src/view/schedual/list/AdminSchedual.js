@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useQueryWithDependencies } from "../../../utility/hooks/useCustomQuery";
 import GetAdminScheduals from "../../../@core/services/api/get-api/GetAdminScheduals";
-import { handleData, handleRowsOfPage } from "../store";
+import { handleData, handleRowsOfPage, handleFilterDate } from "../store";
 import { HeaderTable } from "../../../@core/components/table-list";
 import { Card, Col, Row, Table } from "reactstrap";
 import headerTable from "../../../@core/constants/schedual/HeaderTable";

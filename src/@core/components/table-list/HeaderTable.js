@@ -19,7 +19,7 @@ const HeaderTable = ({
   const dispatch = useDispatch();
 
   return (
-    <Row className="w-100 mx-0 my-75">
+    <Row className="w-100 mx-0 my-2">
       <Col xl="6" className="d-flex align-items-center">
         <div className="d-flex align-items-center w-100">
           <label htmlFor="rows-per-page">نمایش</label>

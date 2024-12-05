@@ -123,12 +123,12 @@ const UserSchedualWrapper = () => {
             <div className="react-dataTable overflow-hidden">
               <div className="d-flex align-items-center">
                 <HeaderTable
+                  isCreate={false}
                   toggleSidebar={toggleShowModal}
                   setScheduleDetails={setScheduleDetails}
                   rowOfPage={params.RowsOfPage}
                   handleRowOfPage={handleRows}
                   buttonText={"افزودن بازه زمانی"}
-                  isFilter
                   toggleFilter={toggleFilterModal}
                   setVariantState={setVariantState}
                   isSearching={false}
