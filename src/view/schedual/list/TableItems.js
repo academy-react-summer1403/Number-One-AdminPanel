@@ -7,13 +7,13 @@ import {
 } from "reactstrap";
 import ChangeMoment from "../../../utility/moment";
 import { Activity, Edit, MoreVertical } from "react-feather";
-import { useQueryWithDependencies } from "../../../utility/hooks/useCustomQuery";
 import { GetGroupDetails } from "../../../@core/services/api/get-api";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { handleDetailGroup } from "../store";
 
-const TableItems = ({ item, toggleSession, toggleEdit, setId }) => {
+// console.log(item)
+const TableItems = ({ item, toggleModal, setVariantState, setId }) => {
   const [existedGroup, setExistedGroup] = useState();
   const DetailGroup = useSelector((state) => state.SchedualSlice.DetailGroup);
   const dispatch = useDispatch();
@@ -88,7 +88,8 @@ const TableItems = ({ item, toggleSession, toggleEdit, setId }) => {
               href="/"
               onClick={(e) => {
                 e.preventDefault();
-                toggleEdit();
+                toggleModal();
+                setVariantState("update");
                 setId(item.id);
               }}
             >

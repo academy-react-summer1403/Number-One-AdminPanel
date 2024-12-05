@@ -7,13 +7,14 @@ import "@styles/react/libs/tables/react-dataTable-component.scss";
 
 const HeaderTable = ({
   toggleSidebar,
+  setScheduleDetails,
   handleRowOfPage,
   rowOfPage,
-  handleSearch,
   buttonText,
-  isFilter = false,
-  toggleFilter,
+  setVariantState,
+  isCreate = true,
   isSearching = true,
+  handleSearch,
 }) => {
   const dispatch = useDispatch();
 
@@ -44,6 +45,21 @@ const HeaderTable = ({
           xl="6"
           className="d-flex align-items-sm-center justify-content-xl-end justify-content-start flex-xl-nowrap flex-wrap flex-sm-row flex-column pe-xl-1 p-0 mt-xl-0 mt-1"
         >
+          {isCreate && (
+            <div className="d-flex align-items-center gap-75 table-header-actions">
+              <Button
+                className="add-new-user"
+                color="primary"
+                onClick={() => {
+                  toggleSidebar();
+                  setScheduleDetails("test");
+                  setVariantState("create");
+                }}
+              >
+                {buttonText}
+              </Button>
+            </div>
+          )}
           {isSearching && (
             <div className="d-flex align-items-center mb-sm-0 mb-1 me-1">
               <Input
@@ -57,24 +73,6 @@ const HeaderTable = ({
               />
             </div>
           )}
-          <div className="d-flex align-items-center gap-75 table-header-actions">
-            <Button
-              className="add-new-user"
-              color="primary"
-              onClick={toggleSidebar}
-            >
-              {buttonText}
-            </Button>
-            {isFilter && (
-              <Button
-                className="add-new-user"
-                color="primary"
-                onClick={toggleFilter}
-              >
-                فیلتر
-              </Button>
-            )}
-          </div>
         </Col>
       </Row>
     </div>

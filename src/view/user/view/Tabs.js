@@ -1,59 +1,49 @@
-import { Fragment } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Nav, NavItem, NavLink, TabContent, TabPane } from "reactstrap";
-import { User, Lock, Link } from "react-feather";
+import { User, Lock, Link, BookOpen, Table } from "react-feather";
 
 // Tabs Components
 import UserCourseList from "./UserCourseList";
 import UserReserveCourse from "./UserReserveCourse";
 import MoreInfo from "./MoreInfo";
 import Connections from "./Connections";
-import UserActiveComments from "./UserActiveComments";
 import UserComments from "./UserComments";
 
-const UserTabs = ({ active, toggleTab }) => {
+const UserTabs = ({ active, toggleTab, userDetails }) => {
+  const [isTeacher, steIsTeacher] = useState(false);
+
+  useEffect(() => {
+    let exist = userDetails?.roles?.find((ev) => ev.roleName == "Teacher");
+    if (exist) {
+      steIsTeacher(true);
+    } else {
+      steIsTeacher(false);
+    }
+  }, [userDetails]);
+
+  const Tabs = [
+    { icon: User, id: "1", title: "دوره ها", show: true },
+    { icon: BookOpen, id: "2", title: "دوره های رزرو", show: true },
+    { icon: Lock, id: "3", title: "کامنت ها", show: true },
+    { icon: Link, id: "4", title: "سایر اطاعات کاربر", show: true },
+    { icon: Table, id: "5", title: "دوره های این معلم", show: isTeacher },
+  ];
+
   return (
     <Fragment>
       <Nav pills className="mb-2">
-        <NavItem>
-          <NavLink
-            active={active === "1"}
-            onClick={() => toggleTab("1")}
-            className="px-1"
-          >
-            <User className="font-medium-3 me-50" />
-            <span className="fw-bold">دوره ها</span>
-          </NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink
-            active={active === "2"}
-            onClick={() => toggleTab("2")}
-            className="px-1"
-          >
-            <User className="font-medium-3 me-50" />
-            <span className="fw-bold">دوره های رزرو</span>
-          </NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink
-            active={active === "3"}
-            onClick={() => toggleTab("3")}
-            className="px-1"
-          >
-            <Lock className="font-medium-3 me-50" />
-            <span className="fw-bold">کامنت ها</span>
-          </NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink
-            active={active === "4"}
-            onClick={() => toggleTab("4")}
-            className="px-1"
-          >
-            <Link className="font-medium-3 me-50" />
-            <span className="fw-bold">سایر اطاعات کاربر</span>
-          </NavLink>
-        </NavItem>
+        {Tabs.map((item) => (
+          <NavItem key={item.id} className={!item.show && "d-none"}>
+            <NavLink
+              active={active === item.id}
+              onClick={() => toggleTab(item.id)}
+              className="px-1"
+            >
+              <item.icon className="font-medium-3 me-50" />
+              <span className="fw-bold">{item.title}</span>
+            </NavLink>
+          </NavItem>
+        ))}
       </Nav>
       <TabContent activeTab={active}>
         <TabPane tabId="1">

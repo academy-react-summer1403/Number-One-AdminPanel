@@ -8,6 +8,7 @@ import { Card, Col, Row, Table } from "reactstrap";
 import headerTable from "../../../@core/constants/schedual/HeaderTable";
 import CustomPagination from "../../../@core/components/pagination";
 import TableItems from "./TableItems";
+import ModalSchedule from "../create/ModalSchedule";
 import SchedualCalendar from "./Calendar";
 import SessionModal from "../session";
 
@@ -15,6 +16,8 @@ const SchedualListWrapper = () => {
   const params = useSelector((state) => state.SchedualSlice);
   const dispatch = useDispatch();
   const [id, setId] = useState("");
+  const [scheduleDetails, setScheduleDetails] = useState(undefined);
+  const [variantState, setVariantState] = useState(undefined);
 
   const {
     data: scheduals,
@@ -32,6 +35,18 @@ const SchedualListWrapper = () => {
     }
   }, [isSuccess, isRefetching]);
 
+  // Getting the desired item data
+  const handleStatusDetail = () => {
+    const detail = scheduals.find((item) => item.id == id);
+    setScheduleDetails(detail);
+  };
+
+  useEffect(() => {
+    if (isSuccess) {
+      handleStatusDetail();
+    }
+  }, [id]);
+
   // Pagination
   const [itemOffset, setItemOffset] = useState(0);
   const endOffset = itemOffset + params.RowsOfPage;
@@ -40,13 +55,9 @@ const SchedualListWrapper = () => {
     setItemOffset(newOffset);
   };
 
-  // Edit Modal
-  const [editModal, setEditModal] = useState(false);
-  const toggleEditModal = () => setEditModal(!editModal);
-
-  // Create Modal
-  const [createModal, setCreateModal] = useState(false);
-  const toggleCreateModal = () => setCreateModal(!createModal);
+  // create and edit Modal
+  const [showModal, setShowModal] = useState(false);
+  const toggleShowModal = () => setShowModal(!showModal);
 
   // Session Modal
   const [sessionModal, setSessionModal] = useState(false);
@@ -57,6 +68,14 @@ const SchedualListWrapper = () => {
     const value = parseInt(e.currentTarget.value);
     dispatch(handleRowsOfPage(value));
   };
+
+  // Empty data after closing the modal every time
+  useEffect(() => {
+    if (!showModal) {
+      setScheduleDetails(undefined);
+      setId("");
+    }
+  }, [showModal]);
 
   return (
     <div className="app-user-list">
@@ -70,7 +89,19 @@ const SchedualListWrapper = () => {
         />
         <Row className="px-2">
           <Col sm="8">
-            <div className="react-dataTable">
+            <div className="react-dataTable overflow-hidden">
+              <HeaderTable
+                toggleSidebar={toggleShowModal}
+                setScheduleDetails={setScheduleDetails}
+                rowOfPage={params.RowsOfPage}
+                handleRowOfPage={handleRows}
+                // handleSearch={handleQuery}
+                buttonText={"افزودن بازه زمانی"}
+                isFilter
+                toggleFilter={toggleFilterModal}
+                setVariantState={setVariantState}
+                isSearching={false}
+              />
               <Table hover>
                 <thead className="text-center">
                   <tr>
@@ -88,8 +119,9 @@ const SchedualListWrapper = () => {
                         key={index}
                         refetch={refetch}
                         item={item}
-                        toggleEdit={toggleEditModal}
                         toggleSession={toggleSessionModal}
+                        setVariantState={setVariantState}
+                        toggleModal={toggleShowModal}
                         setId={setId}
                       />
                     )
@@ -97,18 +129,25 @@ const SchedualListWrapper = () => {
                 </tbody>
               </Table>
             </div>
-            <div>
-              <CustomPagination
-                total={scheduals?.length}
-                current={params.PageNumber}
-                rowsPerPage={params.RowsOfPage}
-                handleClickFunc={handleMovePage}
-              />
-            </div>
+            <CustomPagination
+              total={scheduals?.length}
+              current={params.PageNumber}
+              rowsPerPage={params.RowsOfPage}
+              handleClickFunc={handleMovePage}
+            />
           </Col>
-          <Col sm="4" style={{ marginBottom: "22px" }}>
+          <Col sm="4">
             <SchedualCalendar />
           </Col>
+          {scheduleDetails && (
+            <ModalSchedule
+              showModal={showModal}
+              toggle={toggleShowModal}
+              data={scheduleDetails}
+              refetch={refetch}
+              variantState={variantState}
+            />
+          )}
         </Row>
       </Card>
       <SessionModal isOpen={sessionModal} toggle={toggleSessionModal} id={id} />

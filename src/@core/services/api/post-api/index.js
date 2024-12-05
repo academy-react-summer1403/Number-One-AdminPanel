@@ -32,6 +32,9 @@ import AddHomeWork from "./AddHomeWork";
 import AddSession from "./AddSession";
 import AddFileSessionUpload from "./AddFileSessionUpload";
 import AddFileSessionWithId from "./AddFileSessionWithId";
+import CreateSchedule from "./CreateSchedule";
+import CreateScheduleAuto from "./CreateScheduleAuto";
+import UpdateJobHistoryShow from "./UpdateJobHistoryShow";
 
 export {
   AddUserAccess,
@@ -68,4 +71,7 @@ export {
   AddSession,
   AddFileSessionUpload,
   AddFileSessionWithId,
+  CreateSchedule,
+  CreateScheduleAuto,
+  UpdateJobHistoryShow,
 };

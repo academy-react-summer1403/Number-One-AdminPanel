@@ -1,5 +1,5 @@
 // ** React Imports
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 // ** Reactstrap Imports
@@ -38,12 +38,15 @@ const UserView = () => {
   const { data, isSuccess, refetch } = useQueryWithDependencies(
     "GET_USER-DETAILS",
     UserDetails,
-    null,
+    id,
     id
   );
-  if (isSuccess) {
-    dispatch(handleDetails(data));
-  }
+
+  useEffect(() => {
+    if (isSuccess) {
+      dispatch(handleDetails(data));
+    }
+  }, [isSuccess]);
 
   const { mutate } = useMutation({
     mutationKey: ["UPDATE_USER_DETAILS"],

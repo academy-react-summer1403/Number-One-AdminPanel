@@ -21,10 +21,23 @@ export default [
     navLink: "/home",
   },
   {
-    id: "userListPage",
+    id: "user",
     title: "مدیریت کاربران",
     icon: <Users size={20} />,
-    navLink: "/users",
+    children: [
+      {
+        id: "userListPage",
+        title: "لیست کاربران",
+        icon: <Circle size={20} />,
+        navLink: "/users",
+      },
+      {
+        id: "jobHistory",
+        title: "سوابق شغلی کاربران",
+        icon: <Circle size={20} />,
+        navLink: "/job",
+      }
+    ],
   },
   {
     id: "blogManagement",
