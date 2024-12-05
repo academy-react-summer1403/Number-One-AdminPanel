@@ -56,6 +56,8 @@ import GetCourseAssistanceDetails from "./GetCourseAssistanceDetails";
 import GetAssistanceWork from "./GetAssistanceWork";
 import GetAssistanceWorkDetail from "./GetAssistanceWorkDetail";
 import GetAdminScheduals from "./GetAdminScheduals";
+import GetSessionDetail from "./GetSessionDetail";
+import GetHomeWork from "./GetHomeWork";
 import GetJobHistory from "./GetJobHistory";
 import GetCourseTeacher from "./GetCourseTeacher";
 
@@ -118,6 +120,8 @@ export {
   GetAssistanceWork,
   GetAssistanceWorkDetail,
   GetAdminScheduals,
+  GetSessionDetail,
+  GetHomeWork,
   GetJobHistory,
   GetCourseTeacher,
 };

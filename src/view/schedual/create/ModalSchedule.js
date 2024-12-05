@@ -121,6 +121,8 @@ const ModalSchedule = ({ showModal, toggle, data, refetch, variantState }) => {
     onSuccess: () => toggle(),
   });
 
+  console.log(data)
+
   // initialValues
   const initialValues = {
     courseGroupId: variantState == "update" ? data?.courseGroupId : "",

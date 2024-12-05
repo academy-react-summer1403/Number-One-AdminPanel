@@ -28,6 +28,10 @@ import CreateNewDepartment from "./CreateDepartment";
 import CreateNewTerm from "./CreateTerm";
 import CreateCourseAssistance from "./CreateCourseAssistance";
 import CreateAssistanceWork from "./CreateAssistanceWork";
+import AddHomeWork from "./AddHomeWork";
+import AddSession from "./AddSession";
+import AddFileSessionUpload from "./AddFileSessionUpload";
+import AddFileSessionWithId from "./AddFileSessionWithId";
 import CreateSchedule from "./CreateSchedule";
 import CreateScheduleAuto from "./CreateScheduleAuto";
 import UpdateJobHistoryShow from "./UpdateJobHistoryShow";
@@ -58,12 +62,16 @@ export {
   CreateShopCategory,
   CreateProductCategory,
   AddSocialGroup,
+  AddHomeWork,
   CreateClassRome,
   CreateNewBuilding,
   CreateNewDepartment,
   CreateNewTerm,
   CreateCourseAssistance,
   CreateAssistanceWork,
+  AddSession,
+  AddFileSessionUpload,
+  AddFileSessionWithId,
   CreateSchedule,
   CreateScheduleAuto,
   UpdateJobHistoryShow,

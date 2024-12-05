@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useQueryWithDependencies } from "../../../utility/hooks/useCustomQuery";
 import GetAdminScheduals from "../../../@core/services/api/get-api/GetAdminScheduals";
-import { handleData, handleFilterDate, handleRowsOfPage } from "../store";
+import { handleData, handleRowsOfPage } from "../store";
 import { HeaderTable } from "../../../@core/components/table-list";
 import { Card, Col, Row, Table } from "reactstrap";
 import headerTable from "../../../@core/constants/schedual/HeaderTable";
@@ -10,6 +10,7 @@ import CustomPagination from "../../../@core/components/pagination";
 import TableItems from "./TableItems";
 import ModalSchedule from "../create/ModalSchedule";
 import SchedualCalendar from "./Calendar";
+import SessionModal from "../session";
 
 const SchedualListWrapper = () => {
   const params = useSelector((state) => state.SchedualSlice);
@@ -58,9 +59,9 @@ const SchedualListWrapper = () => {
   const [showModal, setShowModal] = useState(false);
   const toggleShowModal = () => setShowModal(!showModal);
 
-  // Filter Modal
-  const [filterModal, setFilterModal] = useState(false);
-  const toggleFilterModal = () => setFilterModal(!filterModal);
+  // Session Modal
+  const [sessionModal, setSessionModal] = useState(false);
+  const toggleSessionModal = () => setSessionModal(!sessionModal);
 
   // Handle RowOfPage for list
   const handleRows = (e) => {
@@ -90,35 +91,38 @@ const SchedualListWrapper = () => {
                 // handleSearch={handleQuery}
                 buttonText={"افزودن بازه زمانی"}
                 isFilter
-                toggleFilter={toggleFilterModal}
+                // toggleFilter={toggleFilterModal}
                 setVariantState={setVariantState}
                 isSearching={false}
               />
-              <Table hover>
-                <thead className="text-center">
-                  <tr>
-                    {headerTable.map((item, index) => (
-                      <th key={index} className="px-0">
-                        {item}
-                      </th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {params.FilteredData?.slice(itemOffset, endOffset)?.map(
-                    (item, index) => (
-                      <TableItems
-                        key={index}
-                        refetch={refetch}
-                        item={item}
-                        setVariantState={setVariantState}
-                        toggleModal={toggleShowModal}
-                        setId={setId}
-                      />
-                    )
-                  )}
-                </tbody>
-              </Table>
+              <div style={{ overflowX: "auto" }}>
+                <Table hover>
+                  <thead className="text-center">
+                    <tr>
+                      {headerTable.map((item, index) => (
+                        <th key={index} className="px-0">
+                          {item}
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {params.FilteredData?.slice(itemOffset, endOffset)?.map(
+                      (item, index) => (
+                        <TableItems
+                          key={index}
+                          refetch={refetch}
+                          item={item}
+                          toggleSession={toggleSessionModal}
+                          setVariantState={setVariantState}
+                          toggleModal={toggleShowModal}
+                          setId={setId}
+                        />
+                      )
+                    )}
+                  </tbody>
+                </Table>
+              </div>
             </div>
             <CustomPagination
               total={scheduals?.length}
@@ -141,6 +145,7 @@ const SchedualListWrapper = () => {
           )}
         </Row>
       </Card>
+      <SessionModal isOpen={sessionModal} toggle={toggleSessionModal} id={id} />
     </div>
   );
 };

@@ -26,6 +26,7 @@ import AddAdminMessage from "./AddAdminMessage";
 import AddTeacherMessage from "./AddTeacherMessage";
 import UpdateCourseAssistance from "./UpdateCourseAssistance";
 import UpdateAssistanceWork from "./UpdateAssistanceWork";
+import UpdateSession from "./UpdateSession";
 import UpdateSchedule from "./UpdateSchedule";
 
 export {
@@ -57,5 +58,6 @@ export {
   AddTeacherMessage,
   UpdateCourseAssistance,
   UpdateAssistanceWork,
+  UpdateSession,
   UpdateSchedule,
 };
