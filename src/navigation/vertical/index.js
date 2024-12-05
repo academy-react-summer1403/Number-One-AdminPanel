@@ -129,6 +129,12 @@ export default [
         icon: <Circle size={12} />,
         navLink: "/schedual",
       },
+      {
+        id: "courseUser",
+        title: "لیست کاربران دوره",
+        icon: <Circle size={12} />,
+        navLink: "/courseUser",
+      },
     ],
   },
   {
