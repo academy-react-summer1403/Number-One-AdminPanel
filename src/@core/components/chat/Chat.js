@@ -20,18 +20,20 @@ import { handleMessage, handleSelectUser } from "../../../view/support/store";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { AddTeacherMessage } from "../../services/api/put-api";
+import { useGetItem } from "../../../utility/hooks/useLocalStorage";
 
 const ChatLog = () => {
   const SelectUser = useSelector((state) => state.SupportSlice.SelectUser);
   const chatArea = useRef(null);
   const dispatch = useDispatch();
   const location = useLocation();
+  const id = useGetItem("id");
 
   // Get Now Time
   const now = new Date();
   const time = now.toLocaleTimeString([], {
     hour: "2-digit",
-    minute: "2-digit",
+    minute: "2-digit"
   });
 
   // ** State
@@ -48,9 +50,9 @@ const ChatLog = () => {
           id: SelectUser.chatRoom.length + 1,
           text: msg,
           messageTime: time,
-          sender: "admin",
-        },
-      ],
+          sender: "admin"
+        }
+      ]
     });
     if (res) {
       setMsg("");
@@ -59,7 +61,7 @@ const ChatLog = () => {
           id: SelectUser.chatRoom.length + 1,
           text: msg,
           messageTime: time,
-          sender: "admin",
+          sender: "admin"
         })
       );
     }
@@ -77,8 +79,9 @@ const ChatLog = () => {
           text: msg,
           messageTime: time,
           sender: "admin",
-        },
-      ],
+          teacherId: id
+        }
+      ]
     });
     if (res) {
       setMsg("");
@@ -88,6 +91,7 @@ const ChatLog = () => {
           text: msg,
           messageTime: time,
           sender: "admin",
+          teacherId: id
         })
       );
     }
@@ -109,7 +113,7 @@ const ChatLog = () => {
     <div className="chat-app-window h-100">
       <div
         className={classnames("start-chat-area", {
-          "d-none": Object.keys(SelectUser).length,
+          "d-none": Object.keys(SelectUser).length
         })}
       >
         <div className="start-chat-icon mb-1">
@@ -120,7 +124,7 @@ const ChatLog = () => {
       {Object.keys(SelectUser).length ? (
         <div
           className={classnames("active-chat", {
-            "d-none": SelectUser === null,
+            "d-none": SelectUser === null
           })}
         >
           <div className="chat-navbar">
