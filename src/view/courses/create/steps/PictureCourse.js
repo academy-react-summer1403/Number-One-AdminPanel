@@ -1,29 +1,61 @@
-import { ErrorMessage, Field, Form, Formik } from "formik";
-import GenerateImage from "../../../../utility/create-img-ai/GenerateImgAi";
+import { ErrorMessage, Form, Formik } from "formik";
 import { validCreateImageCourse } from "../../../../@core/validations/CreateCourse.Validation";
 import { Input, Label } from "reactstrap";
 import { Camera } from "react-feather";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ButtonsForMove from "../../../../@core/components/button-for-move/ButtonsForMove";
+import { CreateImageAi } from "../../../../@core/services/api/post-api";
+import { useMutation } from "@tanstack/react-query";
 
-const PictureCourse = ({ courseId,stepper ,setImage }) => {
-  const [src, setSrc] = useState();
+const PictureCourse = ({ courseId, stepper, setImage }) => {
+  const [src, setSrc] = useState("");
+  const [aiImgStatus, setAiImgStatus] = useState(false);
+
+  // create img with Ai
+  const CreatePicAi = useMutation({
+    mutationKey: ["CREATE_PICTURE_AI"],
+    mutationFn: (imgData) => CreateImageAi(imgData),
+  });
+
+  const sendPic = (text) => {
+    console.log(text);
+    setAiImgStatus(true);
+    const PictureData = {
+      prompt: text,
+      seed: 17123564234,
+      scheduler: "DDIM",
+      num_inference_steps: 20,
+      negative_prompt: "NONE",
+      samples: 1,
+      guidance_scale: 7.5,
+      strength: 1,
+      shape: 512,
+    };
+    CreatePicAi.mutate(PictureData);
+  };
+
+  useEffect(() => {
+    if (CreatePicAi.data) {
+      setSrc(CreatePicAi.data);
+      // console.log(CreatePicAi.data);
+    }
+  }, [CreatePicAi.data]);
 
   return (
     <>
-      {/* <Formik
-        initialValues={{ Text: "" }} // افزودن img به initialValues
+      <Formik
+        initialValues={{ Text: "" }}
         validationSchema={validCreateImageCourse}
         onSubmit={async (values, { setSubmitting }) => {
-          GenerateImage(values.Text);
-          console.log(first);
+          sendPic(values.Text);
+          // console.log(values.Text);
           setSubmitting(false);
         }}
       >
         {(formik) => (
           <Form onSubmit={formik.handleSubmit}>
             <Label htmlFor="Text" className="mb-1">
-              میتوانید عکس مورد نظر خود را بسازید!!
+            با Ai  میتوانید عکس مورد نظر خود را بسازید!!
             </Label>
             <div className="d-flex gap-2 mb-1">
               <div className="form-group w-75 ">
@@ -51,13 +83,17 @@ const PictureCourse = ({ courseId,stepper ,setImage }) => {
             </div>
           </Form>
         )}
-      </Formik> */}
+      </Formik>
       <Formik
-        initialValues={{ ImageAddress: "" }} // افزودن img به initialValues
+        initialValues={{ ImageAddress: "" }} 
         // validationSchema={validCreateImageCourse}
         onSubmit={async (values, { setSubmitting }) => {
+          if (aiImgStatus && CreatePicAi.data) {
+            // console.log(src);
+            setImage({ ImageAddress: src });
+          } else setImage(values && values);
           // GenerateImage(values.Text);
-          setImage(values && values);
+          console.log(src);
           console.log(values);
           setSubmitting(false);
         }}
@@ -97,7 +133,10 @@ const PictureCourse = ({ courseId,stepper ,setImage }) => {
                   onChange={(event) => {
                     const file = URL.createObjectURL(event.target.files[0]);
                     setSrc(file);
-                    formik.setFieldValue("ImageAddress", event.target.files[0]); // ذخیره کردن img در Formik
+                    // console.log(src);
+                    if (file) {
+                      formik.setFieldValue("ImageAddress", file);
+                    }
                   }}
                 />
               </Label>

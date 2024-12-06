@@ -10,7 +10,8 @@ const ItemImageStep = ({ stepper, handleFunc, section, preview }) => {
 
   useEffect(() => {
     if (!file) return;
-    dispatch(handleFunc(file));
+    console.log(file)
+    // dispatch(handleFunc(file));
   }, [file]);
 
   return (
