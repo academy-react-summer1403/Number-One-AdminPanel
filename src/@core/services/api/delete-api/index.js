@@ -5,6 +5,7 @@ import DeleteCourseReserve from "./DeleteReserveCourse";
 import DeleteCourseGroup from "./DeleteCourseGroup";
 import DeleteCoursePayment from "./DeleteCoursePayment";
 import DeleteSessionFile from "./DeleteSessionFile";
+import DeleteJobHistory from "./DeleteJobHistory";
 
 export {
   DeleteUser,
@@ -14,4 +15,5 @@ export {
   DeleteCourseGroup,
   DeleteCoursePayment,
   DeleteSessionFile,
+  DeleteJobHistory
 };

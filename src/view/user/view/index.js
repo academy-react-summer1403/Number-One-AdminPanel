@@ -35,7 +35,7 @@ const UserView = () => {
     }
   };
 
-  const { data, isSuccess, refetch } = useQueryWithDependencies(
+  const { data, isSuccess, refetch, isRefetching } = useQueryWithDependencies(
     "GET_USER-DETAILS",
     UserDetails,
     id,
@@ -46,7 +46,7 @@ const UserView = () => {
     if (isSuccess) {
       dispatch(handleDetails(data));
     }
-  }, [isSuccess]);
+  }, [isSuccess, isRefetching]);
 
   const { mutate } = useMutation({
     mutationKey: ["UPDATE_USER_DETAILS"],

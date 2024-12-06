@@ -31,7 +31,7 @@ const HeaderTable = ({
             onChange={handleRowOfPage}
             style={{ width: "5rem" }}
           >
-            <option value="6">6</option>
+            <option value="6">10</option>
             <option value="25">25</option>
             <option value="50">50</option>
           </Input>

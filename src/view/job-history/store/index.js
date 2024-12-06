@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   PageNumber: 1,
-  RowsOfPage: 9,
+  RowsOfPage: 10,
   Query: undefined,
   FilteredData: [],
   Data: [],

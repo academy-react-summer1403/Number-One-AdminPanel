@@ -8,16 +8,18 @@ import { GetJobHistory } from "../../../@core/services/api/get-api";
 import { useQueryWithoutDependencies } from "../../../utility/hooks/useCustomQuery";
 import CustomPagination from "../../../@core/components/pagination";
 import TableItems from "./TableItems";
+import EditModal from "./EditModal";
 
 const JobHistoryWrapper = () => {
   const params = useSelector((state) => state.JobHistorySlice);
   const dispatch = useDispatch();
+  const [id, setId] = useState();
 
   const {
     data: jobs,
     isSuccess,
     isRefetching,
-    refetch,
+    refetch
   } = useQueryWithoutDependencies("GET_JOB_HISTORY", GetJobHistory);
 
   useEffect(() => {
@@ -39,6 +41,10 @@ const JobHistoryWrapper = () => {
     const value = parseInt(e.currentTarget.value);
     dispatch(handleRowsOfPage(value));
   };
+
+  // Edit Modal
+  const [editModal, setEditModal] = useState(false);
+  const toggleEditModal = () => setEditModal(!editModal);
 
   return (
     <div className="app-user-list">
@@ -69,6 +75,8 @@ const JobHistoryWrapper = () => {
                         key={index}
                         item={item}
                         refetch={refetch}
+                        setId={setId}
+                        toggleModal={toggleEditModal}
                       />
                     )
                   )}
@@ -83,6 +91,9 @@ const JobHistoryWrapper = () => {
             />
           </Card>
         </Col>
+        {/* <EditModal 
+          data={} 
+        /> */}
       </Row>
     </div>
   );

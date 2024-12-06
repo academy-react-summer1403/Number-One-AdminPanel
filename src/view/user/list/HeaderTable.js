@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 // Styles
 import "@styles/react/libs/react-select/_react-select.scss";
 import "@styles/react/libs/tables/react-dataTable-component.scss";
+import { useRef } from "react";
 
 const HeaderTable = ({
   toggleSidebar,
@@ -13,6 +14,15 @@ const HeaderTable = ({
   handleSearch,
 }) => {
   const dispatch = useDispatch();
+  const ref = useRef();
+
+  const handleSetSearch = (e) => {
+    clearTimeout(ref.current);
+    const timeOut = setTimeout(() => {
+      dispatch(handleSearch(e));
+    }, 1000);
+    ref.current = timeOut;
+  };
 
   return (
     <div
@@ -31,7 +41,7 @@ const HeaderTable = ({
               onChange={handleRowOfPage}
               style={{ width: "5rem" }}
             >
-              <option value="6">6</option>
+              <option value="6">10</option>
               <option value="25">25</option>
               <option value="50">50</option>
             </Input>
@@ -48,7 +58,7 @@ const HeaderTable = ({
               placeholder="جستجو ..."
               onChange={(e) => {
                 e.preventDefault();
-                dispatch(handleSearch(searchBox.value));
+                handleSetSearch(searchBox.value);
               }}
             />
           </div>

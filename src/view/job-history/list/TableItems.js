@@ -1,14 +1,22 @@
-import { Badge } from "reactstrap";
+import {
+  Badge,
+  DropdownItem,
+  DropdownMenu,
+  DropdownToggle,
+  UncontrolledDropdown
+} from "reactstrap";
 import ChangeMoment from "../../../utility/moment";
-import { Edit } from "react-feather";
+import { Activity, Edit, MoreVertical, Trash } from "react-feather";
 import { UserDetails } from "../../../@core/services/api/get-api";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { handleUserDetails } from "../store";
 import { useMutation } from "@tanstack/react-query";
 import { UpdateJobHistoryShow } from "../../../@core/services/api/post-api";
+import { DeleteJobHistory } from "../../../@core/services/api/delete-api";
+import toast from "react-hot-toast";
 
-const TableItems = ({ item, refetch }) => {
+const TableItems = ({ item, refetch, setId, toggleModal }) => {
   const [existDetail, setExistDetail] = useState();
   const UserDetail = useSelector((state) => state.JobHistorySlice.UserDetails);
   const dispatch = useDispatch();
@@ -18,7 +26,7 @@ const TableItems = ({ item, refetch }) => {
     if (user) {
       let details = {
         userName: user?.fName + " " + user?.lName,
-        id: user?.id,
+        id: user?.id
       };
       dispatch(handleUserDetails(details));
       setExistDetail(details);
@@ -38,7 +46,14 @@ const TableItems = ({ item, refetch }) => {
     mutationKey: ["UPDATE_SHOW"],
     mutationFn: (data) => {
       UpdateJobHistoryShow(data, refetch);
-    },
+    }
+  });
+
+  const { mutate: deleteItem } = useMutation({
+    mutationKey: ["DELETE_ITEM"],
+    mutationFn: (id) => {
+      DeleteJobHistory(id, refetch);
+    }
   });
 
   return (
@@ -75,17 +90,55 @@ const TableItems = ({ item, refetch }) => {
           {item.inWork ? "فعال" : "غیرفعال"}
         </Badge>
       </td>
-      <td
-        onClick={() => {
-          item.showInFirstPage
-            ? mutate({ JobId: item.id, show: false })
-            : mutate({ JobId: item.id, show: true });
-        }}
-        style={{ width: "120px" }}
-        className="px-0"
-      >
-        <Edit className="me-50" size={15} />{" "}
-        <span className="align-middle">ویرایش</span>
+      <td style={{ width: "100px" }} className="px-0">
+        <UncontrolledDropdown direction="start">
+          <DropdownToggle
+            className="icon-btn hide-arrow"
+            color="transparent"
+            size="sm"
+            caret
+          >
+            <MoreVertical size={15} />
+          </DropdownToggle>
+          <DropdownMenu className="d-flex flex-column p-0">
+            <DropdownItem
+              href="/"
+              onClick={(e) => {
+                e.preventDefault();
+                deleteItem(item.id)
+              }}
+            >
+              <Trash className="me-50" size={15} />{" "}
+              <span className="align-middle">حذف</span>
+            </DropdownItem>
+            <DropdownItem
+              href="/"
+              onClick={(e) => {
+                e.preventDefault();
+                item.showInFirstPage
+                  ? mutate({ JobId: item.id, show: false })
+                  : mutate({ JobId: item.id, show: true });
+              }}
+            >
+              <Activity className="me-50" size={15} />{" "}
+              <span className="align-middle">
+                {item.showInFirstPage ? "غیرفعال" : "فعال"}
+              </span>
+            </DropdownItem>
+            <DropdownItem
+              href="/"
+              onClick={(e) => {
+                e.preventDefault();
+                toggleModal();
+                setId(item.id);
+                toast.error("مشکل از سمت سرور")
+              }}
+            >
+              <Edit className="me-50" size={15} />{" "}
+              <span className="align-middle">ویرایش</span>
+            </DropdownItem>
+          </DropdownMenu>
+        </UncontrolledDropdown>
       </td>
     </tr>
   );
