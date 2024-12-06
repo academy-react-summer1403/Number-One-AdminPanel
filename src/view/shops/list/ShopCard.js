@@ -2,7 +2,7 @@
 import classnames from "classnames";
 import { Star, Calendar, Eye, Clock } from "react-feather";
 import { Link } from "react-router-dom";
-import fallback from "../../../assets/images/portrait/small/image-not-found.png";
+import fallback from "../../../assets/images/portrait/small/shops.png"
 
 // ** Reactstrap Imports
 import { Badge, Card, CardBody } from "reactstrap";

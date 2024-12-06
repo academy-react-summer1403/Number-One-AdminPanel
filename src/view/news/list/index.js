@@ -1,6 +1,7 @@
 import { Fragment, useState } from "react";
 import { Col, Row } from "reactstrap";
 import { Book, Eye, EyeOff } from "react-feather";
+import fallback from "../../../assets/images/portrait/small/blogs.png"
 
 // Custom Components
 import CustomPagination from "../../../@core/components/pagination";
@@ -129,6 +130,7 @@ const NewsTable = () => {
                       currentView={item.currentView}
                       handleActiveOrDetective={handleActiveOrDetective}
                       status={item.isActive}
+                      fallback={fallback}
                     />
                   ))}
               </div>

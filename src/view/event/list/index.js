@@ -1,16 +1,17 @@
 // React Imports
 import { Fragment } from "react";
+import fallback from "../../../assets/images/portrait/small/events.png";
 
 // Api
 import {
   GetAllEvents,
-  GetEventsList,
+  GetEventsList
 } from "../../../@core/services/api/get-api";
 
 // Query
 import {
   useQueryWithDependencies,
-  useQueryWithoutDependencies,
+  useQueryWithoutDependencies
 } from "../../../utility/hooks/useCustomQuery";
 
 // Reactstrap
@@ -21,12 +22,12 @@ import {
   Sidebar,
   ListHeader,
   ListSearchbar,
-  ProductCards,
+  ProductCards
 } from "../../../@core/components/products-list";
 import CustomPagination from "../../../@core/components/pagination";
 import {
   StatisticsOfEvents,
-  eventsSortOption,
+  eventsSortOption
 } from "../../../@core/constants/event-manage/Options";
 import ChangeMoment from "../../../utility/moment";
 
@@ -35,7 +36,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   handlePageNumber,
   handleQuery,
-  handleRowsOfPage,
+  handleRowsOfPage
 } from "../store/EventsList";
 
 // ** Styles
@@ -49,7 +50,11 @@ const EventsPage = () => {
   const params = useSelector((state) => state.EventsList);
 
   // Get Event List From Mock Api
-  const { data: dataWithParams, isSuccess, refetch } = useQueryWithDependencies(
+  const {
+    data: dataWithParams,
+    isSuccess,
+    refetch
+  } = useQueryWithDependencies(
     "GET_EVENTS_LIST",
     GetEventsList,
     params,
@@ -68,7 +73,7 @@ const EventsPage = () => {
     mutationKey: ["ACTIVE_AND_DETECTIVE"],
     mutationFn: (data) => {
       UpdateEvent(data.Id, { isActive: data.IsActive }, refetch);
-    },
+    }
   });
 
   const handleActiveDeactive = (boolean, id) => {
@@ -117,6 +122,7 @@ const EventsPage = () => {
                       currentRate={null}
                       handleActiveOrDetective={handleActiveDeactive}
                       status={item.isActive}
+                      fallback={fallback}
                     />
                   ))}
                 </div>
@@ -126,7 +132,7 @@ const EventsPage = () => {
                   style={{
                     textAlign: "center",
                     marginTop: "200px",
-                    marginBottom: "200px",
+                    marginBottom: "200px"
                   }}
                 >
                   ایونتی وجود ندارد

@@ -3,8 +3,6 @@ import classnames from "classnames";
 import { Star, Calendar, Eye, Activity } from "react-feather";
 import { Link } from "react-router-dom";
 
-import fallback from "../../../assets/images/portrait/small/image-not-found.png";
-
 // ** Reactstrap Imports
 import { Card, CardBody } from "reactstrap";
 import { UnitPrice } from "../../../utility/separation-price";
@@ -25,6 +23,7 @@ const ProductCards = (props) => {
     price,
     handleActiveOrDetective,
     status,
+    fallback
   } = props;
 
   // ** Renders products

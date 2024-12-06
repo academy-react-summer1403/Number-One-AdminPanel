@@ -1,5 +1,6 @@
 // React Imports
 import { Fragment, useEffect, useState } from "react";
+import fallback from "../../../assets/images/portrait/small/products.png"
 
 // Reactstrap
 import { Col, Row } from "reactstrap";
@@ -153,6 +154,7 @@ const ProductsPage = () => {
                       currentRate={null}
                       handleActiveOrDetective={handleActiveOrDeactive}
                       status={item.isActive}
+                      fallback={fallback}
                     />
                   ))}
                 </div>

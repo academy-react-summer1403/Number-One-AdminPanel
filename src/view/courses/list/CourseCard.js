@@ -1,10 +1,10 @@
 import classNames from "classnames";
-import Avatar from "../../../assets/images/cards/44.jpg";
 import { Badge, Card, CardBody } from "reactstrap";
 import { Link } from "react-router-dom";
 import { Calendar, ShoppingCart, Star, User } from "react-feather";
 import HandleIdentityEditorJs from "../../../utility/create-editorjs-blocks/IdentityEditorJs";
 import ImageFallback from "../../../@core/components/image-fallback";
+import fallback from "../../../assets/images/portrait/small/courses.png"
 import ChangeStatusButton from "../../../@core/components/products-list/ChangeStatusButton";
 
 const CourseCard = (props) => {
@@ -28,7 +28,7 @@ const CourseCard = (props) => {
               <ImageFallback
                 src={item.tumbImageAddress}
                 className="img-fluid card-img-top w-100 h-100"
-                fallback={Avatar}
+                fallback={fallback}
               />
             </div>
           </Link>
