@@ -235,18 +235,6 @@ const EditCourse = ({ isOpen, toggle, refetchData }) => {
                   ))}
                 </Input>
               </Col>
-              {/* <Col md="4" className="mb-1">
-            <Label className="form-label" for="StartTime">
-              تاریخ شروع
-            </Label>
-            <Input
-              id="StartTime"
-              name="StartTime"
-              onChange={formik.handleChange}
-              value={formik.values.StartTime}
-              placeholder="تاریخ شروع"
-            />
-          </Col> */}
               <Col sm="4" className="mb-1">
                 <Label className="form-label" for="StartTime">
                   تاریخ شروع
@@ -291,18 +279,6 @@ const EditCourse = ({ isOpen, toggle, refetchData }) => {
                   className="datePicker"
                 />
               </Col>
-              {/* <Col md="4" className="mb-1">
-            <Label className="form-label" for="EndTime">
-              تاریخ پایان
-            </Label>
-            <Input
-              id="EndTime"
-              name="EndTime"
-              onChange={formik.handleChange}
-              value={formik.values.EndTime}
-              placeholder="تاریخ پایان"
-            />
-          </Col> */}
               <Col md="8" className="mb-1">
                 <Label className="form-label" for="MiniDescribe">
                   توضیحات کوتاه
@@ -333,7 +309,15 @@ const EditCourse = ({ isOpen, toggle, refetchData }) => {
                   id="ImageAddress"
                   type="file"
                   name="ImageAddress"
-                  onChange={(event) => event.target.files[0]
+                  // value={formik.values.ImageAddress}
+                onChange={formik.handleChange}
+
+                  // onChange={(event) =>{
+                  //   const file = event.currentTarget.files[0]; // فایل اول را بگیرید  
+                  //   if (file) {  
+                  //     formik.setFieldValue("ImageAddress", file); // فایل را به فرمیک بدهید  
+                  //   }  
+                  // }
                     // const file = event.target.files[0];
                     // console.log(file)
                     // if (file) {
@@ -342,10 +326,24 @@ const EditCourse = ({ isOpen, toggle, refetchData }) => {
 
                     //   formik.handleChange(fileURL);
                     // }
-                  }
-                  value={formik.values.ImageAddress}
+                  // }
                   placeholder="عکس دوره"
                 />
+                <Label className="form-label" for="UniqeUrlString">
+                  شناسه یکتا
+                </Label>
+                <Input
+                  id="UniqeUrlString"
+                  name="UniqeUrlString"
+                  onChange={formik.handleChange}
+                  value={formik.values.UniqeUrlString}
+                  placeholder="شناسه یکتا"
+                  invalid={formik.touched.UniqeUrlString && !!formik.errors.UniqeUrlString}
+                />
+                {formik.touched.UniqeUrlString && formik.errors.UniqeUrlString ? (
+                  <div className="text-danger">{formik.errors.UniqeUrlString}</div>
+                ) : null}
+                {/* UniqeUrlString */}
               </Col>
               <Col md="12" className="mb-1">
                 <Label className="form-label" for="Describe">

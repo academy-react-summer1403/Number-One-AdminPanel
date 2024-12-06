@@ -1,5 +1,5 @@
 const EditCourseField = (detail) => {
-  // console.log(first)
+  console.log(detail)
   const fields = {
     Id: detail.courseId ?? "",
     Title: detail.title ?? "",
@@ -13,7 +13,8 @@ const EditCourseField = (detail) => {
     CourseLvlId: [1],
     TeacherId: detail.teacherId ?? "",
     Cost: detail.cost ?? "",
-    UniqeUrlString: detail?.courseId?.slice(1,8),
+    UniqeUrlString: "" ,
+    // detail?.courseId?.slice(1,8)
     StartTime: detail.startTime,
     EndTime: detail.endTime,
     ImageAddress:detail.imageAddress ?? ""

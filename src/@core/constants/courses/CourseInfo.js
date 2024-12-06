@@ -2,6 +2,8 @@ import { SeparationPrice } from "../../../utility/separation-price";
 
 const CoursesInfo = (data) => {
   const tech = data?.courseTeches?.map((item) => item);
+  
+  console.log(tech)
   const detailCourse = [
     { label: "دسته بندی", value: tech },
     { label: "وضعیت دوره", value: data?.courseStatusName },
