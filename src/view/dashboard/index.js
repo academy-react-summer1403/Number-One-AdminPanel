@@ -9,6 +9,7 @@ import Sales from "./Sales";
 import RevenueReport from "./RevenueReport";
 import ChartjsPolarAreaChart from "./ChartjsPolarAreaChart";
 import Earnings from "./Earnings";
+import CartWithLine from "./CartWithLine";
 
 const Dashboard = () => {
   // ** ThemeColors
@@ -26,6 +27,9 @@ const Dashboard = () => {
         </Col>
         <Col lg="8" xs="12">
           <StatsCard />
+        </Col>
+        <Col xs="12">
+          <CartWithLine />
         </Col>
       </Row>
       <Row className="match-height">
