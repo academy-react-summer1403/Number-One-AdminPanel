@@ -6,8 +6,9 @@ import { useEffect, useState } from "react";
 import ButtonsForMove from "../../../../@core/components/button-for-move/ButtonsForMove";
 import { CreateImageAi } from "../../../../@core/services/api/post-api";
 import { useMutation } from "@tanstack/react-query";
+import toast from "react-hot-toast";
 
-const PictureCourse = ({ courseId, stepper, setImage }) => {
+const PictureCourse = ({ courseId, stepper, setImage, setCreateBtn }) => {
   const [src, setSrc] = useState("");
   const [aiImgStatus, setAiImgStatus] = useState(false);
 
@@ -55,7 +56,7 @@ const PictureCourse = ({ courseId, stepper, setImage }) => {
         {(formik) => (
           <Form onSubmit={formik.handleSubmit}>
             <Label htmlFor="Text" className="mb-1">
-            با Ai  میتوانید عکس مورد نظر خود را بسازید!!
+              با Ai میتوانید عکس مورد نظر خود را بسازید!!
             </Label>
             <div className="d-flex gap-2 mb-1">
               <div className="form-group w-75 ">
@@ -85,16 +86,14 @@ const PictureCourse = ({ courseId, stepper, setImage }) => {
         )}
       </Formik>
       <Formik
-        initialValues={{ ImageAddress: "" }} 
+        initialValues={{ Image: "" }}
         // validationSchema={validCreateImageCourse}
         onSubmit={async (values, { setSubmitting }) => {
           if (aiImgStatus && CreatePicAi.data) {
             // console.log(src);
-            setImage({ ImageAddress: src });
-          } else setImage(values && values);
+            setImage({ Image: src });
+          } else { setImage(values && values); toast.success("عکس مورد نطر ثبت شد")}
           // GenerateImage(values.Text);
-          console.log(src);
-          console.log(values);
           setSubmitting(false);
         }}
       >
@@ -135,7 +134,7 @@ const PictureCourse = ({ courseId, stepper, setImage }) => {
                     setSrc(file);
                     // console.log(src);
                     if (file) {
-                      formik.setFieldValue("ImageAddress", file);
+                      formik.setFieldValue("Image", event.target.files[0]);
                     }
                   }}
                 />
@@ -148,6 +147,13 @@ const PictureCourse = ({ courseId, stepper, setImage }) => {
               disabled={formik.isSubmitting}
             >
               ثبت تصویر
+            </button>
+            <button
+              className="btn btn-success ms-2"
+              style={{ height: "38px" }}
+              onClick={() => setCreateBtn(true)}
+            >
+              ساخت دوره
             </button>
           </Form>
         )}
