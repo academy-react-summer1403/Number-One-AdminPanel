@@ -32,6 +32,7 @@ import ListSearchbar from "../../../../@core/components/products-list/ListSearch
 import ListHeader from "../../../../@core/components/products-list/ListHeader";
 import AddBlogCategoryWrapper from "../create/CreateNewsModal";
 import CategoryNewsDetails from "../view";
+import ComponentSpinner from "../../../../@core/components/spinner/Loading-spinner.js";
 
 const BlogCategoriesWrapper = () => {
   const dispatch = useDispatch();
@@ -50,6 +51,7 @@ const BlogCategoriesWrapper = () => {
     data: newsCategory,
     isSuccess: successGetNewsCat,
     refetch,
+    isLoading
   } = useQueryWithoutDependencies("GET_NEWS_CATEGORY", GetNewsCategory);
 
   // const { mutate: categoryDetails } = useQueryWithDependencies(
@@ -91,6 +93,10 @@ const BlogCategoriesWrapper = () => {
   useEffect(() => {
     if (!showModal) setCategoryDetails(undefined);
   }, [showModal]);
+
+  if (isLoading) {
+    return <ComponentSpinner />
+  }
 
   return (
     <Fragment>

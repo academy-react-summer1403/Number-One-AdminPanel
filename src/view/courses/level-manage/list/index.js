@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   handleAllList,
   handleQuery,
-  handleRowsOfPage,
+  handleRowsOfPage
 } from "../store/levelsList";
 import HeaderTable from "../../../../@core/components/header-table/HeaderTable";
 import { LevelsTableTitles } from "../../../../@core/constants/courses/DetailsTabs";
@@ -18,6 +18,7 @@ import CustomPagination from "../../../../@core/components/pagination";
 import Img from "../../../../assets/images/cards/level.png";
 import { Edit } from "react-feather";
 import AddLevelModal from "../create";
+import ComponentSpinner from "../../../../@core/components/spinner/Loading-spinner.js";
 
 const CourseLevelWrapper = () => {
   const dispatch = useDispatch();
@@ -35,6 +36,7 @@ const CourseLevelWrapper = () => {
     isSuccess: successGetLevels,
     isRefetching,
     refetch,
+    isLoading
   } = useQueryWithoutDependencies("GET_COURSE_LEVEL", GetCourseLevels);
 
   // Getting the desired item data
@@ -68,6 +70,10 @@ const CourseLevelWrapper = () => {
   useEffect(() => {
     if (!showModal) setCategoryDetails(undefined);
   }, [showModal]);
+
+  if (isLoading) {
+    return <ComponentSpinner />;
+  }
 
   return (
     <Fragment>
@@ -132,7 +138,7 @@ const CourseLevelWrapper = () => {
                               maxWidth: "200px",
                               whiteSpace: "nowrap",
                               overflow: "hidden",
-                              textOverflow: "ellipsis",
+                              textOverflow: "ellipsis"
                             }}
                           >
                             {item.levelName}
@@ -156,7 +162,7 @@ const CourseLevelWrapper = () => {
                       style={{
                         textAlign: "center",
                         marginTop: "200px",
-                        marginBottom: "200px",
+                        marginBottom: "200px"
                       }}
                     >
                       سطح دوره ای وجود ندارد

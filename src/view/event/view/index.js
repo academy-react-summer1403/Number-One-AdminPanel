@@ -12,11 +12,13 @@ import { GetEventDetail } from "../../../@core/services/api/get-api";
 import EditEvent from "./EditEvent";
 import EventMain from "./Main";
 
+import ComponentSpinner from "../../../@core/components/spinner/Loading-spinner.js";
+
 const EventDetailWrapper = () => {
   const { id } = useParams();
   const [editModal, setEditModal] = useState(false);
 
-  const { data, isSuccess, refetch } = useQueryWithDependencies(
+  const { data, isSuccess, refetch, isLoading } = useQueryWithDependencies(
     "GET_EVENT_DETAIL",
     GetEventDetail,
     id,
@@ -24,6 +26,10 @@ const EventDetailWrapper = () => {
   );
 
   const toggle = () => setEditModal(!editModal);
+
+  if (isLoading) {
+    return <ComponentSpinner />
+  }
 
   return (
     <div className="app-user-view">

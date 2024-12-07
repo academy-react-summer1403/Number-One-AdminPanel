@@ -2,6 +2,7 @@ import { Fragment, useState } from "react";
 import { Col, Row } from "reactstrap";
 import { Book, Eye, EyeOff } from "react-feather";
 import fallback from "../../../assets/images/portrait/small/blogs.png"
+import ComponentSpinner from "../../../@core/components/spinner/Loading-spinner.js";
 
 // Custom Components
 import CustomPagination from "../../../@core/components/pagination";
@@ -50,11 +51,11 @@ const NewsTable = () => {
   const newsParams = useSelector((state) => state.NewsList);
   const dispatch = useDispatch();
 
-  const { data, isSuccess, refetch } = useQueryWithDependencies(
+  const { data, isSuccess, refetch, isLoading } = useQueryWithDependencies(
     "GET_NEWS_LIST",
     GetNewsList,
     newsParams,
-    newsParams
+    newsParams,
   );
 
   const { data: activeData, isSuccess: activeSuccess } =
@@ -89,6 +90,10 @@ const NewsTable = () => {
       throw new Error("ERROR: ", error);
     }
   };
+
+  if (isLoading) {
+    return <ComponentSpinner />
+  }
 
   return (
     <Fragment>

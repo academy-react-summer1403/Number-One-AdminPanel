@@ -31,6 +31,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 // Style
 import "@styles/react/libs/swiper/swiper.scss";
 import ImageFallBack from "../../../@core/components/image-fallback";
+import ComponentSpinner from "../../../@core/components/spinner/Loading-spinner.js";
 
 const DetailProductsPage = () => {
   // UseState
@@ -44,7 +45,8 @@ const DetailProductsPage = () => {
   const {
     data: details,
     isSuccess: detailsSuccess,
-    refetch
+    refetch,
+    isLoading
   } = useQueryWithDependencies(
     "GET_PRODUCTS_DETAILS",
     GetProductsDetails,
@@ -131,6 +133,10 @@ const DetailProductsPage = () => {
       );
     }
   };
+
+  if (isLoading) {
+    return <ComponentSpinner />
+  }
 
   return (
     <div className="app-user-view">

@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   useQueryWithDependencies,
-  useQueryWithoutDependencies,
+  useQueryWithoutDependencies
 } from "../../../utility/hooks/useCustomQuery";
 import {
   GetAssistanceWork,
-  GetAssistanceWorkDetail,
+  GetAssistanceWorkDetail
 } from "../../../@core/services/api/get-api";
 import { handleData, handleQuery, handleRowsOfPage } from "../store";
 import { Card, Col, Row, Table } from "reactstrap";
@@ -15,6 +15,7 @@ import headerTable from "../../../@core/constants/assistance-work/HeaderTable";
 import CustomPagination from "../../../@core/components/pagination";
 import TableItems from "./TableItems";
 import ModalTask from "./ModalTask";
+import ComponentSpinner from "../../../@core/components/spinner/Loading-spinner.js";
 
 const AssistanceWorkWrapper = () => {
   const params = useSelector((state) => state.AssistanceWorkList);
@@ -26,6 +27,7 @@ const AssistanceWorkWrapper = () => {
     isSuccess: assSuccess,
     isRefetching,
     refetch,
+    isLoading
   } = useQueryWithoutDependencies(
     "GET_ASSISTANCE_WORK_LIST",
     GetAssistanceWork
@@ -66,6 +68,10 @@ const AssistanceWorkWrapper = () => {
     const value = parseInt(e.currentTarget.value);
     dispatch(handleRowsOfPage(value));
   };
+
+  if (isLoading) {
+    return <ComponentSpinner />;
+  }
 
   return (
     <div className="app-user-list">
@@ -124,7 +130,7 @@ const AssistanceWorkWrapper = () => {
             worktitle: "",
             workDescribe: "",
             assistanceId: "",
-            workDate: "",
+            workDate: ""
           }}
           refetch={refetch}
           isOpen={createModal}

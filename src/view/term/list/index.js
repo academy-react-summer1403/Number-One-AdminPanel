@@ -18,6 +18,7 @@ import CreateTerm from "./CreateTerm";
 import { Reports, HeaderTable } from "../../../@core/components/table-list";
 import { TermReports } from "../../../@core/constants/term-manage/Reports";
 import CloseDateModal from "./CloseDateModal";
+import ComponentSpinner from "../../../@core/components/spinner/Loading-spinner.js";
 
 const TermsWrapper = () => {
   const params = useSelector((state) => state.TermList);
@@ -28,7 +29,8 @@ const TermsWrapper = () => {
     data: terms,
     isSuccess: termSuccess,
     refetch,
-    isRefetching
+    isRefetching,
+    isLoading
   } = useQueryWithoutDependencies("GET_TERMS", GetTermList);
 
   useEffect(() => {
@@ -70,6 +72,10 @@ const TermsWrapper = () => {
 
   const { data: termDetail, isSuccess: detailSuccess } =
     useQueryWithDependencies("GET_TERM_DETAILS", GetTermDetails, id, id);
+
+  if (isLoading) {
+    return <ComponentSpinner />;
+  }
 
   return (
     <div className="app-user-list">

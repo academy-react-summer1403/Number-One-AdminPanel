@@ -24,6 +24,7 @@ import ImageFallBack from "../../../../@core/components/image-fallback";
 import { Edit} from "react-feather";
 import CustomPagination from "../../../../@core/components/pagination";
 import AddTechnologyModal from "../create";
+import ComponentSpinner from "../../../../@core/components/spinner/Loading-spinner.js";
 
 const CourseTechnologiesWrapper = () => {
   const dispatch = useDispatch();
@@ -40,6 +41,7 @@ const CourseTechnologiesWrapper = () => {
     isSuccess: successGetTach,
     isRefetching,
     refetch,
+    isLoading
   } = useQueryWithoutDependencies(
     "GET_COURSE_TECHNOLOGIES",
     GetCourseTechnologies
@@ -77,6 +79,10 @@ const CourseTechnologiesWrapper = () => {
   useEffect(() => {
     if (!showModal) setCategoryDetails(undefined);
   }, [showModal]);
+
+  if (isLoading) {
+    return <ComponentSpinner />
+  }
 
   return (
     <Fragment>

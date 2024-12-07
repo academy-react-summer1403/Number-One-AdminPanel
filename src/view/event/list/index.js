@@ -43,6 +43,7 @@ import {
 import "@styles/react/apps/app-ecommerce.scss";
 import { useMutation } from "@tanstack/react-query";
 import { UpdateEvent } from "../../../@core/services/api/put-api";
+import ComponentSpinner from "../../../@core/components/spinner/Loading-spinner.js";
 
 const EventsPage = () => {
   const dispatch = useDispatch();
@@ -53,7 +54,8 @@ const EventsPage = () => {
   const {
     data: dataWithParams,
     isSuccess,
-    refetch
+    refetch,
+    isLoading
   } = useQueryWithDependencies(
     "GET_EVENTS_LIST",
     GetEventsList,
@@ -84,6 +86,10 @@ const EventsPage = () => {
       console.log(error);
     }
   };
+
+  if (isLoading) {
+    return <ComponentSpinner />;
+  }
 
   return (
     <Fragment>

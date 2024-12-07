@@ -1,6 +1,7 @@
 // React Imports
 import { Fragment, useEffect, useState } from "react";
-import fallback from "../../../assets/images/portrait/small/products.png"
+import fallback from "../../../assets/images/portrait/small/products.png";
+import ComponentSpinner from "../../../@core/components/spinner/Loading-spinner.js";
 
 // Reactstrap
 import { Col, Row } from "reactstrap";
@@ -8,13 +9,13 @@ import { Col, Row } from "reactstrap";
 // Custom Component
 import {
   ProductsSortOption,
-  StatisticsOfProducts,
+  StatisticsOfProducts
 } from "../../../@core/constants/products-manage/Options";
 import {
   ProductCards,
   ListHeader,
   ListSearchbar,
-  Sidebar,
+  Sidebar
 } from "../../../@core/components/products-list";
 import CustomPagination from "../../../@core/components/pagination";
 
@@ -23,20 +24,20 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   handlePageNumber,
   handleQuery,
-  handleRowsOfPage,
+  handleRowsOfPage
 } from "../store/ProductsList";
 
 // Query
 import {
   useQueryWithDependencies,
-  useQueryWithoutDependencies,
+  useQueryWithoutDependencies
 } from "../../../utility/hooks/useCustomQuery";
 
 // Api
 import {
   GetAllProducts,
   GetProductsWithParams,
-  GetShopList,
+  GetShopList
 } from "../../../@core/services/api/get-api";
 import { UpdateProducts } from "../../../@core/services/api/put-api";
 
@@ -56,23 +57,25 @@ const ProductsPage = () => {
   const {
     data: dataWithParams,
     isSuccess,
-    refetch,
+    refetch
   } = useQueryWithDependencies(
     "GET_PRODUCTS_WITH_PARAMS",
     GetProductsWithParams,
     params,
     params
   );
-  
+
   // Getting Product Data From Api With Out Params
   const { data } = useQueryWithoutDependencies(
     "GET_ALL_PRODUCTS",
     GetAllProducts
   );
-  
-  console.log(data)
+
   // Getting Shop Data From Api
-  const { data: shop } = useQueryWithoutDependencies("GET_SHOPS", GetShopList);
+  const { data: shop, isLoading } = useQueryWithoutDependencies(
+    "GET_SHOPS",
+    GetShopList
+  );
 
   // Getting stores that have admin access
   const GetAccessibleProducts = () => {
@@ -105,7 +108,7 @@ const ProductsPage = () => {
     mutationKey: ["ACTIVE_OR_DEACTIVE"],
     mutationFn: (data) => {
       UpdateProducts(data.Id, { isActive: data.IsActive }, refetch);
-    },
+    }
   });
 
   const handleActiveOrDeactive = (boolean, id) => {
@@ -116,6 +119,10 @@ const ProductsPage = () => {
       console.log(error);
     }
   };
+
+  if (isLoading) {
+    return <ComponentSpinner />;
+  }
 
   return (
     <Fragment>
@@ -164,7 +171,7 @@ const ProductsPage = () => {
                   style={{
                     textAlign: "center",
                     marginTop: "200px",
-                    marginBottom: "200px",
+                    marginBottom: "200px"
                   }}
                 >
                   محصولی وجود ندارد

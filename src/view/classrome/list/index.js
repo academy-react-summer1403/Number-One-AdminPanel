@@ -16,6 +16,7 @@ import TableItems from "./TableItems";
 import EditClass from "./EditClass";
 import { HeaderTable } from "../../../@core/components/table-list";
 import CreateClass from "./CreateClass";
+import ComponentSpinner from "../../../@core/components/spinner/Loading-spinner.js";
 
 const ClassRomeWrapper = () => {
   const params = useSelector((state) => state.ClassList);
@@ -27,6 +28,7 @@ const ClassRomeWrapper = () => {
     isSuccess,
     refetch,
     isRefetching,
+    isLoading
   } = useQueryWithDependencies("GET_CLASSES", GetClassRomeList);
 
   useEffect(() => {
@@ -59,6 +61,10 @@ const ClassRomeWrapper = () => {
     const value = parseInt(e.currentTarget.value);
     dispatch(handleRowsOfPage(value));
   };
+
+  if (isLoading) {
+    return <ComponentSpinner />
+  }
 
   return (
     <div className="app-user-list">

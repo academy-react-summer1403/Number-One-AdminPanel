@@ -9,6 +9,7 @@ import { useQueryWithoutDependencies } from "../../../utility/hooks/useCustomQue
 import CustomPagination from "../../../@core/components/pagination";
 import TableItems from "./TableItems";
 import EditModal from "./EditModal";
+import ComponentSpinner from "../../../@core/components/spinner/Loading-spinner.js";
 
 const JobHistoryWrapper = () => {
   const params = useSelector((state) => state.JobHistorySlice);
@@ -19,7 +20,8 @@ const JobHistoryWrapper = () => {
     data: jobs,
     isSuccess,
     isRefetching,
-    refetch
+    refetch,
+    isLoading
   } = useQueryWithoutDependencies("GET_JOB_HISTORY", GetJobHistory);
 
   useEffect(() => {
@@ -45,6 +47,10 @@ const JobHistoryWrapper = () => {
   // Edit Modal
   const [editModal, setEditModal] = useState(false);
   const toggleEditModal = () => setEditModal(!editModal);
+
+  if (isLoading) {
+    return <ComponentSpinner />;
+  }
 
   return (
     <div className="app-user-list">

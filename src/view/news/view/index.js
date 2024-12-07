@@ -1,5 +1,6 @@
 import { Col, Row } from "reactstrap";
-import fallback from "../../../assets/images/portrait/small/blogs.png"
+import fallback from "../../../assets/images/portrait/small/blogs.png";
+import ComponentSpinner from "../../../@core/components/spinner/Loading-spinner.js";
 
 // Custom Components
 import NewsTabs from "./Tabs";
@@ -36,12 +37,8 @@ const NewsView = () => {
     }
   };
 
-  const { data, isSuccess, refetch, isRefetching } = useQueryWithDependencies(
-    "GET_NEWS_DETAILS",
-    GetNewsDetail,
-    id,
-    id
-  );
+  const { data, isSuccess, refetch, isRefetching, isLoading } =
+    useQueryWithDependencies("GET_NEWS_DETAILS", GetNewsDetail, id, id);
 
   useEffect(() => {
     if (isSuccess === true || isRefetching) {
@@ -54,7 +51,7 @@ const NewsView = () => {
     mutationKey: ["َACTIVE_DEACTIVE"],
     mutationFn: (data) => {
       return ActiveDeactiveNews(data, refetch);
-    },
+    }
   });
 
   const handleActiveOrDeactive = (res) => {
@@ -67,6 +64,10 @@ const NewsView = () => {
   };
 
   const toggle = () => setEditModal(!editModal);
+
+  if (isLoading) {
+    return <ComponentSpinner />;
+  }
 
   return (
     <div className="app-user-view">

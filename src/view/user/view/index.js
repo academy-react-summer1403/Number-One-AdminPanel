@@ -18,6 +18,7 @@ import { UserDetails } from "../../../@core/services/api/get-api";
 import { UpdateUser } from "../../../@core/services/api/put-api";
 import { useMutation } from "@tanstack/react-query";
 import { useQueryWithDependencies } from "../../../utility/hooks/useCustomQuery";
+import ComponentSpinner from "../../../@core/components/spinner/Loading-spinner.js";
 
 // ** Styles
 import "@styles/react/apps/app-users.scss";
@@ -35,12 +36,8 @@ const UserView = () => {
     }
   };
 
-  const { data, isSuccess, refetch, isRefetching } = useQueryWithDependencies(
-    "GET_USER-DETAILS",
-    UserDetails,
-    id,
-    id
-  );
+  const { data, isSuccess, refetch, isRefetching, isLoading } =
+    useQueryWithDependencies("GET_USER-DETAILS", UserDetails, id, id);
 
   useEffect(() => {
     if (isSuccess) {
@@ -79,14 +76,18 @@ const UserView = () => {
         roles: userDetails.roles ?? [],
         courses: userDetails.courses ?? [],
         coursesReseves: userDetails.coursesReseves ?? [],
-        userProfileId: userDetails.userProfileId ?? undefined,
+        userProfileId: userDetails.userProfileId ?? undefined
       };
       UpdateUser(userInfo, refetch);
     },
     onSuccess: () => {
       setShow(false);
-    },
+    }
   });
+
+  if (isLoading) {
+    return <ComponentSpinner />;
+  }
 
   return (
     <div className="app-user-view">

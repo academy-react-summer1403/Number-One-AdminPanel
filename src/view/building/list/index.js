@@ -3,11 +3,11 @@ import headerTable from "../../../@core/constants/building/HeaderTable";
 import CustomPagination from "../../../@core/components/pagination";
 import {
   GetBuildingDetails,
-  GetBuildingList,
+  GetBuildingList
 } from "../../../@core/services/api/get-api";
 import {
   useQueryWithDependencies,
-  useQueryWithoutDependencies,
+  useQueryWithoutDependencies
 } from "../../../utility/hooks/useCustomQuery";
 import TableItems from "./TableItems";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,13 +15,14 @@ import {
   handleData,
   handlePageNumber,
   handleQuery,
-  handleRowsOfPage,
+  handleRowsOfPage
 } from "../store/BuildingList";
 import { Fragment, useEffect, useState } from "react";
 import EditBuilding from "./EditBuilding";
 import CreateBuilding from "./CreateBuilding";
 import { Reports, HeaderTable } from "../../../@core/components/table-list";
 import { BuildingReports } from "../../../@core/constants/building/Reports";
+import ComponentSpinner from "../../../@core/components/spinner/Loading-spinner.js";
 
 const BuildingWrapper = () => {
   const params = useSelector((state) => state.BuildingList);
@@ -40,6 +41,7 @@ const BuildingWrapper = () => {
     isSuccess,
     refetch,
     isRefetching,
+    isLoading
   } = useQueryWithoutDependencies("GET_ALL_BUILDING", GetBuildingList);
 
   useEffect(() => {
@@ -69,6 +71,10 @@ const BuildingWrapper = () => {
     const value = parseInt(e.currentTarget.value);
     dispatch(handleRowsOfPage(value));
   };
+
+  if (isLoading) {
+    return <ComponentSpinner />;
+  }
 
   return (
     <div className="app-user-list">

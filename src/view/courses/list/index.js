@@ -29,6 +29,7 @@ import CustomPagination from "../../../@core/components/pagination";
 import CourseReserve from "./tabs/CourseReserve";
 import PaymentOfCourses from "./tabs/PaymentOfCourses";
 import { ActiveOrDeActive } from "../../../@core/services/api/put-api";
+import ComponentSpinner from "../../../@core/components/spinner/Loading-spinner.js";
 
 const Courses = () => {
   const [activeView, setActiveView] = useState("grid");
@@ -40,6 +41,7 @@ const Courses = () => {
     data: coursesData,
     isSuccess,
     refetch,
+    isLoading
   } = useQueryWithDependencies(
     "GET_COURSES_DATA",
     GetCourses,
@@ -90,6 +92,10 @@ const Courses = () => {
       dispatch(handleQueryCourse(undefined));
     }
   }, [activeTab]);
+
+  if (isLoading) {
+    return <ComponentSpinner />
+  }
 
   return (
     <Fragment>

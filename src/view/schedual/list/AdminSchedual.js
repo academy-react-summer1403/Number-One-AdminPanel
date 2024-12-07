@@ -11,6 +11,7 @@ import TableItems from "./TableItems";
 import ModalSchedule from "../create/ModalSchedule";
 import SchedualCalendar from "./Calendar";
 import SessionModal from "../session";
+import ComponentSpinner from "../../../@core/components/spinner/Loading-spinner.js";
 
 const AdminSchedualWrapper = () => {
   const params = useSelector((state) => state.SchedualSlice);
@@ -24,6 +25,7 @@ const AdminSchedualWrapper = () => {
     isSuccess,
     refetch,
     isRefetching,
+    isLoading
   } = useQueryWithDependencies("GET_SCHEDUAL_LIST", GetAdminScheduals, params, {
     startDate: params?.startDate,
     endDate: params?.endDate,
@@ -76,6 +78,10 @@ const AdminSchedualWrapper = () => {
       setId("");
     }
   }, [showModal]);
+
+  if (isLoading) {
+    return <ComponentSpinner />
+  }
 
   return (
     <div className="app-user-list">

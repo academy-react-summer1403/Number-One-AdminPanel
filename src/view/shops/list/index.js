@@ -10,7 +10,7 @@ import GeneralStatistics from "../../../@core/components/generalStatistics";
 import {
   handleAllList,
   handleQuery,
-  handleRowsOfPage,
+  handleRowsOfPage
 } from "../store/ShopList";
 import StatisticsOfShop from "../../../@core/constants/shops/StatisticsOfShop";
 import ShopCard from "./ShopCard";
@@ -20,6 +20,7 @@ import { ShopSortOption } from "../../../@core/constants/shops";
 import ListSearchbar from "../../../@core/components/products-list/ListSearchbar";
 import { UpdateShop } from "../../../@core/services/api/put-api";
 import { useMutation } from "@tanstack/react-query";
+import ComponentSpinner from "../../../@core/components/spinner/Loading-spinner.js";
 
 const ShopPage = () => {
   const { PageNumber, RowsOfPage, FilteredList, AllList } = useSelector(
@@ -34,6 +35,7 @@ const ShopPage = () => {
     isSuccess,
     refetch,
     isRefetching,
+    isLoading
   } = useQueryWithDependencies("GET_SHOP_LIST", GetShopList, null, null);
   // console.log(shopData)
 
@@ -68,7 +70,7 @@ const ShopPage = () => {
     mutationFn: (data) => {
       console.log(data);
       UpdateShop(data.id, { isActive: data.isActive }, refetch);
-    },
+    }
   });
 
   const handleActiveDeactive = (boolean, id) => {
@@ -79,6 +81,10 @@ const ShopPage = () => {
       console.log(error);
     }
   };
+
+  if (isLoading) {
+    return <ComponentSpinner />;
+  }
 
   return (
     <Fragment>
@@ -125,7 +131,7 @@ const ShopPage = () => {
                   style={{
                     textAlign: "center",
                     marginTop: "200px",
-                    marginBottom: "200px",
+                    marginBottom: "200px"
                   }}
                 >
                   فروشگاهی وجود ندارد

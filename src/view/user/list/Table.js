@@ -1,5 +1,7 @@
-import { Table } from "reactstrap";
+import {  Table } from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
+
+import ComponentSpinner from "../../../@core/components/spinner/Loading-spinner.js";
 
 // ** React Imports
 import { Fragment, useState } from "react";
@@ -50,12 +52,14 @@ const UsersList = () => {
     data: users,
     isSuccess,
     refetch,
+    isLoading
   } = useQueryWithDependencies(
     "GET_USER_LIST",
     GetUserList,
     userParams,
     userParams
   );
+
   if (isSuccess) {
     dispatch(handleAllUser(users));
   }
@@ -72,6 +76,10 @@ const UsersList = () => {
   const handleWithDispatch = (page) => {
     dispatch(handlePageNumber(page.selected + 1));
   };
+
+  if (isLoading) {
+    return <ComponentSpinner />
+  }
 
   return (
     <Fragment>

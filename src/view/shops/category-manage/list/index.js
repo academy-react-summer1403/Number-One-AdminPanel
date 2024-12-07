@@ -3,15 +3,15 @@ import { Button, Col, Row, Table } from "reactstrap";
 import GeneralStatistics from "../../../../@core/components/generalStatistics";
 import {
   useQueryWithDependencies,
-  useQueryWithoutDependencies,
+  useQueryWithoutDependencies
 } from "../../../../utility/hooks/useCustomQuery";
 import {
   GetShopCategories,
-  GetShopCategoriesList,
+  GetShopCategoriesList
 } from "../../../../@core/services/api/get-api";
 import {
   shopCategoriesTableTitles,
-  StatisticsOfShopCategory,
+  StatisticsOfShopCategory
 } from "../../../../@core/constants/shops/ShopCategories";
 import ListHeader from "../../../../@core/components/products-list/ListHeader";
 import ListSearchbar from "../../../../@core/components/products-list/ListSearchbar";
@@ -22,6 +22,7 @@ import Img from "../../../../assets/images/cards/shop.png";
 import { Edit } from "react-feather";
 import CustomPagination from "../../../../@core/components/pagination";
 import AddShopCategoryModal from "../create";
+import ComponentSpinner from "../../../../@core/components/spinner/Loading-spinner.js";
 
 const ShopCategoriesWrapper = () => {
   const [showModal, setShowModal] = useState(false);
@@ -34,7 +35,7 @@ const ShopCategoriesWrapper = () => {
   );
   // getting data from Api with use Query
   const {
-    data: shopCategoriesData,
+    data: shopCategoriesData
     // isSuccess: successGetCategories,
   } = useQueryWithoutDependencies("GET_SHOP_CATEGORIES", GetShopCategories);
 
@@ -42,6 +43,7 @@ const ShopCategoriesWrapper = () => {
   const {
     data: shopCategoriesList,
     refetch,
+    isLoading
   } = useQueryWithDependencies(
     "GET_SHOP_CATEGORIES_LIST",
     GetShopCategoriesList,
@@ -65,11 +67,14 @@ const ShopCategoriesWrapper = () => {
     setItemOffset(newOffset);
   };
 
-     // Empty data after closing the modal every time
-     useEffect(() => {
-      if (!showModal) setCategoryDetails(undefined);
-    }, [showModal]);
-  
+  // Empty data after closing the modal every time
+  useEffect(() => {
+    if (!showModal) setCategoryDetails(undefined);
+  }, [showModal]);
+
+  if (isLoading) {
+    return <ComponentSpinner />;
+  }
 
   return (
     <Fragment>
@@ -136,7 +141,7 @@ const ShopCategoriesWrapper = () => {
                                 maxWidth: "200px",
                                 whiteSpace: "nowrap",
                                 overflow: "hidden",
-                                textOverflow: "ellipsis",
+                                textOverflow: "ellipsis"
                               }}
                             >
                               {item.describe}
@@ -160,7 +165,7 @@ const ShopCategoriesWrapper = () => {
                       style={{
                         textAlign: "center",
                         marginTop: "200px",
-                        marginBottom: "200px",
+                        marginBottom: "200px"
                       }}
                     >
                       دسته بندی وجود ندارد

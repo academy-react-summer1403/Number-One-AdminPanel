@@ -5,14 +5,20 @@ import { useQueryWithDependencies } from "../../utility/hooks/useCustomQuery";
 import GetAllComments from "../../@core/services/api/get-api/GetAllComments";
 import Filters from "./Filter";
 import CommentsList from "./list/CommentsList";
+import ComponentSpinner from "../../@core/components/spinner/Loading-spinner.js";
 
 const CommentsPage = () => {
-  const { data: commentData } = useQueryWithDependencies(
+  const { data: commentData, isLoading } = useQueryWithDependencies(
     "GET_COMMENT_DATA",
     GetAllComments,
     null,
     { PageNumber: 1, RowsOfPage: 10000 }
   );
+
+  if (isLoading) {
+    return <ComponentSpinner />;
+  }
+
   return (
     <div className="app-user-list">
       <Row>

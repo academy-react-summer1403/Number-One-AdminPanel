@@ -18,6 +18,7 @@ import { Edit } from "react-feather";
 import Img from "../../../../assets/images/cards/status.png";
 import AddStatusModal from "../create";
 import CustomPagination from "../../../../@core/components/pagination";
+import ComponentSpinner from "../../../../@core/components/spinner/Loading-spinner.js";
 
 const CourseStatusWrapper = () => {
   const dispatch = useDispatch();
@@ -34,6 +35,7 @@ const CourseStatusWrapper = () => {
     isSuccess: successGetStatus,
     isRefetching,
     refetch,
+    isLoading
   } = useQueryWithoutDependencies("GET_COURSE_STATUS", GetCoursesStatus);
 
   // Getting the desired item data
@@ -68,6 +70,10 @@ const CourseStatusWrapper = () => {
   useEffect(() => {
     if (!showModal) setCategoryDetails(undefined);
   }, [showModal]);
+
+  if (isLoading) {
+    return <ComponentSpinner />
+  }
 
   return (
     <Fragment>

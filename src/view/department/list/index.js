@@ -5,17 +5,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { handleData, handleQuery, handleRowsOfPage } from "../store";
 import {
   useQueryWithDependencies,
-  useQueryWithoutDependencies,
+  useQueryWithoutDependencies
 } from "../../../utility/hooks/useCustomQuery";
 import {
   GetDepartmentDetails,
-  GetDepartmentList,
+  GetDepartmentList
 } from "../../../@core/services/api/get-api";
 import TableItems from "./TableItems";
 import { HeaderTable } from "../../../@core/components/table-list";
 import CustomPagination from "../../../@core/components/pagination";
 import EditDepartment from "./EditDepartment";
 import CreateDepartment from "./CreateDepartment";
+import ComponentSpinner from "../../../@core/components/spinner/Loading-spinner.js";
 
 const DepartmentWrapper = () => {
   const params = useSelector((state) => state.DepartmentList);
@@ -35,6 +36,7 @@ const DepartmentWrapper = () => {
     isSuccess: departmentSuccess,
     refetch,
     isRefetching,
+    isLoading
   } = useQueryWithoutDependencies("GET_DEPARTMENTS", GetDepartmentList);
 
   useEffect(() => {
@@ -64,6 +66,10 @@ const DepartmentWrapper = () => {
     const value = parseInt(e.currentTarget.value);
     dispatch(handleRowsOfPage(value));
   };
+
+  if (isLoading) {
+    return <ComponentSpinner />;
+  }
 
   return (
     <div className="app-user-list">

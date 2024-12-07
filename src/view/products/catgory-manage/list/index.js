@@ -3,15 +3,15 @@ import { Button, Col, Row, Table } from "reactstrap";
 import GeneralStatistics from "../../../../@core/components/generalStatistics";
 import {
   useQueryWithDependencies,
-  useQueryWithoutDependencies,
+  useQueryWithoutDependencies
 } from "../../../../utility/hooks/useCustomQuery";
 import {
   GetProductCategories,
-  GetProductCategoryList,
+  GetProductCategoryList
 } from "../../../../@core/services/api/get-api";
 import {
   productCategoriesTableTitles,
-  StatisticsOfProductCategory,
+  StatisticsOfProductCategory
 } from "../../../../@core/constants/products-manage/Options";
 import ListHeader from "../../../../@core/components/products-list/ListHeader";
 import ListSearchbar from "../../../../@core/components/products-list/ListSearchbar";
@@ -22,12 +22,12 @@ import { Edit } from "react-feather";
 import CustomPagination from "../../../../@core/components/pagination";
 import Img from "../../../../assets/images/cards/Product.jpg";
 import AddProductCategoryModal from "../create";
-
+import ComponentSpinner from "../../../../@core/components/spinner/Loading-spinner.js";
 
 const ProductCategoryWrapper = () => {
-    const [showModal, setShowModal] = useState(false);
-    const [variantState, setVariantState] = useState(undefined);
-    const [categoryDetails, setCategoryDetails] = useState(undefined);
+  const [showModal, setShowModal] = useState(false);
+  const [variantState, setVariantState] = useState(undefined);
+  const [categoryDetails, setCategoryDetails] = useState(undefined);
   // redux Params
   const categoriesParams = useSelector((state) => state.ProductCategoryList);
   const { PageNumber, RowsOfPage, Query } = useSelector(
@@ -37,6 +37,7 @@ const ProductCategoryWrapper = () => {
   const {
     data: productCategoriesData,
     // isSuccess: successGetCategories,
+    isLoading
   } = useQueryWithoutDependencies(
     "GET_PRODUCT_CATEGORIES",
     GetProductCategoryList
@@ -63,14 +64,19 @@ const ProductCategoryWrapper = () => {
   const [page, setPage] = useState({ selected: 0 });
   const handleWithOutDispatch = (page) => {
     setPage(page);
-    const newOffset = (page.selected * RowsOfPage) % productCategoriesList.length;
+    const newOffset =
+      (page.selected * RowsOfPage) % productCategoriesList.length;
     setItemOffset(newOffset);
   };
 
-   // Empty data after closing the modal every time
-   useEffect(() => {
+  // Empty data after closing the modal every time
+  useEffect(() => {
     if (!showModal) setCategoryDetails(undefined);
   }, [showModal]);
+
+  if (isLoading) {
+    return <ComponentSpinner />;
+  }
 
   return (
     <Fragment>
@@ -81,7 +87,7 @@ const ProductCategoryWrapper = () => {
             statisticsData={StatisticsOfProductCategory}
             resize="12"
           />
-           <div className="d-flex justify-content-end">
+          <div className="d-flex justify-content-end">
             <Button
               className=" p-0 py-1 text-center"
               style={{ width: "100%" }}
@@ -117,7 +123,8 @@ const ProductCategoryWrapper = () => {
               <Table hover style={{ overflowX: "auto" }}>
                 <HeaderTable titles={productCategoriesTableTitles} />
                 <tbody style={{ overflowX: "auto" }}>
-                  {productCategoriesList && productCategoriesList?.length > 0 ? (
+                  {productCategoriesList &&
+                  productCategoriesList?.length > 0 ? (
                     productCategoriesList
                       .slice(itemOffset, endOffset)
                       ?.map((item) => {
@@ -137,7 +144,7 @@ const ProductCategoryWrapper = () => {
                                 maxWidth: "200px",
                                 whiteSpace: "nowrap",
                                 overflow: "hidden",
-                                textOverflow: "ellipsis",
+                                textOverflow: "ellipsis"
                               }}
                             >
                               {item.describe && item.describe}
@@ -161,7 +168,7 @@ const ProductCategoryWrapper = () => {
                       style={{
                         textAlign: "center",
                         marginTop: "200px",
-                        marginBottom: "200px",
+                        marginBottom: "200px"
                       }}
                     >
                       دسته بندی وجود ندارد
