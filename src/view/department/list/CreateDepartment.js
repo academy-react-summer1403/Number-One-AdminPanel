@@ -8,32 +8,34 @@ import {
   Modal,
   ModalBody,
   ModalHeader,
-  Row,
+  Row
 } from "reactstrap";
 import { GetBuildingList } from "../../../@core/services/api/get-api";
 import { useQueryWithoutDependencies } from "../../../utility/hooks/useCustomQuery";
 import { useMutation } from "@tanstack/react-query";
 import { CreateNewDepartment } from "../../../@core/services/api/post-api";
+import DepartmentValidations from "../../../@core/validations/Department.Validation";
 
 const CreateDepartment = ({ refetch, isOpen, toggle }) => {
   const initialValues = {
     depName: "",
-    buildingId: "",
+    buildingId: ""
   };
 
   const { mutate } = useMutation({
     mutationKey: ["CREATE_DEPARTMENT"],
     mutationFn: (data) => {
       CreateNewDepartment(data, refetch);
-    },
+    }
   });
 
   const formik = useFormik({
     initialValues: initialValues && initialValues,
+    validationSchema: DepartmentValidations,
     enableReinitialize: true,
     onSubmit: (values) => {
       mutate(values);
-    },
+    }
   });
 
   const { data: buildings, isSuccess: buildingSuccess } =

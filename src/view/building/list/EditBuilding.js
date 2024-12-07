@@ -20,6 +20,7 @@ import { useMutation } from "@tanstack/react-query";
 import { UpdateBuilding } from "../../../@core/services/api/put-api";
 import gregorian from "react-date-object/calendars/gregorian";
 import gregorian_en from "react-date-object/locales/gregorian_en";
+import BuildingValidation from "../../../@core/validations/Building.Validation";
 
 const EditBuilding = ({ data, refetch, isOpen, toggle }) => {
   const [initialValues, setInitialValues] = useState({});
@@ -37,6 +38,7 @@ const EditBuilding = ({ data, refetch, isOpen, toggle }) => {
 
   const formik = useFormik({
     initialValues: initialValues && initialValues,
+    validationSchema: BuildingValidation,
     enableReinitialize: true,
     onSubmit: (values) => {
       mutate(values);

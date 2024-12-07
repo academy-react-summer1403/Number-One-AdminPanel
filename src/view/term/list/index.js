@@ -41,7 +41,7 @@ const TermsWrapper = () => {
   const [itemOffset, setItemOffset] = useState(0);
   const endOffset = itemOffset + params.RowsOfPage;
   const handleMovePage = (page) => {
-    const newOffset = (page.selected * params.RowsOfPage) % departments?.length;
+    const newOffset = (page.selected * params.RowsOfPage) % terms?.length;
     setItemOffset(newOffset);
   };
 

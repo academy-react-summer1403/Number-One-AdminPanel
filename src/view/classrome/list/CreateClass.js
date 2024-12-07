@@ -14,6 +14,7 @@ import { useQueryWithoutDependencies } from "../../../utility/hooks/useCustomQue
 import { GetBuildingList } from "../../../@core/services/api/get-api";
 import { useMutation } from "@tanstack/react-query";
 import { CreateClassRome } from "../../../@core/services/api/post-api";
+import ClassroomValidations from "../../../@core/validations/Classroom.Validations";
 
 const CreateClass = ({ refetch, isOpen, toggle }) => {
   const initialValues = {
@@ -31,6 +32,7 @@ const CreateClass = ({ refetch, isOpen, toggle }) => {
 
   const formik = useFormik({
     initialValues: initialValues && initialValues,
+    validationSchema: ClassroomValidations,
     enableReinitialize: true,
     onSubmit: (values) => {
       console.log(values);

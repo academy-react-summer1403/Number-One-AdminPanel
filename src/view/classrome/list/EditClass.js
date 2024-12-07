@@ -9,13 +9,14 @@ import {
   Modal,
   ModalBody,
   ModalHeader,
-  Row,
+  Row
 } from "reactstrap";
 import { EditClassFields } from "../../../@core/constants/class-manage/EditClassFields";
 import { useMutation } from "@tanstack/react-query";
 import { UpdateClassRome } from "../../../@core/services/api/put-api";
 import { useQueryWithoutDependencies } from "../../../utility/hooks/useCustomQuery";
 import { GetBuildingList } from "../../../@core/services/api/get-api";
+import ClassroomValidations from "../../../@core/validations/Classroom.Validations";
 
 const EditClass = ({ isOpen, toggle, data, refetch }) => {
   const [initialValues, setInitialValues] = useState({});
@@ -28,15 +29,16 @@ const EditClass = ({ isOpen, toggle, data, refetch }) => {
     mutationKey: ["UPDATE_CLASS"],
     mutationFn: (data) => {
       UpdateClassRome(data, refetch);
-    },
+    }
   });
 
   const formik = useFormik({
     initialValues: initialValues && initialValues,
+    validationSchema: ClassroomValidations,
     enableReinitialize: true,
     onSubmit: (values) => {
       mutate(values);
-    },
+    }
   });
 
   const { data: buildings, isSuccess: buildingSuccess } =

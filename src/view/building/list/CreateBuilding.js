@@ -20,6 +20,7 @@ import {
 import ChooseMap from "./ChooseMap";
 import { useMutation } from "@tanstack/react-query";
 import { CreateNewBuilding } from "../../../@core/services/api/post-api";
+import BuildingValidation from "../../../@core/validations/Building.Validation";
 
 const CreateBuilding = ({ isOpen, toggle, refetch }) => {
   // Location Modal
@@ -43,6 +44,7 @@ const CreateBuilding = ({ isOpen, toggle, refetch }) => {
 
   const formik = useFormik({
     initialValues: initialValues && initialValues,
+    validationSchema: BuildingValidation,
     enableReinitialize: true,
     onSubmit: (values) => {
       mutate(values);

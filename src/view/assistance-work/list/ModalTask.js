@@ -9,7 +9,7 @@ import {
   Modal,
   ModalBody,
   ModalHeader,
-  Row,
+  Row
 } from "reactstrap";
 import { EditAssWorkFields } from "../../../@core/constants/assistance-work/EditBuildingFields";
 import DateObject from "react-date-object";
@@ -20,13 +20,13 @@ import persian_fa from "react-date-object/locales/persian_fa";
 import DatePicker from "react-multi-date-picker";
 import {
   useQueryWithDependencies,
-  useQueryWithoutDependencies,
+  useQueryWithoutDependencies
 } from "../../../utility/hooks/useCustomQuery";
 import {
   GetCourseAssistance,
   GetCourseAssistanceDetails,
   GetUserList,
-  UserDetails,
+  UserDetails
 } from "../../../@core/services/api/get-api";
 import ChangeMoment from "../../../utility/moment";
 import ModalApiItemList from "../../../@core/components/modal/ModalApiItemList";
@@ -37,10 +37,11 @@ import { UpdateAssistanceWork } from "../../../@core/services/api/put-api";
 import {
   handleData,
   handlePageNumber,
-  handleQuery,
+  handleQuery
 } from "../../courses/store/AssistanceCourseSlice";
 import AssWorkTableItems from "./AssWorkTableItems";
 import { CreateAssistanceWork } from "../../../@core/services/api/post-api";
+import AssistanceWorkValidations from "../../../@core/validations/AssistanceWork.Validation";
 
 const ModalTask = ({ isOpen, toggle, data, refetch, section }) => {
   const [initialValues, setInitialValues] = useState({});
@@ -58,18 +59,19 @@ const ModalTask = ({ isOpen, toggle, data, refetch, section }) => {
     mutationKey: ["UPDATE_ASSISTANCE_WORK"],
     mutationFn: (data) => {
       UpdateAssistanceWork(data, refetch);
-    },
+    }
   });
 
   const { mutate: create } = useMutation({
     mutationKey: ["CREATE_ASSISTANCE_WORK"],
     mutationFn: (data) => {
       CreateAssistanceWork(data, refetch);
-    },
+    }
   });
 
   const formik = useFormik({
     initialValues: initialValues && initialValues,
+    validationSchema: AssistanceWorkValidations,
     enableReinitialize: true,
     onSubmit: (values) => {
       if (section === "update") {
@@ -77,7 +79,7 @@ const ModalTask = ({ isOpen, toggle, data, refetch, section }) => {
       } else {
         create(values);
       }
-    },
+    }
   });
 
   // Get All Assistance Course
@@ -185,7 +187,7 @@ const ModalTask = ({ isOpen, toggle, data, refetch, section }) => {
                   calendar={persian}
                   locale={persian_fa}
                   containerStyle={{
-                    width: "100%",
+                    width: "100%"
                   }}
                   format="YYYY/MM/DD"
                   onChange={handleDatePicker}
@@ -193,7 +195,7 @@ const ModalTask = ({ isOpen, toggle, data, refetch, section }) => {
                     width: "100%",
                     height: "39px",
                     paddingLeft: "14px",
-                    paddingRight: "14px",
+                    paddingRight: "14px"
                   }}
                   className="datePicker"
                   value={ChangeMoment(

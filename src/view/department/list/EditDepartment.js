@@ -16,6 +16,7 @@ import { useEffect, useState } from "react";
 import { EditDepartmentFields } from "../../../@core/constants/department-manage/EditDepartmentFields";
 import { useMutation } from "@tanstack/react-query";
 import { UpdateDepartment } from "../../../@core/services/api/put-api";
+import DepartmentValidations from "../../../@core/validations/Department.Validation";
 
 const EditDepartment = ({ data, refetch, isOpen, toggle }) => {
   const [initialValues, setInitialValues] = useState({});
@@ -33,6 +34,7 @@ const EditDepartment = ({ data, refetch, isOpen, toggle }) => {
 
   const formik = useFormik({
     initialValues: initialValues && initialValues,
+    validationSchema: DepartmentValidations,
     enableReinitialize: true,
     onSubmit: (values) => {
       mutate(values);
