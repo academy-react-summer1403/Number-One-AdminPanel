@@ -20,12 +20,19 @@ import DateObject from "react-date-object";
 import persian_en from "react-date-object/locales/persian_en";
 import gregorian_en from "react-date-object/locales/gregorian_en";
 import gregorian from "react-date-object/calendars/gregorian";
-import { useMutationWithRefetch, useQueryWithDependencies } from "../../../utility/hooks/useCustomQuery";
-import { GetCourseById, GetCreateCourse } from "../../../@core/services/api/get-api";
+import {
+  useMutationWithRefetch,
+  useQueryWithDependencies,
+} from "../../../utility/hooks/useCustomQuery";
+import {
+  GetCourseById,
+  GetCreateCourse,
+} from "../../../@core/services/api/get-api";
 import { UpdateCourse } from "../../../@core/services/api/put-api";
 import { EditCourseField } from "../../../@core/constants/courses";
 import EditCourseValidation from "../../../@core/validations/EditCourse_Validation";
 import DatePicker from "react-multi-date-picker";
+import ChangeMoment from "../../../utility/moment";
 
 const EditCourse = ({ isOpen, toggle, refetchData }) => {
   const [initialValues, setInitialValues] = useState({});
@@ -62,6 +69,7 @@ const EditCourse = ({ isOpen, toggle, refetchData }) => {
     enableReinitialize: true,
     validationSchema: EditCourseValidation,
     onSubmit: (values) => {
+      console.log(values);
       mutate(values);
     },
   });
@@ -240,12 +248,13 @@ const EditCourse = ({ isOpen, toggle, refetchData }) => {
                   تاریخ شروع
                 </Label>
                 <DatePicker
+                  EndTime
                   calendar={persian}
                   locale={persian_fa}
                   containerStyle={{
                     width: "100%",
                   }}
-                  value={startValue}
+                  value={ChangeMoment(formik.values.StartTime, "YYYY/MM/DD", "persian")}
                   format="YYYY/MM/DD"
                   onChange={(date) => handleDatePicker(date, "start")}
                   style={{
@@ -267,7 +276,7 @@ const EditCourse = ({ isOpen, toggle, refetchData }) => {
                   containerStyle={{
                     width: "100%",
                   }}
-                  value={endValue}
+                  value={ChangeMoment(formik.values.EndTime, "YYYY/MM/DD", "persian")}
                   format="YYYY/MM/DD"
                   onChange={(date) => handleDatePicker(date, "end")}
                   style={{
@@ -302,31 +311,17 @@ const EditCourse = ({ isOpen, toggle, refetchData }) => {
                 ) : null}
               </Col>
               <Col md="4" className="mb-1">
-                <Label className="form-label" for="ImageAddress">
+                <Label className="form-label" for="Image">
                   آپلود عکس
                 </Label>
                 <Input
-                  id="ImageAddress"
+                  id="Image"
                   type="file"
-                  name="ImageAddress"
+                  name="Image"
                   // value={formik.values.ImageAddress}
-                onChange={formik.handleChange}
-
-                  // onChange={(event) =>{
-                  //   const file = event.currentTarget.files[0]; // فایل اول را بگیرید  
-                  //   if (file) {  
-                  //     formik.setFieldValue("ImageAddress", file); // فایل را به فرمیک بدهید  
-                  //   }  
-                  // }
-                    // const file = event.target.files[0];
-                    // console.log(file)
-                    // if (file) {
-                    //   const fileURL = URL.createObjectURL(file);
-                    // console.log(typeof fileURL)
-
-                    //   formik.handleChange(fileURL);
-                    // }
-                  // }
+                  onChange={(e) =>
+                    formik.setFieldValue("Image", e.target.files[0])
+                  }
                   placeholder="عکس دوره"
                 />
                 <Label className="form-label" for="UniqeUrlString">
@@ -338,10 +333,16 @@ const EditCourse = ({ isOpen, toggle, refetchData }) => {
                   onChange={formik.handleChange}
                   value={formik.values.UniqeUrlString}
                   placeholder="شناسه یکتا"
-                  invalid={formik.touched.UniqeUrlString && !!formik.errors.UniqeUrlString}
+                  invalid={
+                    formik.touched.UniqeUrlString &&
+                    !!formik.errors.UniqeUrlString
+                  }
                 />
-                {formik.touched.UniqeUrlString && formik.errors.UniqeUrlString ? (
-                  <div className="text-danger">{formik.errors.UniqeUrlString}</div>
+                {formik.touched.UniqeUrlString &&
+                formik.errors.UniqeUrlString ? (
+                  <div className="text-danger">
+                    {formik.errors.UniqeUrlString}
+                  </div>
                 ) : null}
                 {/* UniqeUrlString */}
               </Col>
