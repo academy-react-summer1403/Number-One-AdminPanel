@@ -1,7 +1,7 @@
 import { useFormik } from "formik";
 import { useEffect, useState } from "react";
 import {
-    Button,
+  Button,
   Col,
   FormFeedback,
   Input,
@@ -9,7 +9,7 @@ import {
   Modal,
   ModalBody,
   ModalHeader,
-  Row,
+  Row
 } from "reactstrap";
 import ChangeMoment from "../../../utility/moment";
 import DatePicker from "react-multi-date-picker";
@@ -21,9 +21,12 @@ import DateObject from "react-date-object";
 import { useMutation } from "@tanstack/react-query";
 import { AddTermCloseDate } from "../../../@core/services/api/post-api";
 import { CloseDateFields } from "../../../@core/constants/term-manage/CloseDateFields";
+import { GetTermList } from "../../../@core/services/api/get-api";
+import { useQueryWithoutDependencies } from "../../../utility/hooks/useCustomQuery";
 
 const CloseDateModal = ({ data, refetch, isOpen, toggle, section }) => {
   const [initialValues, setInitialValues] = useState({});
+  const [activeTerms, setActiveTerms] = useState([]);
 
   useEffect(() => {
     setInitialValues(CloseDateFields(data));
@@ -33,20 +36,33 @@ const CloseDateModal = ({ data, refetch, isOpen, toggle, section }) => {
     mutationKey: ["CREATE_CLOSE_DATE"],
     mutationFn: (data) => {
       AddTermCloseDate(data, refetch);
-    },
+    }
   });
 
   const formik = useFormik({
     initialValues: initialValues && initialValues,
     enableReinitialize: true,
     onSubmit: (values) => {
+      console.log(values);
       if (section === "create") {
         create(values);
-      } else {
-        update(values);
       }
-    },
+      //  else {
+      //   update(values);
+      // }
+    }
   });
+
+  const { data: terms, isSuccess } = useQueryWithoutDependencies(
+    "GET_TERMS",
+    GetTermList
+  );
+
+  useEffect(() => {
+    if (isSuccess) {
+      setActiveTerms(terms.filter((ev) => !ev.expire));
+    }
+  }, [isSuccess]);
 
   const handleDatePicker = (date, section) => {
     const gregorianDate = new DateObject(date)
@@ -72,6 +88,32 @@ const CloseDateModal = ({ data, refetch, isOpen, toggle, section }) => {
         </div>
         <form onSubmit={formik.handleSubmit}>
           <Row className="gy-1 pt-75">
+            {section === "create" && (
+              <Col sm="12" className="mb-1">
+                <Label className="form-label" for="termId">
+                  ترم
+                </Label>
+                <Input
+                  type="select"
+                  name="termId"
+                  id="termId"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.termId}
+                  invalid={formik.touched.termId && !!formik.errors.termId}
+                >
+                  <option value="">انتخاب کنید</option>
+                  {activeTerms.map((category) => (
+                    <option key={category.id} value={category.id}>
+                      {category.termName}
+                    </option>
+                  ))}
+                </Input>
+                {formik.touched.termId && formik.errors.termId ? (
+                  <div className="text-danger">{formik.errors.termId}</div>
+                ) : null}
+              </Col>
+            )}
             <Col md="6" className="mb-1">
               <Label className="form-label" for="startCloseDate">
                 زمان شروع
@@ -80,7 +122,7 @@ const CloseDateModal = ({ data, refetch, isOpen, toggle, section }) => {
                 calendar={persian}
                 locale={persian_fa}
                 containerStyle={{
-                  width: "100%",
+                  width: "100%"
                 }}
                 format="YYYY/MM/DD"
                 onChange={(ev) => {
@@ -90,7 +132,7 @@ const CloseDateModal = ({ data, refetch, isOpen, toggle, section }) => {
                   width: "100%",
                   height: "39px",
                   paddingLeft: "14px",
-                  paddingRight: "14px",
+                  paddingRight: "14px"
                 }}
                 className="datePicker"
                 value={ChangeMoment(
@@ -108,7 +150,7 @@ const CloseDateModal = ({ data, refetch, isOpen, toggle, section }) => {
                 calendar={persian}
                 locale={persian_fa}
                 containerStyle={{
-                  width: "100%",
+                  width: "100%"
                 }}
                 format="YYYY/MM/DD"
                 onChange={(ev) => {
@@ -118,7 +160,7 @@ const CloseDateModal = ({ data, refetch, isOpen, toggle, section }) => {
                   width: "100%",
                   height: "39px",
                   paddingLeft: "14px",
-                  paddingRight: "14px",
+                  paddingRight: "14px"
                 }}
                 className="datePicker"
                 value={ChangeMoment(

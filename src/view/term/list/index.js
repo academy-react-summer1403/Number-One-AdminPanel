@@ -1,15 +1,15 @@
-import { Card, Col, Row, Table } from "reactstrap";
+import { Button, Card, Col, Row, Table } from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { handleRowsOfPage, handleData, handleQuery } from "../store";
 import headerTable from "../../../@core/constants/term-manage/HeaderTable";
 import {
   GetTermDetails,
-  GetTermList,
+  GetTermList
 } from "../../../@core/services/api/get-api";
 import {
   useQueryWithDependencies,
-  useQueryWithoutDependencies,
+  useQueryWithoutDependencies
 } from "../../../utility/hooks/useCustomQuery";
 import TableItems from "./TableItems";
 import CustomPagination from "../../../@core/components/pagination";
@@ -28,7 +28,7 @@ const TermsWrapper = () => {
     data: terms,
     isSuccess: termSuccess,
     refetch,
-    isRefetching,
+    isRefetching
   } = useQueryWithoutDependencies("GET_TERMS", GetTermList);
 
   useEffect(() => {
@@ -57,6 +57,11 @@ const TermsWrapper = () => {
   const [addCloseDateModal, setAddCloseDateModal] = useState(false);
   const toggleAddCloseModal = () => setAddCloseDateModal(!addCloseDateModal);
 
+  // Close Date Modal
+  const [updateCloseDateModal, setUpdateCloseDateModal] = useState(false);
+  const toggleUpdateCloseModal = () =>
+    setUpdateCloseDateModal(!updateCloseDateModal);
+
   // Handle RowOfPage for list
   const handleRows = (e) => {
     const value = parseInt(e.currentTarget.value);
@@ -73,13 +78,23 @@ const TermsWrapper = () => {
         <Col sm="12">
           <Card className="overflow-hidden">
             <div className="react-dataTable">
-              <HeaderTable
-                toggleSidebar={toggleCreateModal}
-                rowOfPage={params.RowsOfPage}
-                handleRowOfPage={handleRows}
-                handleSearch={handleQuery}
-                buttonText={"افزودن ترم"}
-              />
+              <div className="d-flex align-items-center">
+                <HeaderTable
+                  toggleSidebar={toggleCreateModal}
+                  rowOfPage={params.RowsOfPage}
+                  handleRowOfPage={handleRows}
+                  handleSearch={handleQuery}
+                  buttonText={"افزودن ترم"}
+                />
+                <Button
+                  className="add-new-user me-1"
+                  style={{ height: "39px", width: "120px" }}
+                  color="primary"
+                  onClick={toggleAddCloseModal}
+                >
+                  افزودن زمان
+                </Button>
+              </div>
               <Table hover>
                 <thead className="text-center">
                   <tr>
@@ -97,7 +112,7 @@ const TermsWrapper = () => {
                         key={index}
                         item={item}
                         toggleModal={toggleEditModal}
-                        addCloseDateModal={toggleAddCloseModal}
+                        updateCloseDateModal={toggleUpdateCloseModal}
                         setId={setId}
                       />
                     )
@@ -129,12 +144,19 @@ const TermsWrapper = () => {
             closeReason: "",
             endCloseDate: "",
             startCloseDate: "",
-            termId: id,
+            termId: ""
           }}
           isOpen={addCloseDateModal}
           refetch={refetch}
           section={"create"}
           toggle={toggleAddCloseModal}
+        />
+        <CloseDateModal
+          data={detailSuccess && termDetail}
+          isOpen={updateCloseDateModal}
+          refetch={refetch}
+          section={"update"}
+          toggle={toggleUpdateCloseModal}
         />
       </Row>
     </div>

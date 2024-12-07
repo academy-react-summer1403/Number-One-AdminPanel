@@ -3,12 +3,12 @@ import {
   DropdownItem,
   DropdownMenu,
   DropdownToggle,
-  UncontrolledDropdown,
+  UncontrolledDropdown
 } from "reactstrap";
 import ChangeMoment from "../../../utility/moment";
 import { Edit, MoreVertical } from "react-feather";
 
-const TableItems = ({ item, toggleModal, setId, addCloseDateModal }) => {
+const TableItems = ({ item, toggleModal, setId, updateCloseDateModal }) => {
   return (
     <tr className="text-center">
       <td className="px-0" style={{ width: "80px" }}>
@@ -59,19 +59,12 @@ const TableItems = ({ item, toggleModal, setId, addCloseDateModal }) => {
               onClick={(e) => {
                 e.preventDefault();
                 setId(item.id);
-                addCloseDateModal()
+                updateCloseDateModal();
               }}
             >
-              تاریخ بسته شدن
+              <Edit className="me-50" size={15} />{" "}
+              <span className="align-middle">ویرایش زمان</span>
             </DropdownItem>
-            {/* <DropdownItem
-              href="/"
-              onClick={(e) => {
-                e.preventDefault();
-              }}
-            >
-              ویرایش تاریخ بسته شدن
-            </DropdownItem> */}
           </DropdownMenu>
         </UncontrolledDropdown>
       </td>
