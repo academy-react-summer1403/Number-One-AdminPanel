@@ -32,7 +32,6 @@ const EditShop = ({ data, isOpen, toggle, refetch, validation }) => {
     },
     onSuccess: () => {
       toggle();
-      refetch();
     },
   });
 

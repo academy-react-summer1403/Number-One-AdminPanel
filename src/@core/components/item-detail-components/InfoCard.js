@@ -12,7 +12,6 @@ import "@styles/react/libs/react-select/_react-select.scss";
 
 // Customize
 // import AddCategoryModal from "../../@core/components/DetailCourse/modal/AddCategoryModal";
-import fallback from "../../../assets/images/portrait/small/image-not-found.png";
 import ImageFallBack from "../image-fallback";
 
 const MySwal = withReactContent(Swal);
@@ -25,6 +24,7 @@ const InfoCard = ({
   variant,
   refetch,
   renderImageSection,
+  fallback
 }) => {
   const [addTechModal, setAddTechModal] = useState(false);
   const toggle = () => setAddTechModal(!addTechModal);

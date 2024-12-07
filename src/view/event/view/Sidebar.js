@@ -3,7 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { useEffect, useState, Fragment } from "react";
 
 // Customize
-import fallback from "../../../assets/images/portrait/small/image-not-found.png";
+import fallback from "../../../assets/images/portrait/small/events.png";
 import ImageFallback from "../../../@core/components/image-fallback";
 
 // ** Third Party Components

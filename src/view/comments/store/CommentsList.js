@@ -6,7 +6,7 @@ const initialState = {
   SortType: "DESC",
   Accept: null,
   PageNumber: 1,
-  RowsOfPage: 12,
+  RowsOfPage: 9,
 };
 
 const CommentList = createSlice({

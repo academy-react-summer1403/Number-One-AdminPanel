@@ -1,4 +1,5 @@
 import { Col, Row } from "reactstrap";
+import fallback from "../../../assets/images/portrait/small/blogs.png"
 
 // Custom Components
 import NewsTabs from "./Tabs";
@@ -77,6 +78,7 @@ const NewsView = () => {
             fields={NewsInformation(data?.detailsNewsDto)}
             detailParams={data?.detailsNewsDto}
             variant={"blog"}
+            fallback={fallback}
           />
         </Col>
         <Col xl="8" lg="7" xs={{ order: 0 }} md={{ order: 1, size: 7 }}>

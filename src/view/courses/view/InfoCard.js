@@ -1,7 +1,6 @@
 // ** React Imports
 import { Fragment, useEffect, useState } from "react";
-import Avatarrr from "../../../assets/images/cards/55.jpg";
-import CourseImg from "../../../assets/images/cards/44.jpg";
+import fallback from "../../../assets/images/portrait/small/courses.png";
 
 // ** Reactstrap Imports
 import { Badge, Button, Card, CardBody } from "reactstrap";
@@ -13,6 +12,7 @@ import withReactContent from "sweetalert2-react-content";
 import "@styles/react/libs/react-select/_react-select.scss";
 import AddCategoryModal from "./AddCategoryModal";
 import ChangeStatusModal from "./ChangeStatusModal";
+import ImageFallBack from "../../../@core/components/image-fallback";
 
 const MySwal = withReactContent(Swal);
 
@@ -24,7 +24,7 @@ const InfoCard = ({
   detailParams,
   variant,
   refetch,
-  renderImageSection,
+  renderImageSection
 }) => {
   const [addTechModal, setAddTechModal] = useState(false);
   const [changeStatusModal, setChangeStatusModal] = useState(false);
@@ -43,9 +43,9 @@ const InfoCard = ({
 
       customClass: {
         confirmButton: "btn btn-primary",
-        cancelButton: "btn btn-outline-danger ms-1",
+        cancelButton: "btn btn-outline-danger ms-1"
       },
-      buttonsStyling: false,
+      buttonsStyling: false
     }).then(function (result) {
       if (result.value) {
         activeOrDeactive(bolian);
@@ -56,8 +56,8 @@ const InfoCard = ({
           confirmButtonText: " باشه ",
 
           customClass: {
-            confirmButton: "btn btn-success",
-          },
+            confirmButton: "btn btn-success"
+          }
         });
       } else if (result.dismiss === MySwal.DismissReason.cancel) {
         MySwal.fire({
@@ -67,8 +67,8 @@ const InfoCard = ({
           confirmButtonText: " باشه ",
 
           customClass: {
-            confirmButton: "btn btn-success",
-          },
+            confirmButton: "btn btn-success"
+          }
         });
       }
     });
@@ -78,7 +78,7 @@ const InfoCard = ({
     blog: detailParams?.currentImageAddressTumb,
     course: detailParams?.imageAddress,
     shop: detailParams?.img,
-    products: detailParams?.pictureList?.[0]?.href,
+    products: detailParams?.pictureList?.[0]?.href
   };
 
   return (
@@ -90,18 +90,11 @@ const InfoCard = ({
               {renderImageSection ? (
                 renderImageSection()
               ) : (
-                <img
-                  style={{ height: "280px", width: "100%" }}
-                  alt="user-avatar"
-                  src={
-                    imgVariant?.[variant] == null ||
-                    imgVariant?.[variant] == "undefined"
-                      ? variant === "blog"
-                        ? Avatarrr
-                        : CourseImg
-                      : imgVariant?.[variant]
-                  }
+                <ImageFallBack
                   className="img-fluid rounded mb-1"
+                  style={{ height: "280px", width: "100%" }}
+                  fallback={fallback}
+                  src={imgVariant?.[variant]}
                 />
               )}
               <div className="d-flex flex-column align-items-center text-center ">
@@ -137,7 +130,11 @@ const InfoCard = ({
             </ul>
           </div>
           <div className="d-flex justify-content-between pt-2">
-            <Button color="primary" onClick={() => setEditModal((old) => !old)} className="w-50">
+            <Button
+              color="primary"
+              onClick={() => setEditModal((old) => !old)}
+              className="w-50"
+            >
               ویرایش
             </Button>
             <Button

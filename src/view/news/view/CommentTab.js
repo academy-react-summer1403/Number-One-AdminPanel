@@ -33,7 +33,7 @@ const CommentTab = ({ newsCom, NewsRepById, repCom }) => {
               </tr>
             </thead>
             <tbody>
-              {newsCom &&
+              {newsCom.length > 0 &&
                 newsCom.map((item, index) => {
                   return (
                     <tr key={index}>
@@ -46,7 +46,7 @@ const CommentTab = ({ newsCom, NewsRepById, repCom }) => {
                           whiteSpace: "nowrap",
                           overflow: "hidden",
                           textOverflow: "ellipsis",
-                          maxWidth: "120px",
+                          maxWidth: "120px"
                         }}
                       >
                         {item?.title}
@@ -70,7 +70,14 @@ const CommentTab = ({ newsCom, NewsRepById, repCom }) => {
                 })}
             </tbody>
           </Table>
-          <span className="my-2 w-100 text-center" style={{display: "block"}}>کامنتی وجود ندارد</span>
+          {newsCom.length == 0 && (
+            <span
+              className="my-2 w-100 text-center"
+              style={{ display: "block" }}
+            >
+              کامنتی وجود ندارد
+            </span>
+          )}
         </div>
       </Card>
       <ReplyNewsComment repShow={repModal} setRepShow={setRepModal} />

@@ -6,7 +6,7 @@ import ImageFallback from "../../../@core/components/image-fallback";
 import Avatar from "@components/avatar";
 import Breadcrumbs from "@components/breadcrumbs";
 import Sidebar from "./Sidebar";
-import fallback from "../../../assets/images/portrait/small/image-not-found.png";
+import fallback from "../../../assets/images/portrait/small/events.png";
 import { UnitPrice } from "../../../utility/separation-price";
 
 // ** Reactstrap Imports

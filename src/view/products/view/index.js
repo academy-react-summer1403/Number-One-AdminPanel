@@ -1,6 +1,7 @@
 // React Imports
 import { useState } from "react";
 import { useParams } from "react-router-dom";
+import fallback from "../../../assets/images/portrait/small/products.png";
 
 // Reactstrap
 import { Col, Row } from "reactstrap";
@@ -19,7 +20,7 @@ import { useQueryWithDependencies } from "../../../utility/hooks/useCustomQuery"
 import {
   GetProductCategoryDetails,
   GetProductsDetails,
-  GetShopDetails,
+  GetShopDetails
 } from "../../../@core/services/api/get-api";
 import { UpdateProducts } from "../../../@core/services/api/put-api";
 
@@ -29,6 +30,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 // Style
 import "@styles/react/libs/swiper/swiper.scss";
+import ImageFallBack from "../../../@core/components/image-fallback";
 
 const DetailProductsPage = () => {
   // UseState
@@ -42,7 +44,7 @@ const DetailProductsPage = () => {
   const {
     data: details,
     isSuccess: detailsSuccess,
-    refetch,
+    refetch
   } = useQueryWithDependencies(
     "GET_PRODUCTS_DETAILS",
     GetProductsDetails,
@@ -62,7 +64,7 @@ const DetailProductsPage = () => {
     mutationKey: ["ACTIVE_OR_DEACTIVE"],
     mutationFn: (res) => {
       UpdateProducts(id, { isActive: res }, refetch);
-    },
+    }
   });
 
   // Handle Get Shop Details
@@ -73,12 +75,13 @@ const DetailProductsPage = () => {
     details?.shopId
   );
 
-  const {data: categoryDetail, isSuccess: categorySuccess} = useQueryWithDependencies(
-    "GET_CATEGORY_DETAILS",
-    GetProductCategoryDetails,
-    details?.categoryId,
-    details?.categoryId
-  );
+  const { data: categoryDetail, isSuccess: categorySuccess } =
+    useQueryWithDependencies(
+      "GET_CATEGORY_DETAILS",
+      GetProductCategoryDetails,
+      details?.categoryId,
+      details?.categoryId
+    );
 
   // Show Modal
   const toggle = () => setEditModal(!editModal);
@@ -90,30 +93,43 @@ const DetailProductsPage = () => {
       (item) => item.isActive === true
     );
 
+    console.log(activePic);
+
     const params = {
       className: "swiper-responsive-breakpoints swiper-container px-4 py-2",
       slidesPerView: 1,
       spaceBetween: 5,
-      navigation: true,
+      navigation: true
     };
 
-    return (
-      <Swiper
-        {...params}
-        style={{ height: "280px", width: "100%" }}
-        className="p-0"
-      >
-        {activePic?.map((item, index) => (
-          <SwiperSlide key={index}>
-            <img
-              alt="user-avatar"
-              src={item.href}
-              className="w-100 h-100 img-fluid rounded mb-1"
-            />
-          </SwiperSlide>
-        ))}
-      </Swiper>
-    );
+    if (activePic?.length > 0) {
+      return (
+        <Swiper
+          {...params}
+          style={{ height: "280px", width: "100%" }}
+          className="p-0"
+        >
+          {activePic?.map((item, index) => (
+            <SwiperSlide key={index}>
+              <ImageFallBack
+                src={item.href}
+                className="w-100 h-100 img-fluid rounded mb-1"
+                fallback={fallback}
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      );
+    } else if (activePic?.length == 0) {
+      return (
+        <ImageFallBack
+          src={fallback}
+          className="img-fluid rounded mb-1"
+          fallback={fallback}
+          style={{ height: "280px", width: "100%" }}
+        />
+      );
+    }
   };
 
   return (
