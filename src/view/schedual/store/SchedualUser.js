@@ -3,7 +3,7 @@ import toast from "react-hot-toast";
 
 const initialState = {
   PageNumber: 1,
-  RowsOfPage: 9,
+  RowsOfPage: 10,
   startDate: "1900/01/10",
   endDate: "3000/01/10",
   FilteredData: [],
