@@ -37,7 +37,7 @@ export default [
         title: "سوابق شغلی کاربران",
         icon: <Circle size={20} />,
         navLink: "/job",
-      }
+      },
     ],
   },
   {
@@ -132,6 +132,7 @@ export default [
       },
     ],
   },
+
   {
     id: "schedualPages",
     title: "مدیریت بازه های زمانی",
@@ -156,6 +157,12 @@ export default [
         navLink: "/schedualStudent",
       },
     ],
+  },
+  {
+    id: "commentsListPage",
+    title: "مدیریت کامنت ها",
+    icon: <MessageSquare size={20} />,
+    navLink: "/comments",
   },
   {
     id: "shopPage",
@@ -251,12 +258,7 @@ export default [
     icon: <Globe size={20} />,
     navLink: "/buildings",
   },
-  {
-    id: "commentsListPage",
-    title: "مدیریت کامنت ها",
-    icon: <MessageSquare size={20} />,
-    navLink: "/comments",
-  },
+
   {
     id: "SiteSetting",
     title: "تنظیمات سایت",

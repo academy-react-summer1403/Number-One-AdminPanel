@@ -17,7 +17,7 @@ const EditCourseField = (detail) => {
     // detail?.courseId?.slice(1,8)
     StartTime: detail.startTime,
     EndTime: detail.endTime,
-    ImageAddress:detail.imageAddress ?? ""
+    Image:detail.imageAddress ?? ""
   };
 
   return fields;

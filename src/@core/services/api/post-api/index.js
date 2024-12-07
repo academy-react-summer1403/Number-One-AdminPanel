@@ -36,6 +36,7 @@ import CreateSchedule from "./CreateSchedule";
 import CreateScheduleAuto from "./CreateScheduleAuto";
 import UpdateJobHistoryShow from "./UpdateJobHistoryShow";
 import AddTermCloseDate from "./AddTermCloseDate";
+import CreateImageAi from "./CreateImageAi";
 
 export {
   AddUserAccess,
@@ -76,4 +77,5 @@ export {
   CreateScheduleAuto,
   UpdateJobHistoryShow,
   AddTermCloseDate,
+  CreateImageAi,
 };

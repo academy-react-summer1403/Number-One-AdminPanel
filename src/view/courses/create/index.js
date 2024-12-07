@@ -30,7 +30,7 @@ const AddCourseSteps = () => {
   const [secondLevel, setSecondLevel] = useState([]);
   const [thirdLevel, setThirdLevel] = useState([]);
   const [descEditor, setDescEditor] = useState(undefined);
-  // console.log(descEditor)
+  const [createBtn, setCreateBtn] = useState(false);
   const [Image, setImage] = useState(undefined);
   const [courseId, setCourseId] = useState("");
 
@@ -76,7 +76,7 @@ const AddCourseSteps = () => {
     if (descEditor) {
       addCourse();
     }
-  }, [Image]);
+  }, [createBtn]);
 
   const steps = [
     {
@@ -139,6 +139,7 @@ const AddCourseSteps = () => {
           courseId={courseId}
           stepper={stepper}
           setImage={setImage}
+          setCreateBtn={setCreateBtn}
           type="wizard-vertical"
         />
       ),
