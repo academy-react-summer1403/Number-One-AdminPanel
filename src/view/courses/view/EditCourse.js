@@ -32,6 +32,7 @@ import { UpdateCourse } from "../../../@core/services/api/put-api";
 import { EditCourseField } from "../../../@core/constants/courses";
 import EditCourseValidation from "../../../@core/validations/EditCourse_Validation";
 import DatePicker from "react-multi-date-picker";
+import ChangeMoment from "../../../utility/moment";
 
 const EditCourse = ({ isOpen, toggle, refetchData }) => {
   const [initialValues, setInitialValues] = useState({});
@@ -68,7 +69,7 @@ const EditCourse = ({ isOpen, toggle, refetchData }) => {
     enableReinitialize: true,
     validationSchema: EditCourseValidation,
     onSubmit: (values) => {
-      console.log(values)
+      console.log(values);
       mutate(values);
     },
   });
@@ -247,12 +248,13 @@ const EditCourse = ({ isOpen, toggle, refetchData }) => {
                   تاریخ شروع
                 </Label>
                 <DatePicker
+                  EndTime
                   calendar={persian}
                   locale={persian_fa}
                   containerStyle={{
                     width: "100%",
                   }}
-                  value={startValue}
+                  value={ChangeMoment(formik.values.StartTime, "YYYY/MM/DD", "persian")}
                   format="YYYY/MM/DD"
                   onChange={(date) => handleDatePicker(date, "start")}
                   style={{
@@ -274,7 +276,7 @@ const EditCourse = ({ isOpen, toggle, refetchData }) => {
                   containerStyle={{
                     width: "100%",
                   }}
-                  value={endValue}
+                  value={ChangeMoment(formik.values.EndTime, "YYYY/MM/DD", "persian")}
                   format="YYYY/MM/DD"
                   onChange={(date) => handleDatePicker(date, "end")}
                   style={{
@@ -317,7 +319,9 @@ const EditCourse = ({ isOpen, toggle, refetchData }) => {
                   type="file"
                   name="Image"
                   // value={formik.values.ImageAddress}
-                  onChange={(e) => formik.setFieldValue( "Image" ,e.target.files[0])}
+                  onChange={(e) =>
+                    formik.setFieldValue("Image", e.target.files[0])
+                  }
                   placeholder="عکس دوره"
                 />
                 <Label className="form-label" for="UniqeUrlString">

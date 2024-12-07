@@ -43,6 +43,7 @@ import {
 } from "../../courses/store/CourseList";
 import { UpdateSchedule } from "../../../@core/services/api/put-api";
 import { addScheduleButton } from "../../../@core/constants/schedual/ScheduleFields";
+import ChangeMoment from "../../../utility/moment";
 const ModalSchedule = ({ showModal, toggle, data, refetch, variantState }) => {
   // states & params
   const [courseId, setCourseId] = useState(undefined);
@@ -257,7 +258,7 @@ const ModalSchedule = ({ showModal, toggle, data, refetch, variantState }) => {
                   containerStyle={{
                     width: "100%",
                   }}
-                  value={formik.values.startDate}
+                  value={ChangeMoment(formik.values.startDate, "YYYY/MM/DD", "persian")}
                   format="YYYY/MM/DD"
                   onChange={(date) => handleDatePicker(date)}
                   style={{
